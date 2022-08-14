@@ -47,6 +47,7 @@ module.exports = function(grunt) {
 			shared: {
 				files: {
 					'dist/js/index.js': [
+						'src/js/lib/*.js',
 						'src/js/main.js',
 						'src/js/DEFS.js',
 						'src/js/**/*.js'
