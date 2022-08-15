@@ -44,4 +44,11 @@ class Enemy extends EngineObject  {
  
 	}
 
+	kill(velocity) {
+
+		let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex, this.tileSize.copy());
+		corpse.push(velocity);
+		this.destroy();
+	}
+
 }

@@ -19,8 +19,8 @@ class Bullet extends EngineObject {
 		for (let i = 0; i < g_game.enemies.length; i++) {
 			let enemy = g_game.enemies[i];
 			if (isOverlapping(this.pos, this._hitbox, enemy.pos, enemy._hitbox)) {
+				enemy.kill(this.velocity.copy());
 				this.destroy();
-				enemy.destroy();
 				g_game.enemies.splice(i, 1);
 				i--;
 				return;
