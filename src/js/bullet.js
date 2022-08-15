@@ -9,7 +9,7 @@ class Bullet extends EngineObject {
 		this._hitbox = vec2(1, 1);
 
 		this.timeAlive = 0;
-		this.setCollision(0, 0);
+		this.setCollision(0, 0, 1);
 	}
 
 	update() {
@@ -26,6 +26,11 @@ class Bullet extends EngineObject {
 				return;
 			}
 		}
+
+		/*if (g_game.tileLayer.collideWithObject(this)) {
+			this.destroy();
+			return;
+		}*/
 
 		this.timeAlive++;
 		if (this.timeAlive > this._lifetime) {

@@ -27,7 +27,7 @@ function gameInit() {
     const size = 1;
 	const tileSize = vec2(12, 12);
 
-    const tileLayer = new TileLayer(vec2(0, 0), vec2(w, h), tileSize, vec2(size, size));
+    g_game.tileLayer = new TileLayer(vec2(0, 0), vec2(w, h), tileSize, vec2(size, size));
 
     initTileCollision(vec2(w, h));
     for (let y = 0; y < h; y++) {
@@ -35,11 +35,11 @@ function gameInit() {
             let t = myMap[y][x];
             if (t) {
                 setTileCollisionData(vec2(x, h - 1 - y), t);
-                tileLayer.setData(vec2(x, h - 1 - y), new TileLayerData(t));
+                g_game.tileLayer.setData(vec2(x, h - 1 - y), new TileLayerData(t));
             }
         }
     }
-    tileLayer.redraw();
+    g_game.tileLayer.redraw();
 
     g_game.player = new Player(vec2(0, 0), vec2(size, size), 0, tileSize);
  

@@ -42,6 +42,7 @@ class Player extends EngineObject  {
 			this.walkCyclePlace = 0;
 		}
  
+		cameraPos = this.pos;
 
 		super.update(); // update object physics and position
  
