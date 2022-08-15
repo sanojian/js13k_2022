@@ -1,1 +1,6 @@
-let g_game = {};
+let g_game = {
+
+	player: null,
+	enemies: []
+
+};

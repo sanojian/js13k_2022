@@ -1,4 +1,4 @@
-class Player extends EngineObject  {
+class Enemy extends EngineObject  {
 
 
 	constructor(pos, size, tileIndex, tileSize, angle, color) {
@@ -6,8 +6,9 @@ class Player extends EngineObject  {
 		// your object init code here
 		this._speed = 0.3;
 		this._walkCycleFrames = 30;
+		this._hitbox = vec2(2, 2);
 
-		this.tileIndex = 0;
+		this.tileIndex = 6;
 		this.setCollision(1, 1);
 
 	}
@@ -16,29 +17,17 @@ class Player extends EngineObject  {
 		// your object update code here
 		let dx = 0;
 		let dy = 0;
-		if (keyIsDown(38)) {	// w 
-			dy += this._speed;
-		}
-		if (keyIsDown(37)) {	// a
-			dx += -this._speed;
-		}
-		if (keyIsDown(40)) {	// s
-			dy += -this._speed;
-		}
-		if (keyIsDown(39)) {	// d
-			dx += this._speed;
-		}
 
 		this.velocity.x = dx;
 		this.velocity.y = dy;
 
 		if (dx || dy) {
 			this.walkCyclePlace = (this.walkCyclePlace + 1) % this._walkCycleFrames;
-			this.tileIndex = this.walkCyclePlace > this._walkCycleFrames / 2 ? 2 : 1;
+			this.tileIndex = this.walkCyclePlace > this._walkCycleFrames / 2 ? 8 : 7;
 
 		}
 		else {
-			this.tileIndex = 0;
+			this.tileIndex = 6;
 			this.walkCyclePlace = 0;
 		}
  

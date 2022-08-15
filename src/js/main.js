@@ -15,10 +15,17 @@ function gameInit()
 	const size = 3;
 	const tileSize = vec2(12, 12);
 
-	let player = new Player(pos, vec2(size, size), 0, tileSize);
-
+    g_game.player = new Player(pos, vec2(size, size), 0, tileSize);
+ 
 	let gun = new Gun(pos, vec2(size, size), 3, tileSize);
-	gun.setOwner(player);
+    gun.setOwner(g_game.player);
+    
+    let enemy = new Enemy(vec2(10, 10), vec2(size, size), 6, tileSize);
+    g_game.enemies.push(enemy);
+
+    enemy = new Enemy(vec2(-10, 10), vec2(size, size), 6, tileSize);
+    g_game.enemies.push(enemy);
+
 }
 
 function gameUpdate()
