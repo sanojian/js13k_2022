@@ -4,9 +4,9 @@ class Gun extends EngineObject {
 	constructor(pos, size, tileIndex, tileSize, angle, color) {
 		super(pos, size, tileIndex, tileSize, angle, color);
 		// your object init code here
-		this._distance = 2;
+		this._distance = 0.7;
 		this._mysize = size.y;
-		this._speed = 1;
+		this._speed = 0.4;
 
 		this.sound = new Sound([2.21, , 164.8138, , , , 4, , , , , , , , , -0.3]);
 	}

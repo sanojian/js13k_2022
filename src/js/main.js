@@ -6,25 +6,52 @@ function init() {
 
 }
 
-function gameInit()
-{
+function gameInit() {
     // called once after the engine starts up
     // setup the game
 
-	const pos = vec2(2, 3);
-	const size = 3;
+    cameraScale = 12 * 4;
+
+    let myMap = [
+        [9, 0, 0, 0, 0],
+        [0, 9, 0, 0, 0],
+        [0, 0, 9, 0, 0],
+        [0, 0, 0, 9, 0],
+        [0, 0, 0, 9, 9],
+    ];
+
+    let w = myMap[0].length;
+    let h = myMap.length;
+
+
+    const size = 1;
 	const tileSize = vec2(12, 12);
 
-    g_game.player = new Player(pos, vec2(size, size), 0, tileSize);
+    const tileLayer = new TileLayer(vec2(0, 0), vec2(w, h), tileSize, vec2(size, size));
+
+    initTileCollision(vec2(w, h));
+    for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+            let t = myMap[y][x];
+            if (t) {
+                setTileCollisionData(vec2(x, h - 1 - y), t);
+                tileLayer.setData(vec2(x, h - 1 - y), new TileLayerData(t));
+            }
+        }
+    }
+    tileLayer.redraw();
+
+    g_game.player = new Player(vec2(0, 0), vec2(size, size), 0, tileSize);
  
-	let gun = new Gun(pos, vec2(size, size), 3, tileSize);
+	let gun = new Gun(vec2(0, 0), vec2(size, size), 3, tileSize);
     gun.setOwner(g_game.player);
     
-    let enemy = new Enemy(vec2(10, 10), vec2(size, size), 6, tileSize);
+    let enemy = new Enemy(vec2(6, 6), vec2(size, size), 6, tileSize);
     g_game.enemies.push(enemy);
 
-    enemy = new Enemy(vec2(-10, 10), vec2(size, size), 6, tileSize);
+    enemy = new Enemy(vec2(-6, 6), vec2(size, size), 6, tileSize);
     g_game.enemies.push(enemy);
+
 
 }
 
