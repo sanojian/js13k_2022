@@ -8,6 +8,7 @@ class Gun extends EngineObject {
 		this._mysize = size.y;
 		this._speed = 1;
 
+		this.sound = new Sound([2.21, , 164.8138, , , , 4, , , , , , , , , -0.3]);
 	}
 
 	update() {
@@ -23,10 +24,7 @@ class Gun extends EngineObject {
 			this.size.y = Math.abs(this.angle) > Math.PI / 2 ? -this._mysize : this._mysize;
 		
 			if (mouseWasPressed(0)) {
-
-				let bullet = new Bullet(this.pos.copy(), this.size.copy(), 4, this.tileSize.copy(), this.angle);
-				bullet.velocity.x = Math.cos(angle) * this._speed;
-				bullet.velocity.y = Math.sin(angle) * this._speed;
+				this.fire();
 			}
 			
 			
@@ -43,6 +41,15 @@ class Gun extends EngineObject {
 
 	setOwner(player) {
 		this.owner = player;
+	}
+
+	fire() {
+		this.sound.play();
+
+		let bullet = new Bullet(this.pos.copy(), this.size.copy(), 4, this.tileSize.copy(), this.angle);
+		bullet.velocity.x = Math.cos(-this.angle) * this._speed;
+		bullet.velocity.y = Math.sin(-this.angle) * this._speed;
+
 	}
 
 }

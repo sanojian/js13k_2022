@@ -6,6 +6,7 @@
 # Project Customizations
 dist/*
 !/dist/assets
+!/dist/lib
 package-lock.json
 
 # Node artifact files

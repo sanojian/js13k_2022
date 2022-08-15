@@ -30,7 +30,8 @@ module.exports = function(grunt) {
 		jshint: {
 			options: {
 				esversion: 8,
-				evil: true
+				evil: true,
+				elision: true
 			},
 			all: ['src/js/**/*.js', '!src/js/lib/**.*js']
 		},
