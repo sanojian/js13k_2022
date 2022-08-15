@@ -6,6 +6,7 @@ class Gun extends EngineObject {
 		// your object init code here
 		this._distance = 2;
 		this._mysize = size.y;
+		this._speed = 1;
 
 	}
 
@@ -20,6 +21,14 @@ class Gun extends EngineObject {
 
 			this.angle = -angle;
 			this.size.y = Math.abs(this.angle) > Math.PI / 2 ? -this._mysize : this._mysize;
+		
+			if (mouseWasPressed(0)) {
+
+				let bullet = new Bullet(this.pos.copy(), this.size.copy(), 4, this.tileSize.copy(), this.angle);
+				bullet.velocity.x = Math.cos(angle) * this._speed;
+				bullet.velocity.y = Math.sin(angle) * this._speed;
+			}
+			
 			
 		}
 

@@ -5,6 +5,9 @@ class Player extends EngineObject  {
 		super(pos, size, tileIndex, tileSize, angle, color);
 		// your object init code here
 		this._speed = 0.3;
+		this._walkCycleFrames = 30;
+
+		this.tileIndex = 0;
 
 	}
 
@@ -28,13 +31,27 @@ class Player extends EngineObject  {
 		this.velocity.x = dx;
 		this.velocity.y = dy;
 
+		if (dx || dy) {
+			this.walkCyclePlace = (this.walkCyclePlace + 1) % this._walkCycleFrames;
+			this.tileIndex = this.walkCyclePlace > this._walkCycleFrames / 2 ? 2 : 1;
+
+		}
+		else {
+			this.tileIndex = 0;
+			this.walkCyclePlace = 0;
+		}
+ 
+
 		super.update(); // update object physics and position
  
 	}
 
 	render() {
-		super.render(); // draw object as a sprite
+		//super.render(); // draw object as a sprite
 		// your object render code here
+
+		drawTile(this.pos, this.size, this.tileIndex, this.tileSize, this.color, this.angle, this.mirror);
+ 
 	}
 
 }

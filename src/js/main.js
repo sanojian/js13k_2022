@@ -17,7 +17,7 @@ function gameInit()
 
 	let player = new Player(pos, vec2(size, size), 0, tileSize);
 
-	let gun = new Gun(pos, vec2(size, size), 1, tileSize);
+	let gun = new Gun(pos, vec2(size, size), 3, tileSize);
 	gun.setOwner(player);
 }
 
