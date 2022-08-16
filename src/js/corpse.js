@@ -10,11 +10,42 @@ class Corpse extends EngineObject {
 		this.timeAlive = 0;
 		this.fallDirection = 1;
 		this.setCollision(0, 0, 1);
+
+		this.soundDie = new Sound([2.37,.5,100,.06,.18,.54,2,3.83,.5,,,,.06,.8,,.5,,.33,,.22])
+		this.soundDie.play();
+
+		this.particleEmiter = new ParticleEmitter (
+			pos,					// pos
+			0,						// angle
+			1,						// emitSize
+			1000,						// emitTime
+			500,					// emitRate
+			angle - Math.PI/6,  					// emiteCone
+			-1,						// tileIndex
+			vec2(12),  				// tileSize
+			new Color(1, 0, 0),		// colorStartA
+			new Color(.9, 0, 0), 	// colorStartB
+			new Color(0, 0, 0),		//colorEndA
+			new Color(0, 0, 0), 	// colorEndB
+			2,						// particleTime
+			6.6,					// sizeStart
+			0.2,					// sizeEnd
+			0.01,					// particleSpeed
+			0.05,  					// particleAngleSpeed
+			0.99,					// damping
+			1,						// angleDamping
+			0,						// gravityScale
+			angle + Math.PI/6,						// particleCone
+			0.05,  					// fadeRate, 
+			0.5,						// randomness
+			0                // collide, additive, randomColorLinear, renderOrder
+		);
+
 	}
 
 	update() {
 		// your object update code here
-
+		
 		this.timeAlive++;
 
 		this.angle = this.fallDirection * Math.min(1, this.timeAlive / this._animLifetime) * Math.PI / 2;

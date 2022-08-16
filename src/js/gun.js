@@ -11,14 +11,23 @@ class Gun extends EngineObject {
 		this.ammo = 6;
 		this.reloading = false;
 		this.reloadTimer = undefined;
-		this.reloadTimePerBullet = 0.5;
+		this.reloadTimePerBullet = 0.25;
 
-		this.sound = new Sound([2.21, , 164.8138, , , , 4, , , , , , , , , -0.3]);
-		this.empty = new Sound([1.06,,440,,,0.01,3,,,,,,,,-16,,,0.8]);
+		this.soundFire = new Sound([2.21, , 164.8138, , , , 4, , , , , , , , , -0.3]);			
+		
+		//this.soundEmpty = new Sound([, .3, 0, .01, , .01, 4, 0, 20, 6.6, -600, .07, .32, 3.6, 12, , , , , .12]);
+		this.soundReload = new Sound([, .3, 0, .01, , .01, 4, 0, 20, 6.6, 600, .07, .32, 3.6, 12, , , , , .12]);
 	}
 
 	update() {
 		// your object update code here
+
+		if (keyIsDown(82)) // r
+		{ 
+			this.reload();
+			return;
+		}
+
 
 		if (this.owner) {
 			let angle = Math.atan2(mousePos.y - this.owner.pos.y, mousePos.x - this.owner.pos.x);
@@ -35,6 +44,8 @@ class Gun extends EngineObject {
 		
 			if (this.reloading) {
 				if (this.reloadTimer.elapsed()) {
+					this.soundReload.play();
+
 					this.ammo = Math.min(6, this.ammo + 1);
 					this.reloadTimer.set(this.reloadTimePerBullet);
 					if (this.ammo == 6) {
@@ -44,6 +55,12 @@ class Gun extends EngineObject {
 				}
 			}
 		}
+
+		if (!this.ammo && !this.reloading) {
+			//this.soundEmpty.play();
+    	  	this.reload();
+    	}
+
 
 		super.update(); // update object physics and position
  
@@ -62,19 +79,14 @@ class Gun extends EngineObject {
 	fire() {
 
 		if (this.reloading) {
-			this.empty.play();
+			//this.soundEmpty.play();
 			return;
 		}
 
-		if (!this.ammo) {
-			this.empty.play();
-			this.reload();
-			return;
-		}
 
 		this.ammo--;
 
-		this.sound.play();
+		this.soundFire.play();
 
 		let bullet = new Bullet(this.pos.copy(), this.size.copy(), 4, this.tileSize.copy(), this.angle);
 		bullet.velocity.x = Math.cos(-this.angle) * this._speed;

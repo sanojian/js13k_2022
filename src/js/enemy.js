@@ -46,35 +46,7 @@ class Enemy extends EngineObject  {
 
 	kill(velocity, pos) {
 
-		/*const angle = Math.atan2(velocity.y, velocity.x);
-
-		// create a particle emitter
-		let particleEmiter = new ParticleEmitter (
-			pos,					// pos
-			0,						// angle
-			1,						// emitSize
-			0,						// emitTime
-			500,					// emitRate
-			angle - Math.PI/6,  					// emiteCone
-			-1,						// tileIndex
-			vec2(12),  				// tileSize
-			new Color(1, 0, 0),		// colorStartA
-			new Color(1, 0, 0), 	// colorStartB
-			new Color(1, 0, 0),		//colorEndA
-			new Color(1, 0, 0), 	// colorEndB
-			2,						// particleTime
-			0.2,					// sizeStart
-			0.2,					// sizeEnd
-			0.1,					// particleSpeed
-			0.05,  					// particleAngleSpeed
-			0.99,					// damping
-			1,						// angleDamping
-			1,						// gravityScale
-			angle + Math.PI/6,						// particleCone
-			0.05,  					// fadeRate, 
-			0.5,						// randomness
-			1                // collide, additive, randomColorLinear, renderOrder
-		);*/
+	
 
 		let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex, this.tileSize.copy());
 		corpse.push(velocity);

@@ -4,12 +4,14 @@ class Player extends EngineObject  {
 	constructor(pos, size, tileIndex, tileSize, angle, color) {
 		super(pos, size, tileIndex, tileSize, angle, color);
 		// your object init code here
-		this._speed = 0.1;
+		this._speed = 0.15;
+
 		this._walkCycleFrames = 30;
 
 		this.tileIndex = 0;
 		this.setCollision(1, 1);
-
+		this.mass = 1;
+		this.damping = .4;
 	}
 
 	update() {
@@ -29,8 +31,11 @@ class Player extends EngineObject  {
 			dx += this._speed;
 		}
 
-		this.velocity.x = dx;
-		this.velocity.y = dy;
+
+		// this.velocity.x = dx;
+		// this.velocity.y = dy;
+
+		this.applyForce( new Vector2(dx,dy))
 
 		if (dx || dy) {
 			this.walkCyclePlace = (this.walkCyclePlace + 1) % this._walkCycleFrames;
