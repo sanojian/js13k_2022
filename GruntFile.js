@@ -31,7 +31,8 @@ module.exports = function(grunt) {
 			options: {
 				esversion: 8,
 				evil: true,
-				elision: true
+				elision: true,
+				"-W008": true	// leading 0 before decimal
 			},
 			all: ['src/js/**/*.js', '!src/js/lib/**.*js']
 		},
