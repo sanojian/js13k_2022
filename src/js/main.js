@@ -21,27 +21,32 @@ function gameInit() {
 	let gun = new Gun(vec2(0, 0), vec2(1), 3, tileSize);
     gun.setOwner(g_game.player);
     
-    // let enemy = new Enemy(vec2(6, 6), vec2(1), 6, tileSize);
-    // g_game.enemies.push(enemy);
 
-    // enemy = new Enemy(vec2(-6, 6), vec2(1), 6, tileSize);
-    // g_game.enemies.push(enemy);
-
-
+	while (g_game.enemies.length < 5) {
+		spawnEnemy(20, 5);
+	}
 }
 
+const ENEMIES_TO_SPAWN = 20;
+const ENMIES_MAX_ALIVE = 5;
 
-function spawnEnemy() { 
+var enemiesSpawned = 0
 
-	let p, distToPlayer;
+function spawnEnemy(maxAxisDist, minDistToPlayer) { 
+
+	let p, len;
+
+	// todo: do not spwan in collision
 
 	do { 
-		p = vec2(rand(-10, 10), rand(-10, 10));
-		distToPlayer = g_game.player.pos.distance(p);
-	} while (distToPlayer < 2)
+		p = vec2(rand(-maxAxisDist, maxAxisDist), rand(-maxAxisDist, maxAxisDist));
+		len = p.length();
+	} while (len < minDistToPlayer)
 
-	let enemy = new Enemy(p, vec2(1), 6, tileSize);
+	let enemy = new Enemy(p.add(g_game.player.pos), vec2(1), 6, tileSize);
     g_game.enemies.push(enemy);
+
+	enemiesSpawned++;
 }
 
 function gameUpdate()
@@ -49,13 +54,13 @@ function gameUpdate()
     // called every frame at 60 frames per second
     // handle input and update the game state
 
-	console.log(g_game.enemies.length);
-
-	if (g_game.enemies.length < 5) { 
-		spawnEnemy();
+	if (g_game.enemies.length < ENMIES_MAX_ALIVE && enemiesSpawned < ENEMIES_TO_SPAWN) {
+    	spawnEnemy(20, 5);
 	}
 
-
+	if (enemiesSpawned == ENEMIES_TO_SPAWN && g_game.enemies.length == 0) { 
+		console.log("YOU WIN")
+	}
 }
 
 function gameUpdatePost()
