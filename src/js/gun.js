@@ -13,12 +13,21 @@ class Gun extends EngineObject {
 		this.reloadTimer = undefined;
 		this.reloadTimePerBullet = 0.25;
 
-		this.soundFire = new Sound([2.21, , 164.8138, , , , 4, , , , , , , , , -0.3]);
-		this.soundEmpty = new Sound([,.3,0,.01,,.01,4,0,20,6.6,-600,.07,.32,3.6,12,,,,,.12]); 			
+		this.soundFire = new Sound([2.21, , 164.8138, , , , 4, , , , , , , , , -0.3]);			
+		
+		//this.soundEmpty = new Sound([, .3, 0, .01, , .01, 4, 0, 20, 6.6, -600, .07, .32, 3.6, 12, , , , , .12]);
+		this.soundReload = new Sound([, .3, 0, .01, , .01, 4, 0, 20, 6.6, 600, .07, .32, 3.6, 12, , , , , .12]);
 	}
 
 	update() {
 		// your object update code here
+
+		if (keyIsDown(82)) // r
+		{ 
+			this.reload();
+			return;
+		}
+
 
 		if (this.owner) {
 			let angle = Math.atan2(mousePos.y - this.owner.pos.y, mousePos.x - this.owner.pos.x);
@@ -35,6 +44,8 @@ class Gun extends EngineObject {
 		
 			if (this.reloading) {
 				if (this.reloadTimer.elapsed()) {
+					this.soundReload.play();
+
 					this.ammo = Math.min(6, this.ammo + 1);
 					this.reloadTimer.set(this.reloadTimePerBullet);
 					if (this.ammo == 6) {
@@ -46,7 +57,7 @@ class Gun extends EngineObject {
 		}
 
 		if (!this.ammo && !this.reloading) {
-	      	this.soundEmpty.play();
+			//this.soundEmpty.play();
     	  	this.reload();
     	}
 
@@ -68,7 +79,7 @@ class Gun extends EngineObject {
 	fire() {
 
 		if (this.reloading) {
-			this.soundEmpty.play();
+			//this.soundEmpty.play();
 			return;
 		}
 
