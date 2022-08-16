@@ -1,4 +1,4 @@
-class Enemy extends EngineObject  {
+class Enemy extends EngineObject {
 
 
 	constructor(pos, size, tileIndex, tileSize, angle, color) {
@@ -15,10 +15,12 @@ class Enemy extends EngineObject  {
 		this.elasticity = 1;
 
 		this.maxSpeed = .3;
+
+		this.hp = 3
 	}
 
 
-	applyDrag(dragConst) { 
+	applyDrag(dragConst) {
 		let speed = this.velocity.length();
 
 		let drag = speed * speed * dragConst;
@@ -32,8 +34,7 @@ class Enemy extends EngineObject  {
 
 	update() {
 
-		if (rand(0, 100 ) < 10)
-		{
+		if (rand(0, 100) < 10) {
 			let toPlayer = g_game.player.pos.subtract(this.pos).normalize(.02);
 
 			let force = toPlayer.add(vec2(rand(-.01, .01), rand(-.01, .01))); // jitter
@@ -63,16 +64,36 @@ class Enemy extends EngineObject  {
 		// your object render code here
 
 		// zombie limp
-		let dy = 0.2 * this.walkCyclePlace / (this._walkCycleFrames *2);
+		let dy = 0.2 * this.walkCyclePlace / (this._walkCycleFrames * 2);
 
 		drawTile(vec2(this.pos.x, this.pos.y + dy), this.size, this.tileIndex, this.tileSize, this.color, this.angle, this.mirror);
  
 	}
 
-	kill(velocity, pos) {
-		let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex, this.tileSize.copy());
-		corpse.push(velocity);
-		this.destroy();
+	hit(velocity, pos) {
+		this.hp--;
+
+		let radius = .5
+		this.bloodEmitter = new ParticleEmitter(
+			this.pos, 0, radius/2, .02, 50*radius, PI, // pos, angle, emitSize, emitTime, emitRate, emiteCone
+			0, undefined,        // tileIndex, tileSize
+			new Color(.8,.1,.1), new Color(1,0,0), // colorStartA, colorStartB
+			new Color(0,0,0,0), new Color(0,0,0,0), // colorEndA, colorEndB
+			1, .5, 2, .1, .05,   // particleTime, sizeStart, sizeEnd, particleSpeed, particleAngleSpeed
+			.9, 1, -.3, PI, .1,  // damping, angleDamping, gravityScale, particleCone, fadeRate, 
+			.5, 0, 0, 0, 1e8     // randomness, collide, additive, randomColorLinear, renderOrder
+		);
+
+
+		if (this.hp <= 0) { 
+			let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex, this.tileSize.copy());
+			corpse.push(velocity);
+			this.destroy();
+			return true
+		}
+
+		return false
 	}
+
 
 }
