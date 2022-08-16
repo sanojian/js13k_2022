@@ -10,11 +10,14 @@ class Corpse extends EngineObject {
 		this.timeAlive = 0;
 		this.fallDirection = 1;
 		this.setCollision(0, 0, 1);
+
+		this.soundDie = new Sound([2.37,.5,100,.06,.18,.54,2,3.83,.5,,,,.06,.8,,.5,,.33,,.22])
+		this.soundDie.play();
 	}
 
 	update() {
 		// your object update code here
-
+		
 		this.timeAlive++;
 
 		this.angle = this.fallDirection * Math.min(1, this.timeAlive / this._animLifetime) * Math.PI / 2;
