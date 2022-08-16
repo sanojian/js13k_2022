@@ -5,6 +5,7 @@ class Enemy extends EngineObject  {
 		super(pos, size, tileIndex, tileSize, angle, color);
 		// your object init code here
 		this._speed = 0.3;
+		this.walkCyclePlace = 0;
 		this._walkCycleFrames = 30;
 		this._hitbox = vec2(0.5);
 
@@ -30,7 +31,6 @@ class Enemy extends EngineObject  {
 			this.tileIndex = 6;
 			this.walkCyclePlace = 0;
 		}
- 
 
 		super.update(); // update object physics and position
  
