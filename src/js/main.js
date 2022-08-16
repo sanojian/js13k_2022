@@ -49,8 +49,6 @@ function gameUpdate()
     // called every frame at 60 frames per second
     // handle input and update the game state
 
-	console.log(g_game.enemies.length);
-
 	if (g_game.enemies.length < 5) { 
 		spawnEnemy();
 	}
