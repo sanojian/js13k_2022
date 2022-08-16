@@ -86,11 +86,14 @@ function gameRenderPost()
     // called after objects are rendered
     // draw effects or hud that appear above all objects
 
-    let pos = vec2(cameraPos.x, cameraPos.y - 8);
+    let pos = vec2(cameraPos.x, cameraPos.y - overlayCanvas.height/(cameraScale*2) + 2);
 
-    let scaleX = frame % 240 > 200 ? -2 : 2;
+    
+    // background
+    drawRect(pos, vec2(16, 2), new Color(132 / 255, 126 / 255, 135 / 255));
 
     // portrait
+    let scaleX = frame % 240 > 200 ? -2 : 2;
     drawTile(pos, vec2(scaleX, 2), 12, vec2(12));
 
     // ammo
