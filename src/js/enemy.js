@@ -73,6 +73,8 @@ class Enemy extends EngineObject {
 	hit(velocity, pos) {
 		this.hp--;
 
+		this.applyForce(velocity)
+
 		let radius = .5
 		this.bloodEmitter = new ParticleEmitter(
 			this.pos, 0, radius/2, .02, 50*radius, PI, // pos, angle, emitSize, emitTime, emitRate, emiteCone
