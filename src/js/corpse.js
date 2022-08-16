@@ -21,9 +21,9 @@ class Corpse extends EngineObject {
 			0, undefined,        // tileIndex, tileSize
 			new Color(.8,.1,.1), new Color(1,0,0), // colorStartA, colorStartB
 			new Color(0,0,0,0), new Color(0,0,0,0), // colorEndA, colorEndB
-			1, .5, 2, .1, .05, // particleTime, sizeStart, sizeEnd, particleSpeed, particleAngleSpeed
+			1, .5, 2, .1, .05,   // particleTime, sizeStart, sizeEnd, particleSpeed, particleAngleSpeed
 			.9, 1, -.3, PI, .1,  // damping, angleDamping, gravityScale, particleCone, fadeRate, 
-			.5, 0, 0, 0, 1e8              // randomness, collide, additive, randomColorLinear, renderOrder
+			.5, 0, 0, 0, 1e8     // randomness, collide, additive, randomColorLinear, renderOrder
 		);
 	}
 

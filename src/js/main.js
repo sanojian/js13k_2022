@@ -6,13 +6,14 @@ function init() {
 
 }
 
+const tileSize = vec2(12, 12);
+
+
 function gameInit() {
     // called once after the engine starts up
     // setup the game
 
     cameraScale = 12 * 4;
-    const tileSize = vec2(12, 12);
-
     g_game.mapMan = new MapManager();
  
     g_game.player = new Player(vec2(0, 0), vec2(1), 0, tileSize);
@@ -20,19 +21,40 @@ function gameInit() {
 	let gun = new Gun(vec2(0, 0), vec2(1), 3, tileSize);
     gun.setOwner(g_game.player);
     
-    let enemy = new Enemy(vec2(6, 6), vec2(1), 6, tileSize);
+    // let enemy = new Enemy(vec2(6, 6), vec2(1), 6, tileSize);
+    // g_game.enemies.push(enemy);
+
+    // enemy = new Enemy(vec2(-6, 6), vec2(1), 6, tileSize);
+    // g_game.enemies.push(enemy);
+
+
+}
+
+
+function spawnEnemy() { 
+
+	let p, distToPlayer;
+
+	do { 
+		p = vec2(rand(-10, 10), rand(-10, 10));
+		distToPlayer = g_game.player.pos.distance(p);
+	} while (distToPlayer < 2)
+
+	let enemy = new Enemy(p, vec2(1), 6, tileSize);
     g_game.enemies.push(enemy);
-
-    enemy = new Enemy(vec2(-6, 6), vec2(1), 6, tileSize);
-    g_game.enemies.push(enemy);
-
-
 }
 
 function gameUpdate()
 {
     // called every frame at 60 frames per second
     // handle input and update the game state
+
+	console.log(g_game.enemies.length);
+
+	if (g_game.enemies.length < 5) { 
+		spawnEnemy();
+	}
+
 
 }
 
