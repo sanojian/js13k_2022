@@ -11,7 +11,7 @@ class Enemy extends EngineObject  {
 
 		this.tileIndex = 6;
 		this.setCollision(1, 1);
-		this.mass = 1
+		this.mass = 1;
 		this.damping = 0.1;
 		this.maxSpeed = 1;
 	}
@@ -21,7 +21,7 @@ class Enemy extends EngineObject  {
 		let toPlayer = g_game.player.pos.subtract(this.pos).normalize(.1);
 
 
-		this.applyForce(toPlayer)
+		this.applyForce(toPlayer);
 
 		if (this.velocity.length() > .1) {
 			this.walkCyclePlace = (this.walkCyclePlace + 1) % this._walkCycleFrames;
