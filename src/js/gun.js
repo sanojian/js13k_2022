@@ -16,7 +16,7 @@ class Gun extends EngineObject {
 		this.soundFire = new Sound([2.21, , 164.8138, , , , 4, , , , , , , , , -0.3]);			
 		
 		//this.soundEmpty = new Sound([, .3, 0, .01, , .01, 4, 0, 20, 6.6, -600, .07, .32, 3.6, 12, , , , , .12]);
-		this.soundReload = new Sound([, .3, 0, .01, , .01, 4, 0, 20, 6.6, 600, .07, .32, 3.6, 12, , , , , .12]);
+		this.soundReload = new Sound([, 0.3, 0, 0.01, , 0.01, 4, 0, 20, 6.6, 600, 0.07, 0.32, 3.6, 12, , , , , 0.12]);
 	}
 
 	update() {
