@@ -5,7 +5,7 @@ class Enemy extends EngineObject  {
 		super(pos, size, tileIndex, tileSize, angle, color);
 
 		this.walkCyclePlace = 0;
-		this._walkCycleFrames = 30;
+		this._walkCycleFrames = 60;
 		this._hitbox = vec2(0.5);
 
 		this.tileIndex = 6;
@@ -62,7 +62,10 @@ class Enemy extends EngineObject  {
 		//super.render(); // draw object as a sprite
 		// your object render code here
 
-		drawTile(this.pos, this.size, this.tileIndex, this.tileSize, this.color, this.angle, this.mirror);
+		// zombie limp
+		let dy = 0.2 * this.walkCyclePlace / (this._walkCycleFrames *2);
+
+		drawTile(vec2(this.pos.x, this.pos.y + dy), this.size, this.tileIndex, this.tileSize, this.color, this.angle, this.mirror);
  
 	}
 

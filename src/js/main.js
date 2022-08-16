@@ -30,7 +30,7 @@ function gameInit() {
 const ENEMIES_TO_SPAWN = 20;
 const ENMIES_MAX_ALIVE = 10;
 
-var enemiesSpawned = 0
+var enemiesSpawned = 0;
 
 function spawnEnemy(maxAxisDist, minDistToPlayer) { 
 
@@ -38,10 +38,10 @@ function spawnEnemy(maxAxisDist, minDistToPlayer) {
 
 	// todo: do not spwan in collision
 
-	do { 
-		p = vec2(rand(-maxAxisDist, maxAxisDist), rand(-maxAxisDist, maxAxisDist));
-		len = p.length();
-	} while (len < minDistToPlayer)
+    do {
+        p = vec2(rand(-maxAxisDist, maxAxisDist), rand(-maxAxisDist, maxAxisDist));
+        len = p.length();
+    } while (len < minDistToPlayer);
 
 	let enemy = new Enemy(p.add(g_game.player.pos), vec2(1), 6, tileSize);
     g_game.enemies.push(enemy);
@@ -59,7 +59,7 @@ function gameUpdate()
 	}
 
 	if (enemiesSpawned == ENEMIES_TO_SPAWN && g_game.enemies.length == 0) { 
-		console.log("YOU WIN")
+        console.log("YOU WIN");
 	}
 }
 
