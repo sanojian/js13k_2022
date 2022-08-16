@@ -8,6 +8,8 @@ class Gun extends EngineObject {
 		this._mysize = size.y;
 		this._speed = 0.4;
 
+		this.ammo = 6;
+
 		this.sound = new Sound([2.21, , 164.8138, , , , 4, , , , , , , , , -0.3]);
 	}
 
@@ -41,9 +43,17 @@ class Gun extends EngineObject {
 
 	setOwner(player) {
 		this.owner = player;
+		player.gun = this;
 	}
 
 	fire() {
+
+		if (!this.ammo) {
+			return;
+		}
+
+		this.ammo--;
+
 		this.sound.play();
 
 		let bullet = new Bullet(this.pos.copy(), this.size.copy(), 4, this.tileSize.copy(), this.angle);

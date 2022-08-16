@@ -13,11 +13,18 @@ function gameInit() {
     cameraScale = 12 * 4;
 
     let myMap = [
-        [ 9,   ,   ,   ,   ],
-        [  ,  9,   ,   ,   ],
-        [  ,   ,  9, 10,   ],
-        [  ,   ,   , 10,   ],
-        [  ,   ,   ,  9,  9],
+        [10, 9,  9,  9, 9, 10],
+        [10,  ,   ,   ,  , 10],
+        [10,  ,   ,   ,  , 10],
+        [10,  ,   ,   ,  , 10],
+        [9,  9,   ,   , 9,  9],
+        [  ,   ,   ,   ,  ,  ],
+        [  ,   ,   ,   ,  ,  ],
+        [ 9,   ,   ,   ,  ,  ],
+        [  ,  9,   ,   ,  ,  ],
+        [  ,   ,  9, 10,  ,  ],
+        [  ,   ,   , 10,  ,  ],
+        [  ,   ,   ,  9,  9, ],
     ];
 
     let w = myMap[0].length;
@@ -78,5 +85,19 @@ function gameRenderPost()
 {
     // called after objects are rendered
     // draw effects or hud that appear above all objects
+
+    let pos = vec2(cameraPos.x, cameraPos.y - 8);
+
+    let scaleX = frame % 240 > 200 ? -2 : 2;
+
+    // portrait
+    drawTile(pos, vec2(scaleX, 2), 12, vec2(12));
+
+    // ammo
+    const colorHere = new Color(1, 1, 1);
+    const colorGone = new Color(0.3, 0.3, 0.3);
+    for (let i = 0; i < 6; i++) {
+        drawTile(vec2(pos.x + 2 + i, pos.y), vec2(1), 5, vec2(12), i + 1 > g_game.player.gun.ammo ? colorGone : colorHere);
+    }
 }
 
