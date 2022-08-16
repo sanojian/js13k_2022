@@ -35,10 +35,10 @@ function spawnEnemy() {
 
 	let p, distToPlayer;
 
-	do { 
-		p = vec2(rand(-10, 10), rand(-10, 10));
-		distToPlayer = g_game.player.pos.distance(p);
-	} while (distToPlayer < 2)
+    do {
+        p = vec2(rand(-10, 10), rand(-10, 10));
+        distToPlayer = g_game.player.pos.distance(p);
+    } while (distToPlayer < 2);
 
 	let enemy = new Enemy(p, vec2(1), 6, tileSize);
     g_game.enemies.push(enemy);
