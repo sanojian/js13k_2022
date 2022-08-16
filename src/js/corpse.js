@@ -11,7 +11,7 @@ class Corpse extends EngineObject {
 		this.fallDirection = 1;
 		this.setCollision(0, 0, 1);
 
-		this.soundDie = new Sound([2.37,.5,100,.06,.18,.54,2,3.83,.5,,,,.06,.8,,.5,,.33,,.22])
+		this.soundDie = new Sound([2.37, 0.5, 100, 0.06, 0.18, 0.54, 2, 3.83, 0.5, , , , 0.06, 0.8, , 0.5, , 0.33, , 0.22]);
 		this.soundDie.play();
 
 		var radius = 2;

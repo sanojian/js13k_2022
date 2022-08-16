@@ -11,7 +11,7 @@ class Player extends EngineObject  {
 		this.tileIndex = 0;
 		this.setCollision(1, 1);
 		this.mass = 1;
-		this.damping = .4;
+		this.damping = 0.4;
 	}
 
 	update() {
@@ -35,7 +35,7 @@ class Player extends EngineObject  {
 		// this.velocity.x = dx;
 		// this.velocity.y = dy;
 
-		this.applyForce( new Vector2(dx,dy))
+		this.applyForce(new Vector2(dx, dy));
 
 		if (dx || dy) {
 			this.walkCyclePlace = (this.walkCyclePlace + 1) % this._walkCycleFrames;
