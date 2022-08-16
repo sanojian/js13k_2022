@@ -9,7 +9,7 @@ class Bullet extends EngineObject {
 		this._hitbox = vec2(0.25);
 
 		this.timeAlive = 0;
-		this.setCollision(0, 0, 1);
+		//this.setCollision(0, 0);
 	}
 
 	update() {
@@ -26,10 +26,14 @@ class Bullet extends EngineObject {
 			}
 		}
 
-		/*if (g_game.tileLayer.collideWithObject(this)) {
-			this.destroy();
-			return;
-		}*/
+		for (let i = 0; i < g_game.walls.length; i++) {
+			let wall = g_game.walls[i];
+			if (isOverlapping(this.pos, this._hitbox, wall.pos, vec2(1))) {
+				this.destroy();
+				return;
+			}
+		}
+
 
 		this.timeAlive++;
 		if (this.timeAlive > this._lifetime) {
