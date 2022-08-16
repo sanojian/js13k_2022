@@ -28,7 +28,7 @@ function gameInit() {
 }
 
 const ENEMIES_TO_SPAWN = 20;
-const ENMIES_MAX_ALIVE = 5;
+const ENMIES_MAX_ALIVE = 10;
 
 var enemiesSpawned = 0
 

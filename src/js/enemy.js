@@ -3,8 +3,7 @@ class Enemy extends EngineObject  {
 
 	constructor(pos, size, tileIndex, tileSize, angle, color) {
 		super(pos, size, tileIndex, tileSize, angle, color);
-		// your object init code here
-		this._speed = 0.3;
+
 		this.walkCyclePlace = 0;
 		this._walkCycleFrames = 30;
 		this._hitbox = vec2(0.5);
@@ -12,18 +11,41 @@ class Enemy extends EngineObject  {
 		this.tileIndex = 6;
 		this.setCollision(1, 1);
 		this.mass = 1;
-		this.damping = 0.1;
-		this.maxSpeed = 1;
+		this.damping = 1;
+		this.elasticity = 1;
+
+		this.maxSpeed = .3;
 	}
 
+
+	applyDrag(dragConst) { 
+		let speed = this.velocity.length();
+
+		let drag = speed * speed * dragConst;
+
+		let dragForce = this.velocity.normalize(drag)
+
+		this.velocity = this.velocity.subtract(dragForce)
+
+	}
+
+
 	update() {
-		// your object update code here
-		let toPlayer = g_game.player.pos.subtract(this.pos).normalize(.1);
+
+		if (rand(0, 100 ) < 10)
+		{
+			let toPlayer = g_game.player.pos.subtract(this.pos).normalize(.02);
+
+			let force = toPlayer.add(vec2(rand(-.01, .01), rand(-.01, .01))); // jitter
+
+			this.applyForce(force);
+		}
 
 
-		this.applyForce(toPlayer);
+		this.applyDrag(1.5);
+		this.velocity = this.velocity.clampLength(this.maxSpeed);
 
-		if (this.velocity.length() > .1) {
+		if (this.velocity.length() > .01) {
 			this.walkCyclePlace = (this.walkCyclePlace + 1) % this._walkCycleFrames;
 			this.tileIndex = this.walkCyclePlace > this._walkCycleFrames / 2 ? 8 : 7;
 		}
