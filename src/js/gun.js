@@ -11,10 +11,10 @@ class Gun extends EngineObject {
 		this.ammo = 6;
 		this.reloading = false;
 		this.reloadTimer = undefined;
-		this.reloadTimePerBullet = 0.5;
+		this.reloadTimePerBullet = 0.25;
 
 		this.sound = new Sound([2.21, , 164.8138, , , , 4, , , , , , , , , -0.3]);
-		this.empty = new Sound([1.06,,440,,,0.01,3,,,,,,,,-16,,,0.8]);
+		this.empty = new Sound([,.3,0,.01,,.01,4,0,20,6.6,-600,.07,.32,3.6,12,,,,,.12]); 			
 	}
 
 	update() {
@@ -45,6 +45,12 @@ class Gun extends EngineObject {
 			}
 		}
 
+		if (!this.ammo && !this.reloading) {
+	      	this.empty.play();
+    	  	this.reload();
+    	}
+
+
 		super.update(); // update object physics and position
  
 	}
@@ -66,11 +72,6 @@ class Gun extends EngineObject {
 			return;
 		}
 
-		if (!this.ammo) {
-			this.empty.play();
-			this.reload();
-			return;
-		}
 
 		this.ammo--;
 
