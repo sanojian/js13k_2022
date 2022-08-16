@@ -10,21 +10,21 @@ class Enemy extends EngineObject  {
 
 		this.tileIndex = 6;
 		this.setCollision(1, 1);
-
+		this.mass = 1
+		this.damping = 0.1;
+		this.maxSpeed = 1;
 	}
 
 	update() {
 		// your object update code here
-		let dx = 0;
-		let dy = 0;
+		let toPlayer = g_game.player.pos.subtract(this.pos).normalize(.1);
 
-		this.velocity.x = dx;
-		this.velocity.y = dy;
 
-		if (dx || dy) {
+		this.applyForce(toPlayer)
+
+		if (this.velocity.length() > .1) {
 			this.walkCyclePlace = (this.walkCyclePlace + 1) % this._walkCycleFrames;
 			this.tileIndex = this.walkCyclePlace > this._walkCycleFrames / 2 ? 8 : 7;
-
 		}
 		else {
 			this.tileIndex = 6;
@@ -45,9 +45,6 @@ class Enemy extends EngineObject  {
 	}
 
 	kill(velocity, pos) {
-
-	
-
 		let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex, this.tileSize.copy());
 		corpse.push(velocity);
 		this.destroy();
