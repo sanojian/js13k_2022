@@ -9,8 +9,12 @@ class Gun extends EngineObject {
 		this._speed = 0.4;
 
 		this.ammo = 6;
+		this.reloading = false;
+		this.reloadTimer = undefined;
+		this.reloadTimePerBullet = 0.5;
 
 		this.sound = new Sound([2.21, , 164.8138, , , , 4, , , , , , , , , -0.3]);
+		this.empty = new Sound([1.06,,440,,,0.01,3,,,,,,,,-16,,,0.8]);
 	}
 
 	update() {
@@ -28,8 +32,17 @@ class Gun extends EngineObject {
 			if (mouseWasPressed(0)) {
 				this.fire();
 			}
-			
-			
+		
+			if (this.reloading) {
+				if (this.reloadTimer.elapsed()) {
+					this.ammo = Math.min(6, this.ammo + 1);
+					this.reloadTimer.set(this.reloadTimePerBullet);
+					if (this.ammo == 6) {
+						this.reloadTimer.unset();
+						this.reloading = false;
+					}
+				}
+			}
 		}
 
 		super.update(); // update object physics and position
@@ -48,7 +61,14 @@ class Gun extends EngineObject {
 
 	fire() {
 
+		if (this.reloading) {
+			this.empty.play();
+			return;
+		}
+
 		if (!this.ammo) {
+			this.empty.play();
+			this.reload();
 			return;
 		}
 
@@ -60,6 +80,14 @@ class Gun extends EngineObject {
 		bullet.velocity.x = Math.cos(-this.angle) * this._speed;
 		bullet.velocity.y = Math.sin(-this.angle) * this._speed;
 
+	}
+
+	reload() {
+		if (this.reloading) {
+			return;
+		}
+		this.reloadTimer = new Timer(this.reloadTimePerBullet);
+		this.reloading = true;
 	}
 
 }
