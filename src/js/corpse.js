@@ -8,7 +8,7 @@ class Corpse extends EngineObject {
 
 		this.timeAlive = 0;
 		this.fallDirection = 1;
-		this.setCollision(0, 0, 1);
+		this.setCollision(false, false, true);
 
 		this.soundDie = new Sound([2.37, 0.5, 40, , 0.18, 0.54, 2, 3.83, 0.5, 2, , , 0.06, 0.8, , 0.5, , 0.33, 0.06, 0.22]);
 		this.soundDie.play();
@@ -23,7 +23,7 @@ class Corpse extends EngineObject {
 			new Color(0,0,0,0), new Color(0,0,0,0), // colorEndA, colorEndB
 			1, .5, 2, .1, .05,   // particleTime, sizeStart, sizeEnd, particleSpeed, particleAngleSpeed
 			.9, 1, -.3, PI, .1,  // damping, angleDamping, gravityScale, particleCone, fadeRate, 
-			.5, 0, 0, 0, 1e8     // randomness, collide, additive, randomColorLinear, renderOrder
+			.5, false, false, false, 1e8     // randomness, collide, additive, randomColorLinear, renderOrder
 		);
 	}
 

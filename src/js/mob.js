@@ -7,7 +7,7 @@ class Mob extends EngineObject {
 		this._walkCycleFrames = 60;
 		this._hitbox = vec2(0.5);
 
-		this.setCollision(1, 1);
+		this.setCollision(true, true);
 		this.mass = 1;
 		this.damping = 1;
 		this.elasticity = 1;
@@ -15,6 +15,8 @@ class Mob extends EngineObject {
 		this._maxSpeed = 0.3;
 
 		this.bumpWalk = 0;
+		this.mirror = false;
+		this.hp = 3;
 	}
 
 	applyDrag(dragConst) {
@@ -69,7 +71,7 @@ class Mob extends EngineObject {
 			new Color(0,0,0,0), new Color(0,0,0,0), // colorEndA, colorEndB
 			1, .5, 2, .1, .05,   // particleTime, sizeStart, sizeEnd, particleSpeed, particleAngleSpeed
 			.9, 1, -.3, PI, .1,  // damping, angleDamping, gravityScale, particleCone, fadeRate, 
-			.5, 0, 0, 0, 1e8     // randomness, collide, additive, randomColorLinear, renderOrder
+			.5, false, false, false, 1e8     // randomness, collide, additive, randomColorLinear, renderOrder
 		);
 
 		if (this.hp <= 0) {

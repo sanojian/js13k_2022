@@ -7,8 +7,11 @@ class MobPlayer extends Mob {
 
 		this._walkCycleFrames = 30;
 
-		this.tileIndex = 0;
+		this.setCollision(true, true);
+		this.mass = 1;
 		this.damping = 0.4;
+		this.mirror = false;
+		this.gun = undefined;
 	}
 
 	update() {
