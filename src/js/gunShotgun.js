@@ -1,6 +1,6 @@
 /** @format */
 class ShotGun extends Gun {
-	constructor(pos, size, tileIndex, tileSize, angle, color) {
+	constructor(pos, size, tileSize, angle, color) {
 		super(pos, size, g_game.tileNumbers.shotgun, tileSize, angle, color);
 		// your object init code here
 		this._distance = 0.3;

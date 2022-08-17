@@ -178,5 +178,9 @@ function gameRenderPost() {
 	const colorGone = new Color(0.3, 0.3, 0.3);
 	for (let i = 0; i < g_game.player.gun._maxAmmo; i++) {
 		drawTile(vec2(pos.x - 1 + i, pos.y), vec2(1), 5, vec2(12), i + 1 > g_game.player.gun.ammo ? colorGone : colorHere);
-	}
+  }
+  
+  for (let i = 0; i < g_game.enemies.length; i++) {
+    g_game.enemies[i].drawBlood();
+  }
 }

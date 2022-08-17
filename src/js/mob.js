@@ -17,6 +17,8 @@ class Mob extends EngineObject {
 		this.bumpWalk = 0;
 		this.mirror = false;
 		this.hp = 3;
+
+		this.blood = [];
 	}
 
 	applyDrag(dragConst) {
@@ -54,6 +56,16 @@ class Mob extends EngineObject {
 			this.angle,
 			this.mirror
 		);
+
+	}
+
+	drawBlood() {
+		// blood
+		for (let i = 0; i < this.blood.length; i++) {
+			let blood = this.blood[i];
+			drawRect(vec2(this.pos.x + blood.x, this.pos.y + blood.y), vec2(1/12), new Color(172 / 255, 50 / 255, 50 / 255));
+		}
+
 	}
 
 	hit(velocity, pos) {
@@ -86,6 +98,8 @@ class Mob extends EngineObject {
 			splatterPattern.pattern.push(Math.random() > 0.5 ? 1 : 0);
 		}
 		g_game.splatter.push(splatterPattern);
+
+		this.blood.push(vec2((this.pos.x - pos.x)/2, (this.pos.y - pos.y) / 2));
 
 		return false;
 	}
