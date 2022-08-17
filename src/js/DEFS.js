@@ -11,6 +11,7 @@ let g_game = {
 	player: null,
 	enemies: [],
 	walls: [],
+	splatter: [],
 
 	state: STATE_CLICK_TO_START,
 

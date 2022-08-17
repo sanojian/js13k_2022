@@ -81,6 +81,12 @@ class Mob extends EngineObject {
 			return true;
 		}
 
+		let splatterPattern = { pos: pos, pattern: [] };
+		for (let i = 0; i < 16; i++) {
+			splatterPattern.pattern.push(Math.random() > 0.5 ? 1 : 0);
+		}
+		g_game.splatter.push(splatterPattern);
+
 		return false;
 	}
 }

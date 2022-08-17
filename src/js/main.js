@@ -20,7 +20,7 @@ function gameInit() {
 }
 
 function startGame() {
-	g_game.player = new MobPlayer(vec2(0, 0), vec2(1), tileSize, 0, new Color(1,0,0));
+	g_game.player = new MobPlayer(vec2(0, 0), vec2(1), tileSize);
 	let gun = new Gun(vec2(0, 0), vec2(1), 3, tileSize);
 	gun.setOwner(g_game.player);
 
@@ -125,6 +125,17 @@ function gameUpdatePost() {
 function gameRender() {
 	// called before objects are rendered
 	// draw any background effects that appear behind objects
+
+  for (let i = 0; i < g_game.splatter.length; i++) {
+    for (let j = 0; j < g_game.splatter[i].pattern.length; j++) {
+      if (g_game.splatter[i].pattern[j]) {
+        let x = g_game.splatter[i].pos.x - (2 + (j % 4)) / 12;
+        let y = g_game.splatter[i].pos.y - (2 + Math.floor(j / 4)) / 12;
+        drawRect(vec2(x, y), vec2(1 / 12), new Color(172 / 255, 50 / 255, 50 / 255));
+      }
+    }
+  }
+
 }
 
 function gameRenderPost() {
