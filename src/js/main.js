@@ -14,16 +14,19 @@ function gameInit() {
 	cameraScale = 12 * 4;
 	g_game.mapMan = new MapManager();
 
-	g_game.player = new MobPlayer(vec2(0, 0), vec2(1), tileSize);
+	// while (g_game.enemies.length < 5) {
+	// 	spawnEnemy(20, 5);
+	// }
+}
 
-	let gun = new Gun(vec2(0, 0), vec2(1), g_game.tileNumbers.pistol, tileSize);
+function startGame() {
+	g_game.player = new MobPlayer(vec2(0, 0), vec2(1), tileSize, 0, new Color(1,0,0));
+	let gun = new Gun(vec2(0, 0), vec2(1), 3, tileSize);
 	gun.setOwner(g_game.player);
 
-	while (g_game.enemies.length < 5) {
-		spawnEnemy(20, 5);
-	}
+	g_game.state = STATE_PLAYING;
 
-	setTimeout(musicStart, 1000);
+	musicStart();
 }
 
 const ENEMIES_TO_SPAWN = 20;
@@ -48,35 +51,62 @@ function spawnEnemy(maxAxisDist, minDistToPlayer) {
 }
 
 function gameUpdate() {
-  // called every frame at 60 frames per second
-  // handle input and update the game state
+	console.log(g_game.state);
+	switch (g_game.state) {
+		case STATE_CLICK_TO_START:
+			updateStateClickToStart();
+			break;
+		case STATE_PLAYING:
+			updateStatePlaying();
+			break;
+		case STATE_DEAD:
+			updateStateDead();
+			break;
+		case STATE_WON:
+			updateStateWon();
+			break;
 
-  if (
-    g_game.enemies.length < ENMIES_MAX_ALIVE &&
-    enemiesSpawned < ENEMIES_TO_SPAWN
-  ) {
-    spawnEnemy(20, 5);
-  }
+		default:
+			break;
+	}
+}
 
-  if (enemiesSpawned == ENEMIES_TO_SPAWN && g_game.enemies.length == 0) {
-	  console.log("YOU WIN");
-    //debugger;
-  }
+function updateStateClickToStart() {
+	let col = new Color(rand(0, 1), rand(0, 1), rand(0, 1));
 
-    // camera follow player
-  if (g_game.player.pos.x > cameraPos.x + g_game.CAMERA_LAG) {
-    cameraPos.x = g_game.player.pos.x - g_game.CAMERA_LAG;
-  }
-  if (g_game.player.pos.x < cameraPos.x - g_game.CAMERA_LAG) {
-    cameraPos.x = g_game.player.pos.x + g_game.CAMERA_LAG;
-  }
-  if (g_game.player.pos.y > cameraPos.y + g_game.CAMERA_LAG) {
-    cameraPos.y = g_game.player.pos.y - g_game.CAMERA_LAG;
-  }
-  if (g_game.player.pos.y < cameraPos.y - g_game.CAMERA_LAG) {
-    cameraPos.y = g_game.player.pos.y + g_game.CAMERA_LAG;
-  }
+	drawTextScreen("Press any key to start", vec2(mainCanvas.width / 2, mainCanvas.height / 2), 50, col);
 
+	if (mouseWasReleased(0)) {
+		startGame();
+	}
+}
+
+function updateStateDead() {}
+function updateStateWon() {}
+
+function updateStatePlaying() {
+	if (g_game.enemies.length < ENMIES_MAX_ALIVE && enemiesSpawned < ENEMIES_TO_SPAWN) {
+		spawnEnemy(20, 5);
+	}
+
+	if (enemiesSpawned == ENEMIES_TO_SPAWN && g_game.enemies.length == 0) {
+		console.log("YOU WIN");
+		//debugger;
+	}
+
+	// camera follow player
+	if (g_game.player.pos.x > cameraPos.x + g_game.CAMERA_LAG) {
+		cameraPos.x = g_game.player.pos.x - g_game.CAMERA_LAG;
+	}
+	if (g_game.player.pos.x < cameraPos.x - g_game.CAMERA_LAG) {
+		cameraPos.x = g_game.player.pos.x + g_game.CAMERA_LAG;
+	}
+	if (g_game.player.pos.y > cameraPos.y + g_game.CAMERA_LAG) {
+		cameraPos.y = g_game.player.pos.y - g_game.CAMERA_LAG;
+	}
+	if (g_game.player.pos.y < cameraPos.y - g_game.CAMERA_LAG) {
+		cameraPos.y = g_game.player.pos.y + g_game.CAMERA_LAG;
+	}
 }
 
 function gameUpdatePost() {
@@ -104,9 +134,11 @@ function gameRenderPost() {
 	// called after objects are rendered
 	// draw effects or hud that appear above all objects
 
+	if (!g_game.player) return;
+
 	let pos = vec2(cameraPos.x, cameraPos.y - overlayCanvas.height / (cameraScale * 2) + 2);
 
-	// background
+	// UI background
 	drawRect(vec2(pos.x, pos.y), vec2(10, 2), new Color(132 / 255, 126 / 255, 135 / 255));
 
 	// portrait
