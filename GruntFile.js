@@ -11,7 +11,7 @@ module.exports = function(grunt) {
 				files: [
 					'src/js/**/*.js'
 				],
-				tasks: ['jshint', 'clean', 'concat', 'copy']
+				tasks: ['build']
 			},
 			pages: {
 				files: [
@@ -27,6 +27,39 @@ module.exports = function(grunt) {
 				runInBackground: true
 			}
 		},
+		closureCompiler: {
+			options: {
+				compilerFile: 'node_modules/google-closure-compiler-java/compiler.jar',
+				compilerOpts: {
+					compilation_level: 'ADVANCED_OPTIMIZATIONS',
+					language_out: 'ECMASCRIPT_2019',
+					jscomp_off: 'checkVars',
+					assume_function_wrapper: true
+				},
+			},
+			targetName: {
+				src: 'dist/js/index_prod.js',
+				dest: 'dist/js/i.js'
+			}
+		},
+		uglify: {
+			options: {
+				compress: {
+					global_defs: {
+						'DEBUG': false
+					},
+					dead_code: true
+				},
+				/*mangle: {
+					properties: true
+				},*/
+			},
+			my_target: {
+				files: {
+					'dist/i.min.js': ['dist/js/i.js']
+				}
+			}
+		},
 		jshint: {
 			options: {
 				esversion: 8,
@@ -36,26 +69,41 @@ module.exports = function(grunt) {
 			},
 			all: ['src/js/**/*.js', '!src/js/lib/**.*js']
 		},
-		copy: {
+		/*copy: {
 			html: {
 				src: '*.*',
 				dest: 'dist/',
 				cwd: 'src/html',
 				expand: true
 			}
-		},
+		},*/
 		clean: ['dist/*.html', 'dist/js/'],
 		concat: {
 			shared: {
 				files: {
+					'dist/index.html': [
+						'src/html/index_dev.html'
+					],
 					'dist/js/index.js': [
 						'src/js/lib/*.js',
 						'src/js/main.js',
 						'src/js/DEFS.js',
-						'src/js/**/*.js'
+						'src/js/**/*.js',
+						'src/js/start.js',
 					]
 				}
 			},
+			prod: {
+				files: {
+					'dist/index.html': [
+						'src/html/index_prod.html'
+					],
+					'dist/js/index_prod.js': [
+						'dist/lib/engine.all.release.js',
+						'dist/js/index.js'
+					]
+				}
+			}
 		}
 	});
 
@@ -65,7 +113,8 @@ module.exports = function(grunt) {
 	grunt.registerTask('dev', [
 		'watch'
 	]);
-	grunt.registerTask('build', ['clean', 'jshint', 'concat', 'copy']);
+	grunt.registerTask('build', ['clean', 'jshint', 'concat:shared']);
 	grunt.registerTask('default', ['build', 'http-server', 'dev']);
+	grunt.registerTask('prod', ['clean', 'concat:shared', 'concat:prod', 'closureCompiler', 'uglify', 'http-server', 'dev']);
 
 };

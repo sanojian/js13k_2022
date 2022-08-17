@@ -12,6 +12,8 @@
 		"grunt-contrib-watch": "*",
 		"grunt-contrib-uglify": "*",
 		"grunt-develop": "*",
+		"google-closure-compiler": "*",
+		"grunt-closure-tools": "*",
 		"grunt-http-server": "*",
 		"matchdep": "*"
 	}

@@ -16,7 +16,7 @@ class Enemy extends EngineObject {
 
 		this.maxSpeed = .3;
 
-		this.hp = 3
+		this.hp = 3;
 	}
 
 
@@ -25,9 +25,9 @@ class Enemy extends EngineObject {
 
 		let drag = speed * speed * dragConst;
 
-		let dragForce = this.velocity.normalize(drag)
+		let dragForce = this.velocity.normalize(drag);
 
-		this.velocity = this.velocity.subtract(dragForce)
+		this.velocity = this.velocity.subtract(dragForce);
 
 	}
 
@@ -73,9 +73,9 @@ class Enemy extends EngineObject {
 	hit(velocity, pos) {
 		this.hp--;
 
-		this.applyForce(velocity)
+		this.applyForce(velocity);
 
-		let radius = .5
+		let radius = .5;
 		this.bloodEmitter = new ParticleEmitter(
 			this.pos, 0, radius/2, .02, 50*radius, PI, // pos, angle, emitSize, emitTime, emitRate, emiteCone
 			0, undefined,        // tileIndex, tileSize
@@ -91,10 +91,10 @@ class Enemy extends EngineObject {
 			let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex, this.tileSize.copy());
 			corpse.push(velocity);
 			this.destroy();
-			return true
+			return true;
 		}
 
-		return false
+		return false;
 	}
 
 

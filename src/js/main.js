@@ -7,7 +7,7 @@ function init() {
     gameUpdatePost,
     gameRender,
     gameRenderPost,
-    "assets/gfx/tiles.png"
+    "tiles.png"
   );
 }
 
