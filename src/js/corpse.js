@@ -8,6 +8,7 @@ class Corpse extends EngineObject {
 
 		this.timeAlive = 0;
 		this.fallDirection = 1;
+		this.finalAngle = Math.PI;
 		this.setCollision(false, false, true);
 
 		this.soundDie = new Sound([2.37, 0.5, 40, , 0.18, 0.54, 2, 3.83, 0.5, 2, , , 0.06, 0.8, , 0.5, , 0.33, 0.06, 0.22]);
@@ -32,7 +33,7 @@ class Corpse extends EngineObject {
 
 		this.timeAlive++;
 
-		this.angle = (this.fallDirection * Math.min(1, this.timeAlive / this._animLifetime) * Math.PI) / 2;
+		this.angle = (this.fallDirection * Math.min(1, this.timeAlive / this._animLifetime) * this.finalAngle) / 2;
 
 		this.velocity.x = this.velocity.x * 0.9;
 		this.velocity.y = this.velocity.y * 0.9;
@@ -51,5 +52,6 @@ class Corpse extends EngineObject {
 		this.velocity.x = velocity.x / 3;
 		this.velocity.y = velocity.y / 3;
 		this.fallDirection = velocity.x > 0 ? 1 : -1;
+		this.finalAngle = -Math.PI / 2 + Math.random() * Math.PI + Math.PI;
 	}
 }
