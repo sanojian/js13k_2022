@@ -8,7 +8,9 @@ class Gun extends EngineObject {
 		this._mysize = size.y;
 		this._speed = 0.4;
 
-		this.ammo = 6;
+		this._maxAmmo = 6;
+
+		this.ammo = this._maxAmmo;
 		this.reloading = false;
 		this.reloadTimer = undefined;
 		this.reloadTimePerBullet = 0.25;
@@ -47,9 +49,9 @@ class Gun extends EngineObject {
 				if (this.reloadTimer.elapsed()) {
 					this.soundReload.play();
 
-					this.ammo = Math.min(6, this.ammo + 1);
+					this.ammo = Math.min(this._maxAmmo, this.ammo + 1);
 					this.reloadTimer.set(this.reloadTimePerBullet);
-					if (this.ammo == 6) {
+					if (this.ammo == this._maxAmmo) {
 						this.reloadTimer.unset();
 						this.reloading = false;
 					}

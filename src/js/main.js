@@ -22,7 +22,7 @@ function gameInit() {
 
   g_game.player = new Player(vec2(0, 0), vec2(1), 0, tileSize);
 
-  let gun = new Gun(vec2(0, 0), vec2(1), 3, tileSize);
+  let gun = new ShotGun(vec2(0, 0), vec2(1), 15, tileSize);
   gun.setOwner(g_game.player);
 
   while (g_game.enemies.length < 5) {
@@ -102,7 +102,7 @@ function gameRenderPost() {
   // ammo
   const colorHere = new Color(1, 1, 1);
   const colorGone = new Color(0.3, 0.3, 0.3);
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < g_game.player.gun._maxAmmo; i++) {
     drawTile(
       vec2(pos.x - 1 + i, pos.y),
       vec2(1),
