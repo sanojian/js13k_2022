@@ -1,15 +1,13 @@
 /** @format */
-class Player extends EngineObject {
-	constructor(pos, size, tileIndex, tileSize, angle, color) {
-		super(pos, size, tileIndex, tileSize, angle, color);
+class MobPlayer extends Mob {
+	constructor(pos, size, tileSize, angle, color) {
+		super(pos, size, 0, tileSize, angle, color);
 		// your object init code here
 		this._speed = 0.1;
 
 		this._walkCycleFrames = 30;
 
 		this.tileIndex = 0;
-		this.setCollision(1, 1);
-		this.mass = 1;
 		this.damping = 0.4;
 	}
 
@@ -34,28 +32,13 @@ class Player extends EngineObject {
 			dx += this._speed;
 		}
 
-		// this.velocity.x = dx;
-		// this.velocity.y = dy;
-
 		this.applyForce(new Vector2(dx, dy));
-
-		if (dx || dy) {
-			this.walkCyclePlace = (this.walkCyclePlace + 1) % this._walkCycleFrames;
-			this.tileIndex = this.walkCyclePlace > this._walkCycleFrames / 2 ? 2 : 1;
-		} else {
-			this.tileIndex = 0;
-			this.walkCyclePlace = 0;
-		}
- 
 		
 		super.update(); // update object physics and position
 	}
 
 	render() {
-		//super.render(); // draw object as a sprite
-		// your object render code here
-
-		drawTile(this.pos, this.size, this.tileIndex, this.tileSize, this.color, this.angle, this.mirror);
+		super.render(); // draw object as a sprite
 
 		// arms
 		drawLine(vec2(this.pos.x + 3/12, this.pos.y + 1/16), this.gun.pos, 1/12, new Color(172/255, 50/255, 50/255));

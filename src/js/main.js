@@ -14,7 +14,7 @@ function gameInit() {
 	cameraScale = 12 * 4;
 	g_game.mapMan = new MapManager();
 
-	g_game.player = new Player(vec2(0, 0), vec2(1), 0, tileSize);
+	g_game.player = new MobPlayer(vec2(0, 0), vec2(1), tileSize);
 
 	let gun = new Gun(vec2(0, 0), vec2(1), 3, tileSize);
 	gun.setOwner(g_game.player);
@@ -41,7 +41,7 @@ function spawnEnemy(maxAxisDist, minDistToPlayer) {
 		len = p.length();
 	} while (len < minDistToPlayer);
 
-	let enemy = new Enemy(p.add(g_game.player.pos), vec2(1), 6, tileSize);
+	let enemy = new Zombie(p.add(g_game.player.pos), vec2(1), tileSize);
 	g_game.enemies.push(enemy);
 
 	enemiesSpawned++;
