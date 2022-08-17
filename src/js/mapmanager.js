@@ -6,10 +6,13 @@ class MapManager {
 		this.createMap(g_game.worldMap);
 	}
 
-	createMap(myMap) {
+	createMap(myMap1) {
 
-		let w = myMap[0].length;
-		let h = myMap.length;
+		let myMap = TileMaps.world.layers[0].data;
+		let w = TileMaps.world.width;
+		let h = TileMaps.world.height;
+		//let w = myMap[0].length;
+		//let h = myMap.length;
 
 
 		const tileSize = vec2(12, 12);
@@ -19,9 +22,10 @@ class MapManager {
 		//initTileCollision(vec2(w, h));
 		for (let y = 0; y < h; y++) {
 			for (let x = 0; x < w; x++) {
-				let t = myMap[y][x];
+				//let t = myMap[y][x];
+				let t = myMap[x + y * w];
 				if (t) {
-					let tile = new MapTile(vec2(x, h - 1 - y), vec2(1), t, tileSize);
+					let tile = new MapTile(vec2(x, h - 1 - y), vec2(1), t-1, tileSize);
 					g_game.walls.push(tile);
 					//setTileCollisionData(vec2(x, h - 1 - y), t);
 					//g_game.tileLayer.setData(vec2(x, h - 1 - y), new TileLayerData(t));
