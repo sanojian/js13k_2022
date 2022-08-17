@@ -29,5 +29,6 @@ let g_game = {
 		wall: 16,
 		roof: 17,
 		stone: 18,
+		tree: 20,
 	}
 };
