@@ -1,8 +1,6 @@
-
+/** @format */
 
 class Bullet extends EngineObject {
-
-
 	constructor(pos, size, tileIndex, tileSize, angle, color) {
 		super(pos, size, tileIndex, tileSize, angle, color);
 		// your object init code here
@@ -21,8 +19,8 @@ class Bullet extends EngineObject {
 			let enemy = g_game.enemies[i];
 			if (isOverlapping(this.pos, this._hitbox, enemy.pos, enemy._hitbox)) {
 				if (enemy.hit(this.velocity.copy(), this.pos.copy())) {
-          			g_game.enemies.splice(i, 1);
-        			i--;
+					g_game.enemies.splice(i, 1);
+					i--;
 				}
 				this.destroy();
 				return;
@@ -37,7 +35,6 @@ class Bullet extends EngineObject {
 			}
 		}
 
-
 		this.timeAlive++;
 		if (this.timeAlive > this._lifetime) {
 			this.destroy();
@@ -45,12 +42,10 @@ class Bullet extends EngineObject {
 		}
 
 		super.update(); // update object physics and position
- 
 	}
 
 	render() {
 		super.render(); // draw object as a sprite
 		// your object render code here
 	}
-
 }

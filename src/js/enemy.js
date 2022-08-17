@@ -1,6 +1,5 @@
+/** @format */
 class Enemy extends EngineObject {
-
-
 	constructor(pos, size, tileIndex, tileSize, angle, color) {
 		super(pos, size, tileIndex, tileSize, angle, color);
 
@@ -14,11 +13,10 @@ class Enemy extends EngineObject {
 		this.damping = 1;
 		this.elasticity = 1;
 
-		this.maxSpeed = .3;
+		this.maxSpeed = 0.3;
 
 		this.hp = 3;
 	}
-
 
 	applyDrag(dragConst) {
 		let speed = this.velocity.length();
@@ -28,35 +26,29 @@ class Enemy extends EngineObject {
 		let dragForce = this.velocity.normalize(drag);
 
 		this.velocity = this.velocity.subtract(dragForce);
-
 	}
 
-
 	update() {
-
 		if (rand(0, 100) < 10) {
-			let toPlayer = g_game.player.pos.subtract(this.pos).normalize(.02);
+			let toPlayer = g_game.player.pos.subtract(this.pos).normalize(0.02);
 
-			let force = toPlayer.add(vec2(rand(-.01, .01), rand(-.01, .01))); // jitter
+			let force = toPlayer.add(vec2(rand(-0.01, 0.01), rand(-0.01, 0.01))); // jitter
 
 			this.applyForce(force);
 		}
 
-
 		this.applyDrag(1.5);
 		this.velocity = this.velocity.clampLength(this.maxSpeed);
 
-		if (this.velocity.length() > .01) {
+		if (this.velocity.length() > 0.01) {
 			this.walkCyclePlace = (this.walkCyclePlace + 1) % this._walkCycleFrames;
 			this.tileIndex = this.walkCyclePlace > this._walkCycleFrames / 2 ? 8 : 7;
-		}
-		else {
+		} else {
 			this.tileIndex = 6;
 			this.walkCyclePlace = 0;
 		}
 
 		super.update(); // update object physics and position
- 
 	}
 
 	render() {
@@ -64,10 +56,17 @@ class Enemy extends EngineObject {
 		// your object render code here
 
 		// zombie limp
-		let dy = 0.2 * this.walkCyclePlace / (this._walkCycleFrames * 2);
+		let dy = (0.2 * this.walkCyclePlace) / (this._walkCycleFrames * 2);
 
-		drawTile(vec2(this.pos.x, this.pos.y + dy), this.size, this.tileIndex, this.tileSize, this.color, this.angle, this.mirror);
- 
+		drawTile(
+			vec2(this.pos.x, this.pos.y + dy),
+			this.size,
+			this.tileIndex,
+			this.tileSize,
+			this.color,
+			this.angle,
+			this.mirror
+		);
 	}
 
 	hit(velocity, pos) {
@@ -75,7 +74,9 @@ class Enemy extends EngineObject {
 
 		this.applyForce(velocity);
 
-		let radius = .5;
+		let radius = 0.5;
+
+		// prettier-ignore
 		this.bloodEmitter = new ParticleEmitter(
 			this.pos, 0, radius/2, .02, 50*radius, PI, // pos, angle, emitSize, emitTime, emitRate, emiteCone
 			0, undefined,        // tileIndex, tileSize
@@ -86,8 +87,7 @@ class Enemy extends EngineObject {
 			.5, 0, 0, 0, 1e8     // randomness, collide, additive, randomColorLinear, renderOrder
 		);
 
-
-		if (this.hp <= 0) { 
+		if (this.hp <= 0) {
 			let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex, this.tileSize.copy());
 			corpse.push(velocity);
 			this.destroy();
@@ -96,6 +96,4 @@ class Enemy extends EngineObject {
 
 		return false;
 	}
-
-
 }
