@@ -1,7 +1,7 @@
 /** @format */
 class MobPlayer extends Mob {
 	constructor(pos, size, tileSize, angle, color) {
-		super(pos, size, 0, tileSize, angle, color);
+		super(pos, size, g_game.tileNumbers.player, tileSize, angle, color);
 		// your object init code here
 		this._speed = 0.1;
 

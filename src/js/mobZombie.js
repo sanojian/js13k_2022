@@ -1,7 +1,7 @@
 /** @format */
 class Zombie extends Mob {
 	constructor(pos, size, tileSize, angle, color) {
-		super(pos, size, 6, tileSize, angle, color);
+		super(pos, size, g_game.tileNumbers.zombie, tileSize, angle, color);
 
 		this._maxSpeed = 0.3;
 

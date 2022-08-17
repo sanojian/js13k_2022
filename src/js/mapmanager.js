@@ -2,10 +2,10 @@
 
 class MapManager {
 	constructor() {
-		this.createMap(g_game.worldMap);
+		this.createMap();
 	}
 
-	createMap(myMap1) {
+	createMap() {
 		let myMap = TileMaps.world.layers[0].data;
 		let w = TileMaps.world.width;
 		let h = TileMaps.world.height;

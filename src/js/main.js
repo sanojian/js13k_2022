@@ -16,7 +16,7 @@ function gameInit() {
 
 	g_game.player = new MobPlayer(vec2(0, 0), vec2(1), tileSize);
 
-	let gun = new Gun(vec2(0, 0), vec2(1), 3, tileSize);
+	let gun = new Gun(vec2(0, 0), vec2(1), g_game.tileNumbers.pistol, tileSize);
 	gun.setOwner(g_game.player);
 
 	while (g_game.enemies.length < 5) {
@@ -100,7 +100,7 @@ function gameRenderPost() {
 
 	// portrait
 	let scaleX = frame % 240 > 200 ? -2 : 2;
-	drawTile(vec2(pos.x - 3, pos.y), vec2(scaleX, 2), 12, vec2(12));
+	drawTile(vec2(pos.x - 3, pos.y), vec2(scaleX, 2), g_game.tileNumbers.facePlayer, vec2(12));
 
 	// ammo
 	const colorHere = new Color(1, 1, 1);

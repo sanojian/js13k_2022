@@ -11,21 +11,21 @@ let g_game = {
 	enemies: [],
 	walls: [],
 
-	// prettier-ignore
-	worldMap: [
-		[10, 9,  9,  9, 9, 10],
-		[10,  ,   ,   ,  , 10],
-		[10,  ,   ,   ,  , 10],
-		[10,  ,   ,   ,  , 10],
-		[9,  9,   ,   , 9,  9],
-		[  ,   ,   ,   ,  ,  ],
-		[  ,   ,   ,   ,  ,  ],
-		[ 9,   ,   ,   ,  ,  ],
-		[  ,  9,   ,   ,  ,  ],
-		[  ,   ,  9, 10,  ,  ],
-		[  ,   ,   , 10,  ,  ],
-		[  ,   ,   ,  9,  9, ],
-	],
-
 	state: STATE_CLICK_TO_START,
+
+	tileNumbers: {
+		player: 0,
+		pistol: 3,
+		bulletPistol: 4,
+		bulletIcon: 5,
+		zombie: 6,
+		wall: 9,
+		roof: 10,
+		stone: 11,
+		facePlayer: 12,
+		faceZombie: 13,
+		faceVampire: 14,
+		shotgun: 15,
+		bulletShotgun: 16
+	}
 };
