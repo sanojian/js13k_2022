@@ -4,7 +4,7 @@ class Player extends EngineObject  {
 	constructor(pos, size, tileIndex, tileSize, angle, color) {
 		super(pos, size, tileIndex, tileSize, angle, color);
 		// your object init code here
-		this._speed = 0.15;
+		this._speed = 0.1;
 
 		this._walkCycleFrames = 30;
 

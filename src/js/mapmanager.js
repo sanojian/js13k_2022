@@ -26,6 +26,10 @@ class MapManager {
 					//setTileCollisionData(vec2(x, h - 1 - y), t);
 					//g_game.tileLayer.setData(vec2(x, h - 1 - y), new TileLayerData(t));
 				}
+				else {
+					// floor
+					//new EngineObject(vec2(x, h - 1 - y), vec2(1), 11, tileSize);
+				}
 			}
 		}
 		//g_game.tileLayer.redraw();
