@@ -1,0 +1,17 @@
+{
+	"include": [
+		"dist/lib/engine.all.js",
+		"src/js/**/*.js",
+		"src/js/**/*.ts"
+	],
+	"compilerOptions": {
+		"pretty": false,
+		"noEmit": true,
+		"allowJs": true,
+		"checkJs": true,
+		"alwaysStrict": true,
+		"lib": ["ES6","DOM"],
+//		"target": "ES6"
+	},
+}
+

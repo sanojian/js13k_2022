@@ -1,0 +1,8 @@
+{
+	"requirePragma": true,
+	"trailingComma": "es5",
+	"semi": true,
+	"singleQuote": false,
+	"useTabs": true,
+	"printWidth": 120
+}

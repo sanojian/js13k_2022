@@ -5,10 +5,10 @@ var bpm = 120;
 var vol = 0; //.7;
 
 
+
+
 var music;
 
-
-//var isPlaying = false;
 
 var source;
 
