@@ -51,7 +51,6 @@ function spawnEnemy(maxAxisDist, minDistToPlayer) {
 }
 
 function gameUpdate() {
-	console.log(g_game.state);
 	switch (g_game.state) {
 		case STATE_CLICK_TO_START:
 			updateStateClickToStart();
@@ -71,8 +70,17 @@ function gameUpdate() {
 	}
 }
 
+var red = new Color(1, 0, 0);
+var black = new Color(0, 0, 0);
+
 function updateStateClickToStart() {
-	let col = new Color(rand(0, 1), rand(0, 1), rand(0, 1));
+
+	drawTextScreen("DEAD AGAIN", vec2(mainCanvas.width / 2, mainCanvas.height / 4), 100, red);
+
+
+	let col = new Color(0.5 + Math.sin(frame / 5) / 2, 0, 0);
+
+	//console.log(frame, col);
 
 	drawTextScreen("Press any key to start", vec2(mainCanvas.width / 2, mainCanvas.height / 2), 50, col);
 
