@@ -1,5 +1,5 @@
 /** @format */
-class Enemy extends EngineObject {
+class Mob extends EngineObject {
 	constructor(pos, size, tileIndex, tileSize, angle, color) {
 		super(pos, size, tileIndex, tileSize, angle, color);
 
@@ -7,13 +7,14 @@ class Enemy extends EngineObject {
 		this._walkCycleFrames = 60;
 		this._hitbox = vec2(0.5);
 
-		this.tileIndex = 6;
 		this.setCollision(true, true);
 		this.mass = 1;
 		this.damping = 1;
 		this.elasticity = 1;
 
-		this.maxSpeed = 0.3;
+		this._maxSpeed = 0.3;
+
+		this.bumpWalk = 0;
 		this.mirror = false;
 		this.hp = 3;
 	}
@@ -29,37 +30,23 @@ class Enemy extends EngineObject {
 	}
 
 	update() {
-		if (rand(0, 100) < 10) {
-			let toPlayer = g_game.player.pos.subtract(this.pos).normalize(0.02);
-
-			let force = toPlayer.add(vec2(rand(-0.01, 0.01), rand(-0.01, 0.01))); // jitter
-
-			this.applyForce(force);
-		}
-
-		this.applyDrag(1.5);
-		this.velocity = this.velocity.clampLength(this.maxSpeed);
 
 		if (this.velocity.length() > 0.01) {
 			this.walkCyclePlace = (this.walkCyclePlace + 1) % this._walkCycleFrames;
-			this.tileIndex = this.walkCyclePlace > this._walkCycleFrames / 2 ? 8 : 7;
+			this.mirror = this.walkCyclePlace > this._walkCycleFrames / 2 ? true : false;
+			this.bumpWalk = this.walkCyclePlace > this._walkCycleFrames / 2 ? 1/12 : 0;
 		} else {
-			this.tileIndex = 6;
 			this.walkCyclePlace = 0;
+			this.mirror = false;
 		}
 
 		super.update(); // update object physics and position
 	}
 
 	render() {
-		//super.render(); // draw object as a sprite
-		// your object render code here
-
-		// zombie limp
-		let dy = (0.2 * this.walkCyclePlace) / (this._walkCycleFrames * 2);
 
 		drawTile(
-			vec2(this.pos.x, this.pos.y + dy),
+			vec2(this.pos.x, this.pos.y + this.bumpWalk),
 			this.size,
 			this.tileIndex,
 			this.tileSize,

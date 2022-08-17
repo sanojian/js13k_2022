@@ -86,7 +86,7 @@ class Gun extends EngineObject {
 
 		this.soundFire.play();
 
-		let bullet = new Bullet(this.pos.copy(), this.size.copy(), 4, this.tileSize.copy(), this.angle);
+		let bullet = new Bullet(this.pos.copy(), this.size.copy(), g_game.tileNumbers.bulletPistol, this.tileSize.copy(), this.angle);
 		bullet.velocity.x = Math.cos(-this.angle) * this._speed;
 		bullet.velocity.y = Math.sin(-this.angle) * this._speed;
 	}

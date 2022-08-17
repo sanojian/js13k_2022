@@ -44,7 +44,7 @@ function spawnEnemy(maxAxisDist, minDistToPlayer) {
 		len = p.length();
 	} while (len < minDistToPlayer);
 
-	let enemy = new Enemy(p.add(g_game.player.pos), vec2(1), 6, tileSize);
+	let enemy = new Zombie(p.add(g_game.player.pos), vec2(1), tileSize);
 	g_game.enemies.push(enemy);
 
 	enemiesSpawned++;
@@ -132,7 +132,7 @@ function gameRenderPost() {
 
 	// portrait
 	let scaleX = frame % 240 > 200 ? -2 : 2;
-	drawTile(vec2(pos.x - 3, pos.y), vec2(scaleX, 2), 12, vec2(12));
+	drawTile(vec2(pos.x - 3, pos.y), vec2(scaleX, 2), g_game.tileNumbers.facePlayer, vec2(12));
 
 	// ammo
 	const colorHere = new Color(1, 1, 1);

@@ -1,7 +1,7 @@
 /** @format */
 class ShotGun extends Gun {
 	constructor(pos, size, tileIndex, tileSize, angle, color) {
-		super(pos, size, 15, tileSize, angle, color);
+		super(pos, size, g_game.tileNumbers.shotgun, tileSize, angle, color);
 		// your object init code here
 		this._distance = 0.3;
 		this._mysize = size.y;
@@ -25,17 +25,17 @@ class ShotGun extends Gun {
 		this.soundFire.play();
 
 		let angle = -this.angle;
-		let bullet = new Bullet(this.pos.copy(), this.size.copy(), 16, this.tileSize.copy(), -angle);
+		let bullet = new Bullet(this.pos.copy(), this.size.copy(), g_game.tileNumbers.bulletShotgun, this.tileSize.copy(), -angle);
 		bullet.velocity.x = Math.cos(angle) * this._speed;
 		bullet.velocity.y = Math.sin(angle) * this._speed;
 
 		angle = -this.angle + Math.PI / 24;
-		bullet = new Bullet(this.pos.copy(), this.size.copy(), 16, this.tileSize.copy(), -angle);
+		bullet = new Bullet(this.pos.copy(), this.size.copy(), g_game.tileNumbers.bulletShotgun, this.tileSize.copy(), -angle);
 		bullet.velocity.x = Math.cos(angle) * this._speed;
 		bullet.velocity.y = Math.sin(angle) * this._speed;
 
 		angle = -this.angle - Math.PI / 24;
-		bullet = new Bullet(this.pos.copy(), this.size.copy(), 16, this.tileSize.copy(), -angle);
+		bullet = new Bullet(this.pos.copy(), this.size.copy(), g_game.tileNumbers.bulletShotgun, this.tileSize.copy(), -angle);
 		bullet.velocity.x = Math.cos(angle) * this._speed;
 		bullet.velocity.y = Math.sin(angle) * this._speed;
 	}
