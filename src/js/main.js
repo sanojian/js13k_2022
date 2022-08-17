@@ -86,7 +86,7 @@ function updateStateClickToStart() {
 	}
 }
 
-var deadTimer = undefined;
+var deadTimer;
 function updateStateDead() {
 	drawTextScreen("YOU DIED !", vec2(mainCanvas.width / 2, mainCanvas.height / 2), 100, red);
 	if (!deadTimer) {
@@ -97,7 +97,7 @@ function updateStateDead() {
 	}
 }
 
-var wonTimer = undefined;
+var wonTimer;
 function updateStateWon() {
 	drawTextScreen("YOU WON !", vec2(mainCanvas.width / 2, mainCanvas.height / 2), 100, red);
 	if (!wonTimer) {
