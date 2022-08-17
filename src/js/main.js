@@ -20,7 +20,7 @@ function gameInit() {
 }
 
 function startGame() {
-	g_game.player = new MobPlayer(vec2(0, 0), vec2(1), 0, tileSize);
+	g_game.player = new MobPlayer(vec2(0, 0), vec2(1), tileSize, 0, new Color(1,0,0));
 	let gun = new Gun(vec2(0, 0), vec2(1), 3, tileSize);
 	gun.setOwner(g_game.player);
 
