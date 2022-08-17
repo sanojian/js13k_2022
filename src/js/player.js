@@ -72,6 +72,10 @@ class Player extends EngineObject  {
 
 		drawTile(this.pos, this.size, this.tileIndex, this.tileSize, this.color, this.angle, this.mirror);
  
+		// arms
+		drawLine(vec2(this.pos.x + 3/12, this.pos.y), this.gun.pos, 1/12, new Color(172/255, 50/255, 50/255));
+		drawLine(vec2(this.pos.x - 3/12, this.pos.y), this.gun.pos, 1/12, new Color(172/255, 50/255, 50/255));
+
 	}
 
 }
