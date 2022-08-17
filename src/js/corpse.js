@@ -17,7 +17,7 @@ class Corpse extends EngineObject {
 		var radius = 2;
 		
 		this.bloodEmitter = new ParticleEmitter(
-			pos, 0, radius/2, .3, 50*radius, PI, // pos, angle, emitSize, emitTime, emitRate, emiteCone
+			pos, 0, radius/2, .2, 50*radius, PI, // pos, angle, emitSize, emitTime, emitRate, emiteCone
 			0, undefined,        // tileIndex, tileSize
 			new Color(.8,.1,.1), new Color(1,0,0), // colorStartA, colorStartB
 			new Color(0,0,0,0), new Color(0,0,0,0), // colorEndA, colorEndB

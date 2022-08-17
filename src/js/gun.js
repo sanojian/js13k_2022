@@ -39,6 +39,7 @@ class Gun extends EngineObject {
 			this.size.y = Math.abs(this.angle) > Math.PI / 2 ? -this._mysize : this._mysize;
 		
 			if (mouseWasPressed(0)) {
+				musicResume();
 				this.fire();
 			}
 		
