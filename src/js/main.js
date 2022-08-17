@@ -48,17 +48,35 @@ function spawnEnemy(maxAxisDist, minDistToPlayer) {
 }
 
 function gameUpdate() {
-	// called every frame at 60 frames per second
-	// handle input and update the game state
+  // called every frame at 60 frames per second
+  // handle input and update the game state
 
-	if (g_game.enemies.length < ENMIES_MAX_ALIVE && enemiesSpawned < ENEMIES_TO_SPAWN) {
-		spawnEnemy(20, 5);
-	}
+  if (
+    g_game.enemies.length < ENMIES_MAX_ALIVE &&
+    enemiesSpawned < ENEMIES_TO_SPAWN
+  ) {
+    spawnEnemy(20, 5);
+  }
 
-	if (enemiesSpawned == ENEMIES_TO_SPAWN && g_game.enemies.length == 0) {
-		console.log("YOU WIN");
-		debugger;
-	}
+  if (enemiesSpawned == ENEMIES_TO_SPAWN && g_game.enemies.length == 0) {
+	  console.log("YOU WIN");
+    //debugger;
+  }
+
+    // camera follow player
+  if (g_game.player.pos.x > cameraPos.x + g_game.CAMERA_LAG) {
+    cameraPos.x = g_game.player.pos.x - g_game.CAMERA_LAG;
+  }
+  if (g_game.player.pos.x < cameraPos.x - g_game.CAMERA_LAG) {
+    cameraPos.x = g_game.player.pos.x + g_game.CAMERA_LAG;
+  }
+  if (g_game.player.pos.y > cameraPos.y + g_game.CAMERA_LAG) {
+    cameraPos.y = g_game.player.pos.y - g_game.CAMERA_LAG;
+  }
+  if (g_game.player.pos.y < cameraPos.y - g_game.CAMERA_LAG) {
+    cameraPos.y = g_game.player.pos.y + g_game.CAMERA_LAG;
+  }
+
 }
 
 function gameUpdatePost() {

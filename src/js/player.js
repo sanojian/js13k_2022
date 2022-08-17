@@ -46,7 +46,8 @@ class Player extends EngineObject {
 			this.tileIndex = 0;
 			this.walkCyclePlace = 0;
 		}
-
+ 
+		
 		// camera follow player
 		if (this.pos.x > cameraPos.x + g_game.CAMERA_LAG) {
 			cameraPos.x = this.pos.x - g_game.CAMERA_LAG;
