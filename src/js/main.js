@@ -22,7 +22,7 @@ function gameInit() {
 
   g_game.player = new Player(vec2(0, 0), vec2(1), 0, tileSize);
 
-  let gun = new ShotGun(vec2(0, 0), vec2(1), 15, tileSize);
+  let gun = new Gun(vec2(0, 0), vec2(1), 3, tileSize);
   gun.setOwner(g_game.player);
 
   while (g_game.enemies.length < 5) {
