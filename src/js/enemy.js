@@ -8,13 +8,13 @@ class Enemy extends EngineObject {
 		this._hitbox = vec2(0.5);
 
 		this.tileIndex = 6;
-		this.setCollision(1, 1);
+		this.setCollision(true, true);
 		this.mass = 1;
 		this.damping = 1;
 		this.elasticity = 1;
 
 		this.maxSpeed = 0.3;
-
+		this.mirror = false;
 		this.hp = 3;
 	}
 
@@ -84,7 +84,7 @@ class Enemy extends EngineObject {
 			new Color(0,0,0,0), new Color(0,0,0,0), // colorEndA, colorEndB
 			1, .5, 2, .1, .05,   // particleTime, sizeStart, sizeEnd, particleSpeed, particleAngleSpeed
 			.9, 1, -.3, PI, .1,  // damping, angleDamping, gravityScale, particleCone, fadeRate, 
-			.5, 0, 0, 0, 1e8     // randomness, collide, additive, randomColorLinear, renderOrder
+			.5, false, false, false, 1e8     // randomness, collide, additive, randomColorLinear, renderOrder
 		);
 
 		if (this.hp <= 0) {

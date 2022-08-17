@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*
     LittleJS - Release Build
     MIT License - Copyright 2021 Frank Force

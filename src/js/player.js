@@ -8,9 +8,11 @@ class Player extends EngineObject {
 		this._walkCycleFrames = 30;
 
 		this.tileIndex = 0;
-		this.setCollision(1, 1);
+		this.setCollision(true, true);
 		this.mass = 1;
 		this.damping = 0.4;
+		this.mirror = false;
+		this.gun = undefined;
 	}
 
 	update() {
@@ -45,21 +47,6 @@ class Player extends EngineObject {
 		} else {
 			this.tileIndex = 0;
 			this.walkCyclePlace = 0;
-		}
- 
-		
-		// camera follow player
-		if (this.pos.x > cameraPos.x + g_game.CAMERA_LAG) {
-			cameraPos.x = this.pos.x - g_game.CAMERA_LAG;
-		}
-		if (this.pos.x < cameraPos.x - g_game.CAMERA_LAG) {
-			cameraPos.x = this.pos.x + g_game.CAMERA_LAG;
-		}
-		if (this.pos.y > cameraPos.y + g_game.CAMERA_LAG) {
-			cameraPos.y = this.pos.y - g_game.CAMERA_LAG;
-		}
-		if (this.pos.y < cameraPos.y - g_game.CAMERA_LAG) {
-			cameraPos.y = this.pos.y + g_game.CAMERA_LAG;
 		}
 
 		super.update(); // update object physics and position
