@@ -12,40 +12,61 @@ class MobPlayer extends Mob {
 		this.damping = 0.4;
 		this.mirror = false;
 		this.gun = undefined;
+
+		this.hp = 1;
 	}
 
 	update() {
-		// your object update code here
+		if (this.hp <= 0) return;
+
 		let dx = 0;
 		let dy = 0;
 		if (keyIsDown(38)) {
-			// w
-			dy += this._speed;
+			// key w
+			dy = this._speed;
 		}
 		if (keyIsDown(37)) {
-			// a
-			dx += -this._speed;
+			// key a
+			dx = -this._speed;
 		}
 		if (keyIsDown(40)) {
-			// s
-			dy += -this._speed;
+			// key s
+			dy = -this._speed;
 		}
 		if (keyIsDown(39)) {
-			// d
-			dx += this._speed;
+			// key d
+			dx = this._speed;
 		}
 
 		this.applyForce(new Vector2(dx, dy));
-		
+
 		super.update(); // update object physics and position
+	}
+
+	collideWithObject(o) {
+		if (o instanceof Zombie) {
+			//console.log("player is hit by: ", o);
+			this.hp--;
+		}
+
+		return true;
 	}
 
 	render() {
 		super.render(); // draw object as a sprite
 
 		// arms
-		drawLine(vec2(this.pos.x + 3/12, this.pos.y + 1/16), this.gun.pos, 1/12, new Color(172/255, 50/255, 50/255));
-		drawLine(vec2(this.pos.x - 3/12, this.pos.y + 1/16), this.gun.pos, 1/12, new Color(172/255, 50/255, 50/255));
-
+		drawLine(
+			vec2(this.pos.x + 3 / 12, this.pos.y + 1 / 16),
+			this.gun.pos,
+			1 / 12,
+			new Color(172 / 255, 50 / 255, 50 / 255)
+		);
+		drawLine(
+			vec2(this.pos.x - 3 / 12, this.pos.y + 1 / 16),
+			this.gun.pos,
+			1 / 12,
+			new Color(172 / 255, 50 / 255, 50 / 255)
+		);
 	}
 }

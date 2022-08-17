@@ -8,18 +8,19 @@ function init() {
 const tileSize = vec2(12, 12);
 
 function gameInit() {
-	// called once after the engine starts up
-	// setup the game
-
 	cameraScale = 12 * 4;
-	g_game.mapMan = new MapManager();
-
-	// while (g_game.enemies.length < 5) {
-	// 	spawnEnemy(20, 5);
-	// }
 }
 
 function startGame() {
+	engineObjectsDestroy(); // destroy all objects handled by the engine
+
+	g_game.mapMan = new MapManager();
+
+	g_game.enemies = [];
+	g_game.splatter = [];
+
+	enemiesSpawned = 0;
+
 	g_game.player = new MobPlayer(vec2(0, 0), vec2(1), tileSize);
 	let gun = new Gun(vec2(0, 0), vec2(1), g_game.tileNumbers.pistol, tileSize);
 	gun.setOwner(g_game.player);
@@ -74,13 +75,9 @@ var red = new Color(1, 0, 0);
 var black = new Color(0, 0, 0);
 
 function updateStateClickToStart() {
-
 	drawTextScreen("DEAD AGAIN", vec2(mainCanvas.width / 2, mainCanvas.height / 4), 100, red);
 
-
 	let col = new Color(0.5 + Math.sin(frame / 5) / 2, 0, 0);
-
-	//console.log(frame, col);
 
 	drawTextScreen("Press any key to start", vec2(mainCanvas.width / 2, mainCanvas.height / 2), 50, col);
 
@@ -89,17 +86,41 @@ function updateStateClickToStart() {
 	}
 }
 
-function updateStateDead() {}
-function updateStateWon() {}
+var deadTimer = undefined;
+function updateStateDead() {
+	drawTextScreen("YOU DIED !", vec2(mainCanvas.width / 2, mainCanvas.height / 2), 100, red);
+	if (!deadTimer) {
+		deadTimer = setTimeout(() => {
+			deadTimer = undefined;
+			g_game.state = STATE_CLICK_TO_START;
+		}, 2000);
+	}
+}
+
+var wonTimer = undefined;
+function updateStateWon() {
+	drawTextScreen("YOU WON !", vec2(mainCanvas.width / 2, mainCanvas.height / 2), 100, red);
+	if (!wonTimer) {
+		wonTimer = setTimeout(() => {
+			wonTimer = undefined;
+			g_game.state = STATE_CLICK_TO_START;
+		}, 2000);
+	}
+}
 
 function updateStatePlaying() {
 	if (g_game.enemies.length < ENMIES_MAX_ALIVE && enemiesSpawned < ENEMIES_TO_SPAWN) {
 		spawnEnemy(20, 5);
 	}
 
+	if (g_game.player.hp <= 0) {
+		g_game.state = STATE_DEAD;
+		return;
+	}
+
 	if (enemiesSpawned == ENEMIES_TO_SPAWN && g_game.enemies.length == 0) {
-		console.log("YOU WIN");
-		//debugger;
+		g_game.state = STATE_WON;
+		return;
 	}
 
 	// camera follow player
@@ -126,16 +147,15 @@ function gameRender() {
 	// called before objects are rendered
 	// draw any background effects that appear behind objects
 
-  for (let i = 0; i < g_game.splatter.length; i++) {
-    for (let j = 0; j < g_game.splatter[i].pattern.length; j++) {
-      if (g_game.splatter[i].pattern[j]) {
-        let x = g_game.splatter[i].pos.x - (2 + (j % 4)) / 12;
-        let y = g_game.splatter[i].pos.y - (2 + Math.floor(j / 4)) / 12;
-        drawRect(vec2(x, y), vec2(1 / 12), new Color(172 / 255, 50 / 255, 50 / 255));
-      }
-    }
-  }
-
+	for (let i = 0; i < g_game.splatter.length; i++) {
+		for (let j = 0; j < g_game.splatter[i].pattern.length; j++) {
+			if (g_game.splatter[i].pattern[j]) {
+				let x = g_game.splatter[i].pos.x - (2 + (j % 4)) / 12;
+				let y = g_game.splatter[i].pos.y - (2 + Math.floor(j / 4)) / 12;
+				drawRect(vec2(x, y), vec2(1 / 12), new Color(172 / 255, 50 / 255, 50 / 255));
+			}
+		}
+	}
 }
 
 function gameRenderPost() {
