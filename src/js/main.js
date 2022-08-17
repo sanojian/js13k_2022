@@ -67,6 +67,21 @@ function gameUpdate() {
   if (enemiesSpawned == ENEMIES_TO_SPAWN && g_game.enemies.length == 0) {
     console.log("YOU WIN");
   }
+
+    // camera follow player
+  if (g_game.player.pos.x > cameraPos.x + g_game.CAMERA_LAG) {
+    cameraPos.x = g_game.player.pos.x - g_game.CAMERA_LAG;
+  }
+  if (g_game.player.pos.x < cameraPos.x - g_game.CAMERA_LAG) {
+    cameraPos.x = g_game.player.pos.x + g_game.CAMERA_LAG;
+  }
+  if (g_game.player.pos.y > cameraPos.y + g_game.CAMERA_LAG) {
+    cameraPos.y = g_game.player.pos.y - g_game.CAMERA_LAG;
+  }
+  if (g_game.player.pos.y < cameraPos.y - g_game.CAMERA_LAG) {
+    cameraPos.y = g_game.player.pos.y + g_game.CAMERA_LAG;
+  }
+
 }
 
 function gameUpdatePost() {
