@@ -25,12 +25,12 @@ class Gun extends EngineObject {
 		// your object update code here
 
 		if (keyIsDown(82)) {
-			// r
+			// key r
 			this.reload();
 			return;
 		}
 
-		if (this.owner) {
+		if (this.owner && this.owner.hp > 0) {
 			let angle = Math.atan2(mousePos.y - this.owner.pos.y, mousePos.x - this.owner.pos.x);
 
 			this.pos.x = this.owner.pos.x + this._distance * Math.cos(angle);
@@ -86,7 +86,13 @@ class Gun extends EngineObject {
 
 		this.soundFire.play();
 
-		let bullet = new Bullet(this.pos.copy(), this.size.copy(), g_game.tileNumbers.bulletPistol, this.tileSize.copy(), this.angle);
+		let bullet = new Bullet(
+			this.pos.copy(),
+			this.size.copy(),
+			g_game.tileNumbers.bulletPistol,
+			this.tileSize.copy(),
+			this.angle
+		);
 		bullet.velocity.x = Math.cos(-this.angle) * this._speed;
 		bullet.velocity.y = Math.sin(-this.angle) * this._speed;
 	}
