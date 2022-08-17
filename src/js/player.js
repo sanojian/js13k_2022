@@ -48,20 +48,6 @@ class Player extends EngineObject {
 		}
  
 		
-		// camera follow player
-		if (this.pos.x > cameraPos.x + g_game.CAMERA_LAG) {
-			cameraPos.x = this.pos.x - g_game.CAMERA_LAG;
-		}
-		if (this.pos.x < cameraPos.x - g_game.CAMERA_LAG) {
-			cameraPos.x = this.pos.x + g_game.CAMERA_LAG;
-		}
-		if (this.pos.y > cameraPos.y + g_game.CAMERA_LAG) {
-			cameraPos.y = this.pos.y - g_game.CAMERA_LAG;
-		}
-		if (this.pos.y < cameraPos.y - g_game.CAMERA_LAG) {
-			cameraPos.y = this.pos.y + g_game.CAMERA_LAG;
-		}
-
 		super.update(); // update object physics and position
 	}
 
