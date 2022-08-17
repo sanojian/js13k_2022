@@ -1,6 +1,5 @@
+/** @format */
 class Corpse extends EngineObject {
-
-
 	constructor(pos, size, tileIndex, tileSize, angle, color) {
 		super(pos, size, tileIndex, tileSize, angle, new Color(0.7, 0.5, 0.5));
 		// your object init code here
@@ -11,11 +10,12 @@ class Corpse extends EngineObject {
 		this.fallDirection = 1;
 		this.setCollision(0, 0, 1);
 
-		this.soundDie = new Sound([2.37,.5,40,,.18,.54,2,3.83,.5,2,,,.06,.8,,.5,,.33,.06,.22]);
+		this.soundDie = new Sound([2.37, 0.5, 40, , 0.18, 0.54, 2, 3.83, 0.5, 2, , , 0.06, 0.8, , 0.5, , 0.33, 0.06, 0.22]);
 		this.soundDie.play();
 
 		var radius = 2;
-		
+
+		// prettier-ignore
 		this.bloodEmitter = new ParticleEmitter(
 			pos, 0, radius/2, .2, 50*radius, PI, // pos, angle, emitSize, emitTime, emitRate, emiteCone
 			0, undefined,        // tileIndex, tileSize
@@ -29,18 +29,17 @@ class Corpse extends EngineObject {
 
 	update() {
 		// your object update code here
-		
+
 		this.timeAlive++;
 
-		this.angle = this.fallDirection * Math.min(1, this.timeAlive / this._animLifetime) * Math.PI / 2;
+		this.angle = (this.fallDirection * Math.min(1, this.timeAlive / this._animLifetime) * Math.PI) / 2;
 
 		this.velocity.x = this.velocity.x * 0.9;
-		this.velocity.y = this.velocity.y  * 0.9;
+		this.velocity.y = this.velocity.y * 0.9;
 
 		this.bloodEmitter.pos = this.pos;
 
 		super.update(); // update object physics and position
- 
 	}
 
 	render() {
@@ -53,5 +52,4 @@ class Corpse extends EngineObject {
 		this.velocity.y = velocity.y / 3;
 		this.fallDirection = velocity.x > 0 ? 1 : -1;
 	}
-
 }

@@ -1,6 +1,5 @@
+/** @format */
 class ShotGun extends Gun {
-
-
 	constructor(pos, size, tileIndex, tileSize, angle, color) {
 		super(pos, size, 15, tileSize, angle, color);
 		// your object init code here
@@ -12,17 +11,14 @@ class ShotGun extends Gun {
 		this.ammo = this._maxAmmo;
 		this.reloadTimePerBullet = 0.75;
 
-		this.soundFire = new Sound([2.45,,352,.07,.01,.2,4,3.04,,.4,,,.15,1.5,,.7,.12,.2]);			
-		
+		this.soundFire = new Sound([2.45, , 352, 0.07, 0.01, 0.2, 4, 3.04, , 0.4, , , 0.15, 1.5, , 0.7, 0.12, 0.2]);
 	}
 
 	fire() {
-
 		if (this.reloading) {
 			//this.soundEmpty.play();
 			return;
 		}
-
 
 		this.ammo--;
 
@@ -33,17 +29,14 @@ class ShotGun extends Gun {
 		bullet.velocity.x = Math.cos(angle) * this._speed;
 		bullet.velocity.y = Math.sin(angle) * this._speed;
 
-		angle = -this.angle + Math.PI/24;
+		angle = -this.angle + Math.PI / 24;
 		bullet = new Bullet(this.pos.copy(), this.size.copy(), 16, this.tileSize.copy(), -angle);
 		bullet.velocity.x = Math.cos(angle) * this._speed;
 		bullet.velocity.y = Math.sin(angle) * this._speed;
 
-		angle = -this.angle - Math.PI/24;
+		angle = -this.angle - Math.PI / 24;
 		bullet = new Bullet(this.pos.copy(), this.size.copy(), 16, this.tileSize.copy(), -angle);
 		bullet.velocity.x = Math.cos(angle) * this._speed;
 		bullet.velocity.y = Math.sin(angle) * this._speed;
-
 	}
-
-
 }
