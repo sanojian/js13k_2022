@@ -48,7 +48,8 @@ class Player extends EngineObject {
 			this.tileIndex = 0;
 			this.walkCyclePlace = 0;
 		}
-
+ 
+		
 		super.update(); // update object physics and position
 	}
 
@@ -59,7 +60,8 @@ class Player extends EngineObject {
 		drawTile(this.pos, this.size, this.tileIndex, this.tileSize, this.color, this.angle, this.mirror);
 
 		// arms
-		drawLine(vec2(this.pos.x + 3 / 12, this.pos.y), this.gun.pos, 1 / 12, new Color(172 / 255, 50 / 255, 50 / 255));
-		drawLine(vec2(this.pos.x - 3 / 12, this.pos.y), this.gun.pos, 1 / 12, new Color(172 / 255, 50 / 255, 50 / 255));
+		drawLine(vec2(this.pos.x + 3/12, this.pos.y + 1/16), this.gun.pos, 1/12, new Color(172/255, 50/255, 50/255));
+		drawLine(vec2(this.pos.x - 3/12, this.pos.y + 1/16), this.gun.pos, 1/12, new Color(172/255, 50/255, 50/255));
+
 	}
 }
