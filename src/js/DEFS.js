@@ -17,17 +17,17 @@ let g_game = {
 
 	tileNumbers: {
 		player: 0,
-		pistol: 3,
-		bulletPistol: 4,
-		bulletIcon: 5,
-		zombie: 6,
-		wall: 9,
-		roof: 10,
-		stone: 11,
-		facePlayer: 12,
-		faceZombie: 13,
-		faceVampire: 14,
-		shotgun: 15,
-		bulletShotgun: 16
+		zombie: 1,
+		facePlayer: 4,
+		faceZombie: 5,
+		faceVampire: 6,
+		pistol: 8,
+		shotgun: 9,
+		bulletIcon: 11,
+		bulletPistol: 12,
+		bulletShotgun: 13,
+		wall: 16,
+		roof: 17,
+		stone: 18,
 	}
 };
