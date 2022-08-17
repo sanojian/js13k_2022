@@ -65,7 +65,8 @@ function gameUpdate() {
   }
 
   if (enemiesSpawned == ENEMIES_TO_SPAWN && g_game.enemies.length == 0) {
-    console.log("YOU WIN");
+	  console.log("YOU WIN");
+	  debugger
   }
 
     // camera follow player

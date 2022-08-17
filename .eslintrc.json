@@ -1,0 +1,36 @@
+{
+	"env": {
+		"es6": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"prettier"
+	],
+	"parser": "@typescript-eslint/parser",
+	"plugins": [
+		"@typescript-eslint"
+	],
+	"rules": {
+		"no-var": "off",
+		"no-undef": "off",
+		"no-empty": "warn",
+		"no-tabs": "off",
+		"no-redeclare": "off", // TODO: consider set to warn !
+		"no-useless-escape": "warn",
+		"no-constant-condition": ["error", { "checkLoops": false }],  
+		"no-dupe-keys": "off",
+		"no-inner-declarations": "off",
+		"no-prototype-builtins": "off",
+
+		"no-mixed-spaces-and-tabs": "off", // TODO: consider set to warn in some nice rosy future 
+		"@typescript-eslint/no-this-alias": "off",
+		"@typescript-eslint/no-explicit-any": "off",
+		"@typescript-eslint/no-unused-vars": "off",
+		"@typescript-eslint/ban-ts-comment": "off",
+		"@typescript-eslint/no-empty-function": "off",
+		"@typescript-eslint/no-empty-interface": "off",
+		"@typescript-eslint/no-misused-new": "off",
+		"@typescript-eslint/no-var-requires": "off"
+	}
+}
