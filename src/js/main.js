@@ -1,6 +1,6 @@
 /** @format */
 
-var TileMaps = {};
+//var TileMaps = { world: {} };
 
 function init() {
 	console.log("LOADIN!");
@@ -14,10 +14,22 @@ function gameInit() {
 	cameraScale = 12 * 4;
 }
 
+var mapData;
+
+function onTileMapLoaded(name, data) {
+	console.log("onTileMapLoaded", name, data);
+	g_game.mapMan = new MapManager(data);
+	mapData = data
+}
+
 function startGame() {
 	engineObjectsDestroy(); // destroy all objects handled by the engine
 
-	g_game.mapMan = new MapManager();
+	// console.log(mapData)
+
+	g_game.mapMan = new MapManager(mapData);
+
+	g_game.mapMan.render();
 
 	g_game.enemies = [];
 	g_game.splatter = [];
