@@ -71,7 +71,7 @@ function spawnEnemy() {
 		inTileCol = tileCollisionTest(enemyPos);
 	} while (dist2player < minDistToPlayer || inTileCol);
 
-	let enemy = new Zombie(enemyPos, vec2(1), tileSize);
+	let enemy = new Zombie(enemyPos);
 	g_game.enemies.push(enemy);
 
 	enemiesSpawned++;
