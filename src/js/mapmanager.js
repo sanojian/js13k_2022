@@ -21,6 +21,9 @@ class MapManager {
 			for (let x = 0; x < w; x++) {
 				let t = myMap[x + y * w];
 				if (t) {
+					if (t - 1 == g_game.tileNumbers.door) {
+						g_game.doors[x + "_" + (h - 1 - y)] = { hp: 5 };
+					}
 					if (g_game.TILE_LAYER_COLLISION) {
 						setTileCollisionData(vec2(x, h - 1 - y), t - 1);
 						g_game.tileLayer.setData(vec2(x, h - 1 - y), new TileLayerData(t - 1));

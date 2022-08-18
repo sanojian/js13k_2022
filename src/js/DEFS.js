@@ -12,6 +12,7 @@ let g_game = {
 	player: null,
 	enemies: [],
 	walls: [],
+	doors: {},
 	splatter: [],
 	corpses: [],
 
@@ -35,5 +36,6 @@ let g_game = {
 		roof: 17,
 		stone: 18,
 		tree: 20,
-	}
+		door: 21,
+	},
 };
