@@ -1,15 +1,15 @@
 /** @format */
 
 class MapManager {
-	constructor() {
-		let myMap = TileMaps.world.layers[0].data;
-		this.w = TileMaps.world.width;
-		this.h = TileMaps.world.height;
-
-		this.createMap(myMap, this.w, this.h);
+	constructor(data) {
+		this.createMap(data);
 	}
 
-	createMap(myMap, w, h) {
+	createMap(data) {
+		let myMap = data.layers[0].data;
+		let w = data.width;
+		let h = data.height;
+
 		const tileSize = vec2(12, 12);
 
 		if (g_game.TILE_LAYER_COLLISION) {
@@ -35,6 +35,9 @@ class MapManager {
 				}
 			}
 		}
+	}
+
+	render() {
 		if (g_game.TILE_LAYER_COLLISION) {
 			g_game.tileLayer.redraw();
 		}
