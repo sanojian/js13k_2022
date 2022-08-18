@@ -40,21 +40,18 @@ class MobPlayer extends Mob {
 
 		this.applyForce(new Vector2(dx, dy));
 
+		this.applyDrag(1.1);
+
 		super.update(); // update object physics and position
 	}
 
 	collideWithObject(o) {
 		if (o instanceof Zombie) {
-			// let d = o.pos.distance(this.pos);
-			// console.log(d);
-			// if (d < 0.5) this.hp--;
-
-			this.hp--;
-
-			//console.log("player is hit by: ", o);
+			let d = o.pos.distance(this.pos);
+			if (d < 0.5) this.hp--;
 		}
 
-		return true;
+		return false; // no auto resolve of collision
 	}
 
 	render() {
