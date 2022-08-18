@@ -7,6 +7,7 @@ const STATE_WON = 3;
 
 let g_game = {
 	CAMERA_LAG: 3,
+	TILE_LAYER_COLLISION: true,
 
 	player: null,
 	enemies: [],
