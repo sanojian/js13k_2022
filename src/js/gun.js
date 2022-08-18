@@ -39,7 +39,7 @@ class Gun extends EngineObject {
 			this.pos.y = this.owner.pos.y + this._distance * Math.sin(angle);
 
 			this.angle = -angle;
-			//this.size.y = Math.abs(this.angle) > Math.PI / 2 ? -this._mysize : this._mysize;
+			this.size.y = Math.abs(this.angle) > Math.PI / 2 ? -this._mysize : this._mysize;
 
 			if (mouseWasPressed(0)) {
 				musicResume();
@@ -101,7 +101,7 @@ class Gun extends EngineObject {
 
 		this.soundFire.play();
 
-		let bullet = new Bullet(this.pos.copy(), this.angle, new Color(1, 1, 1), 30);
+		let bullet = new Bullet(this.pos.copy(), 0, new Color(251 / 255, 242 / 255, 54 / 255), 30);
 		bullet.velocity.x = Math.cos(-this.angle) * this._speed;
 		bullet.velocity.y = Math.sin(-this.angle) * this._speed;
 	}

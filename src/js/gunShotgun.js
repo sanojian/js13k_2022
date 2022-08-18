@@ -25,21 +25,21 @@ class ShotGun extends Gun {
 
 		this.soundFire.play();
 
-		var bulletColor = new Color(1, 1, 0);
+		var bulletColor = new Color(217 / 255, 87 / 255, 99 / 255);
 		var bulletLife = 20;
 
 		let angle = -this.angle;
-		let bullet = new Bullet(this.pos.copy(), -angle, bulletColor, bulletLife);
+		let bullet = new Bullet(this.pos.copy(), 0, bulletColor, bulletLife);
 		bullet.velocity.x = Math.cos(angle) * this._speed;
 		bullet.velocity.y = Math.sin(angle) * this._speed;
 
 		angle = -this.angle + Math.PI / 24;
-		bullet = new Bullet(this.pos.copy(), -angle, bulletColor, bulletLife);
+		bullet = new Bullet(this.pos.copy(), 0, bulletColor, bulletLife);
 		bullet.velocity.x = Math.cos(angle) * this._speed;
 		bullet.velocity.y = Math.sin(angle) * this._speed;
 
 		angle = -this.angle - Math.PI / 24;
-		bullet = new Bullet(this.pos.copy(), -angle, bulletColor, bulletLife);
+		bullet = new Bullet(this.pos.copy(), 0, bulletColor, bulletLife);
 		bullet.velocity.x = Math.cos(angle) * this._speed;
 		bullet.velocity.y = Math.sin(angle) * this._speed;
 	}
