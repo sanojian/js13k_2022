@@ -1,4 +1,7 @@
 /** @format */
+
+var TileMaps = {};
+
 function init() {
 	console.log("LOADIN!");
 	// startup LittleJS with your game functions after the tile image is loaded
@@ -25,7 +28,6 @@ function startGame() {
 	g_game.player = new MobPlayer(vec2(0, 0), vec2(1), tileSize);
 	let gun = new Gun(vec2(-1, -2), vec2(1), g_game.tileNumbers.pistol, tileSize);
 	//gun.setOwner(g_game.player);
-
 
 	gun = new ShotGun(vec2(1, -2), vec2(1), tileSize);
 
@@ -186,7 +188,13 @@ function gameRenderPost() {
 		const colorHere = new Color(1, 1, 1);
 		const colorGone = new Color(0.3, 0.3, 0.3);
 		for (let i = 0; i < g_game.player.gun._maxAmmo; i++) {
-			drawTile(vec2(pos.x - 1 + i, pos.y), vec2(1), g_game.tileNumbers.bulletIcon, vec2(12), i + 1 > g_game.player.gun.ammo ? colorGone : colorHere);
+			drawTile(
+				vec2(pos.x - 1 + i, pos.y),
+				vec2(1),
+				g_game.tileNumbers.bulletIcon,
+				vec2(12),
+				i + 1 > g_game.player.gun.ammo ? colorGone : colorHere
+			);
 		}
 	}
 
