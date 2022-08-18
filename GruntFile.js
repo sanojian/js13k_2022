@@ -9,7 +9,8 @@ module.exports = function(grunt) {
 		watch: {
 			scripts: {
 				files: [
-					'src/js/**/*.js'
+					'src/js/**/*.js',
+					'!src/js/start.js'
 				],
 				tasks: ['build']
 			},
@@ -50,9 +51,10 @@ module.exports = function(grunt) {
 					},
 					dead_code: true
 				},
-				/*mangle: {
-					properties: true
-				},*/
+				mangle: {
+					//properties: true,
+					reserved: ['TileMaps', 'world', 'layers']
+				},
 			},
 			my_target: {
 				files: {
@@ -104,16 +106,26 @@ module.exports = function(grunt) {
 					]
 				}
 			}
-		}
+		},
 	});
 
 	// These plugins provide necessary tasks.
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
+	grunt.registerTask('processMap', 'get map data from Tiled', function () {
+		let mapJson = grunt.file.readJSON('src/js/world.tmj');
+		grunt.file.write(
+			'src/js/start.js',
+			'const mapData = [' + mapJson.layers[0].data.toString().replaceAll('0,', ',') + '];\n' +
+			'const mapWidth = ' + mapJson.width + ';\n' +
+			'const mapHeight = ' + mapJson.height + ';\n' +
+			'init(); '
+		);
+	});
 	grunt.registerTask('dev', [
 		'watch'
 	]);
-	grunt.registerTask('build', ['clean', 'jshint', 'concat:shared']);
+	grunt.registerTask('build', ['clean', 'jshint', 'concat:shared', 'processMap']);
 	grunt.registerTask('default', ['build', 'http-server', 'dev']);
 	grunt.registerTask('prod', ['clean', 'concat:shared', 'concat:prod', 'closureCompiler', 'uglify', 'http-server', 'dev']);
 

@@ -1,7 +1,5 @@
 /** @format */
 
-//var TileMaps = { world: {} };
-
 function init() {
 	console.log("LOADIN!");
 	// startup LittleJS with your game functions after the tile image is loaded
@@ -14,20 +12,10 @@ function gameInit() {
 	cameraScale = 12 * 4;
 }
 
-var mapData;
-
-function onTileMapLoaded(name, data) {
-	console.log("onTileMapLoaded", name, data);
-	g_game.mapMan = new MapManager(data);
-	mapData = data;
-}
-
 function startGame() {
 	engineObjectsDestroy(); // destroy all objects handled by the engine
 
-	// console.log(mapData)
-
-	g_game.mapMan = new MapManager(mapData);
+	g_game.mapMan = new MapManager();
 
 	g_game.mapMan.render();
 
