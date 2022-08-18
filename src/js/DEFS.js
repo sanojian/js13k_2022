@@ -25,6 +25,7 @@ let g_game = {
 		facePlayer: 4,
 		faceZombie: 5,
 		faceVampire: 6,
+		npc: 7,
 		pistol: 8,
 		shotgun: 9,
 		bulletIcon: 11,
