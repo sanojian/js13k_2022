@@ -38,15 +38,10 @@ function startGame() {
 	enemiesSpawned = 0;
 
 	g_game.player = new MobPlayer(vec2(15, 10));
-	let gun = new Gun(
-		vec2(g_game.player.pos.x - 2, g_game.player.pos.y - 3),
-		vec2(1),
-		g_game.tileNumbers.pistol,
-		tileSize
-	);
-	//gun.setOwner(g_game.player);
 
-	gun = new ShotGun(vec2(g_game.player.pos.x + 2, g_game.player.pos.y - 3), vec2(1), tileSize);
+	new Gun(findFreePos(), vec2(1), g_game.tileNumbers.pistol, tileSize);
+
+	new ShotGun(findFreePos(), vec2(1), tileSize);
 
 	let npc = new Npc(vec2(g_game.player.pos.x + 6, g_game.player.pos.y), vec2(1), tileSize);
 
@@ -55,25 +50,27 @@ function startGame() {
 	musicStart();
 }
 
+function findFreePos(minDistToPlayer) {
+	let pos, dist2player, inTileCol;
+
+	do {
+		pos = vec2(rand(0, 30), rand(0, 20)); // TODO: get size from map
+		dist2player = pos.distance(g_game.player.pos);
+		inTileCol = tileCollisionTest(pos);
+	} while (dist2player < minDistToPlayer || inTileCol);
+
+	return pos;
+}
+
 const ENEMIES_TO_SPAWN = 20;
 const ENMIES_MAX_ALIVE = 20;
 
 var enemiesSpawned = 0;
 
-const minDistToPlayer = 5;
-
 function spawnEnemy() {
-	let enemyPos, dist2player, inTileCol;
-
-	do {
-		enemyPos = vec2(rand(0, 30), rand(0, 20)); // TODO: get size from map
-		dist2player = enemyPos.distance(g_game.player.pos);
-		inTileCol = tileCollisionTest(enemyPos);
-	} while (dist2player < minDistToPlayer || inTileCol);
-
-	let enemy = new Zombie(enemyPos);
+	var p = findFreePos(5);
+	let enemy = new Zombie(p);
 	g_game.enemies.push(enemy);
-
 	enemiesSpawned++;
 }
 

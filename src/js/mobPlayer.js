@@ -59,8 +59,8 @@ class MobPlayer extends Mob {
 
 		// arms
 		let toPos = this.gun ? this.gun.pos : vec2(this.pos.x + 3 / 12, this.pos.y - 2 / 16);
-		drawLine(vec2(this.pos.x + 3 / 12, this.pos.y + 3 / 16), toPos, 1 / 12, new Color(172 / 255, 50 / 255, 50 / 255));
+		drawLine(vec2(this.pos.x + 3 / 12, this.pos.y + 3 / 16), toPos, 2 / 12, new Color(172 / 255, 50 / 255, 50 / 255));
 		toPos = this.gun ? this.gun.pos : vec2(this.pos.x - 3 / 12, this.pos.y - 2 / 16);
-		drawLine(vec2(this.pos.x - 3 / 12, this.pos.y + 3 / 16), toPos, 1 / 12, new Color(172 / 255, 50 / 255, 50 / 255));
+		drawLine(vec2(this.pos.x - 3 / 12, this.pos.y + 3 / 16), toPos, 2 / 12, new Color(172 / 255, 50 / 255, 50 / 255));
 	}
 }
