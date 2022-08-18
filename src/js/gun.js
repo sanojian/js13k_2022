@@ -9,6 +9,7 @@ class Gun extends EngineObject {
 		this._speed = 0.4;
 
 		this._maxAmmo = 6;
+		this._ammoIconTile = g_game.tileNumbers.bulletIcon;
 		this._hitbox = vec2(0.4);
 
 		this.ammo = this._maxAmmo;

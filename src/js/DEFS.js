@@ -29,6 +29,7 @@ let g_game = {
 		npc: 7,
 		pistol: 8,
 		shotgun: 9,
+		shellIcon: 10,
 		bulletIcon: 11,
 		bulletPistol: 12,
 		bulletShotgun: 13,

@@ -208,7 +208,7 @@ function gameRenderPost() {
 			drawTile(
 				vec2(pos.x - 1 + i, pos.y),
 				vec2(1),
-				g_game.tileNumbers.bulletIcon,
+				g_game.player.gun._ammoIconTile,
 				vec2(12),
 				i + 1 > g_game.player.gun.ammo ? colorGone : colorHere
 			);
