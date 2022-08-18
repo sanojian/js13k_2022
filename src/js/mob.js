@@ -7,7 +7,7 @@ class Mob extends EngineObject {
 		this._walkCycleFrames = 60;
 		this._hitbox = vec2(0.5);
 
-		this.setCollision(true, true);
+		this.setCollision(true, false);
 		this.mass = 1;
 		this.damping = 1;
 		this.elasticity = 1;
