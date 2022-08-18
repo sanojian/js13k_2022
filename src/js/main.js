@@ -94,15 +94,15 @@ function gameUpdate() {
 	}
 }
 
-var red = new Color(1, 0, 0);
 var black = new Color(0, 0, 0);
 
 function updateStateClickToStart() {
-	drawTextScreen("DEAD AGAIN", vec2(mainCanvas.width / 2, mainCanvas.height / 4), 100, red);
+	drawTextScreen("DEAD AGAIN", vec2(mainCanvas.width / 2, mainCanvas.height / 4), 100, g_game.colorBlood);
 
-	let col = new Color(0.5 + Math.sin(frame / 5) / 2, 0, 0);
+	let amt = 0.5 + Math.sin(frame / 15) / 2;
+	let col = new Color((amt * 172) / 255, (amt * 50) / 255, (amt * 50) / 255);
 
-	drawTextScreen("Press any key to start", vec2(mainCanvas.width / 2, mainCanvas.height / 2), 50, col);
+	drawTextScreen("Click to start", vec2(mainCanvas.width / 2, mainCanvas.height / 2), 50, col);
 
 	if (mouseWasReleased(0)) {
 		startGame();
@@ -111,7 +111,7 @@ function updateStateClickToStart() {
 
 var deadTimer;
 function updateStateDead() {
-	drawTextScreen("YOU DIED !", vec2(mainCanvas.width / 2, mainCanvas.height / 2), 100, red);
+	drawTextScreen("YOU DIED !", vec2(mainCanvas.width / 2, mainCanvas.height / 2), 100, g_game.colorBlood);
 	if (!deadTimer) {
 		deadTimer = setTimeout(() => {
 			deadTimer = undefined;
@@ -122,7 +122,7 @@ function updateStateDead() {
 
 var wonTimer;
 function updateStateWon() {
-	drawTextScreen("YOU WON !", vec2(mainCanvas.width / 2, mainCanvas.height / 2), 100, red);
+	drawTextScreen("YOU WON !", vec2(mainCanvas.width / 2, mainCanvas.height / 2), 100, g_game.colorBlood);
 	if (!wonTimer) {
 		wonTimer = setTimeout(() => {
 			wonTimer = undefined;
