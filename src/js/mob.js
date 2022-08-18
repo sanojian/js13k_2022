@@ -95,6 +95,10 @@ class Mob extends EngineObject {
 			corpse.push(velocity);
 			g_game.corpses.push(corpse);
 			this.destroy();
+
+			let i = g_game.enemies.indexOf(this);
+			g_game.enemies.splice(i, 1);
+
 			return true;
 		}
 

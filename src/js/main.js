@@ -56,21 +56,22 @@ function startGame() {
 }
 
 const ENEMIES_TO_SPAWN = 20;
-const ENMIES_MAX_ALIVE = 10;
+const ENMIES_MAX_ALIVE = 20;
 
 var enemiesSpawned = 0;
 
-function spawnEnemy(maxAxisDist, minDistToPlayer) {
-	let p, len;
+const minDistToPlayer = 5;
 
-	// todo: do not spwan in collision
+function spawnEnemy() {
+	let enemyPos, dist2player, inTileCol;
 
 	do {
-		p = vec2(rand(-maxAxisDist, maxAxisDist), rand(-maxAxisDist, maxAxisDist));
-		len = p.length();
-	} while (len < minDistToPlayer);
+		enemyPos = vec2(rand(0, 30), rand(0, 20)); // TODO: get size from map
+		dist2player = enemyPos.distance(g_game.player.pos);
+		inTileCol = tileCollisionTest(enemyPos);
+	} while (dist2player < minDistToPlayer || inTileCol);
 
-	let enemy = new Zombie(p.add(g_game.player.pos), vec2(1), tileSize);
+	let enemy = new Zombie(enemyPos, vec2(1), tileSize);
 	g_game.enemies.push(enemy);
 
 	enemiesSpawned++;
@@ -135,7 +136,7 @@ function updateStateWon() {
 
 function updateStatePlaying() {
 	if (g_game.enemies.length < ENMIES_MAX_ALIVE && enemiesSpawned < ENEMIES_TO_SPAWN) {
-		spawnEnemy(20, 5);
+		spawnEnemy();
 	}
 
 	if (g_game.player.hp <= 0) {
