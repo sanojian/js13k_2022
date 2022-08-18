@@ -2,14 +2,14 @@
 
 class MapManager {
 	constructor() {
-		this.createMap();
+		let myMap = TileMaps.world.layers[0].data;
+		this.w = TileMaps.world.width;
+		this.h = TileMaps.world.height;
+
+		this.createMap(myMap, this.w, this.h);
 	}
 
-	createMap() {
-		let myMap = TileMaps.world.layers[0].data;
-		let w = TileMaps.world.width;
-		let h = TileMaps.world.height;
-
+	createMap(myMap, w, h) {
 		const tileSize = vec2(12, 12);
 
 		if (g_game.TILE_LAYER_COLLISION) {
@@ -24,8 +24,7 @@ class MapManager {
 					if (g_game.TILE_LAYER_COLLISION) {
 						setTileCollisionData(vec2(x, h - 1 - y), t - 1);
 						g_game.tileLayer.setData(vec2(x, h - 1 - y), new TileLayerData(t - 1));
-					}
-					else {
+					} else {
 						// individual maptiles
 						let tile = new MapTile(vec2(x, h - 1 - y), vec2(1), t - 1, tileSize);
 						g_game.walls.push(tile);
