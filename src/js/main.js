@@ -37,7 +37,7 @@ function startGame() {
 
 	enemiesSpawned = 0;
 
-	g_game.player = new MobPlayer(vec2(18, 14), vec2(1), tileSize);
+	g_game.player = new MobPlayer(vec2(15, 10));
 	let gun = new Gun(
 		vec2(g_game.player.pos.x - 2, g_game.player.pos.y - 2),
 		vec2(1),

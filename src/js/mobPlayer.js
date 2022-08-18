@@ -1,7 +1,7 @@
 /** @format */
 class MobPlayer extends Mob {
-	constructor(pos, size, tileSize, angle, color) {
-		super(pos, size, g_game.tileNumbers.player, tileSize, angle, color);
+	constructor(pos, angle, color) {
+		super(pos, vec2(0.8), g_game.tileNumbers.player, tileSize, angle, color);
 		// your object init code here
 		this._speed = 0.1;
 
@@ -59,8 +59,8 @@ class MobPlayer extends Mob {
 
 		// arms
 		let toPos = this.gun ? this.gun.pos : vec2(this.pos.x + 3 / 12, this.pos.y - 2 / 16);
-		drawLine(vec2(this.pos.x + 3 / 12, this.pos.y + 1 / 16), toPos, 1 / 12, new Color(172 / 255, 50 / 255, 50 / 255));
+		drawLine(vec2(this.pos.x + 3 / 12, this.pos.y + 3 / 16), toPos, 1 / 12, new Color(172 / 255, 50 / 255, 50 / 255));
 		toPos = this.gun ? this.gun.pos : vec2(this.pos.x - 3 / 12, this.pos.y - 2 / 16);
-		drawLine(vec2(this.pos.x - 3 / 12, this.pos.y + 1 / 16), toPos, 1 / 12, new Color(172 / 255, 50 / 255, 50 / 255));
+		drawLine(vec2(this.pos.x - 3 / 12, this.pos.y + 3 / 16), toPos, 1 / 12, new Color(172 / 255, 50 / 255, 50 / 255));
 	}
 }
