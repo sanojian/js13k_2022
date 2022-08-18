@@ -9,10 +9,12 @@ class Zombie extends Mob {
 		this._maxSpeed = 0.3;
 
 		this.hp = 3;
+
+		this.thinkPause = 0;
+		this.toPlayer = undefined;
+
 	}
 
-	thinkPause = 0;
-	toPlayer = undefined;
 
 	update() {
 		// think and look
