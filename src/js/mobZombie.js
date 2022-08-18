@@ -1,4 +1,7 @@
 /** @format */
+
+const JIT = 0.01;
+
 class Zombie extends Mob {
 	constructor(pos, size, tileSize, angle, color) {
 		super(pos, size, g_game.tileNumbers.zombie, tileSize, angle, color);
@@ -8,11 +11,22 @@ class Zombie extends Mob {
 		this.hp = 3;
 	}
 
-	update() {
-		if (rand(0, 100) < 10) {
-			let toPlayer = g_game.player.pos.subtract(this.pos).normalize(0.02);
+	thinkPause = 0;
+	toPlayer = undefined;
 
-			let force = toPlayer.add(vec2(rand(-0.01, 0.01), rand(-0.01, 0.01))); // jitter
+	update() {
+		// think and look
+		if (this.thinkPause-- <= 0) {
+			this.toPlayer = g_game.player.pos.subtract(this.pos);
+			this.thinkPause = rand(20, 100);
+		}
+
+		// take a step
+		if (rand(0, 100) < 10) {
+			let force = this.toPlayer.normalize(0.04);
+			let jitter = vec2(rand(-JIT, JIT), rand(-JIT, JIT));
+
+			force = force.add(jitter);
 
 			this.applyForce(force);
 		}
@@ -24,7 +38,11 @@ class Zombie extends Mob {
 
 		// zombie limp
 		this.bumpWalk = (0.2 * this.walkCyclePlace) / (this._walkCycleFrames * 2);
-
 	}
 
+	hit(velocity, pos) {
+		this.thinkPause += rand(100, 200);
+		//console.log("HIT", this.thinkPause);
+		return super.hit(velocity, pos);
+	}
 }
