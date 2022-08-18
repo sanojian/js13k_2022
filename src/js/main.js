@@ -19,7 +19,7 @@ var mapData;
 function onTileMapLoaded(name, data) {
 	console.log("onTileMapLoaded", name, data);
 	g_game.mapMan = new MapManager(data);
-	mapData = data
+	mapData = data;
 }
 
 function startGame() {
