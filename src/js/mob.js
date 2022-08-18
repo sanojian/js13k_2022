@@ -63,7 +63,13 @@ class Mob extends EngineObject {
 		// blood
 		for (let i = 0; i < this.blood.length; i++) {
 			let blood = this.blood[i];
-			drawRect(vec2(this.pos.x + blood.x, this.pos.y + blood.y), vec2(1/12), new Color(172 / 255, 50 / 255, 50 / 255));
+			for (let j = 0; j < blood.pattern.length; j++) {
+				if (blood.pattern[j]) {
+					let x = this.pos.x + blood.pos.x - (j % 2) / 12;
+					let y = this.pos.y + blood.pos.y - Math.floor(j / 2) / 12;
+					drawRect(vec2(x, y), vec2(1 / 12), g_game.colorBlood);
+				}
+			}
 		}
 
 	}
@@ -81,7 +87,7 @@ class Mob extends EngineObject {
 			0, undefined,        // tileIndex, tileSize
 			new Color(.8,.1,.1), new Color(1,0,0), // colorStartA, colorStartB
 			new Color(0,0,0,0), new Color(0,0,0,0), // colorEndA, colorEndB
-			1, .5, 2, .1, .05,   // particleTime, sizeStart, sizeEnd, particleSpeed, particleAngleSpeed
+			1, .5, 2, 2/12, 1/12,   // particleTime, sizeStart, sizeEnd, particleSpeed, particleAngleSpeed
 			.9, 1, -.3, PI, .1,  // damping, angleDamping, gravityScale, particleCone, fadeRate, 
 			.5, false, false, false, 1e8     // randomness, collide, additive, randomColorLinear, renderOrder
 		);
@@ -89,17 +95,24 @@ class Mob extends EngineObject {
 		if (this.hp <= 0) {
 			let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex, this.tileSize.copy());
 			corpse.push(velocity);
+			g_game.corpses.push(corpse);
 			this.destroy();
 			return true;
 		}
 
+		// splatter on floor
 		let splatterPattern = { pos: pos, pattern: [] };
 		for (let i = 0; i < 16; i++) {
 			splatterPattern.pattern.push(Math.random() > 0.5 ? 1 : 0);
 		}
 		g_game.splatter.push(splatterPattern);
 
-		this.blood.push(vec2((this.pos.x - pos.x)/2, (this.pos.y - pos.y) / 2));
+		// splatter on mob
+		let wound = { pos: vec2((this.pos.x - pos.x) / 2, (this.pos.y - pos.y) / 2), pattern: [] };
+		for (let i = 0; i < 4; i++) {
+			wound.pattern.push(Math.random() > 0.5 ? 1 : 0);
+		}
+		this.blood.push(wound);
 
 		return false;
 	}

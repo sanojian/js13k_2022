@@ -43,7 +43,9 @@ class Corpse extends EngineObject {
 		super.update(); // update object physics and position
 	}
 
-	render() {
+	render() {}
+
+	renderNow() {
 		super.render(); // draw object as a sprite
 		// your object render code here
 	}

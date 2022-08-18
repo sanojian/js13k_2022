@@ -12,6 +12,9 @@ let g_game = {
 	enemies: [],
 	walls: [],
 	splatter: [],
+	corpses: [],
+
+	colorBlood: new Color(172 / 255, 50 / 255, 50 / 255),
 
 	state: STATE_CLICK_TO_START,
 
