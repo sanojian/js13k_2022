@@ -41,7 +41,7 @@ class Gun extends EngineObject {
 			this.pos.y = this.owner.pos.y + this._distance * Math.sin(angle);
 
 			this.angle = -angle;
-			this.size.y = Math.abs(this.angle) > Math.PI / 2 ? -this._mysize : this._mysize;
+			//this.size.y = Math.abs(this.angle) > Math.PI / 2 ? -this._mysize : this._mysize;
 
 			if (mouseWasPressed(0)) {
 				musicResume();

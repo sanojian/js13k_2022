@@ -1,4 +1,7 @@
 /** @format */
+
+var TileMaps = {};
+
 function init() {
 	console.log("LOADIN!");
 	// startup LittleJS with your game functions after the tile image is loaded
