@@ -52,6 +52,14 @@ class Bullet extends EngineObject {
 	}
 
 	collideWithTile(tileData, pos) {
+		if (tileData == g_game.tileNumbers.door) {
+			let idx = pos.x + "_" + pos.y;
+			g_game.doors[idx].hp--;
+			if (g_game.doors[idx].hp <= 0) {
+				g_game.tileLayer.setData(pos, 0, true);
+				setTileCollisionData(pos, 0);
+			}
+		}
 		this.destroy();
 		return false; // no more col resolve
 	}
