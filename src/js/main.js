@@ -25,13 +25,18 @@ function startGame() {
 
 	enemiesSpawned = 0;
 
-	g_game.player = new MobPlayer(vec2(0, 0), vec2(1), tileSize);
-	let gun = new Gun(vec2(-1, -2), vec2(1), g_game.tileNumbers.pistol, tileSize);
+	g_game.player = new MobPlayer(vec2(18, 14), vec2(1), tileSize);
+	let gun = new Gun(
+		vec2(g_game.player.pos.x - 2, g_game.player.pos.y - 2),
+		vec2(1),
+		g_game.tileNumbers.pistol,
+		tileSize
+	);
 	//gun.setOwner(g_game.player);
 
-	gun = new ShotGun(vec2(1, -2), vec2(1), tileSize);
+	gun = new ShotGun(vec2(g_game.player.pos.x + 2, g_game.player.pos.y - 2), vec2(1), tileSize);
 
-	let npc = new Npc(vec2(3, 4), vec2(1), tileSize);
+	let npc = new Npc(vec2(g_game.player.pos.x + 6, g_game.player.pos.y), vec2(1), tileSize);
 
 	g_game.state = STATE_PLAYING;
 
