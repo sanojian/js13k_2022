@@ -1,20 +1,22 @@
 /** @format */
 
 class Bullet extends EngineObject {
-	constructor(pos, size, tileIndex, tileSize, angle, color) {
+	constructor(pos, angle, color, lifetime) {
+		let tileIndex = g_game.tileNumbers.bulletShotgun;
+		let size = vec2(0.2);
 		super(pos, size, tileIndex, tileSize, angle, color);
-		// your object init code here
 
-		this._lifetime = 30;
+		this._lifetime = lifetime;
 		this._hitbox = vec2(0.25);
 
 		this.timeAlive = 0;
-		//this.setCollision(0, 0);
+		this.setCollision(true, true, true);
 	}
 
 	update() {
 		// your object update code here
 
+		/*
 		for (let i = 0; i < g_game.enemies.length; i++) {
 			let enemy = g_game.enemies[i];
 			if (isOverlapping(this.pos, this._hitbox, enemy.pos, enemy._hitbox)) {
@@ -26,14 +28,14 @@ class Bullet extends EngineObject {
 				return;
 			}
 		}
-
-		for (let i = 0; i < g_game.walls.length; i++) {
-			let wall = g_game.walls[i];
-			if (isOverlapping(this.pos, this._hitbox, wall.pos, vec2(1))) {
-				this.destroy();
-				return;
-			}
-		}
+*/
+		// for (let i = 0; i < g_game.walls.length; i++) {
+		// 	let wall = g_game.walls[i];
+		// 	if (isOverlapping(this.pos, this._hitbox, wall.pos, vec2(1))) {
+		// 		this.destroy();
+		// 		return;
+		// 	}
+		// }
 
 		this.timeAlive++;
 		if (this.timeAlive > this._lifetime) {
@@ -47,5 +49,22 @@ class Bullet extends EngineObject {
 	render() {
 		super.render(); // draw object as a sprite
 		// your object render code here
+	}
+
+	collideWithTile(tileData, pos) {
+		this.destroy();
+		return false; // no more col resolve
+	}
+
+	collideWithObject(o) {
+		//console.log("bullet hit : ", o);
+
+		if (o instanceof Zombie) {
+			//console.log("bullet hit zombie:", o);
+			o.hit(this.velocity.copy(), this.pos.copy());
+			this.destroy();
+		}
+
+		return false; // no auto resolve of collision
 	}
 }

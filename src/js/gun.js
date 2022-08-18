@@ -25,10 +25,7 @@ class Gun extends EngineObject {
 	update() {
 		// your object update code here
 
-
-
 		if (this.owner && this.owner.hp > 0) {
-
 			if (keyIsDown(82)) {
 				// key r
 				this.reload();
@@ -65,9 +62,7 @@ class Gun extends EngineObject {
 				//this.soundEmpty.play();
 				this.reload();
 			}
-
-		}
-		else if (!this.owner) {
+		} else if (!this.owner) {
 			// look for owner
 
 			if (isOverlapping(this.pos, this._hitbox, g_game.player.pos, g_game.player._hitbox)) {
@@ -75,7 +70,6 @@ class Gun extends EngineObject {
 				this.setOwner(g_game.player);
 			}
 		}
-
 
 		super.update(); // update object physics and position
 	}
@@ -106,13 +100,7 @@ class Gun extends EngineObject {
 
 		this.soundFire.play();
 
-		let bullet = new Bullet(
-			this.pos.copy(),
-			this.size.copy(),
-			g_game.tileNumbers.bulletPistol,
-			this.tileSize.copy(),
-			this.angle
-		);
+		let bullet = new Bullet(this.pos.copy(), this.angle, new Color(1, 1, 1), 30);
 		bullet.velocity.x = Math.cos(-this.angle) * this._speed;
 		bullet.velocity.y = Math.sin(-this.angle) * this._speed;
 	}
