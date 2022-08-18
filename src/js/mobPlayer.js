@@ -56,15 +56,17 @@ class MobPlayer extends Mob {
 		super.render(); // draw object as a sprite
 
 		// arms
+		let toPos = this.gun ? this.gun.pos : vec2(this.pos.x + 3 / 12, this.pos.y - 2 / 16);
 		drawLine(
 			vec2(this.pos.x + 3 / 12, this.pos.y + 1 / 16),
-			this.gun.pos,
+			toPos,
 			1 / 12,
 			new Color(172 / 255, 50 / 255, 50 / 255)
 		);
+		toPos = this.gun ? this.gun.pos : vec2(this.pos.x - 3 / 12, this.pos.y - 2 / 16);
 		drawLine(
 			vec2(this.pos.x - 3 / 12, this.pos.y + 1 / 16),
-			this.gun.pos,
+			toPos,
 			1 / 12,
 			new Color(172 / 255, 50 / 255, 50 / 255)
 		);

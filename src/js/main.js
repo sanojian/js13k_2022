@@ -23,8 +23,11 @@ function startGame() {
 	enemiesSpawned = 0;
 
 	g_game.player = new MobPlayer(vec2(0, 0), vec2(1), tileSize);
-	let gun = new Gun(vec2(0, 0), vec2(1), g_game.tileNumbers.pistol, tileSize);
-	gun.setOwner(g_game.player);
+	let gun = new Gun(vec2(-1, -2), vec2(1), g_game.tileNumbers.pistol, tileSize);
+	//gun.setOwner(g_game.player);
+
+
+	gun = new ShotGun(vec2(1, -2), vec2(1), tileSize);
 
 	g_game.state = STATE_PLAYING;
 
@@ -179,13 +182,15 @@ function gameRenderPost() {
 	drawTile(vec2(pos.x - 3, pos.y), vec2(scaleX, 2), g_game.tileNumbers.facePlayer, vec2(12));
 
 	// ammo
-	const colorHere = new Color(1, 1, 1);
-	const colorGone = new Color(0.3, 0.3, 0.3);
-	for (let i = 0; i < g_game.player.gun._maxAmmo; i++) {
-		drawTile(vec2(pos.x - 1 + i, pos.y), vec2(1), g_game.tileNumbers.bulletIcon, vec2(12), i + 1 > g_game.player.gun.ammo ? colorGone : colorHere);
-  }
-  
-  for (let i = 0; i < g_game.enemies.length; i++) {
-    g_game.enemies[i].drawBlood();
-  }
+	if (g_game.player.gun) {
+		const colorHere = new Color(1, 1, 1);
+		const colorGone = new Color(0.3, 0.3, 0.3);
+		for (let i = 0; i < g_game.player.gun._maxAmmo; i++) {
+			drawTile(vec2(pos.x - 1 + i, pos.y), vec2(1), g_game.tileNumbers.bulletIcon, vec2(12), i + 1 > g_game.player.gun.ammo ? colorGone : colorHere);
+		}
+	}
+
+	for (let i = 0; i < g_game.enemies.length; i++) {
+		g_game.enemies[i].drawBlood();
+	}
 }

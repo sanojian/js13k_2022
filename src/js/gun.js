@@ -9,6 +9,7 @@ class Gun extends EngineObject {
 		this._speed = 0.4;
 
 		this._maxAmmo = 6;
+		this._hitbox = vec2(0.4);
 
 		this.ammo = this._maxAmmo;
 		this.reloading = false;
@@ -24,13 +25,16 @@ class Gun extends EngineObject {
 	update() {
 		// your object update code here
 
-		if (keyIsDown(82)) {
-			// key r
-			this.reload();
-			return;
-		}
+
 
 		if (this.owner && this.owner.hp > 0) {
+
+			if (keyIsDown(82)) {
+				// key r
+				this.reload();
+				return;
+			}
+
 			let angle = Math.atan2(mousePos.y - this.owner.pos.y, mousePos.x - this.owner.pos.x);
 
 			this.pos.x = this.owner.pos.x + this._distance * Math.cos(angle);
@@ -56,12 +60,22 @@ class Gun extends EngineObject {
 					}
 				}
 			}
+
+			if (!this.ammo && !this.reloading) {
+				//this.soundEmpty.play();
+				this.reload();
+			}
+
+		}
+		else if (!this.owner) {
+			// look for owner
+
+			if (isOverlapping(this.pos, this._hitbox, g_game.player.pos, g_game.player._hitbox)) {
+				this.ammo = 0;
+				this.setOwner(g_game.player);
+			}
 		}
 
-		if (!this.ammo && !this.reloading) {
-			//this.soundEmpty.play();
-			this.reload();
-		}
 
 		super.update(); // update object physics and position
 	}
@@ -72,6 +86,12 @@ class Gun extends EngineObject {
 	}
 
 	setOwner(player) {
+		if (player.gun) {
+			// throw current gun
+			player.gun.pos.x += 2;
+			player.gun.pos.y += 2;
+			player.gun.owner = null;
+		}
 		this.owner = player;
 		player.gun = this;
 	}
