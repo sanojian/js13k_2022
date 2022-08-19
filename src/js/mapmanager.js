@@ -1,14 +1,14 @@
 /** @format */
 
 class MapManager {
-	constructor(data) {
-		this.createMap(data);
+	constructor() {
+		this.createMap();
 	}
 
-	createMap(data) {
-		let myMap = data.layers[0].data;
-		let w = data.width;
-		let h = data.height;
+	createMap() {
+		let myMap = mapData;
+		let w = mapWidth;
+		let h = mapHeight;
 
 		const tileSize = vec2(12, 12);
 
