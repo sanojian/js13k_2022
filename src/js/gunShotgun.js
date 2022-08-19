@@ -7,6 +7,7 @@ class ShotGun extends Gun {
 		this._mysize = size.y;
 		this._speed = 0.3;
 		this._maxAmmo = 2;
+		this._ammoIconTile = g_game.tileNumbers.shellIcon;
 
 		this.ammo = this._maxAmmo;
 		this.reloadTimePerBullet = 0.75;
