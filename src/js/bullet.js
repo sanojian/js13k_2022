@@ -11,6 +11,10 @@ class Bullet extends EngineObject {
 
 		this.timeAlive = 0;
 		this.setCollision(true, true, true);
+
+		this.hitSound = new Sound([
+			1.05, 0.05, 208, 0.01, 0, 0.09, 0, 0, -9.9, 0, 0, 0, 0, 0.4, 0, 0.1, 0.02, 0.75, 0.05, 0.04,
+		]);
 	}
 
 	update() {
@@ -61,6 +65,7 @@ class Bullet extends EngineObject {
 			}
 		}
 		this.destroy();
+		this.hitSound.play();
 		return false; // no more col resolve
 	}
 
@@ -71,6 +76,7 @@ class Bullet extends EngineObject {
 			//console.log("bullet hit zombie:", o);
 			o.hit(this.velocity.copy(), this.pos.copy());
 			this.destroy();
+			this.hitSound.play();
 		}
 
 		return false; // no auto resolve of collision
