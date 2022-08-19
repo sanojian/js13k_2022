@@ -12,7 +12,7 @@ class Zombie extends Mob {
 		this.mass = 2;
 		this.thinkPause = 0;
 		this.toPlayer = undefined;
-		this.walkingSpeed = rand(0.05, 0.3)
+		this.walkingSpeed = rand(0.05, 0.3);
 	}
 
 	update() {
@@ -56,11 +56,9 @@ class Zombie extends Mob {
 
 			let toOther = o.pos.subtract(this.pos);
 			if (toOther.length() < TOO_CLOSE) {
-				let pushForce = toOther.normalize(rand(0,.2) / (toOther.length() + .001));
+				let pushForce = toOther.normalize(rand(0, 0.2) / (toOther.length() + 0.001));
 				o.applyForce(pushForce);
 			}
-
-
 		}
 
 		return false;
