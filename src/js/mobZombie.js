@@ -6,12 +6,13 @@ class Zombie extends Mob {
 	constructor(pos, angle, color) {
 		super(pos, vec2(0.9), g_game.tileNumbers.zombie, tileSize, angle, color);
 
-		this._maxSpeed = 0.3;
+		this._maxSpeed = 0.5;
 
 		this.hp = 3;
 		this.mass = 2;
 		this.thinkPause = 0;
 		this.toPlayer = undefined;
+		this.walkingSpeed = rand(0.05, 0.1)
 	}
 
 	update() {
@@ -24,7 +25,7 @@ class Zombie extends Mob {
 		// take a step
 		if (rand(0, 100) < 10) {
 			let force = vec2(0);
-			if (this.toPlayer) force = this.toPlayer.normalize(0.04);
+			if (this.toPlayer) force = this.toPlayer.normalize(this.walkingSpeed);
 
 			let jitter = vec2(rand(-JIT, JIT), rand(-JIT, JIT));
 
@@ -33,7 +34,7 @@ class Zombie extends Mob {
 			this.applyForce(force);
 		}
 
-		this.applyDrag(2);
+		this.applyDrag(1.5);
 		this.velocity = this.velocity.clampLength(this._maxSpeed);
 
 		super.update(); // update object physics and position
@@ -53,11 +54,13 @@ class Zombie extends Mob {
 		if (o instanceof Zombie) {
 			const TOO_CLOSE = 0.7;
 
-			let pushForce = this.pos.subtract(o.pos);
-			if (pushForce.length() < TOO_CLOSE) {
-				pushForce = pushForce.normalize(0.1 / (pushForce.length() + 1));
-				this.applyForce(pushForce);
+			let toOther = o.pos.subtract(this.pos);
+			if (toOther.length() < TOO_CLOSE) {
+				let pushForce = toOther.normalize(rand(0,.2) / (toOther.length() + .001));
+				o.applyForce(pushForce);
 			}
+
+
 		}
 
 		return false;
