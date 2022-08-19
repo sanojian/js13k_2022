@@ -4,7 +4,7 @@ const JIT = 0.01;
 
 class Zombie extends Mob {
 	constructor(pos, angle, color) {
-		super(pos, vec2(.9), g_game.tileNumbers.zombie, tileSize, angle, color);
+		super(pos, vec2(0.9), g_game.tileNumbers.zombie, tileSize, angle, color);
 
 		this._maxSpeed = 0.3;
 
@@ -47,5 +47,19 @@ class Zombie extends Mob {
 		this.toPlayer = undefined;
 		//console.log("HIT", this.thinkPause);
 		return super.hit(velocity, pos);
+	}
+
+	collideWithObject(o) {
+		if (o instanceof Zombie) {
+			const TOO_CLOSE = 0.7;
+
+			let pushForce = this.pos.subtract(o.pos);
+			if (pushForce.length() < TOO_CLOSE) {
+				pushForce = pushForce.normalize(0.1 / (pushForce.length() + 1));
+				this.applyForce(pushForce);
+			}
+		}
+
+		return false;
 	}
 }
