@@ -83,7 +83,7 @@ class Mob extends EngineObject {
 		new ParticleEmitter(
 			this.pos, 0, radius/2, .02, 50*radius, PI, // pos, angle, emitSize, emitTime, emitRate, emiteCone
 			0, undefined,        // tileIndex, tileSize
-			new Color(.8,.1,.1), new Color(1,0,0), // colorStartA, colorStartB
+			new Color(.8,.1,.1), g_game.colorBlood, // colorStartA, colorStartB
 			new Color(0,0,0,0), new Color(0,0,0,0), // colorEndA, colorEndB
 			1, .5, 2, 2/12, 1/12,   // particleTime, sizeStart, sizeEnd, particleSpeed, particleAngleSpeed
 			.9, 1, -.3, PI, .1,  // damping, angleDamping, gravityScale, particleCone, fadeRate, 

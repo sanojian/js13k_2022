@@ -17,15 +17,15 @@ class Corpse extends EngineObject {
 		var radius = 2;
 
 		// prettier-ignore
-		this.bloodEmitter = new ParticleEmitter(
+		/*this.bloodEmitter = new ParticleEmitter(
 			pos, 0, radius/2, .2, 50*radius, PI, // pos, angle, emitSize, emitTime, emitRate, emiteCone
 			0, undefined,        // tileIndex, tileSize
-			new Color(.8,.1,.1), new Color(1,0,0), // colorStartA, colorStartB
+			new Color(.8,.1,.1), g_game.colorBlood, // colorStartA, colorStartB
 			new Color(0,0,0,0), new Color(0,0,0,0), // colorEndA, colorEndB
 			1, .5, 2, .1, .05,   // particleTime, sizeStart, sizeEnd, particleSpeed, particleAngleSpeed
 			.9, 1, -.3, PI, .1,  // damping, angleDamping, gravityScale, particleCone, fadeRate, 
 			.5, false, false, false, 1e8     // randomness, collide, additive, randomColorLinear, renderOrder
-		);
+		);*/
 	}
 
 	update() {
@@ -38,7 +38,7 @@ class Corpse extends EngineObject {
 		this.velocity.x = this.velocity.x * 0.9;
 		this.velocity.y = this.velocity.y * 0.9;
 
-		this.bloodEmitter.pos = this.pos;
+		//this.bloodEmitter.pos = this.pos;
 
 		super.update(); // update object physics and position
 	}

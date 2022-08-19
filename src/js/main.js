@@ -83,11 +83,9 @@ function gameUpdate() {
 }
 
 var black = new Color(0, 0, 0);
-var red = new Color(1, 0, 0)
 
 function updateStateClickToStart() {
-
-	let col = rand(0, 1) > .9 ? red : black;
+	let col = rand(0, 1) > 0.9 ? g_game.colorBlood : black;
 
 	drawTextScreen(
 		"DEAD AGAIN",
