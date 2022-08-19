@@ -65,7 +65,7 @@ class Bullet extends EngineObject {
 			}
 		}
 		this.destroy();
-		this.hitSound.play();
+		//this.hitSound.play();
 		return false; // no more col resolve
 	}
 

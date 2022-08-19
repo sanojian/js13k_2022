@@ -5,7 +5,7 @@ class MobPlayer extends Mob {
 		// your object init code here
 		this._speed = 0.1;
 
-		this._walkCycleFrames = 30;
+		this._walkCycleFrames = 20;
 
 		this.setCollision(true, true);
 		this.mass = 1;
@@ -58,14 +58,14 @@ class MobPlayer extends Mob {
 		super.render(); // draw object as a sprite
 
 		// arms
-		let toPos = this.gun ? this.gun.pos : vec2(this.pos.x + 5 / 12, this.pos.y + 7 / 16 + this.bumpWalk);
+		let toPos = this.gun ? this.gun.pos : vec2(this.pos.x + (this.mirror ? 4 : 6) / 12, this.pos.y + 7 / 16 + this.bumpWalk);
 		drawLine(
 			vec2(this.pos.x + 3 / 12, this.pos.y + 2 / 16 + this.bumpWalk),
 			toPos,
 			1 / 12,
 			new Color(172 / 255, 50 / 255, 50 / 255)
 		);
-		toPos = this.gun ? this.gun.pos : vec2(this.pos.x - 5 / 12, this.pos.y + 7 / 16 + this.bumpWalk);
+		toPos = this.gun ? this.gun.pos : vec2(this.pos.x - (this.mirror ? 6 : 4) / 12, this.pos.y + 7 / 16 + this.bumpWalk);
 		drawLine(
 			vec2(this.pos.x - 3 / 12, this.pos.y + 2 / 16 + this.bumpWalk),
 			toPos,
