@@ -12,7 +12,7 @@ class Zombie extends Mob {
 		this.mass = 2;
 		this.thinkPause = 0;
 		this.toPlayer = undefined;
-		this.walkingSpeed = rand(0.05, 0.1)
+		this.walkingSpeed = rand(0.05, 0.3)
 	}
 
 	update() {
