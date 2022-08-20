@@ -39,6 +39,20 @@ class Zombie extends Mob {
 
 		this.speakTimer = new Timer();
 		this.setSpeakTimer();
+
+		this.soundGroan = new Sound([
+			1, 0.5, 329.6276, 0.16, 0.62, 0.33, 0, 0.5, 0, 0, -50, 0.14, 0.13, 2.5, 28, 0, 0, 0.9, 0.07, 0.12,
+			//			1, 0.05, 261.6256, 0.08, 0.24, 0.11, 0, 1, 0, 0, 0, 0.14, 0, 3.6, -11, 0, 0.51, 1, 0.07, 0,
+		]);
+	}
+
+	groan(v = 1) {
+		if (!this.toPlayer) return;
+
+		let d = this.toPlayer.length() / 5;
+		let vol = d < 1 ? 1 : 1 / (d * d);
+
+		this.soundGroan.play(this.pos, v * vol, rand(1,1.5), 0.5);
 	}
 
 	update() {
@@ -46,6 +60,7 @@ class Zombie extends Mob {
 		if (this.thinkPause-- <= 0) {
 			this.toPlayer = g_game.player.pos.subtract(this.pos);
 			this.thinkPause = rand(20, 100);
+			if (rand(1) < 0.3) this.groan(rand(1));
 		}
 
 		// take a step
@@ -78,6 +93,8 @@ class Zombie extends Mob {
 		//this.thinkPause += rand(0, 30);
 		this.toPlayer = undefined;
 		//console.log("HIT", this.thinkPause);
+
+		this.groan(5);
 		return super.hit(velocity, pos);
 	}
 
