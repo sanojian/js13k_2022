@@ -6,7 +6,7 @@ const STATE_DEAD = 2;
 const STATE_WON = 3;
 
 const TILE_SIZE = vec2(12);
-const MOB_SIZE = vec2(13, 12);
+const MOB_SIZE = vec2(11, 12);
 
 let g_game = {
 	CAMERA_LAG: 3,
