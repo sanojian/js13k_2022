@@ -38,6 +38,8 @@ let g_game = {
 		shotgun: 15,
 		shellIcon: 16,
 		bulletIcon: 17,
+		boxBullets: 19,
+		boxShells: 20,
 		wall: 28,
 		roof: 29,
 		stone: 30,
