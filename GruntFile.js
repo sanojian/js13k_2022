@@ -1,4 +1,6 @@
-module.exports = function(grunt) {
+
+module.exports = function (grunt) {
+
 
 	// Load Grunt tasks declared in the package.json file
 	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
@@ -123,6 +125,10 @@ module.exports = function(grunt) {
 			'init(); '
 		);
 	});
+
+	// TODO: add roadroller to script
+	// npx roadroller dist/i.min.js -o dist/i.min.js
+
 	grunt.registerTask('dev', [
 		'watch'
 	]);
