@@ -85,19 +85,19 @@ function gameUpdate() {
 var black = new Color(0, 0, 0);
 
 function updateStateClickToStart() {
-	let col = rand(0, 1) > 0.9 ? g_game.colorBlood : black;
-
-	drawTextScreen(
-		"DEAD AGAIN",
-		vec2((rand(0.99, 1.01) * mainCanvas.width) / 2, (rand(0.99, 1.01) * mainCanvas.height) / 4),
-		100,
-		col
-	);
+	for (let i = 0; i < 10; i++) {
+		drawTextScreen(
+			"DEAD AGAIN",
+			vec2((rand(0.99, 1.01) * mainCanvas.width) / 2, (rand(0.99, 1.01) * mainCanvas.height) / 3),
+			mainCanvas.width / 10,
+			black.lerp(g_game.colorBlood, i / 10)
+		);
+	}
 
 	let amt = 0.5 + Math.sin(frame / 15) / 2;
-	col = new Color((amt * 172) / 255, (amt * 50) / 255, (amt * 50) / 255);
+	let col = new Color((amt * 172) / 255, (amt * 50) / 255, (amt * 50) / 255);
 
-	drawTextScreen("Click to start", vec2(mainCanvas.width / 2, mainCanvas.height / 2), 50, col);
+	drawTextScreen("Click to start", vec2(mainCanvas.width / 2, (3 * mainCanvas.height) / 4), mainCanvas.width / 20, col);
 
 	if (mouseWasReleased(0)) {
 		startGame();
