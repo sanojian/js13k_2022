@@ -3,24 +3,23 @@ class MobPlayer extends Mob {
 	constructor(pos) {
 		super(pos, vec2(0.8), g_game.tileNumbers.player);
 		// your object init code here
-		this._speed = 0.1;
 
 		this._walkCycleFrames = 20;
 
 		this.setCollision(true, true);
 		this.mass = 1;
-		this.damping = 0.4;
+		this.damping = 0.95;
 		this.mirror = false;
 		this.gun = undefined;
 
 		this.hp = 1;
 
-		this.soundScream = new Sound([
-			2, 0, 523.2511, 0, 1, 1, 0, 0, -0.1, 0, 0, 0, 0, 0.5, 0, 0.05, 0.5, 0.8, 1, 0,
-		]);
+		this.soundScream = new Sound([2, 0, 523.2511, 0, 1, 1, 0, 0, -0.1, 0, 0, 0, 0, 0.5, 0, 0.05, 0.5, 0.8, 1, 0]);
 	}
 
 	update() {
+		const speed = 0.01;
+
 		if (this.hp > 0) {
 			let dx = 0;
 			let dy = 0;
@@ -31,19 +30,19 @@ class MobPlayer extends Mob {
 			//} else {
 			if (keyIsDown(38)) {
 				// key w
-				dy = this._speed;
+				dy = speed;
 			}
 			if (keyIsDown(37)) {
 				// key a
-				dx = -this._speed;
+				dx = -speed;
 			}
 			if (keyIsDown(40)) {
 				// key s
-				dy = -this._speed;
+				dy = -speed;
 			}
 			if (keyIsDown(39)) {
 				// key d
-				dx = this._speed;
+				dx = speed;
 			}
 			//}
 
@@ -66,7 +65,7 @@ class MobPlayer extends Mob {
 			let d = v.length();
 			if (d < 0.5) {
 				this.hp--;
-				v.normalize(0.1);
+				v.normalize(0.01);
 				this.applyForce(v);
 
 				bloodParticles(this.pos, 0.1);
