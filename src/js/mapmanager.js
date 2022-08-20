@@ -24,6 +24,10 @@ class MapManager {
 					if (t - 1 == g_game.tileNumbers.door) {
 						g_game.doors[x + "_" + (h - 1 - y)] = { hp: 3 };
 					}
+					if (t - 1 == g_game.tileNumbers.npc) {
+						let npc = new Npc(vec2(x + 0.5, h - 1 - y + 0.5), vec2(1), tileSize);
+						continue;
+					}
 					if (g_game.TILE_LAYER_COLLISION) {
 						setTileCollisionData(vec2(x, h - 1 - y), t - 1);
 						g_game.tileLayer.setData(vec2(x, h - 1 - y), new TileLayerData(t - 1));
