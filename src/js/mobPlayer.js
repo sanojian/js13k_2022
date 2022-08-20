@@ -1,7 +1,7 @@
 /** @format */
 class MobPlayer extends Mob {
 	constructor(pos) {
-		super(pos, vec2(0.9), g_game.tileNumbers.player);
+		super(pos, vec2(0.8), g_game.tileNumbers.player);
 		// your object init code here
 		this._speed = 0.1;
 
@@ -14,6 +14,10 @@ class MobPlayer extends Mob {
 		this.gun = undefined;
 
 		this.hp = 1;
+
+		this.soundScream = new Sound([
+			1.82, 0, 523.2511, 0.06, 0.02, 0.06, 0, 0.02, 0, 0, 0, 0, 0, 1.8, 0, 0.1, 0, 0.77, 0.1, 0,
+		]);
 	}
 
 	update() {
@@ -63,10 +67,19 @@ class MobPlayer extends Mob {
 				if (Math.random() < 0.3) {
 					this.splatter(this.pos.copy());
 				}
+
+				if (this.hp == 0) this.scream();
 			}
 		}
 
 		return false; // no auto resolve of collision
+	}
+
+	scream(p = 2) {
+		if (p < 0) return;
+
+		this.soundScream.play(this.pos, p / 4, p);
+		setTimeout(() => this.scream(p - 0.005), 0.01);
 	}
 
 	render() {
