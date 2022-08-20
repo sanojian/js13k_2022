@@ -258,8 +258,8 @@ function gameRenderPost() {
 	drawTile(vec2(pos.x - 4, pos.y), vec2(scaleX, 2), g_game.tileNumbers.facePlayer, vec2(12));
 
 	// total ammo
-	drawRect(vec2(pos.x - 2, pos.y + 0.5), vec2(1.5, 0.5), new Color(132 / 255, 126 / 255, 135 / 255));
-	drawRect(vec2(pos.x - 2, pos.y - 0.5), vec2(1.5, 0.5), new Color(132 / 255, 126 / 255, 135 / 255));
+	drawRect(vec2(pos.x - 2, pos.y + 0.5), vec2(1.5, 0.6), new Color(132 / 255, 126 / 255, 135 / 255));
+	drawRect(vec2(pos.x - 2, pos.y - 0.5), vec2(1.5, 0.6), new Color(132 / 255, 126 / 255, 135 / 255));
 	drawTile(vec2(pos.x - 2.5, pos.y + 0.5), vec2(0.5), g_game.tileNumbers.bulletIcon, vec2(12));
 	drawTile(vec2(pos.x - 2.5, pos.y - 0.5), vec2(0.5), g_game.tileNumbers.shellIcon, vec2(12));
 
