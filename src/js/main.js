@@ -33,6 +33,9 @@ function startGame() {
 	new Pistol(findFreePos(), vec2(1), g_game.tileNumbers.pistol);
 	new ShotGun(findFreePos(), vec2(1));
 
+	new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxBullets);
+	new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxShells);
+
 	if (g_CHEATMODE) new Pistol(g_game.player.pos, vec2(1), g_game.tileNumbers.pistol);
 
 	g_game.state = STATE_PLAYING;
@@ -46,7 +49,7 @@ function findFreePos(minDistToPlayer) {
 	do {
 		pos = vec2(rand(mapWidth), rand(mapHeight));
 		dist2player = pos.distance(g_game.player.pos);
-		inTileCol = tileCollisionTest(pos);
+		inTileCol = tileCollisionTest(pos, vec2(1));
 	} while (dist2player < minDistToPlayer || inTileCol);
 
 	return pos;
