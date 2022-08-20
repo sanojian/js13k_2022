@@ -1,7 +1,7 @@
 /** @format */
 class MobPlayer extends Mob {
 	constructor(pos) {
-		super(pos, vec2(0.9), g_game.tileNumbers.player, TILE_SIZE);
+		super(pos, vec2(0.9), g_game.tileNumbers.player);
 		// your object init code here
 		this._speed = 0.1;
 
@@ -65,7 +65,7 @@ class MobPlayer extends Mob {
 			1 / 12,
 			new Color(172 / 255, 50 / 255, 50 / 255)
 		);
-		toPos = this.gun ? this.gun.pos : vec2(this.pos.x - (this.mirror ? 6 : 3) / 12, this.pos.y + 7 / 16 + this.bumpWalk);
+		toPos = this.gun ? this.gun.pos	: vec2(this.pos.x - (this.mirror ? 6 : 3) / 12, this.pos.y + 7 / 16 + this.bumpWalk);
 		drawLine(
 			vec2(this.pos.x - 3 / 12, this.pos.y + 2 / 16 + this.bumpWalk),
 			toPos,

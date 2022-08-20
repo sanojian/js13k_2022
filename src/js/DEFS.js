@@ -6,6 +6,7 @@ const STATE_DEAD = 2;
 const STATE_WON = 3;
 
 const TILE_SIZE = vec2(12);
+const MOB_SIZE = vec2(13, 12);
 
 let g_game = {
 	CAMERA_LAG: 3,
@@ -25,10 +26,10 @@ let g_game = {
 	tileNumbers: {
 		player: 0,
 		zombie: 1,
+		npc: 2,
 		facePlayer: 4,
 		faceZombie: 5,
 		faceVampire: 6,
-		npc: 7,
 		pistol: 8,
 		shotgun: 9,
 		shellIcon: 10,
