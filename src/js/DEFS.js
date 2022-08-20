@@ -5,6 +5,8 @@ const STATE_PLAYING = 1;
 const STATE_DEAD = 2;
 const STATE_WON = 3;
 
+const TILE_SIZE = vec2(12);
+
 let g_game = {
 	CAMERA_LAG: 3,
 	TILE_LAYER_COLLISION: true,

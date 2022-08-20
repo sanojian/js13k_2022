@@ -4,7 +4,7 @@ class Bullet extends EngineObject {
 	constructor(pos, angle, color, lifetime) {
 		let tileIndex = g_game.tileNumbers.bulletShotgun;
 		let size = vec2(0.15);
-		super(pos, size, tileIndex, tileSize, angle, color);
+		super(pos, size, tileIndex, TILE_SIZE, angle, color);
 
 		this._lifetime = lifetime;
 		this._hitbox = vec2(0.25);

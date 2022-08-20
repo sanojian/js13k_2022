@@ -1,7 +1,7 @@
 /** @format */
 class Corpse extends EngineObject {
-	constructor(pos, size, tileIndex, tileSize, angle, color) {
-		super(pos, size, tileIndex, tileSize, angle, new Color(0.7, 0.5, 0.5));
+	constructor(pos, size, tileIndex) {
+		super(pos, size, tileIndex, TILE_SIZE, 0, new Color(0.7, 0.5, 0.5));
 		// your object init code here
 
 		this._animLifetime = 10;

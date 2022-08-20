@@ -91,7 +91,7 @@ class Mob extends EngineObject {
 		);
 
 		if (this.hp <= 0) {
-			let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex, this.tileSize.copy());
+			let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex);
 			corpse.push(velocity);
 			g_game.corpses.push(corpse);
 			this.destroy();

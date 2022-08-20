@@ -1,8 +1,8 @@
 /** @format */
 
 class Gun extends EngineObject {
-	constructor(pos, size, tileIndex, tileSize, angle, color) {
-		super(pos, size, tileIndex, tileSize, angle, color);
+	constructor(pos, size, tileIndex) {
+		super(pos, size, tileIndex, TILE_SIZE);
 		// your object init code here
 		this._distance = 0.7;
 		this._mysize = size.y;
