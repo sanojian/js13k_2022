@@ -6,7 +6,7 @@ class ShotGun extends Gun {
 		this._distance = 0.3;
 		this._mysize = size.y;
 		this._speed = 0.3;
-		this._maxAmmo = 2;
+		this._maxAmmo = 4;
 		this._ammoIconTile = g_game.tileNumbers.shellIcon;
 
 		this.ammo = this._maxAmmo;

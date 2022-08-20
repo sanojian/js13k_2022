@@ -72,15 +72,21 @@ class MobPlayer extends Mob {
 				v.normalize(0.01);
 				this.applyForce(v);
 
-				bloodParticles(this.pos, 0.1);
+				bloodParticles(this.pos, 0.05);
 				if (Math.random() < 0.3) {
 					this.splatter(this.pos.copy());
 				}
 
 				if (this.hp == 0) {
-					this.angle = PI / 2;
+					for (let i = 0; i < 10; i++) {
+						let bloodPos = this.pos.add(vec2(rand(-1, 1), rand(-1, 1)));
+						this.splatter(bloodPos);
+						bloodParticles(bloodPos, rand(1));
+					}
 
-					this.soundScream.play(this.pos);
+					this.angle = PI / 2;
+					this.color = new Color(0.7, 0.5, 0.5);
+					this.soundScream.play(this.pos, 1, 2);
 				}
 			}
 		}

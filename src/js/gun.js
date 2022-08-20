@@ -26,8 +26,8 @@ class Gun extends EngineObject {
 		// your object update code here
 
 		if (this.owner && this.owner.hp > 0) {
-			// key r
-			if (keyWasReleased(82)) {
+			// key r or space
+			if (keyWasReleased(82) || keyWasReleased(32)) {
 				this.reload();
 				return;
 			}
@@ -125,6 +125,7 @@ class Gun extends EngineObject {
 		if (this.reloading) {
 			return;
 		}
+
 		this.reloadTimer = new Timer(this.reloadTimePerBullet);
 		this.reloading = true;
 	}
