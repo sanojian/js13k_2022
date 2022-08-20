@@ -95,7 +95,7 @@ class Mob extends EngineObject {
 
 		this.bloodEmitter = bloodParticles(this.pos, rand(1));
 
-		if (this.hp <= 0) {
+		if (this.hp == 0) {
 			let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex);
 			corpse.push(velocity);
 			g_game.corpses.push(corpse);

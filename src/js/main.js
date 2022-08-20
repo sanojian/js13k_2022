@@ -163,6 +163,42 @@ function gameUpdatePost() {
 	// setup camera and prepare for render
 }
 
+function drawStats() {
+	let l = 1;
+	drawTextScreen(
+		"enemies in list " + g_game.enemies.length,
+		vec2(100, 25 * l++),
+		20,
+		new Color(1, 1, 1),
+		0,
+		undefined,
+		"left"
+	);
+
+	let e = 0;
+	for (const o of engineObjects) {
+		if (o instanceof Zombie) e++;
+	}
+
+	drawTextScreen("enemies in engine " + e, vec2(100, 25 * l++), 20, new Color(1, 1, 1), 0, undefined, "left");
+
+	if (e != g_game.enemies.length) {
+		debugger;
+	}
+
+	drawTextScreen(
+		"enemies spawned " + enemiesSpawned,
+		vec2(100, 25 * l++),
+		20,
+		new Color(1, 1, 1),
+		0,
+		undefined,
+		"left"
+	);
+
+	if (g_CHEATMODE) drawTextScreen("CHEAT MODE ON ", vec2(100, 25 * l++), 20, new Color(1, 1, 1), 0, undefined, "left");
+}
+
 function gameRender() {
 	// called before objects are rendered
 	// draw any background effects that appear behind objects
@@ -181,7 +217,7 @@ function gameRender() {
 		}
 	}
 
-	drawTextScreen("enemies " + g_game.enemies.length, vec2(100, 10), 20, new Color(1, 1, 1));
+	drawStats && drawStats();
 }
 
 function gameRenderPost() {
