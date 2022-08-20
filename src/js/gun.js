@@ -17,9 +17,8 @@ class Gun extends EngineObject {
 		this.reloadTimer = undefined;
 		this.reloadTimePerBullet = 0.25;
 
-		this.soundFire = new Sound([2.21, , 164.8138, , , , 4, , , , , , , , , -0.3]);
+		this._soundFire = undefined;
 
-		//this.soundEmpty = new Sound([, .3, 0, .01, , .01, 4, 0, 20, 6.6, -600, .07, .32, 3.6, 12, , , , , .12]);
 		this.soundReload = new Sound([, 0.3, 0, 0.01, , 0.01, 4, 0, 20, 6.6, 600, 0.07, 0.32, 3.6, 12, , , , , 0.12]);
 	}
 
@@ -94,16 +93,13 @@ class Gun extends EngineObject {
 	fire() {
 		if (this.reloading) {
 			//this.soundEmpty.play();
-			return;
+			return false;
 		}
 
 		this.ammo--;
+		this._soundFire.play();
 
-		this.soundFire.play();
-
-		let bullet = new Bullet(this.pos.copy(), 0, new Color(251 / 255, 242 / 255, 54 / 255), 30);
-		bullet.velocity.x = Math.cos(-this.angle) * this._speed;
-		bullet.velocity.y = Math.sin(-this.angle) * this._speed;
+		return true;
 	}
 
 	reload() {
