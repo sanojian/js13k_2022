@@ -65,6 +65,10 @@ function spawnEnemy() {
 }
 
 function gameUpdate() {
+	if (keyIsDown(18) && keyWasReleased(67)) {
+		g_CHEATMODE = 1 - g_CHEATMODE;
+	}
+
 	switch (g_game.state) {
 		case STATE_CLICK_TO_START:
 			updateStateClickToStart();
