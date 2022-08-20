@@ -30,9 +30,10 @@ function startGame() {
 	g_game.player = new MobPlayer(vec2(15, 10));
 
 	new Pistol(findFreePos(), vec2(1), g_game.tileNumbers.pistol);
-	//new Pistol(g_game.player.pos, vec2(1), g_game.tileNumbers.pistol);
+	if (g_CHEATMODE) new Pistol(g_game.player.pos, vec2(1), g_game.tileNumbers.pistol);
 
 	new ShotGun(findFreePos(), vec2(1));
+	//	new ShotGun(g_game.player.pos.add(vec2(2)), vec2(1));
 
 	g_game.state = STATE_PLAYING;
 
@@ -43,7 +44,7 @@ function findFreePos(minDistToPlayer) {
 	let pos, dist2player, inTileCol;
 
 	do {
-		pos = vec2(rand(0, 30), rand(0, 20)); // TODO: get size from map
+		pos = vec2(rand(mapWidth), rand(mapHeight));
 		dist2player = pos.distance(g_game.player.pos);
 		inTileCol = tileCollisionTest(pos);
 	} while (dist2player < minDistToPlayer || inTileCol);
@@ -179,6 +180,8 @@ function gameRender() {
 			}
 		}
 	}
+
+	drawTextScreen("enemies " + g_game.enemies.length, vec2(100, 10), 20, new Color(1, 1, 1));
 }
 
 function gameRenderPost() {

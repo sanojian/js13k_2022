@@ -26,8 +26,8 @@ class Gun extends EngineObject {
 		// your object update code here
 
 		if (this.owner && this.owner.hp > 0) {
-			if (keyIsDown(82)) {
-				// key r
+			// key r
+			if (keyWasReleased(82)) {
 				this.reload();
 				return;
 			}

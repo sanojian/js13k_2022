@@ -8,6 +8,8 @@ const STATE_WON = 3;
 const TILE_SIZE = vec2(12);
 const MOB_SIZE = vec2(11, 12);
 
+const g_CHEATMODE = 0;
+
 let g_game = {
 	CAMERA_LAG: 3,
 	TILE_LAYER_COLLISION: true,
