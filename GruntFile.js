@@ -11,7 +11,7 @@ module.exports = function(grunt) {
 				files: [
 					'src/js/**/*.js',
 					'src/js/**/*.tmj',
-					'!src/js/start.js'
+					'!src/js/start_GEN.js'
 				],
 				tasks: ['build']
 			},
@@ -92,7 +92,7 @@ module.exports = function(grunt) {
 						'src/js/main.js',
 						'src/js/DEFS.js',
 						'src/js/**/*.js',
-						'src/js/start.js',
+						'src/js/start_GEN.js',
 					]
 				}
 			},
@@ -116,7 +116,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('processMap', 'get map data from Tiled', function () {
 		let mapJson = grunt.file.readJSON('src/js/world.tmj');
 		grunt.file.write(
-			'src/js/start.js',
+			'src/js/start_GEN.js',
 			'const mapData = [' + mapJson.layers[0].data.toString().replaceAll('0,', ',') + '];\n' +
 			'const mapWidth = ' + mapJson.width + ';\n' +
 			'const mapHeight = ' + mapJson.height + ';\n' +
