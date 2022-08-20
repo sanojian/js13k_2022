@@ -10,7 +10,7 @@ class Mob extends EngineObject {
 		this.setCollision(true, true);
 		this.mass = 1;
 		this.damping = 1;
-		this.elasticity = 1;
+		this.elasticity = 0.5;
 
 		this._maxSpeed = 0.4;
 

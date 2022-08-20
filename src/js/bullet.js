@@ -50,11 +50,6 @@ class Bullet extends EngineObject {
 		super.update(); // update object physics and position
 	}
 
-	render() {
-		super.render(); // draw object as a sprite
-		// your object render code here
-	}
-
 	collideWithTile(tileData, pos) {
 		if (tileData == g_game.tileNumbers.door) {
 			let idx = pos.x + "_" + pos.y;
