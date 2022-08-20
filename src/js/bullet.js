@@ -1,7 +1,7 @@
 /** @format */
 
 class Bullet extends EngineObject {
-	constructor(pos, angle, color, lifetime) {
+	constructor(pos, angle, color, lifetime, hp) {
 		let tileIndex = g_game.tileNumbers.bulletShotgun;
 		let size = vec2(0.15);
 		super(pos, size, tileIndex, TILE_SIZE, angle, color);
@@ -9,6 +9,7 @@ class Bullet extends EngineObject {
 		this._lifetime = lifetime;
 		this._hitbox = vec2(0.25);
 
+		this.hp = hp || 1;
 		this.timeAlive = 0;
 		this.setCollision(true, true, true);
 
@@ -49,7 +50,10 @@ class Bullet extends EngineObject {
 		if (o instanceof Zombie || o instanceof Vampire) {
 			//console.log("bullet hit zombie:", o);
 			o.hit(this.velocity.copy(), this.pos.copy());
-			if (!g_CHEATMODE) this.destroy();
+			if (!g_CHEATMODE) {
+				this.hp--;
+				if (this.hp <= 0) this.destroy();
+			}
 			this.hitSound.play();
 		}
 

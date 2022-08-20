@@ -18,7 +18,7 @@ class ShotGun extends Gun {
 	fire() {
 		if (super.fire(g_game.colorShellCasing)) {
 			var bulletColor = new Color(217 / 255, 87 / 255, 99 / 255);
-			var bulletLife = 20;
+			var bulletLife = 12;
 
 			let angle = -this.angle;
 			let bullet = new Bullet(this.pos.copy(), 0, bulletColor, bulletLife);

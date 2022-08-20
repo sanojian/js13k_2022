@@ -30,8 +30,9 @@ function startGame() {
 
 	g_game.player = new MobPlayer(vec2(15, 10));
 
-	new Pistol(findFreePos(), vec2(1), g_game.tileNumbers.pistol);
+	new Pistol(findFreePos(), vec2(1));
 	new ShotGun(findFreePos(), vec2(1));
+	new Rifle(findFreePos(), vec2(1));
 
 	new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxBullets);
 	new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxShells);

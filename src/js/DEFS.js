@@ -51,6 +51,7 @@ let g_game = {
 		bulletIcon: 17,
 		boxBullets: 19,
 		boxShells: 20,
+		rifle: 21,
 		wall: 28,
 		roof: 29,
 		stone: 30,
