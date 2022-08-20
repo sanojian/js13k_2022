@@ -20,6 +20,11 @@ class MobPlayer extends Mob {
 		if (this.hp > 0) {
 			let dx = 0;
 			let dy = 0;
+
+			//if (isUsingGamepad) {
+			//	dx = gamepadStick(0).x * this._speed;
+			//	dy = gamepadStick(0).y * this._speed;
+			//} else {
 			if (keyIsDown(38)) {
 				// key w
 				dy = this._speed;
@@ -36,6 +41,7 @@ class MobPlayer extends Mob {
 				// key d
 				dx = this._speed;
 			}
+			//}
 
 			this.applyForce(new Vector2(dx, dy));
 		} else {
