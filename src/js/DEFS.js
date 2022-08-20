@@ -5,6 +5,9 @@ const STATE_PLAYING = 1;
 const STATE_DEAD = 2;
 const STATE_WON = 3;
 
+const TILE_SIZE = vec2(12);
+const MOB_SIZE = vec2(11, 12);
+
 let g_game = {
 	CAMERA_LAG: 3,
 	TILE_LAYER_COLLISION: true,
@@ -23,19 +26,20 @@ let g_game = {
 	tileNumbers: {
 		player: 0,
 		zombie: 1,
+		npc: 2,
 		facePlayer: 4,
 		faceZombie: 5,
 		faceVampire: 6,
-		npc: 7,
 		pistol: 8,
 		shotgun: 9,
 		shellIcon: 10,
 		bulletIcon: 11,
-		bulletPistol: 12,
-		bulletShotgun: 13,
+		beefyHero: 12,
+		beefyZombie: 13,
 		wall: 16,
 		roof: 17,
 		stone: 18,
+		bulletPistol: 19,
 		tree: 20,
 		door: 21,
 	},

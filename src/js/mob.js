@@ -1,7 +1,7 @@
 /** @format */
 class Mob extends EngineObject {
-	constructor(pos, size, tileIndex, tileSize, angle, color) {
-		super(pos, size, tileIndex, tileSize, angle, color);
+	constructor(pos, size, tileIndex) {
+		super(pos, size, tileIndex, MOB_SIZE);
 
 		this.walkCyclePlace = 0;
 		this._walkCycleFrames = 60;
@@ -82,7 +82,7 @@ class Mob extends EngineObject {
 		this.bloodEmitter = bloodParticles(this.pos, 0.1);
 
 		if (this.hp <= 0) {
-			let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex, this.tileSize.copy());
+			let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex);
 			corpse.push(velocity);
 			g_game.corpses.push(corpse);
 			this.destroy();

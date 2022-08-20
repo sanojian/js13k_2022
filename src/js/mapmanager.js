@@ -10,10 +10,8 @@ class MapManager {
 		let w = mapWidth;
 		let h = mapHeight;
 
-		const tileSize = vec2(12, 12);
-
 		if (g_game.TILE_LAYER_COLLISION) {
-			g_game.tileLayer = new TileLayer(vec2(0, 0), vec2(w, h), tileSize, vec2(1));
+			g_game.tileLayer = new TileLayer(vec2(0, 0), vec2(w, h), TILE_SIZE, vec2(1));
 			initTileCollision(vec2(w, h));
 		}
 
@@ -25,7 +23,7 @@ class MapManager {
 						g_game.doors[x + "_" + (h - 1 - y)] = { hp: 3 };
 					}
 					if (t - 1 == g_game.tileNumbers.npc) {
-						let npc = new Npc(vec2(x + 0.5, h - 1 - y + 0.5), vec2(1), tileSize);
+						let npc = new Npc(vec2(x + 0.5, h - 1 - y + 0.5), vec2(1));
 						continue;
 					}
 					if (g_game.TILE_LAYER_COLLISION) {
@@ -33,7 +31,7 @@ class MapManager {
 						g_game.tileLayer.setData(vec2(x, h - 1 - y), new TileLayerData(t - 1));
 					} else {
 						// individual maptiles
-						let tile = new MapTile(vec2(x, h - 1 - y), vec2(1), t - 1, tileSize);
+						let tile = new MapTile(vec2(x, h - 1 - y), vec2(1), t - 1);
 						g_game.walls.push(tile);
 					}
 				} else {

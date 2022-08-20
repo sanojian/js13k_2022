@@ -1,8 +1,8 @@
 /** @format */
 
 class Npc extends Mob {
-	constructor(pos, size, tileSize, angle, color) {
-		super(pos, size, g_game.tileNumbers.npc, tileSize, angle, color);
+	constructor(pos, size) {
+		super(pos, size, g_game.tileNumbers.npc);
 
 		this._maxSpeed = 0.3;
 

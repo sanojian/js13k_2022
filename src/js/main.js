@@ -6,10 +6,8 @@ function init() {
 	engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRenderPost, "tiles.png");
 }
 
-const tileSize = vec2(12, 12);
-
 function gameInit() {
-	cameraScale = 12 * 4;
+	cameraScale = TILE_SIZE.x * 4;
 }
 
 function startGame() {
@@ -27,11 +25,10 @@ function startGame() {
 
 	g_game.player = new MobPlayer(vec2(15, 10));
 
-	new Gun(findFreePos(), vec2(1), g_game.tileNumbers.pistol, tileSize);
+	new Gun(findFreePos(), vec2(1), g_game.tileNumbers.pistol);
+	new Gun(g_game.player.pos, vec2(1), g_game.tileNumbers.pistol);
 
-	new Gun(g_game.player.pos, vec2(1), g_game.tileNumbers.pistol, tileSize);
-
-	new ShotGun(findFreePos(), vec2(1), tileSize);
+	new ShotGun(findFreePos(), vec2(1));
 
 	g_game.state = STATE_PLAYING;
 
