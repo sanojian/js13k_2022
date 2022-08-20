@@ -11,9 +11,6 @@ class Corpse extends EngineObject {
 		this.finalAngle = Math.PI;
 		this.setCollision(false, false, true);
 
-		this.soundDie = new Sound([2.37, 0.5, 40, , 0.18, 0.54, 2, 3.83, 0.5, 2, , , 0.06, 0.8, , 0.5, , 0.33, 0.06, 0.22]);
-		this.soundDie.play();
-
 		var radius = 2;
 
 		// prettier-ignore

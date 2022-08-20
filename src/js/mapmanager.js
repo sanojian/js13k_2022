@@ -22,7 +22,7 @@ class MapManager {
 				let t = myMap[x + y * w];
 				if (t) {
 					if (t - 1 == g_game.tileNumbers.door) {
-						g_game.doors[x + "_" + (h - 1 - y)] = { hp: 5 };
+						g_game.doors[x + "_" + (h - 1 - y)] = { hp: 3 };
 					}
 					if (g_game.TILE_LAYER_COLLISION) {
 						setTileCollisionData(vec2(x, h - 1 - y), t - 1);

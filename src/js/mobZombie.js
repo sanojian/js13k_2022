@@ -13,6 +13,12 @@ class Zombie extends Mob {
 		this.thinkPause = 0;
 		this.toPlayer = undefined;
 		this.walkingSpeed = rand(0.05, 0.2);
+
+		this._soundSpeak = new Sound([.3,.5,40,,.18,.54,2,3.83,.5,2,,,.06,.8,,.5,,.33,.06,.22]);
+		//this._soundDie.play();
+
+		this.speakTimer = new Timer();
+		this.setSpeakTimer();
 	}
 
 	update() {
@@ -41,6 +47,11 @@ class Zombie extends Mob {
 
 		// zombie limp
 		this.bumpWalk = (0.2 * this.walkCyclePlace) / (this._walkCycleFrames * 2);
+
+		if (this.speakTimer.elapsed()) {
+			this._soundSpeak.play();
+			this.setSpeakTimer();
+		}
 	}
 
 	hit(velocity, pos) {
@@ -62,5 +73,10 @@ class Zombie extends Mob {
 		}
 
 		return false;
+	}
+
+	setSpeakTimer() {
+		//this.speakTimer.set(rand(1, 20));
+
 	}
 }

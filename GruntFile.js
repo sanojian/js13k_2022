@@ -10,6 +10,7 @@ module.exports = function(grunt) {
 			scripts: {
 				files: [
 					'src/js/**/*.js',
+					'src/js/**/*.tmj',
 					'!src/js/start.js'
 				],
 				tasks: ['build']
@@ -125,7 +126,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('dev', [
 		'watch'
 	]);
-	grunt.registerTask('build', ['clean', 'jshint', 'concat:shared', 'processMap']);
+	grunt.registerTask('build', ['clean', 'jshint', 'processMap', 'concat:shared']);
 	grunt.registerTask('default', ['build', 'http-server', 'dev']);
 	grunt.registerTask('prod', ['clean', 'concat:shared', 'concat:prod', 'closureCompiler', 'uglify', 'http-server', 'dev']);
 
