@@ -14,7 +14,6 @@ class MobPlayer extends Mob {
 		this.gun = undefined;
 
 		this.hp = 1;
-		this.bloodEmitter = undefined;
 	}
 
 	update() {
@@ -44,12 +43,7 @@ class MobPlayer extends Mob {
 				this.gun.owner = null;
 				this.gun = null;
 			}
-			// if (rand(100) < 10) {
-			// 	this.bloodEmitter = bloodParticles(this.pos, 1);
-			// }
 		}
-
-		if (this.bloodEmitter) this.bloodEmitter.pos = this.pos;
 
 		this.applyDrag(1.1);
 
@@ -64,7 +58,8 @@ class MobPlayer extends Mob {
 				this.hp--;
 				v.normalize(0.1);
 				this.applyForce(v);
-				bloodParticles(this.pos, 0.01);
+
+				bloodParticles(this.pos, 0.1);
 			}
 		}
 

@@ -1,11 +1,11 @@
 /** @format */
 
-function bloodParticles(pos, size) {
+function bloodParticles(pos, time) {
 	let emitter = new ParticleEmitter(
 		pos, // pos
 		0, // angle
 		0, // emitSize
-		size, // emitTime
+		time, // emitTime
 		rand(10, 20), // emitRate
 		PI, // emiteConeAngle
 		-1, // tileIndex
@@ -21,7 +21,7 @@ function bloodParticles(pos, size) {
 		2 / 12, // particleAngleSpeed
 		0.5, // damping
 		1, // angleDamping
-		-0.6, // gravityScale
+		0, // gravityScale
 		PI, // particleCone
 		0.1, //fadeRate,
 		0.5, // randomness
