@@ -74,6 +74,15 @@ class Mob extends EngineObject {
 		}
 	}
 
+	splatter(pos) {
+		// splatter on floor
+		let splatterPattern = { pos: pos, pattern: [] };
+		for (let i = 0; i < 16; i++) {
+			splatterPattern.pattern.push(Math.random() > 0.5 ? 1 : 0);
+		}
+		g_game.splatter.push(splatterPattern);
+	}
+
 	hit(velocity, pos) {
 		this.hp--;
 
@@ -93,12 +102,7 @@ class Mob extends EngineObject {
 			return true;
 		}
 
-		// splatter on floor
-		let splatterPattern = { pos: pos, pattern: [] };
-		for (let i = 0; i < 16; i++) {
-			splatterPattern.pattern.push(Math.random() > 0.5 ? 1 : 0);
-		}
-		g_game.splatter.push(splatterPattern);
+		this.splatter(pos);
 
 		// splatter on mob
 		let wound = { pos: vec2((this.pos.x - pos.x) / 2, (this.pos.y - pos.y) / 2), pattern: [] };

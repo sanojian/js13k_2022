@@ -60,6 +60,9 @@ class MobPlayer extends Mob {
 				this.applyForce(v);
 
 				bloodParticles(this.pos, 0.1);
+				if (Math.random() < 0.3) {
+					this.splatter(this.pos.copy());
+				}
 			}
 		}
 

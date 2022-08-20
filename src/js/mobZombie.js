@@ -36,7 +36,6 @@ class Zombie extends Mob {
 			0.06,
 			0.22,
 		]);
-		//this._soundDie.play();
 
 		this.speakTimer = new Timer();
 		this.setSpeakTimer();
@@ -97,6 +96,6 @@ class Zombie extends Mob {
 	}
 
 	setSpeakTimer() {
-		//this.speakTimer.set(rand(1, 20));
+		this.speakTimer.set(rand(1, 20));
 	}
 }
