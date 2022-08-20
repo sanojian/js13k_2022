@@ -23,7 +23,13 @@ class MapManager {
 						g_game.doors[x + "_" + (h - 1 - y)] = { hp: 3 };
 					}
 					if (t - 1 == g_game.tileNumbers.npc) {
-						let npc = new Npc(vec2(x + 0.5, h - 1 - y + 0.5), vec2(1));
+						new Npc(vec2(x + 0.5, h - 1 - y + 0.5), vec2(1));
+						continue;
+					} else if (t - 1 == g_game.tileNumbers.boxBullets) {
+						new AmmoBox(vec2(x + 0.5, h - 1 - y + 0.5), vec2(1), t - 1);
+						continue;
+					} else if (t - 1 == g_game.tileNumbers.boxShells) {
+						new AmmoBox(vec2(x + 0.5, h - 1 - y + 0.5), vec2(1), t - 1);
 						continue;
 					}
 					if (g_game.TILE_LAYER_COLLISION) {
