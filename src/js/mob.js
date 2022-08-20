@@ -43,6 +43,8 @@ class Mob extends EngineObject {
 			this.mirror = false;
 		}
 
+		if (this.bloodEmitter) this.bloodEmitter.pos = this.pos;
+
 		super.update(); // update object physics and position
 	}
 
@@ -77,18 +79,7 @@ class Mob extends EngineObject {
 
 		this.applyForce(velocity);
 
-		let radius = 0.5;
-
-		// prettier-ignore
-		new ParticleEmitter(
-			this.pos, 0, radius/2, .02, 50*radius, PI, // pos, angle, emitSize, emitTime, emitRate, emiteCone
-			0, undefined,        // tileIndex, tileSize
-			new Color(.8,.1,.1), g_game.colorBlood, // colorStartA, colorStartB
-			new Color(0,0,0,0), new Color(0,0,0,0), // colorEndA, colorEndB
-			1, .5, 2, 2/12, 1/12,   // particleTime, sizeStart, sizeEnd, particleSpeed, particleAngleSpeed
-			.9, 1, -.3, PI, .1,  // damping, angleDamping, gravityScale, particleCone, fadeRate, 
-			.5, false, false, false, 1e8     // randomness, collide, additive, randomColorLinear, renderOrder
-		);
+		this.bloodEmitter = bloodParticles(this.pos, 0.1);
 
 		if (this.hp <= 0) {
 			let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex, this.tileSize.copy());

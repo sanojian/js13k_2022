@@ -29,6 +29,8 @@ function startGame() {
 
 	new Gun(findFreePos(), vec2(1), g_game.tileNumbers.pistol, tileSize);
 
+	new Gun(g_game.player.pos, vec2(1), g_game.tileNumbers.pistol, tileSize);
+
 	new ShotGun(findFreePos(), vec2(1), tileSize);
 
 	g_game.state = STATE_PLAYING;
