@@ -47,6 +47,8 @@ class Zombie extends Mob {
 		this.soundGroan = new Sound([
 			1, 0.5, 329.6276, 0.16, 0.62, 0.33, 0, 0.5, 0, 0, -50, 0.14, 0.13, 2.5, 28, 0, 0, 0.9, 0.07, 0.12,
 		]);
+
+		this.groan(1, 0.4);
 	}
 
 	groan(chance, strength) {
