@@ -50,14 +50,15 @@ class MobPlayer extends Mob {
 			//}
 
 			this.applyForce(new Vector2(dx, dy));
+
+			this.applyDrag(1.1);
 		} else {
 			if (this.gun) {
 				this.gun.owner = null;
 				this.gun = null;
 			}
+			this.applyDrag(1.7);
 		}
-
-		this.applyDrag(1.1);
 
 		super.update(); // update object physics and position
 	}
@@ -76,7 +77,11 @@ class MobPlayer extends Mob {
 					this.splatter(this.pos.copy());
 				}
 
-				if (this.hp == 0) this.soundScream.play(this.pos);
+				if (this.hp == 0) {
+					this.angle = PI / 2;
+
+					this.soundScream.play(this.pos);
+				}
 			}
 		}
 
@@ -86,24 +91,26 @@ class MobPlayer extends Mob {
 	render() {
 		super.render(); // draw object as a sprite
 
-		// arms
-		let toPos = this.gun
-			? this.gun.pos
-			: vec2(this.pos.x + (this.mirror ? 3 : 6) / 12, this.pos.y + 7 / 16 + this.bumpWalk);
-		drawLine(
-			vec2(this.pos.x + 3 / 12, this.pos.y + 2 / 16 + this.bumpWalk),
-			toPos,
-			1 / 12,
-			new Color(172 / 255, 50 / 255, 50 / 255)
-		);
-		toPos = this.gun
-			? this.gun.pos
-			: vec2(this.pos.x - (this.mirror ? 6 : 3) / 12, this.pos.y + 7 / 16 + this.bumpWalk);
-		drawLine(
-			vec2(this.pos.x - 3 / 12, this.pos.y + 2 / 16 + this.bumpWalk),
-			toPos,
-			1 / 12,
-			new Color(172 / 255, 50 / 255, 50 / 255)
-		);
+		if (this.hp > 0) {
+			// arms
+			let toPos = this.gun
+				? this.gun.pos
+				: vec2(this.pos.x + (this.mirror ? 3 : 6) / 12, this.pos.y + 7 / 16 + this.bumpWalk);
+			drawLine(
+				vec2(this.pos.x + 3 / 12, this.pos.y + 2 / 16 + this.bumpWalk),
+				toPos,
+				1 / 12,
+				new Color(172 / 255, 50 / 255, 50 / 255)
+			);
+			toPos = this.gun
+				? this.gun.pos
+				: vec2(this.pos.x - (this.mirror ? 6 : 3) / 12, this.pos.y + 7 / 16 + this.bumpWalk);
+			drawLine(
+				vec2(this.pos.x - 3 / 12, this.pos.y + 2 / 16 + this.bumpWalk),
+				toPos,
+				1 / 12,
+				new Color(172 / 255, 50 / 255, 50 / 255)
+			);
+		}
 	}
 }

@@ -91,7 +91,7 @@ class Mob extends EngineObject {
 	hit(velocity, pos) {
 		this.hp--;
 
-		this.applyForce(velocity);
+		this.applyForce(velocity.scale(2));
 
 		this.bloodEmitter = bloodParticles(this.pos, rand(1));
 

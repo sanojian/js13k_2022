@@ -31,10 +31,9 @@ function startGame() {
 	g_game.player = new MobPlayer(vec2(15, 10));
 
 	new Pistol(findFreePos(), vec2(1), g_game.tileNumbers.pistol);
-	if (g_CHEATMODE) new Pistol(g_game.player.pos, vec2(1), g_game.tileNumbers.pistol);
-
 	new ShotGun(findFreePos(), vec2(1));
-	//	new ShotGun(g_game.player.pos.add(vec2(2)), vec2(1));
+
+	if (g_CHEATMODE) new Pistol(g_game.player.pos, vec2(1), g_game.tileNumbers.pistol);
 
 	g_game.state = STATE_PLAYING;
 
