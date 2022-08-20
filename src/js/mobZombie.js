@@ -64,63 +64,13 @@ class Zombie extends Mob {
 		this.soundGroan.play(this.pos, strength * vol, strength * rand(1, 2), 0.5);
 	}
 
-	// drawTile2(
-	// 	pos,
-	// 	size = vec2(1),
-	// 	tileIndex = -1,
-	// 	tileSize = tileSizeDefault,
-	// 	color = new Color(),
-	// 	angle = 0,
-	// 	mirror,
-	// 	additiveColor = new Color(0, 0, 0, 0),
-	// 	useWebGL = glEnable
-	// ) {
-	// 	const cols = (tileImageSize.x / tileSize.x) | 0;
-	// 	const uvSizeX = tileSize.x / tileImageSize.x;
-	// 	const uvSizeY = tileSize.y / tileImageSize.y;
-	// 	const uvX = (tileIndex % cols) * uvSizeX,
-	// 		uvY = ((tileIndex / cols) | 0) * uvSizeY;
-
-	// 	glDraw(
-	// 		pos.x,
-	// 		pos.y,
-	// 		mirror ? -size.x : size.x,
-	// 		size.y,
-	// 		angle,
-	// 		uvX + tileImageFixBleed.x,
-	// 		uvY + tileImageFixBleed.y,
-	// 		uvX - tileImageFixBleed.x + uvSizeX,
-	// 		uvY - tileImageFixBleed.y + uvSizeY,
-	// 		color.rgbaInt(),
-	// 		additiveColor.rgbaInt()
-	// 	);
-	// }
-
-	// render() {
-	// 	drawTile2(
-	// 		vec2(this.pos.x, this.pos.y + this.bumpWalk),
-	// 		this.size,
-	// 		this.tileIndex,
-	// 		this.tileSize,
-	// 		this.color,
-	// 		this.angle,
-	// 		this.mirror
-	// 	);
-	// }
-
 	update() {
-		//this.tileSize = vec2(11, 12);
-
 		if (this.riseFrames > 0) {
 			this.riseFrames--;
-
 			let frac = 1 - this.riseFrames / RISE_FRAMES;
 			this.tileSize = vec2(11, 12 * frac);
 			this.size = vec2(0.8, 0.8 * frac);
 			this.pos.y += 0.5 / RISE_FRAMES;
-
-			console.log("tilesize = " + this.tileSize);
-			console.log("size = " + this.size);
 			return;
 		}
 
