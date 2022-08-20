@@ -7,8 +7,6 @@
 		"grunt": "*",
 		"grunt-contrib-concat": "*",
 		"grunt-contrib-clean": "*",
-		"grunt-contrib-copy": "*",
-		"grunt-contrib-jshint": "*",
 		"grunt-contrib-watch": "*",
 		"grunt-contrib-uglify": "*",
 		"grunt-develop": "*",
