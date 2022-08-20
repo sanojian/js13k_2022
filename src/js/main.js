@@ -132,9 +132,13 @@ function updateStateWon() {
 	}
 }
 
+var ticsToSpawn = 0;
+
 function updateStatePlaying() {
-	if (g_game.enemies.length < ENMIES_MAX_ALIVE && enemiesSpawned < ENEMIES_TO_SPAWN) {
+	ticsToSpawn--;
+	if (g_game.enemies.length < ENMIES_MAX_ALIVE && enemiesSpawned < ENEMIES_TO_SPAWN && ticsToSpawn <= 0) {
 		spawnEnemy();
+		ticsToSpawn = rand(0, 120);
 	}
 
 	if (g_game.player.hp <= 0) {
