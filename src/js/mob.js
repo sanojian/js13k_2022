@@ -12,7 +12,7 @@ class Mob extends EngineObject {
 		this.damping = 1;
 		this.elasticity = 1;
 
-		this._maxSpeed = 1;
+		this._maxSpeed = 0.4;
 
 		this.bumpWalk = 0;
 		this.mirror = false;
