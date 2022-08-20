@@ -29,8 +29,8 @@ function startGame() {
 
 	g_game.player = new MobPlayer(vec2(15, 10));
 
-	new Gun(findFreePos(), vec2(1), g_game.tileNumbers.pistol);
-	if (g_CHEATMODE) new Gun(g_game.player.pos, vec2(1), g_game.tileNumbers.pistol);
+	new Pistol(findFreePos(), vec2(1), g_game.tileNumbers.pistol);
+	if (g_CHEATMODE) new Pistol(g_game.player.pos, vec2(1), g_game.tileNumbers.pistol);
 
 	new ShotGun(findFreePos(), vec2(1));
 	//	new ShotGun(g_game.player.pos.add(vec2(2)), vec2(1));
@@ -180,6 +180,8 @@ function gameRender() {
 			}
 		}
 	}
+
+	drawTextScreen("enemies " + g_game.enemies.length, vec2(100, 10), 20, new Color(1, 1, 1));
 }
 
 function gameRenderPost() {
