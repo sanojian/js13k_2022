@@ -13,7 +13,7 @@ class Corpse extends EngineObject {
 
 		var radius = 2;
 
-		this.bloodEmitter = bloodParticles(this.pos, 0.5);
+		this.bloodEmitter = bloodParticles(this.pos, rand(0.5, 1));
 	}
 
 	update() {
