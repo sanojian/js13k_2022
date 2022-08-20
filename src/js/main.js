@@ -215,16 +215,6 @@ function gameRender() {
 		g_game.corpses[i].renderNow();
 	}
 
-	for (let i = 0; i < g_game.splatter.length; i++) {
-		for (let j = 0; j < g_game.splatter[i].pattern.length; j++) {
-			if (g_game.splatter[i].pattern[j]) {
-				let x = g_game.splatter[i].pos.x - (2 + (j % 4)) / 12;
-				let y = g_game.splatter[i].pos.y - (2 + Math.floor(j / 4)) / 12;
-				drawRect(vec2(x, y), vec2(1 / 12), g_game.splatter[i].color);
-			}
-		}
-	}
-
 	for (let i = 0; i < g_game.shells.length; i++) {
 		let shell = g_game.shells[i];
 		drawRect(shell.pos, vec2(1 / 12), shell.color);
@@ -233,6 +223,16 @@ function gameRender() {
 			shell.pos.y += shell.velocity.y;
 			shell.velocity.y -= 1 / 144;
 			shell.life--;
+		}
+	}
+
+	for (let i = 0; i < g_game.splatter.length; i++) {
+		for (let j = 0; j < g_game.splatter[i].pattern.length; j++) {
+			if (g_game.splatter[i].pattern[j]) {
+				let x = g_game.splatter[i].pos.x - (2 + (j % 4)) / 12;
+				let y = g_game.splatter[i].pos.y - (2 + Math.floor(j / 4)) / 12;
+				drawRect(vec2(x, y), vec2(1 / 12), g_game.splatter[i].color);
+			}
 		}
 	}
 
@@ -248,11 +248,36 @@ function gameRenderPost() {
 	let pos = vec2(cameraPos.x, cameraPos.y - overlayCanvas.height / (cameraScale * 2) + 2);
 
 	// UI background
-	drawRect(vec2(pos.x, pos.y), vec2(10, 2), new Color(132 / 255, 126 / 255, 135 / 255));
+	drawRect(vec2(pos.x, pos.y), vec2(10, 2), new Color(105 / 255, 106 / 255, 106 / 255));
 
 	// portrait
 	let scaleX = frame % 240 > 200 ? -2 : 2;
-	drawTile(vec2(pos.x - 3, pos.y), vec2(scaleX, 2), g_game.tileNumbers.facePlayer, vec2(12));
+	drawTile(vec2(pos.x - 4, pos.y), vec2(scaleX, 2), g_game.tileNumbers.facePlayer, vec2(12));
+
+	// total ammo
+	drawRect(vec2(pos.x - 2, pos.y + 0.5), vec2(1.5, 0.5), new Color(132 / 255, 126 / 255, 135 / 255));
+	drawRect(vec2(pos.x - 2, pos.y - 0.5), vec2(1.5, 0.5), new Color(132 / 255, 126 / 255, 135 / 255));
+	drawTile(vec2(pos.x - 2.5, pos.y + 0.5), vec2(0.5), g_game.tileNumbers.bulletIcon, vec2(12));
+	drawTile(vec2(pos.x - 2.5, pos.y - 0.5), vec2(0.5), g_game.tileNumbers.shellIcon, vec2(12));
+
+	drawTextScreen(
+		g_game.player.ammoBullets,
+		vec2(overlayCanvas.width / 2 - 1.55 * cameraScale, overlayCanvas.height - 2.45 * cameraScale),
+		24,
+		g_game.colorBlack,
+		0,
+		g_game.colorBlack,
+		"right"
+	);
+	drawTextScreen(
+		g_game.player.ammoShells,
+		vec2(overlayCanvas.width / 2 - 1.55 * cameraScale, overlayCanvas.height - 1.45 * cameraScale),
+		24,
+		g_game.colorBlack,
+		0,
+		g_game.colorBlack,
+		"right"
+	);
 
 	// ammo
 	if (g_game.player.gun) {
@@ -260,7 +285,7 @@ function gameRenderPost() {
 		const colorGone = new Color(0.3, 0.3, 0.3);
 		for (let i = 0; i < g_game.player.gun._maxAmmo; i++) {
 			drawTile(
-				vec2(pos.x - 1 + i, pos.y),
+				vec2(pos.x - 0.4 + i * 0.95, pos.y),
 				vec2(1),
 				g_game.player.gun._ammoIconTile,
 				vec2(12),

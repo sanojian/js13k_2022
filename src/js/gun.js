@@ -47,11 +47,20 @@ class Gun extends EngineObject {
 
 			if (this.reloading) {
 				if (this.reloadTimer.elapsed()) {
-					this.soundReload.play();
-
-					this.ammo = Math.min(this._maxAmmo, this.ammo + 1);
-					this.reloadTimer.set(this.reloadTimePerBullet);
-					if (this.ammo == this._maxAmmo) {
+					let empty = false;
+					if (this.tileIndex == g_game.tileNumbers.pistol) {
+						empty = g_game.player.ammoBullets <= 0;
+						g_game.player.ammoBullets = Math.max(0, g_game.player.ammoBullets - 1);
+					} else if (this.tileIndex == g_game.tileNumbers.shotgun) {
+						empty = g_game.player.ammoShells <= 0;
+						g_game.player.ammoShells = Math.max(0, g_game.player.ammoShells - 1);
+					}
+					if (!empty) {
+						this.soundReload.play();
+						this.ammo = Math.min(this._maxAmmo, this.ammo + 1);
+						this.reloadTimer.set(this.reloadTimePerBullet);
+					}
+					if (this.ammo == this._maxAmmo || empty) {
 						this.reloadTimer.unset();
 						this.reloading = false;
 					}

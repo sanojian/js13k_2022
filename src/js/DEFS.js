@@ -22,6 +22,7 @@ let g_game = {
 	corpses: [],
 	shells: [],
 
+	colorBlack: new Color(0, 0, 0),
 	colorBlood: new Color(172 / 255, 50 / 255, 50 / 255),
 	colorBullet: new Color(251 / 255, 242 / 255, 54 / 255),
 	colorBulletCasing: new Color(138 / 255, 111 / 255, 48 / 255),
