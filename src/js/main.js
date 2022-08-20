@@ -37,7 +37,7 @@ function startGame() {
 	new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxBullets);
 	new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxShells);
 
-	if (g_CHEATMODE) new Pistol(g_game.player.pos, vec2(1), g_game.tileNumbers.pistol);
+	if (g_CHEATMODE) new Pistol(g_game.player.pos, vec2(1));
 
 	g_game.state = STATE_PLAYING;
 
