@@ -26,8 +26,8 @@ class Gun extends EngineObject {
 		// your object update code here
 
 		if (this.owner && this.owner.hp > 0) {
-			// key r
-			if (keyWasReleased(82)) {
+			// key r or space
+			if (keyWasReleased(82) || keyWasReleased(32)) {
 				this.reload();
 				return;
 			}
@@ -51,9 +51,11 @@ class Gun extends EngineObject {
 
 					this.ammo = Math.min(this._maxAmmo, this.ammo + 1);
 					this.reloadTimer.set(this.reloadTimePerBullet);
-					if (this.ammo == this._maxAmmo) {
+					if (this.ammo >= this._maxAmmo) {
 						this.reloadTimer.unset();
 						this.reloading = false;
+
+						this.soundReload.play(this.pos, 2, 0.5);
 					}
 				}
 			}
@@ -113,9 +115,12 @@ class Gun extends EngineObject {
 	reload() {
 		if (g_CHEATMODE) this.reloadTimePerBullet = 0.1;
 
-		if (this.reloading) {
+		if (this.reloading || this.ammo >= this._maxAmmo) {
+			this.soundReload.play(this.pos, 1, 2);
 			return;
 		}
+
+		this.soundReload.play(this.pos, 1, 0.5);
 		this.reloadTimer = new Timer(this.reloadTimePerBullet);
 		this.reloading = true;
 	}
