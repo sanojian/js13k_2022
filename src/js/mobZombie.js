@@ -4,7 +4,7 @@ const JIT = 0.01;
 
 class Zombie extends Mob {
 	constructor(pos) {
-		super(pos, vec2(0.9), g_game.tileNumbers.zombie);
+		super(pos, vec2(0.8), g_game.tileNumbers.zombie);
 
 		this._maxSpeed = 0.5;
 

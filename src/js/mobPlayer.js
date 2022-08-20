@@ -1,7 +1,7 @@
 /** @format */
 class MobPlayer extends Mob {
 	constructor(pos) {
-		super(pos, vec2(0.9), g_game.tileNumbers.player);
+		super(pos, vec2(0.8), g_game.tileNumbers.player);
 		// your object init code here
 		this._speed = 0.1;
 
@@ -14,6 +14,10 @@ class MobPlayer extends Mob {
 		this.gun = undefined;
 
 		this.hp = 1;
+
+		this.soundScream = new Sound([
+			2, 0, 523.2511, 0, 1, 1, 0, 0, -0.1, 0, 0, 0, 0, 0.5, 0, 0.05, 0.5, 0.8, 1, 0,
+		]);
 	}
 
 	update() {
@@ -69,6 +73,8 @@ class MobPlayer extends Mob {
 				if (Math.random() < 0.3) {
 					this.splatter(this.pos.copy());
 				}
+
+				if (this.hp == 0) this.soundScream.play(this.pos);
 			}
 		}
 
