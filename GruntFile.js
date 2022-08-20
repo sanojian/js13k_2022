@@ -63,23 +63,6 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		jshint: {
-			options: {
-				esversion: 8,
-				evil: true,
-				elision: true,
-				"-W008": true	// leading 0 before decimal
-			},
-			all: ['src/js/**/*.js', '!src/js/lib/**.*js']
-		},
-		/*copy: {
-			html: {
-				src: '*.*',
-				dest: 'dist/',
-				cwd: 'src/html',
-				expand: true
-			}
-		},*/
 		clean: ['dist/*.html', 'dist/js/'],
 		concat: {
 			shared: {
@@ -127,7 +110,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('dev', [
 		'watch'
 	]);
-	grunt.registerTask('build', ['clean', 'jshint', 'processMap', 'concat:shared']);
+	grunt.registerTask('build', ['clean', 'processMap', 'concat:shared']);
 	grunt.registerTask('default', ['build', 'http-server', 'dev']);
 	grunt.registerTask('prod', ['clean', 'concat:shared', 'concat:prod', 'closureCompiler', 'uglify', 'http-server', 'dev']);
 
