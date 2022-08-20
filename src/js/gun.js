@@ -80,9 +80,6 @@ class Gun extends EngineObject {
 	}
 
 	setOwner(player) {
-
-		if (g_CHEATMODE) this.reloadTimePerBullet = 0.1;
-
 		if (player.gun) {
 			// throw current gun
 			player.gun.pos.x += 2;
@@ -106,6 +103,8 @@ class Gun extends EngineObject {
 	}
 
 	reload() {
+		if (g_CHEATMODE) this.reloadTimePerBullet = 0.1;
+
 		if (this.reloading) {
 			return;
 		}
