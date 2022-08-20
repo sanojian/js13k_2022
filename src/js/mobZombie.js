@@ -46,13 +46,19 @@ class Zombie extends Mob {
 		]);
 	}
 
-	groan(v = 1) {
-		if (!this.toPlayer) return;
+	groan(chance, strength) {
+		if (rand(1) > chance) return;
 
-		let d = this.toPlayer.length() / 5;
-		let vol = d < 1 ? 1 : 1 / (d * d);
+		const MAX_VOL = 0.5;
 
-		this.soundGroan.play(this.pos, v * vol, rand(1,1.5), 0.5);
+		let vol = MAX_VOL;
+
+		if (this.toPlayer) {
+			let d = this.toPlayer.length() / 10;
+			vol = d < 1 ? MAX_VOL : MAX_VOL / (d * d);
+		}
+
+		this.soundGroan.play(this.pos, strength * vol, strength * rand(1, 2), 0.5);
 	}
 
 	update() {
@@ -60,7 +66,7 @@ class Zombie extends Mob {
 		if (this.thinkPause-- <= 0) {
 			this.toPlayer = g_game.player.pos.subtract(this.pos);
 			this.thinkPause = rand(20, 100);
-			if (rand(1) < 0.3) this.groan(rand(1));
+			this.groan(0.3, rand(1));
 		}
 
 		// take a step
@@ -90,11 +96,9 @@ class Zombie extends Mob {
 	}
 
 	hit(velocity, pos) {
-		//this.thinkPause += rand(0, 30);
+		this.thinkPause += rand(10, 30);
 		this.toPlayer = undefined;
-		//console.log("HIT", this.thinkPause);
-
-		this.groan(5);
+		this.groan(1, 1.2);
 		return super.hit(velocity, pos);
 	}
 
@@ -104,9 +108,14 @@ class Zombie extends Mob {
 
 			let toOther = o.pos.subtract(this.pos);
 			if (toOther.length() < TOO_CLOSE) {
-				let pushForce = toOther.normalize(rand(0, 0.2) / (toOther.length() + 0.001));
+				let pushForce = toOther.normalize(rand(0, 0.1) / (toOther.length() + 0.001));
 				o.applyForce(pushForce);
+				this.groan(0.1, .1);
 			}
+		}
+
+		if (o instanceof MobPlayer) { 
+			this.groan(0.01, 1);
 		}
 
 		return false;
