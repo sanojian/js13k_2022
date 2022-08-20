@@ -31,8 +31,6 @@ function startGame() {
 
 	new ShotGun(findFreePos(), vec2(1), tileSize);
 
-	let npc = new Npc(vec2(g_game.player.pos.x + 6, g_game.player.pos.y), vec2(1), tileSize);
-
 	g_game.state = STATE_PLAYING;
 
 	musicStart();
