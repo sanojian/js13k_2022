@@ -12,6 +12,7 @@
 		"grunt-develop": "*",
 		"google-closure-compiler": "*",
 		"grunt-closure-tools": "*",
+		"grunt-image": "*",
 		"grunt-http-server": "*",
 		"matchdep": "*"
 	}

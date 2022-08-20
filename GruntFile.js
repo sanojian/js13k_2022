@@ -29,6 +29,22 @@ module.exports = function(grunt) {
 				runInBackground: true
 			}
 		},
+		image: {
+			static: {
+				options: {
+					optipng: false,
+					pngquant: true,
+					zopflipng: true,
+					jpegRecompress: false,
+					mozjpeg: true,
+					gifsicle: true,
+					svgo: true
+				},
+				files: {
+					'dist/tiles.png': 'dist/tiles.png',
+				}
+			},
+		},
 		closureCompiler: {
 			options: {
 				compilerFile: 'node_modules/google-closure-compiler-java/compiler.jar',
@@ -112,6 +128,6 @@ module.exports = function(grunt) {
 	]);
 	grunt.registerTask('build', ['clean', 'processMap', 'concat:shared']);
 	grunt.registerTask('default', ['build', 'http-server', 'dev']);
-	grunt.registerTask('prod', ['clean', 'concat:shared', 'concat:prod', 'closureCompiler', 'uglify', 'http-server', 'dev']);
+	grunt.registerTask('prod', ['clean', 'image', 'concat:shared', 'concat:prod', 'closureCompiler', 'uglify', 'http-server', 'dev']);
 
 };
