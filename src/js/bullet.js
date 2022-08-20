@@ -20,27 +20,6 @@ class Bullet extends EngineObject {
 	update() {
 		// your object update code here
 
-		/*
-		for (let i = 0; i < g_game.enemies.length; i++) {
-			let enemy = g_game.enemies[i];
-			if (isOverlapping(this.pos, this._hitbox, enemy.pos, enemy._hitbox)) {
-				if (enemy.hit(this.velocity.copy(), this.pos.copy())) {
-					g_game.enemies.splice(i, 1);
-					i--;
-				}
-				this.destroy();
-				return;
-			}
-		}
-*/
-		// for (let i = 0; i < g_game.walls.length; i++) {
-		// 	let wall = g_game.walls[i];
-		// 	if (isOverlapping(this.pos, this._hitbox, wall.pos, vec2(1))) {
-		// 		this.destroy();
-		// 		return;
-		// 	}
-		// }
-
 		this.timeAlive++;
 		if (this.timeAlive > this._lifetime) {
 			this.destroy();
@@ -67,7 +46,7 @@ class Bullet extends EngineObject {
 	collideWithObject(o) {
 		//console.log("bullet hit : ", o);
 
-		if (o instanceof Zombie) {
+		if (o instanceof Zombie || o instanceof Vampire) {
 			//console.log("bullet hit zombie:", o);
 			o.hit(this.velocity.copy(), this.pos.copy());
 			if (!g_CHEATMODE) this.destroy();

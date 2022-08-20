@@ -18,32 +18,6 @@ class Zombie extends Mob {
 		this.riseFrames = RISE_FRAMES;
 		this.pos.y -= 0.5;
 
-		// this._soundSpeak = new Sound([
-		// 	0.3,
-		// 	0.5,
-		// 	40,
-		// 	,
-		// 	0.18,
-		// 	0.54,
-		// 	2,
-		// 	3.83,
-		// 	0.5,
-		// 	2,
-		// 	,
-		// 	,
-		// 	0.06,
-		// 	0.8,
-		// 	,
-		// 	0.5,
-		// 	,
-		// 	0.33,
-		// 	0.06,
-		// 	0.22,
-		// ]);
-
-		// this.speakTimer = new Timer();
-		// this.setSpeakTimer();
-
 		this.soundGroan = new Sound([
 			1, 0.5, 329.6276, 0.16, 0.62, 0.33, 0, 0.5, 0, 0, -50, 0.14, 0.13, 2.5, 28, 0, 0, 0.9, 0.07, 0.12,
 		]);
@@ -102,11 +76,6 @@ class Zombie extends Mob {
 
 		// zombie limp
 		this.bumpWalk = (0.2 * this.walkCyclePlace) / (this._walkCycleFrames * 2);
-
-		// if (this.speakTimer.elapsed()) {
-		// 	//this._soundSpeak.play();
-		// 	this.setSpeakTimer();
-		// }
 	}
 
 	hit(velocity, pos) {
@@ -135,13 +104,4 @@ class Zombie extends Mob {
 
 		return false;
 	}
-
-	// setSpeakTimer() {
-	// 	this.speakTimer.set(rand(1, 20));
-	// }
-
-	// render() {
-	// 	super.render(); // draw object as a sprite
-	// 	// your object render code here
-	// }
 }

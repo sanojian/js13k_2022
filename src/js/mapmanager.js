@@ -22,7 +22,12 @@ class MapManager {
 					if (t - 1 == g_game.tileNumbers.door) {
 						g_game.doors[x + "_" + (h - 1 - y)] = { hp: 3 };
 					}
-					if (t - 1 == g_game.tileNumbers.npc) {
+
+					if (t - 1 == g_game.tileNumbers.vampire) {
+						let vamp = new Vampire(vec2(x + 0.75, h - 1 - y + 0.75));
+						g_game.enemies.push(vamp);
+						continue;
+					} else if (t - 1 == g_game.tileNumbers.npc) {
 						new Npc(vec2(x + 0.5, h - 1 - y + 0.5), vec2(1));
 						continue;
 					} else if (t - 1 == g_game.tileNumbers.boxBullets) {

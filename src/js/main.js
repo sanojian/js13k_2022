@@ -55,11 +55,7 @@ function findFreePos(minDistToPlayer) {
 	return pos;
 }
 
-const ENEMIES_TO_SPAWN = 20;
-const ENMIES_MAX_ALIVE = 10;
-
 var enemiesSpawned = 0;
-
 function spawnEnemy() {
 	var p = findFreePos(5);
 	let enemy = new Zombie(p);

@@ -5,6 +5,9 @@ const STATE_PLAYING = 1;
 const STATE_DEAD = 2;
 const STATE_WON = 3;
 
+const ENEMIES_TO_SPAWN = 20;
+const ENMIES_MAX_ALIVE = 10;
+
 const TILE_SIZE = vec2(12);
 const MOB_SIZE = vec2(11, 12);
 
