@@ -8,7 +8,7 @@ const STATE_WON = 3;
 const TILE_SIZE = vec2(12);
 const MOB_SIZE = vec2(11, 12);
 
-var g_CHEATMODE = 1;
+var g_CHEATMODE = 0;
 
 let g_game = {
 	CAMERA_LAG: 3,
