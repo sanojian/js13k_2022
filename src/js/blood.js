@@ -10,7 +10,7 @@ function bloodParticles(pos, time) {
 		PI, // emiteConeAngle
 		-1, // tileIndex
 		undefined, // tileSize
-		new Color(0.8, 0.1, 0.1), // colorStartA
+		g_game.colorBlood, // colorStartA
 		g_game.colorBlood, // colorStartB
 		new Color(0, 0, 0, 0), // colorEndA
 		new Color(0, 0, 0, 0), // colorEndB

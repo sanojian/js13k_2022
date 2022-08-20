@@ -52,7 +52,7 @@ class Zombie extends Mob {
 		let d = this.toPlayer.length() / 5;
 		let vol = d < 1 ? 1 : 1 / (d * d);
 
-		this.soundGroan.play(this.pos, v * vol, rand(1,1.5), 0.5);
+		this.soundGroan.play(this.pos, v * vol, rand(1, 1.5), 0.5);
 	}
 
 	update() {
@@ -84,7 +84,7 @@ class Zombie extends Mob {
 		this.bumpWalk = (0.2 * this.walkCyclePlace) / (this._walkCycleFrames * 2);
 
 		if (this.speakTimer.elapsed()) {
-			this._soundSpeak.play();
+			//this._soundSpeak.play();
 			this.setSpeakTimer();
 		}
 	}

@@ -171,7 +171,7 @@ function gameRender() {
 			if (g_game.splatter[i].pattern[j]) {
 				let x = g_game.splatter[i].pos.x - (2 + (j % 4)) / 12;
 				let y = g_game.splatter[i].pos.y - (2 + Math.floor(j / 4)) / 12;
-				drawRect(vec2(x, y), vec2(1 / 12), g_game.colorBlood);
+				drawRect(vec2(x, y), vec2(1 / 12), g_game.splatter[i].color);
 			}
 		}
 	}
