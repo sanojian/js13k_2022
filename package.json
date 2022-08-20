@@ -12,6 +12,8 @@
 		"grunt-develop": "*",
 		"google-closure-compiler": "*",
 		"grunt-closure-tools": "*",
+		"grunt-image": "*",
+		"roadroller": "*",
 		"grunt-http-server": "*",
 		"matchdep": "*"
 	}

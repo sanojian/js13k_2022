@@ -2,12 +2,16 @@
 
 function init() {
 	console.log("LOADIN!");
+
 	// startup LittleJS with your game functions after the tile image is loaded
 	engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRenderPost, "tiles.png");
 }
 
 function gameInit() {
 	cameraScale = TILE_SIZE.x * 4;
+	//touchGamepadEnable = 1;
+	//touchGamepadSize = 160;
+	//touchGamepadAnalog = 0;
 }
 
 function startGame() {
