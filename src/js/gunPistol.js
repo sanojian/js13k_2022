@@ -21,8 +21,8 @@ class Pistol extends Gun {
 	}
 
 	fire() {
-		if (super.fire()) {
-			let bullet = new Bullet(this.pos.copy(), 0, new Color(251 / 255, 242 / 255, 54 / 255), 30);
+		if (super.fire(g_game.colorBulletCasing)) {
+			let bullet = new Bullet(this.pos.copy(), 0, g_game.colorBullet, 30);
 			bullet.velocity.x = Math.cos(-this.angle) * this._speed;
 			bullet.velocity.y = Math.sin(-this.angle) * this._speed;
 		}

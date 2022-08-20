@@ -20,8 +20,13 @@ let g_game = {
 	doors: {},
 	splatter: [],
 	corpses: [],
+	shells: [],
 
 	colorBlood: new Color(172 / 255, 50 / 255, 50 / 255),
+	colorBullet: new Color(251 / 255, 242 / 255, 54 / 255),
+	colorBulletCasing: new Color(138 / 255, 111 / 255, 48 / 255),
+	colorShell: new Color(217 / 255, 87 / 255, 99 / 255),
+	colorShellCasing: new Color(172 / 255, 50 / 255, 50 / 255),
 
 	state: STATE_CLICK_TO_START,
 

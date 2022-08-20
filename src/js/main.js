@@ -24,6 +24,7 @@ function startGame() {
 	g_game.enemies = [];
 	g_game.splatter = [];
 	g_game.corpses = [];
+	g_game.shells = [];
 
 	enemiesSpawned = 0;
 
@@ -221,6 +222,17 @@ function gameRender() {
 				let y = g_game.splatter[i].pos.y - (2 + Math.floor(j / 4)) / 12;
 				drawRect(vec2(x, y), vec2(1 / 12), g_game.splatter[i].color);
 			}
+		}
+	}
+
+	for (let i = 0; i < g_game.shells.length; i++) {
+		let shell = g_game.shells[i];
+		drawRect(shell.pos, vec2(1 / 12), shell.color);
+		if (shell.life > 0) {
+			shell.pos.x += shell.velocity.x;
+			shell.pos.y += shell.velocity.y;
+			shell.velocity.y -= 1 / 144;
+			shell.life--;
 		}
 	}
 

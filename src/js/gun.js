@@ -90,7 +90,7 @@ class Gun extends EngineObject {
 		player.gun = this;
 	}
 
-	fire() {
+	fire(color) {
 		if (this.reloading) {
 			//this.soundEmpty.play();
 			return false;
@@ -98,6 +98,14 @@ class Gun extends EngineObject {
 
 		this.ammo--;
 		this._soundFire.play();
+
+		// eject shell
+		g_game.shells.push({
+			pos: this.pos.copy(),
+			velocity: vec2(rand(-1 / 24, 1 / 24), 1 / 12),
+			color: color,
+			life: Math.floor(rand(15, 30)),
+		});
 
 		return true;
 	}
