@@ -10,6 +10,9 @@ class MapManager {
 		let w = mapData[g_level].w;
 		let h = mapData[g_level].h;
 
+		g_game.doors = [];
+		g_game.walls = [];
+
 		if (g_game.TILE_LAYER_COLLISION) {
 			g_game.tileLayer = new TileLayer(vec2(0, 0), vec2(w, h), TILE_SIZE, vec2(1));
 			initTileCollision(vec2(w, h));

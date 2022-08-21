@@ -25,7 +25,8 @@ function startGame() {
 	g_game.splatter = [];
 	g_game.corpses = [];
 	g_game.shells = [];
-	g_score = 0;
+	g_score = g_playerDied ? 0 : g_score;
+	g_playerDied = false;
 
 	enemiesSpawned = 0;
 
@@ -132,6 +133,7 @@ function updateStateDead() {
 	if (!deadTimer) {
 		deadTimer = setTimeout(() => {
 			deadTimer = undefined;
+			g_playerDied = true;
 			g_game.state = STATE_CLICK_TO_START;
 		}, 2000);
 	}
@@ -143,6 +145,7 @@ function updateStateWon() {
 	if (!wonTimer) {
 		wonTimer = setTimeout(() => {
 			wonTimer = undefined;
+			g_level = (g_level + 1) % TOTAL_LEVELS;
 			g_game.state = STATE_CLICK_TO_START;
 		}, 2000);
 	}

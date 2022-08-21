@@ -14,6 +14,8 @@ const MOB_SIZE = vec2(11, 12);
 var g_CHEATMODE = 0;
 let g_score = 0;
 let g_level = 0;
+let g_playerDied = false;
+const TOTAL_LEVELS = 2;
 
 let g_game = {
 	CAMERA_LAG: 3,
