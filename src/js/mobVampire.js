@@ -49,7 +49,9 @@ class Vampire extends Mob {
 				}
 			} else {
 				if (isOverlapping(this.pos, this._hitbox, g_game.player.pos, g_game.player._hitbox)) {
-					this.transformTimer = new Timer(3);
+					// scary foreboding hint at what is coming
+					g_game.transforms.push({ pos: this.pos.copy(), life: 60, tileIndex: g_game.tileNumbers.faceVampire });
+					this.transformTimer = new Timer(2);
 					this.transforming = true;
 				}
 			}
