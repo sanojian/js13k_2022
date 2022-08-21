@@ -17,6 +17,9 @@ let g_level = 0;
 let g_playerDied = false;
 const TOTAL_LEVELS = 2;
 
+
+let g_soundPickup = new Sound([1, 0.1, 200, 0, 0, 0, 4, 0, 0, 1.2, 50, 0.57, 0, 0, 0, 0.2, 0.19, 0, 0.14, 0]);
+
 let g_game = {
 	CAMERA_LAG: 3,
 	TILE_LAYER_COLLISION: true,

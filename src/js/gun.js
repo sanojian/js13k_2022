@@ -97,6 +97,7 @@ class Gun extends EngineObject {
 		}
 		this.owner = player;
 		player.gun = this;
+		g_soundPickup.play(this.pos);
 	}
 
 	fire(color) {
