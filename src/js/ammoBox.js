@@ -19,7 +19,7 @@ class AmmoBox extends EngineObject {
 					// i dunno, bullets?
 					g_game.player.ammoBullets += 24;
 			}
-
+			g_soundPickup.play(this.pos);
 			this.destroy();
 		}
 	}
