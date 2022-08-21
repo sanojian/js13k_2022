@@ -17,6 +17,7 @@ function gameInit() {
 
 function startNewGame() {
 	g_score = 0;
+	g_level = 0;
 }
 
 function startNextLevel() {
@@ -46,8 +47,6 @@ function startNextLevel() {
 
 	g_game.state = STATE_PLAYING;
 
-	g_level = (g_level + 1) % TOTAL_LEVELS;
-
 	musicStart();
 }
 
@@ -55,7 +54,7 @@ function findFreePos(minDistToPlayer) {
 	let pos, dist2player, inTileCol;
 
 	do {
-		pos = vec2(rand(mapData[g_level].w), rand(mapData[g_level].h));
+		pos = vec2(rand(mapData[g_level % TOTAL_LEVELS].w), rand(mapData[g_level % TOTAL_LEVELS].h));
 		dist2player = pos.distance(g_game.player.pos);
 		inTileCol = tileCollisionTest(pos, vec2(1));
 	} while (dist2player < minDistToPlayer || inTileCol);
@@ -152,10 +151,19 @@ function updateStateCleared() {
 		clearedEnterTime = new Date().getTime();
 	}
 
-	if (new Date().getTime() - clearedEnterTime > 2000 && mouseWasPressed(0)) {
-		clearedEnterTime = undefined;
-		startNextLevel();
-		g_game.state = STATE_PLAYING;
+	if (new Date().getTime() - clearedEnterTime > 2000) {
+		drawTextScreen(
+			"Click to continue",
+			vec2(mainCanvas.width / 2, (3 * mainCanvas.height) / 4),
+			mainCanvas.width / 20,
+			g_game.colorBlood
+		);
+
+		if (mouseWasPressed(0)) {
+			clearedEnterTime = undefined;
+			startNextLevel();
+			g_game.state = STATE_PLAYING;
+		}
 	}
 }
 
@@ -176,6 +184,7 @@ function updateStatePlaying() {
 
 	if (enemiesSpawned == ENEMIES_TO_SPAWN && g_game.enemies.length == 0) {
 		g_game.state = STATE_CLEARED;
+		g_level++;
 		return;
 	}
 
@@ -192,6 +201,11 @@ function updateStatePlaying() {
 	if (g_game.player.pos.y < cameraPos.y - g_game.CAMERA_LAG) {
 		cameraPos.y = g_game.player.pos.y + g_game.CAMERA_LAG;
 	}
+
+	if (g_CHEATMODE && mouseWasPressed(1)) {
+		g_game.state = STATE_CLEARED;
+		g_level++;
+	}
 }
 
 function gameUpdatePost() {
@@ -201,36 +215,36 @@ function gameUpdatePost() {
 
 function drawStats() {
 	let l = 1;
-	drawTextScreen(
-		"enemies in list " + g_game.enemies.length,
-		vec2(100, 25 * l++),
-		20,
-		new Color(1, 1, 1),
-		0,
-		undefined,
-		"left"
-	);
+	// drawTextScreen(
+	// 	"enemies in list " + g_game.enemies.length,
+	// 	vec2(100, 25 * l++),
+	// 	20,
+	// 	new Color(1, 1, 1),
+	// 	0,
+	// 	undefined,
+	// 	"left"
+	// );
 
-	let e = 0;
-	for (const o of engineObjects) {
-		if (o instanceof Enemy) e++;
-	}
+	// let e = 0;
+	// for (const o of engineObjects) {
+	// 	if (o instanceof Enemy) e++;
+	// }
 
-	drawTextScreen("enemies in engine " + e, vec2(100, 25 * l++), 20, new Color(1, 1, 1), 0, undefined, "left");
+	// drawTextScreen("enemies in engine " + e, vec2(100, 25 * l++), 20, new Color(1, 1, 1), 0, undefined, "left");
 
-	if (e != g_game.enemies.length) {
-		debugger;
-	}
+	// if (e != g_game.enemies.length) {
+	// 	debugger;
+	// }
 
-	drawTextScreen(
-		"enemies spawned " + enemiesSpawned,
-		vec2(100, 25 * l++),
-		20,
-		new Color(1, 1, 1),
-		0,
-		undefined,
-		"left"
-	);
+	// drawTextScreen(
+	// 	"enemies spawned " + enemiesSpawned,
+	// 	vec2(100, 25 * l++),
+	// 	20,
+	// 	new Color(1, 1, 1),
+	// 	0,
+	// 	undefined,
+	// 	"left"
+	// );
 
 	if (g_CHEATMODE) drawTextScreen("CHEAT MODE ON ", vec2(100, 25 * l++), 20, new Color(1, 1, 1), 0, undefined, "left");
 }
