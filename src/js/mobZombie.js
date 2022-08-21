@@ -62,7 +62,7 @@ class Zombie extends Enemy {
 			let force = vec2(0);
 			if (this.toPlayer) force = this.toPlayer.normalize(this.walkingSpeed);
 
-			let jitter = vec2(rand(-JIT, JIT), rand(-JIT, JIT));
+			let jitter = randInCircle(JIT);
 
 			force = force.add(jitter);
 
