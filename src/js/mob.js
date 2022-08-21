@@ -104,6 +104,7 @@ class Mob extends EngineObject {
 			let i = g_game.enemies.indexOf(this);
 			g_game.enemies.splice(i, 1);
 
+			g_score++;
 			return true;
 		}
 
