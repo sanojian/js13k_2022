@@ -11,11 +11,12 @@ class Vampire extends Mob {
 		this.thinkPause = 0;
 		this.toPlayer = undefined;
 		this.walkingSpeed = rand(0.05, 0.2);
+		this._walkCycleFrames = 15;
 
 		this.transformTimer = undefined;
 		this.transforming = false;
 		this.transformed = false;
-		this._vampPower = 2;
+		this._vampPower = 4;
 
 		this.pos.y -= 0.5;
 	}
