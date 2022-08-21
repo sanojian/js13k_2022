@@ -1,6 +1,6 @@
 /** @format */
 
-class Vampire extends Mob {
+class Vampire extends Enemy {
 	constructor(pos) {
 		super(pos, vec2(0.8), g_game.tileNumbers.bat);
 
@@ -75,7 +75,7 @@ class Vampire extends Mob {
 	}
 
 	collideWithObject(o) {
-		if (this.transformed && (o instanceof Zombie || (o instanceof Vampire && o.transformed))) {
+		if ((this.transformed && o instanceof Vampire && o.transformed) || o instanceof Zombie) {
 			const TOO_CLOSE = 0.7;
 
 			let toOther = o.pos.subtract(this.pos);

@@ -205,8 +205,7 @@ function drawStats() {
 
 	let e = 0;
 	for (const o of engineObjects) {
-		if (o instanceof Zombie) e++;
-		//if (o instanceof Vampire) e++;
+		if (o instanceof Enemy) e++;
 	}
 
 	drawTextScreen("enemies in engine " + e, vec2(100, 25 * l++), 20, new Color(1, 1, 1), 0, undefined, "left");

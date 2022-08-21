@@ -3,7 +3,7 @@
 const JIT = 0.01;
 const RISE_FRAMES = 240;
 
-class Zombie extends Mob {
+class Zombie extends Enemy {
 	constructor(pos) {
 		super(pos, vec2(0.8), g_game.tileNumbers.zombie);
 
@@ -87,7 +87,7 @@ class Zombie extends Mob {
 	}
 
 	collideWithObject(o) {
-		if (o instanceof Zombie) {
+		if (o instanceof Enemy) {
 			const TOO_CLOSE = 0.7;
 
 			let toOther = o.pos.subtract(this.pos);

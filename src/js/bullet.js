@@ -47,7 +47,7 @@ class Bullet extends EngineObject {
 	collideWithObject(o) {
 		//console.log("bullet hit : ", o);
 
-		if (o instanceof Zombie || o instanceof Vampire) {
+		if (o instanceof Enemy) {
 			//console.log("bullet hit zombie:", o);
 			o.hit(this.velocity.copy(), this.pos.copy());
 			if (!g_CHEATMODE) {
