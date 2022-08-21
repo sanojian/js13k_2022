@@ -101,6 +101,21 @@ function updateStateClickToStart() {
 		);
 	}
 
+	if (g_score) {
+		drawTextScreen(
+			"Score: " + g_score,
+			vec2(mainCanvas.width / 2, mainCanvas.height / 2 - cameraScale),
+			mainCanvas.width / 20,
+			g_game.colorBlood
+		);
+		drawTextScreen(
+			"  Top: " + localStorage.daScore,
+			vec2(mainCanvas.width / 2, mainCanvas.height / 2 + cameraScale),
+			mainCanvas.width / 20,
+			g_game.colorBlood
+		);
+	}
+
 	let amt = 0.5 + Math.sin(frame / 15) / 2;
 	let col = new Color((amt * 172) / 255, (amt * 50) / 255, (amt * 50) / 255);
 
@@ -144,6 +159,7 @@ function updateStatePlaying() {
 
 	if (g_game.player.hp <= 0) {
 		g_game.state = STATE_DEAD;
+		localStorage.daScore = localStorage.daScore ? Math.max(g_score, localStorage.daScore) : g_score;
 		return;
 	}
 
@@ -187,7 +203,7 @@ function drawStats() {
 	let e = 0;
 	for (const o of engineObjects) {
 		if (o instanceof Zombie) e++;
-		if (o instanceof Vampire) e++;
+		//if (o instanceof Vampire) e++;
 	}
 
 	drawTextScreen("enemies in engine " + e, vec2(100, 25 * l++), 20, new Color(1, 1, 1), 0, undefined, "left");
