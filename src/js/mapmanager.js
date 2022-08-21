@@ -6,9 +6,9 @@ class MapManager {
 	}
 
 	createMap() {
-		let myMap = mapData;
-		let w = mapWidth;
-		let h = mapHeight;
+		let myMap = mapData[g_level].data;
+		let w = mapData[g_level].w;
+		let h = mapData[g_level].h;
 
 		if (g_game.TILE_LAYER_COLLISION) {
 			g_game.tileLayer = new TileLayer(vec2(0, 0), vec2(w, h), TILE_SIZE, vec2(1));

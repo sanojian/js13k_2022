@@ -49,7 +49,7 @@ function findFreePos(minDistToPlayer) {
 	let pos, dist2player, inTileCol;
 
 	do {
-		pos = vec2(rand(mapWidth), rand(mapHeight));
+		pos = vec2(rand(mapData[g_level].w), rand(mapData[g_level].h));
 		dist2player = pos.distance(g_game.player.pos);
 		inTileCol = tileCollisionTest(pos, vec2(1));
 	} while (dist2player < minDistToPlayer || inTileCol);
