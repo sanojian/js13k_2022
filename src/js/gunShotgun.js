@@ -2,7 +2,6 @@
 class ShotGun extends Gun {
 	constructor(pos, size) {
 		super(pos, size, g_game.tileNumbers.shotgun);
-		// your object init code here
 		this._distance = 0.3;
 		this._mysize = size.y;
 		this._speed = 0.3;
@@ -21,7 +20,7 @@ class ShotGun extends Gun {
 			var bulletLife = 12;
 
 			const bullets = 4;
-			const spread = PI/6;
+			const spread = PI / 6;
 			let angle = -this.angle - spread / 2;
 			for (let i = 0; i < bullets; i++) {
 				let bullet = new Bullet(this.pos.copy(), 0, bulletColor, bulletLife);
@@ -29,21 +28,6 @@ class ShotGun extends Gun {
 				bullet.velocity.y = Math.sin(angle) * this._speed;
 				angle += spread / bullets;
 			}
-
-			// let angle = -this.angle;
-			// let bullet = new Bullet(this.pos.copy(), 0, bulletColor, bulletLife);
-			// bullet.velocity.x = Math.cos(angle) * this._speed;
-			// bullet.velocity.y = Math.sin(angle) * this._speed;
-
-			// angle = -this.angle + Math.PI / 24;
-			// bullet = new Bullet(this.pos.copy(), 0, bulletColor, bulletLife);
-			// bullet.velocity.x = Math.cos(angle) * this._speed;
-			// bullet.velocity.y = Math.sin(angle) * this._speed;
-
-			// angle = -this.angle - Math.PI / 24;
-			// bullet = new Bullet(this.pos.copy(), 0, bulletColor, bulletLife);
-			// bullet.velocity.x = Math.cos(angle) * this._speed;
-			// bullet.velocity.y = Math.sin(angle) * this._speed;
 		}
 		return true;
 	}
