@@ -17,7 +17,7 @@ class ShotGun extends Gun {
 	fire() {
 		if (super.fire(g_game.colorShellCasing)) {
 			var bulletColor = new Color(217 / 255, 87 / 255, 99 / 255);
-			var bulletLife = 12;
+			var bulletLife = 18;
 
 			const bullets = 4;
 			const spread = PI / 6;

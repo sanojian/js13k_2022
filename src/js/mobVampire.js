@@ -11,11 +11,12 @@ class Vampire extends Mob {
 		this.thinkPause = 0;
 		this.toPlayer = undefined;
 		this.walkingSpeed = rand(0.05, 0.2);
+		this._walkCycleFrames = 60;
 
 		this.transformTimer = undefined;
 		this.transforming = false;
 		this.transformed = false;
-		this._vampPower = 2;
+		this._vampPower = 4;
 
 		this.pos.y -= 0.5;
 	}
@@ -39,9 +40,14 @@ class Vampire extends Mob {
 		this.velocity = this.velocity.clampLength(this._maxSpeed);
 
 		if (!this.transformed) {
+			// flap wings
+			this.angle = this.walkCyclePlace > this._walkCycleFrames / 2 ? 0 : Math.PI;
+
 			if (this.transforming) {
 				if (this.transformTimer.elapsed()) {
 					// transform!
+					this.angle = 0;
+					this._walkCycleFrames = 15;
 					makeParticles(this.pos, rand(1), new Color(155 / 255, 173 / 255, 183 / 255));
 					this.tileIndex = g_game.tileNumbers.vampire;
 					this.hp += 5;
