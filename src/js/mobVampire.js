@@ -42,6 +42,7 @@ class Vampire extends Mob {
 			if (this.transforming) {
 				if (this.transformTimer.elapsed()) {
 					// transform!
+					makeParticles(this.pos, rand(1), new Color(155 / 255, 173 / 255, 183 / 255));
 					this.tileIndex = g_game.tileNumbers.vampire;
 					this.hp += 5;
 					this.walkingSpeed *= this._vampPower;

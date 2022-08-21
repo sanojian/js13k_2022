@@ -1,6 +1,6 @@
 /** @format */
 
-function bloodParticles(pos, time) {
+function makeParticles(pos, time, color) {
 	let emitter = new ParticleEmitter(
 		pos, // pos
 		0, // angle
@@ -10,8 +10,8 @@ function bloodParticles(pos, time) {
 		PI, // emiteConeAngle
 		-1, // tileIndex
 		undefined, // tileSize
-		g_game.colorBlood, // colorStartA
-		g_game.colorBlood, // colorStartB
+		color || g_game.colorBlood, // colorStartA
+		color || g_game.colorBlood, // colorStartB
 		new Color(0, 0, 0, 0), // colorEndA
 		new Color(0, 0, 0, 0), // colorEndB
 		1, // particleTime
