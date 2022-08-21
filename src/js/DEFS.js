@@ -24,6 +24,7 @@ let g_game = {
 	splatter: [],
 	corpses: [],
 	shells: [],
+	transforms: [],
 
 	colorBlack: new Color(0, 0, 0),
 	colorBlood: new Color(172 / 255, 50 / 255, 50 / 255),
@@ -44,7 +45,7 @@ let g_game = {
 		npc: 6,
 		facePlayer: 7,
 		faceZombie: 8,
-		faceVampire: 9,
+		faceVampire: 10,
 		pistol: 14,
 		shotgun: 15,
 		shellIcon: 16,

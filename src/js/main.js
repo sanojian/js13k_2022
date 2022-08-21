@@ -245,6 +245,17 @@ function gameRenderPost() {
 
 	if (!g_game.player) return;
 
+	// scary transforms
+	for (let i = 0; i < g_game.transforms.length; i++) {
+		let trans = g_game.transforms[i];
+		drawTile(trans.pos, vec2((60 - trans.life) / 6), trans.tileIndex, TILE_SIZE, new Color(0.8, 0.8, 0.8, 0.15));
+		trans.life--;
+		if (trans.life <= 0) {
+			g_game.transforms.splice(i, 1);
+			i--;
+		}
+	}
+
 	let pos = vec2(cameraPos.x, cameraPos.y - overlayCanvas.height / (cameraScale * 2) + 2);
 
 	// UI background

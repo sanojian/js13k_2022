@@ -93,7 +93,7 @@ class Mob extends EngineObject {
 
 		this.applyForce(velocity.scale(2));
 
-		this.bloodEmitter = bloodParticles(this.pos, rand(1));
+		this.bloodEmitter = makeParticles(this.pos, rand(1));
 
 		if (this.hp == 0) {
 			let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex);
