@@ -54,7 +54,7 @@ class Zombie extends Enemy {
 		if (this.thinkPause-- <= 0) {
 			this.toPlayer = g_game.player.pos.subtract(this.pos);
 			this.thinkPause = rand(20, 100);
-			this.groan(0.3, rand(1));
+			this.groan(0.3, rand(0.5, 1));
 		}
 
 		// take a step
