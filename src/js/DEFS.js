@@ -3,7 +3,7 @@
 const STATE_CLICK_TO_START = 0;
 const STATE_PLAYING = 1;
 const STATE_DEAD = 2;
-const STATE_WON = 3;
+const STATE_CLEARED = 3;
 
 const ENEMIES_TO_SPAWN = 20;
 const ENMIES_MAX_ALIVE = 10;
@@ -14,7 +14,7 @@ const MOB_SIZE = vec2(11, 12);
 var g_CHEATMODE = 0;
 let g_score = 0;
 let g_level = 0;
-let g_playerDied = false;
+let g_map = 0; // the map to show
 const TOTAL_LEVELS = 3;
 
 let g_soundPickup = new Sound([1, 0.1, 200, 0, 0, 0, 4, 0, 0, 1.2, 50, 0.57, 0, 0, 0, 0.2, 0.19, 0, 0.14, 0]);

@@ -12,9 +12,14 @@ function gameInit() {
 	//touchGamepadEnable = 1;
 	//touchGamepadSize = 160;
 	//touchGamepadAnalog = 0;
+	startNewGame();
 }
 
-function startGame() {
+function startNewGame() {
+	g_score = 0;
+}
+
+function startNextLevel() {
 	engineObjectsDestroy(); // destroy all objects handled by the engine
 
 	g_game.mapMan = new MapManager();
@@ -25,8 +30,6 @@ function startGame() {
 	g_game.splatter = [];
 	g_game.corpses = [];
 	g_game.shells = [];
-	g_score = g_playerDied ? 0 : g_score;
-	g_playerDied = false;
 
 	enemiesSpawned = 0;
 
@@ -42,6 +45,8 @@ function startGame() {
 	if (g_CHEATMODE) new Pistol(g_game.player.pos, vec2(1));
 
 	g_game.state = STATE_PLAYING;
+
+	g_level = (g_level + 1) % TOTAL_LEVELS;
 
 	musicStart();
 }
@@ -81,8 +86,8 @@ function gameUpdate() {
 		case STATE_DEAD:
 			updateStateDead();
 			break;
-		case STATE_WON:
-			updateStateWon();
+		case STATE_CLEARED:
+			updateStateCleared();
 			break;
 
 		default:
@@ -123,7 +128,8 @@ function updateStateClickToStart() {
 	drawTextScreen("Click to start", vec2(mainCanvas.width / 2, (3 * mainCanvas.height) / 4), mainCanvas.width / 20, col);
 
 	if (mouseWasReleased(0)) {
-		startGame();
+		startNewGame();
+		startNextLevel();
 	}
 }
 
@@ -133,21 +139,23 @@ function updateStateDead() {
 	if (!deadTimer) {
 		deadTimer = setTimeout(() => {
 			deadTimer = undefined;
-			g_playerDied = true;
 			g_game.state = STATE_CLICK_TO_START;
 		}, 2000);
 	}
 }
 
-var wonTimer;
-function updateStateWon() {
-	drawTextScreen("YOU WON !", vec2(mainCanvas.width / 2, mainCanvas.height / 2), 100, g_game.colorBlood);
-	if (!wonTimer) {
-		wonTimer = setTimeout(() => {
-			wonTimer = undefined;
-			g_level = (g_level + 1) % TOTAL_LEVELS;
-			g_game.state = STATE_CLICK_TO_START;
-		}, 2000);
+var clearedEnterTime;
+function updateStateCleared() {
+	drawTextScreen("Level cleared !", vec2(mainCanvas.width / 2, mainCanvas.height / 2), 100, g_game.colorBlood);
+
+	if (!clearedEnterTime) {
+		clearedEnterTime = new Date().getTime();
+	}
+
+	if (new Date().getTime() - clearedEnterTime > 2000 && mouseWasPressed(0)) {
+		clearedEnterTime = undefined;
+		startNextLevel();
+		g_game.state = STATE_PLAYING;
 	}
 }
 
@@ -167,7 +175,7 @@ function updateStatePlaying() {
 	}
 
 	if (enemiesSpawned == ENEMIES_TO_SPAWN && g_game.enemies.length == 0) {
-		g_game.state = STATE_WON;
+		g_game.state = STATE_CLEARED;
 		return;
 	}
 
