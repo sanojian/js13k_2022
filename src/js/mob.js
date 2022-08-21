@@ -79,7 +79,7 @@ class Mob extends EngineObject {
 		let rando = Math.random();
 		let splatterPattern = {
 			pos: pos,
-			color: new Color((172 - 100 + 100 * rando) / 255, (50 * rando) / 255, (50 * rando) / 255),
+			color: new Color(rando / 2, rando / 10, rando / 10),
 			pattern: [],
 		};
 		for (let i = 0; i < 16; i++) {

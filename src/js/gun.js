@@ -48,7 +48,7 @@ class Gun extends EngineObject {
 			if (this.reloading) {
 				if (this.reloadTimer.elapsed()) {
 					let empty = false;
-					if (this.tileIndex == g_game.tileNumbers.pistol) {
+					if (this.tileIndex == g_game.tileNumbers.pistol || this.tileIndex == g_game.tileNumbers.rifle) {
 						empty = g_game.player.ammoBullets <= 0;
 						g_game.player.ammoBullets = Math.max(0, g_game.player.ammoBullets - 1);
 					} else if (this.tileIndex == g_game.tileNumbers.shotgun) {
