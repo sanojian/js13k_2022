@@ -51,10 +51,17 @@ class MapManager {
 							angle: rand(0, Math.PI * 2),
 						});
 					}
-				} else {
-					// floor
-					//new EngineObject(vec2(x, h - 1 - y), vec2(1), 11, tileSize);
 				}
+				// floor
+				let rando = rand(0.2, 0.4);
+				new EngineObject(
+					vec2(x + 0.5, h - 1 - y + 0.5),
+					vec2(1),
+					g_game.tileNumbers.floor,
+					TILE_SIZE,
+					(Math.PI / 2) * Math.floor(rand(0, 3)),
+					new Color(1, 1, 1, rando)
+				);
 			}
 		}
 
