@@ -6,9 +6,9 @@ class MapManager {
 	}
 
 	createMap() {
-		let myMap = mapData[g_level % TOTAL_LEVELS].data;
-		let w = mapData[g_level % TOTAL_LEVELS].w;
-		let h = mapData[g_level % TOTAL_LEVELS].h;
+		let myMap = mapData[g_level % mapData.length].data;
+		let w = mapData[g_level % mapData.length].w;
+		let h = mapData[g_level % mapData.length].h;
 
 		g_game.doors = [];
 		g_game.walls = [];

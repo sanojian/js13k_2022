@@ -113,6 +113,8 @@ class Gun extends EngineObject {
 		g_game.shells.push({
 			pos: this.pos.copy(),
 			velocity: vec2(rand(-1 / 24, 1 / 24), 1 / 12),
+			angularVelocity: rand(-Math.PI, Math.PI),
+			angle: 0,
 			color: color,
 			life: Math.floor(rand(15, 30)),
 		});
