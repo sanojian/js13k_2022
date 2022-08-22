@@ -40,7 +40,8 @@ class MapManager {
 						continue;
 					}
 					setTileCollisionData(vec2(x, h - 1 - y), t - 1);
-					g_game.tileLayer.setData(vec2(x, h - 1 - y), new TileLayerData(t - 1));
+					let tld = new TileLayerData(t - 1, 0, false, new Color(rand(0.8, 1), rand(0.8, 1), rand(0.8, 1)));
+					g_game.tileLayer.setData(vec2(x, h - 1 - y), tld);
 				} else {
 					// floor
 					//new EngineObject(vec2(x, h - 1 - y), vec2(1), 11, tileSize);
