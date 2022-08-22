@@ -125,9 +125,9 @@ class Zombie extends Enemy {
 
 		// draw arms
 		let pos = this.pos.add(vec2(3 / 12, 2.3 / 12 + this.bumpWalk));
-		drawLine(pos, pos.add(pointing), 1.2 / 12, this._myColor);
+		drawLine(pos, pos.add(pointing), 1.2 / 12, this._myColor, !!glEnable);
 		pos = this.pos.add(vec2(-3 / 12, 2.3 / 12 + this.bumpWalk));
-		drawLine(pos, pos.add(pointing), 1.2 / 12, this._myColor);
+		drawLine(pos, pos.add(pointing), 1.2 / 12, this._myColor, !!glEnable);
 	}
 }
 
