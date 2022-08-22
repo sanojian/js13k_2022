@@ -71,7 +71,7 @@ class MobPlayer extends Mob {
 			let v = this.pos.subtract(o.pos);
 			let d = v.length();
 			if (d < 0.5) {
-				this.hp--;
+				if (!g_CHEATMODE) this.hp--;
 				v.normalize(0.01);
 				this.applyForce(v);
 
