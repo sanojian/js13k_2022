@@ -51,7 +51,7 @@ let g_game = {
 		npc: 6,
 		facePlayer: 7,
 		faceZombie: 8,
-		faceVampire: 9,
+		faceVampire: 10,
 		pistol: 21,
 		shotgun: 22,
 		shellIcon: 23,
@@ -59,5 +59,6 @@ let g_game = {
 		boxBullets: 26,
 		boxShells: 27,
 		rifle: 28,
+		door: 43,
 	},
 };
