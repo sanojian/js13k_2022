@@ -135,6 +135,7 @@ module.exports = function (grunt) {
 
 	// TODO: add roadroller to script
 	// npx roadroller dist/i.min.js -o dist/i.min.js
+	// "zip -X9" for max compression !
 
 	grunt.registerTask('dev', [
 		'watch'

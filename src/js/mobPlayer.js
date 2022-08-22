@@ -17,7 +17,10 @@ class MobPlayer extends Mob {
 
 		this.hp = 1;
 
-		this.soundScream = new Sound([1, 0, 523.2511, 0, 1, 1, 0, 0, -0.1, 0, 0, 0, 0, 0.5, 0, 0.05, 0.5, 0.8, 1, 0]);
+		this.soundScream = new Sound([
+			1, 0, 440, 0, 0.1, 1, 3, 1, -0.2, 0, 50, 0, 0, 0.4, 0, 0.05, 0.05, 0.9, 0.5, 0,
+			//1, 0, 523.2511, 0, 1, 1, 0, 0, -0.1, 0, 0, 0, 0, 0.5, 0, 0.05, 0.5, 0.8, 1, 0
+		]);
 	}
 
 	update() {
@@ -85,7 +88,7 @@ class MobPlayer extends Mob {
 
 					this.angle = PI / 2;
 					this.color = new Color(0.7, 0.5, 0.5);
-					this.soundScream.play(this.pos, 1, 2);
+					this.soundScream.play(this.pos);
 				}
 			}
 		}
