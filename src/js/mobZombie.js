@@ -113,7 +113,10 @@ class Zombie extends Enemy {
 	}
 
 	postRender() {
-		if (this.riseFrames > 0) this.toPlayer = vec2(0, -1);
+		if (this.riseFrames > 0) {
+			this.toPlayer = vec2(0, 1);
+			this.pointingAngle = PI;
+		}
 
 		const armLenght = 5 / 12;
 
