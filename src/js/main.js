@@ -294,8 +294,8 @@ function gameRender() {
 	// sparks
 	for (let i = 0; i < g_game.sparks.length; i++) {
 		let spark = g_game.sparks[i];
-		spark.pos.x += Math.cos(spark.angle) / 12;
-		spark.pos.y += Math.sin(spark.angle) / 12;
+		spark.pos.x += Math.cos(spark.angle) / 32;
+		spark.pos.y += Math.sin(spark.angle) / 32;
 		drawRect(spark.pos, vec2(1 / 24), g_game.colorSpark);
 		if (--spark.life <= 0) {
 			g_game.sparks.splice(i, 1);

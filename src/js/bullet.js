@@ -44,7 +44,7 @@ class Bullet extends EngineObject {
 			g_game.sparks.push({
 				pos: pos.copy(),
 				angle: rand(0, Math.PI * 2),
-				life: 10,
+				life: 6,
 			});
 		}
 	}
