@@ -86,4 +86,5 @@ function gameRenderPost() {
 	for (const e of g_game.enemies) {
 		e.postRender && e.postRender();
 	}
+	g_game.player.postRender();
 }

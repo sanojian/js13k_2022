@@ -63,7 +63,8 @@ let g_game = {
 		door: 43,
 	},
 	miniTileNumbers: {
-		miniFaceVampire: 3 * 7 * 2 * 3 + 0,
+		miniFacePlayer: 3 * 7 * 2 * 3 + 0,
 		miniFaceZombie: 3 * 7 * 2 * 3 + 1,
+		miniFaceVampire: 3 * 7 * 2 * 3 + 2,
 	},
 };
