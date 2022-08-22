@@ -132,22 +132,11 @@ class Zombie extends Enemy {
 }
 
 function angleNormalize(angleRad) {
-	// "% (2*PI)" might be the same in JS ??
-
-	while (angleRad > 2 * PI) {
-		angleRad -= 2 * PI;
-	}
-
-	while (angleRad < 0) {
-		angleRad += 2 * PI;
-	}
-
-	return angleRad;
+	return (angleRad + 100 * PI) % (2 * PI);
 }
 
 function turnTowards(toRad, maxTurnRad) {
-	//console.log("toRad, maxTurnRad = ", toRad, maxTurnRad);
-	toRad = (toRad + 2 * PI) % (2 * PI);
+	toRad = angleNormalize(toRad);
 
 	if (Math.abs(toRad) < maxTurnRad) return toRad;
 
@@ -157,12 +146,3 @@ function turnTowards(toRad, maxTurnRad) {
 		return -maxTurnRad;
 	}
 }
-
-// console.log(turnTowards(1, 0.1));
-// console.log(turnTowards(-1, 0.1));
-// console.log(turnTowards(2, 0.1));
-// console.log(turnTowards(-2, 0.1));
-// console.log(turnTowards(4, 0.1));
-// console.log(turnTowards(-4, 0.1));
-// console.log(turnTowards(7 * PI, 0.1));
-// console.log(turnTowards(-7 * PI, 0.1));
