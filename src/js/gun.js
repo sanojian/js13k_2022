@@ -77,7 +77,6 @@ class Gun extends EngineObject {
 			// look for owner
 
 			if (g_game.player.hp > 0 && isOverlapping(this.pos, this._hitbox, g_game.player.pos, g_game.player._hitbox)) {
-				this.ammo = 0;
 				this.setOwner(g_game.player);
 			}
 		}

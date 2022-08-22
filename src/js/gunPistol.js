@@ -9,10 +9,10 @@ class Pistol extends Gun {
 		this._speed = 0.4;
 
 		this._maxAmmo = 6;
+		this.ammo = this._maxAmmo;
 		this._ammoIconTile = g_game.tileNumbers.bulletIcon;
 		this._hitbox = vec2(0.4);
 
-		this.ammo = this._maxAmmo;
 		this.reloading = false;
 		this.reloadTimer = undefined;
 		this.reloadTimePerBullet = 0.25;
