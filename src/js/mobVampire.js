@@ -74,7 +74,7 @@ class Vampire extends Enemy {
 	postRender() {
 		// draw face
 		if (this.transformed && this.velocity.y <= 0) {
-			drawTile(this.pos.add(vec2(0, 3 / 12)), vec2(1 / 3), g_game.miniTileNumbers.vampireMiniFace, MINI_TILE_SIZE);
+			drawTile(this.pos.add(vec2(0, 4 / 12)), vec2(1 / 3), g_game.miniTileNumbers.miniFaceVampire, MINI_TILE_SIZE);
 		}
 	}
 

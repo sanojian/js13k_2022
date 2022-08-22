@@ -116,9 +116,11 @@ class Zombie extends Enemy {
 		if (this.riseFrames > 0) {
 			this.toPlayer = vec2(0, 1);
 			this.pointingAngle = PI;
+		} else if (this.velocity.y <= 0) {
+			drawTile(this.pos.add(vec2(0, 4 / 12)), vec2(1 / 3), g_game.miniTileNumbers.miniFaceZombie, MINI_TILE_SIZE);
 		}
 
-		const armLenght = 5 / 12;
+		const armLenght = 4 / 12;
 
 		let toPlayer = this.toPlayer || g_game.player.pos.subtract(this.pos);
 		let toPlayerAngle = toPlayer.angle();
