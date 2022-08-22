@@ -285,6 +285,12 @@ function gameRender() {
 		}
 	}
 
+	// moss
+	for (let i = 0; i < g_game.moss.length; i++) {
+		let moss = g_game.moss[i];
+		drawTile(moss.pos, vec2(1 / 3), moss.tileIndex, vec2(4), g_game.colorWhite, moss.angle);
+	}
+
 	// bullet holes
 	for (let i = 0; i < g_game.holes.length; i++) {
 		let hole = g_game.holes[i];

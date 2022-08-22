@@ -42,6 +42,15 @@ class MapManager {
 					setTileCollisionData(vec2(x, h - 1 - y), t - 1);
 					let tld = new TileLayerData(t - 1, 0, false, new Color(rand(0.8, 1), rand(0.8, 1), rand(0.8, 1)));
 					g_game.tileLayer.setData(vec2(x, h - 1 - y), tld);
+
+					// moss
+					if (Math.random() < 0.3) {
+						g_game.moss.push({
+							pos: vec2(x + 0.5, h - 1 - y + 0.5).add(randInCircle(5 / 12)),
+							tileIndex: g_game.miniTileNumbers.moss + Math.floor(Math.random() * 4),
+							angle: rand(0, Math.PI * 2),
+						});
+					}
 				} else {
 					// floor
 					//new EngineObject(vec2(x, h - 1 - y), vec2(1), 11, tileSize);

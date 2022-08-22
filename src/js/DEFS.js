@@ -30,9 +30,11 @@ let g_game = {
 	sparks: [],
 	corpses: [],
 	shells: [],
+	moss: [],
 	transforms: [],
 
 	colorBlack: new Color(0, 0, 0),
+	colorWhite: new Color(1, 1, 1),
 	colorBlood: new Color(172 / 255, 50 / 255, 50 / 255),
 	colorBullet: new Color(251 / 255, 242 / 255, 54 / 255),
 	colorBulletCasing: new Color(138 / 255, 111 / 255, 48 / 255),
@@ -63,8 +65,9 @@ let g_game = {
 		door: 43,
 	},
 	miniTileNumbers: {
-		miniFacePlayer: 3 * 7 * 2 * 3 + 0,
-		miniFaceZombie: 3 * 7 * 2 * 3 + 1,
-		miniFaceVampire: 3 * 7 * 2 * 3 + 2,
+		miniFacePlayer: 21 * 6 + 0,
+		miniFaceZombie: 21 * 6 + 1,
+		miniFaceVampire: 21 * 6 + 2,
+		moss: 21 * 7 + 0,
 	},
 };
