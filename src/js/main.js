@@ -32,6 +32,7 @@ function startNextLevel() {
 	g_game.holes = [];
 	g_game.sparks = [];
 	g_game.corpses = [];
+	g_game.moss = [];
 	g_game.shells = [];
 
 	enemiesSpawned = 0;
