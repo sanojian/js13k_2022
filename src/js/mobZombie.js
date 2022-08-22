@@ -19,6 +19,8 @@ class Zombie extends Enemy {
 		this.riseFrames = RISE_FRAMES;
 		this.pos.y -= 0.5;
 
+		this.pointingAngle = rand(2 * PI);
+
 		this.soundGroan = new Sound([
 			1, 0.5, 329.6276, 0.16, 0.62, 0.33, 0, 0.5, 0, 0, -50, 0.14, 0.13, 2.5, 28, 0, 0, 0.9, 0.07, 0.12,
 		]);
@@ -112,14 +114,55 @@ class Zombie extends Enemy {
 			return;
 		}
 
+		const armLenght = 5 / 12;
 		super.render();
 
 		let toPlayer = this.toPlayer || g_game.player.pos.subtract(this.pos);
+		let toPlayerAngle = toPlayer.angle();
+
+		this.pointingAngle += turnTowards(toPlayerAngle - this.pointingAngle, (2 * PI) / 100); //turnTowards(this.pointingAngle, toPlayerAngle, rand(2 * PI) / 100);
+		let pointing = vec2(1).setAngle(this.pointingAngle, armLenght);
 
 		// draw arms
 		let pos = this.pos.add(vec2(3 / 12, 2.3 / 12 + this.bumpWalk));
-		drawLine(pos, pos.add(toPlayer.normalize(5 / 12)), 1.2 / 12, this._myColor);
+		drawLine(pos, pos.add(pointing), 1.2 / 12, this._myColor);
 		pos = this.pos.add(vec2(-3 / 12, 2.3 / 12 + this.bumpWalk));
-		drawLine(pos, pos.add(toPlayer.normalize(5 / 12)), 1.2 / 12, this._myColor);
+		drawLine(pos, pos.add(pointing), 1.2 / 12, this._myColor);
 	}
 }
+
+function angleNormalize(angleRad) {
+	// "% (2*PI)" might be the same in JS ??
+
+	while (angleRad > 2 * PI) {
+		angleRad -= 2 * PI;
+	}
+
+	while (angleRad < 0) {
+		angleRad += 2 * PI;
+	}
+
+	return angleRad;
+}
+
+function turnTowards(toRad, maxTurnRad) {
+	//console.log("toRad, maxTurnRad = ", toRad, maxTurnRad);
+	toRad = (toRad + 2 * PI) % (2 * PI);
+
+	if (Math.abs(toRad) < maxTurnRad) return toRad;
+
+	if (toRad > 0 && Math.abs(toRad) < PI) {
+		return maxTurnRad;
+	} else {
+		return -maxTurnRad;
+	}
+}
+
+// console.log(turnTowards(1, 0.1));
+// console.log(turnTowards(-1, 0.1));
+// console.log(turnTowards(2, 0.1));
+// console.log(turnTowards(-2, 0.1));
+// console.log(turnTowards(4, 0.1));
+// console.log(turnTowards(-4, 0.1));
+// console.log(turnTowards(7 * PI, 0.1));
+// console.log(turnTowards(-7 * PI, 0.1));
