@@ -67,7 +67,7 @@ function findFreePos(minDistToPlayer) {
 var enemiesSpawned = 0;
 function spawnEnemy() {
 	var p = findFreePos(5);
-	let enemy = g_level == 0 ? new Vampire(p) : new Zombie(p);
+	let enemy = g_level == 1 ? new Vampire(p) : new Zombie(p);
 	g_game.enemies.push(enemy);
 	enemiesSpawned++;
 }
