@@ -70,10 +70,8 @@ class Bullet extends EngineObject {
 		if (o instanceof Enemy) {
 			//console.log("bullet hit zombie:", o);
 			o.hit(this.velocity.copy(), this.pos.copy());
-			if (!g_CHEATMODE) {
-				this.penetration--;
-				if (this.penetration <= 0) this.destroy();
-			}
+			this.penetration--;
+			if (this.penetration <= 0) this.destroy();
 			this.hitSound.play();
 		}
 

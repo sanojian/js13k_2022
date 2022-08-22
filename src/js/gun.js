@@ -20,6 +20,7 @@ class Gun extends EngineObject {
 		this._soundFire = undefined;
 
 		this.soundReload = new Sound([, 0.3, 0, 0.01, , 0.01, 4, 0, 20, 6.6, 600, 0.07, 0.32, 3.6, 12, , , , , 0.12]);
+		this.soundEmpty = new Sound([1, 0, 65, 0, 0, 0.02, 4, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0]);
 	}
 
 	update() {
@@ -102,11 +103,16 @@ class Gun extends EngineObject {
 
 	fire(color) {
 		if (this.reloading) {
-			//this.soundEmpty.play();
+			//this.soundEmpty.play(this.pos, 1, 2);
 			return false;
 		}
 
-		this.ammo--;
+		if (this.ammo <= 0) {
+			this.soundEmpty.play(this.pos);
+			return false;
+		}
+
+		if (!g_CHEATMODE) this.ammo--;
 		this._soundFire.play();
 
 		// eject shell
