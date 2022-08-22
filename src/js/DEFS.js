@@ -9,6 +9,7 @@ const ENEMIES_TO_SPAWN = 20;
 const ENMIES_MAX_ALIVE = 10;
 
 const TILE_SIZE = vec2(12);
+const MINI_TILE_SIZE = vec2(4);
 const MOB_SIZE = vec2(11, 12);
 
 var g_CHEATMODE = 0;
@@ -60,5 +61,8 @@ let g_game = {
 		boxShells: 27,
 		rifle: 28,
 		door: 43,
+	},
+	miniTileNumbers: {
+		vampireMiniFace: 3 * 7 * 2 * 3 + 0,
 	},
 };

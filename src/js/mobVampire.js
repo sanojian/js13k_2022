@@ -67,6 +67,17 @@ class Vampire extends Enemy {
 		super.update(); // update object physics and position
 	}
 
+	render() {
+		super.render();
+	}
+
+	postRender() {
+		// draw face
+		if (this.transformed && this.velocity.y <= 0) {
+			drawTile(this.pos.add(vec2(0, 3 / 12)), vec2(1 / 3), g_game.miniTileNumbers.vampireMiniFace, MINI_TILE_SIZE);
+		}
+	}
+
 	hit(velocity, pos) {
 		this.walkingSpeed = rand(0.05, 0.2) * (this.transformed ? this._vampPower : 1);
 		this.thinkPause += rand(10, 30);
