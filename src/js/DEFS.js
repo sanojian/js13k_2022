@@ -5,8 +5,8 @@ const STATE_PLAYING = 1;
 const STATE_DEAD = 2;
 const STATE_CLEARED = 3;
 
-const ENEMIES_TO_SPAWN = 20;
-const ENMIES_MAX_ALIVE = 10;
+const ENEMIES_TO_SPAWN = 1;
+const ENMIES_MAX_ALIVE = 1;
 
 const TILE_SIZE = vec2(12);
 const MOB_SIZE = vec2(11, 12);
@@ -23,9 +23,10 @@ let g_game = {
 
 	player: null,
 	enemies: [],
-	walls: [],
 	doors: {},
 	splatter: [],
+	holes: [],
+	sparks: [],
 	corpses: [],
 	shells: [],
 	transforms: [],
@@ -36,6 +37,7 @@ let g_game = {
 	colorBulletCasing: new Color(138 / 255, 111 / 255, 48 / 255),
 	colorShell: new Color(217 / 255, 87 / 255, 99 / 255),
 	colorShellCasing: new Color(172 / 255, 50 / 255, 50 / 255),
+	colorSpark: new Color(251 / 255, 242 / 255, 54 / 255),
 
 	state: STATE_CLICK_TO_START,
 

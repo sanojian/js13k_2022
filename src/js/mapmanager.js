@@ -10,8 +10,7 @@ class MapManager {
 		let w = mapData[g_level % mapData.length].w;
 		let h = mapData[g_level % mapData.length].h;
 
-		g_game.doors = [];
-		g_game.walls = [];
+		g_game.doors = {};
 
 		if (g_game.TILE_LAYER_COLLISION) {
 			g_game.tileLayer = new TileLayer(vec2(0, 0), vec2(w, h), TILE_SIZE, vec2(1));
@@ -40,25 +39,19 @@ class MapManager {
 						new AmmoBox(vec2(x + 0.5, h - 1 - y + 0.5), vec2(1), t - 1);
 						continue;
 					}
-					if (g_game.TILE_LAYER_COLLISION) {
-						setTileCollisionData(vec2(x, h - 1 - y), t - 1);
-						g_game.tileLayer.setData(vec2(x, h - 1 - y), new TileLayerData(t - 1));
-					} else {
-						// individual maptiles
-						let tile = new MapTile(vec2(x, h - 1 - y), vec2(1), t - 1);
-						g_game.walls.push(tile);
-					}
+					setTileCollisionData(vec2(x, h - 1 - y), t - 1);
+					g_game.tileLayer.setData(vec2(x, h - 1 - y), new TileLayerData(t - 1));
 				} else {
 					// floor
 					//new EngineObject(vec2(x, h - 1 - y), vec2(1), 11, tileSize);
 				}
 			}
 		}
+
+		//g_game.tileLayer.redraw();
 	}
 
 	render() {
-		if (g_game.TILE_LAYER_COLLISION) {
-			g_game.tileLayer.redraw();
-		}
+		g_game.tileLayer.redraw();
 	}
 }

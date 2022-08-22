@@ -29,6 +29,25 @@ class Bullet extends EngineObject {
 		super.update(); // update object physics and position
 	}
 
+	hitWall() {
+		// bullet holes
+		let pos = this.pos.add(this.velocity.normalize(rand(0.2, 0.6)));
+		for (let i = 0; i < 4; i++) {
+			g_game.holes.push({
+				pos: pos.add(randInCircle(1 / 12)),
+				color: new Color(0, 0, 0, rand(0.1, 0.3)),
+			});
+		}
+		// sparks
+		for (let i = 0; i < 4; i++) {
+			g_game.sparks.push({
+				pos: pos.copy(),
+				angle: rand(0, Math.PI * 2),
+				life: 10,
+			});
+		}
+	}
+
 	collideWithTile(tileData, pos) {
 		if (tileData == g_game.tileNumbers.door) {
 			let idx = pos.x + "_" + pos.y;
@@ -38,6 +57,7 @@ class Bullet extends EngineObject {
 				setTileCollisionData(pos, 0);
 			}
 		}
+		this.hitWall();
 		this.destroy();
 		//this.hitSound.play();
 		return false; // no more col resolve

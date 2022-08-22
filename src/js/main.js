@@ -29,6 +29,8 @@ function startNextLevel() {
 
 	g_game.enemies = [];
 	g_game.splatter = [];
+	g_game.holes = [];
+	g_game.sparks = [];
 	g_game.corpses = [];
 	g_game.shells = [];
 
@@ -280,6 +282,23 @@ function gameRender() {
 				let y = g_game.splatter[i].pos.y - (2 + Math.floor(j / 4)) / 12;
 				drawRect(vec2(x, y), vec2(1 / 12), g_game.splatter[i].color);
 			}
+		}
+	}
+
+	// bullet holes
+	for (let i = 0; i < g_game.holes.length; i++) {
+		let hole = g_game.holes[i];
+		drawRect(hole.pos, vec2(1 / 12), hole.color);
+	}
+
+	// sparks
+	for (let i = 0; i < g_game.sparks.length; i++) {
+		let spark = g_game.sparks[i];
+		spark.pos.x += Math.cos(spark.angle) / 12;
+		spark.pos.y += Math.sin(spark.angle) / 12;
+		drawRect(spark.pos, vec2(1 / 32), g_game.colorSpark);
+		if (--spark.life <= 0) {
+			g_game.sparks.splice(i, 1);
 		}
 	}
 
