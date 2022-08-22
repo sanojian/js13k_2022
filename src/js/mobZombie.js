@@ -109,13 +109,13 @@ class Zombie extends Enemy {
 	}
 
 	render() {
-		if (this.riseFrames > 0) {
-			super.render();
-			return;
-		}
+		super.render();
+	}
+
+	postRender() {
+		if (this.riseFrames > 0) this.toPlayer = vec2(0, -1);
 
 		const armLenght = 5 / 12;
-		super.render();
 
 		let toPlayer = this.toPlayer || g_game.player.pos.subtract(this.pos);
 		let toPlayerAngle = toPlayer.angle();

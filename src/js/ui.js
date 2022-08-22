@@ -4,6 +4,8 @@ function gameRenderPost() {
 	// called after objects are rendered
 	// draw effects or hud that appear above all objects
 
+
+
 	if (!g_game.player) return;
 
 	// scary transforms
@@ -78,5 +80,10 @@ function gameRenderPost() {
 	// draw blood on creatures so it is on top of their sprite
 	for (let i = 0; i < g_game.enemies.length; i++) {
 		g_game.enemies[i].drawBlood();
+	}
+
+
+	for (const e of g_game.enemies) {
+		e.postRender && e.postRender();
 	}
 }
