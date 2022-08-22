@@ -13,6 +13,7 @@ module.exports = function (grunt) {
 				files: [
 					'src/js/**/*.js',
 					'src/maps/**/*.json',
+					'src/gfx/**/*',
 					'!src/js/start_GEN.js'
 				],
 				tasks: ['build']
@@ -43,7 +44,7 @@ module.exports = function (grunt) {
 					svgo: true
 				},
 				files: {
-					'dist/tiles.png': 'dist/tiles.png',
+					'dist/tiles.png': 'src/gfx/tiles.png',
 				}
 			},
 		},
@@ -82,6 +83,14 @@ module.exports = function (grunt) {
 			}
 		},
 		clean: ['dist/*.html', 'dist/js/'],
+		copy: {
+			images: {
+				src: '*.*',
+				dest: 'dist/',
+				cwd: 'src/gfx',
+				expand: true
+			}
+		},
 		concat: {
 			shared: {
 				files: {
@@ -140,7 +149,7 @@ module.exports = function (grunt) {
 	grunt.registerTask('dev', [
 		'watch'
 	]);
-	grunt.registerTask('build', ['clean', 'processMap', 'concat:shared']);
+	grunt.registerTask('build', ['clean', 'processMap', 'concat:shared', 'copy']);
 	grunt.registerTask('default', ['build', 'http-server', 'dev']);
 	grunt.registerTask('prod', ['clean', 'image', 'concat:shared', 'concat:prod', 'closureCompiler', 'uglify', 'http-server', 'dev']);
 

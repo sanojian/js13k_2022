@@ -6,7 +6,6 @@
 # Project Customizations
 dist/*
 !/dist/lib
-!/dist/*.png
 src/js/*_GEN.js
 package-lock.json
 
