@@ -14,6 +14,7 @@ class Zombie extends Enemy {
 		this.thinkPause = 0;
 		this.toPlayer = undefined;
 		this.walkingSpeed = rand(0.05, 0.2);
+		this._myColor = new Color(55 / 255, 148 / 255, 110 / 255);
 
 		this.riseFrames = RISE_FRAMES;
 		this.pos.y -= 0.5;
@@ -103,5 +104,19 @@ class Zombie extends Enemy {
 		}
 
 		return false;
+	}
+
+	render() {
+		super.render();
+
+		if (this.riseFrames > 0) return;
+
+		let toPlayer = g_game.player.pos.subtract(this.pos);
+
+		// draw arms
+		let pos = this.pos.add(vec2(3 / 12, 2.3 / 12 + this.bumpWalk));
+		drawLine(pos, pos.add(toPlayer.normalize(5 / 12)), 1.2 / 12, this._myColor);
+		pos = this.pos.add(vec2(-3 / 12, 2.3 / 12 + this.bumpWalk));
+		drawLine(pos, pos.add(toPlayer.normalize(5 / 12)), 1.2 / 12, this._myColor);
 	}
 }
