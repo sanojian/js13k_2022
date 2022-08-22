@@ -109,6 +109,8 @@ class Zombie extends Enemy {
 	render() {
 		super.render();
 
+		if (this.riseFrames > 0) return;
+
 		let toPlayer = g_game.player.pos.subtract(this.pos);
 
 		// draw arms
