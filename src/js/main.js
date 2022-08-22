@@ -257,6 +257,10 @@ function gameRender() {
 		g_game.corpses[i].renderNow();
 	}
 
+	if (g_game.shells.length > 32) {
+		// clean up old casings
+		g_game.shells.splice(0, 1);
+	}
 	for (let i = 0; i < g_game.shells.length; i++) {
 		let shell = g_game.shells[i];
 		drawRect(shell.pos, vec2(1 / 12, 2 / 12), shell.color, shell.angle);
