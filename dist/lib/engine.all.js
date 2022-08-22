@@ -1645,7 +1645,7 @@ function drawTile(pos, size=vec2(1), tileIndex=-1, tileSize=tileSizeDefault, col
         }
     }
     else
-    {
+	{
         // normal canvas 2D rendering method (slower)
         drawCanvas2D(pos, size, angle, mirror, (context)=>
         {
@@ -1717,11 +1717,11 @@ function drawRectScreenSpace(pos, size, color, angle, useWebGL)
  *  @param {Color}   [color=new Color(1,1,1)]
  *  @param {Boolean} [useWebGL=glEnable]
  *  @memberof Draw */
-function drawLine(posA, posB, thickness=.1, color, useWebGL)
+function drawLine(posA, posB, thickness=.1, color, useWebGL=glEnable)
 {
     const halfDelta = vec2((posB.x - posA.x)/2, (posB.y - posA.y)/2);
-    const size = vec2(thickness, halfDelta.length()*2);
-    drawRect(posA.add(halfDelta), size, color, halfDelta.angle(), 0, 0, useWebGL);
+    const size = vec2(thickness, halfDelta.length()*2);    
+	drawRect(posA.add(halfDelta), size, color, halfDelta.angle(), useWebGL);
 }
 
 /** Draw directly to a 2d canvas context in world space

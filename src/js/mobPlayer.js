@@ -108,7 +108,8 @@ class MobPlayer extends Mob {
 				vec2(this.pos.x + 3 / 12, this.pos.y + 2 / 16 + this.bumpWalk),
 				toPos,
 				1 / 12,
-				new Color(172 / 255, 50 / 255, 50 / 255)
+				new Color(172 / 255, 50 / 255, 50 / 255),
+				!!glEnable
 			);
 			toPos = this.gun
 				? this.gun.pos
@@ -117,7 +118,8 @@ class MobPlayer extends Mob {
 				vec2(this.pos.x - 3 / 12, this.pos.y + 2 / 16 + this.bumpWalk),
 				toPos,
 				1 / 12,
-				new Color(172 / 255, 50 / 255, 50 / 255)
+				new Color(172 / 255, 50 / 255, 50 / 255),
+				!!glEnable
 			);
 		}
 	}
