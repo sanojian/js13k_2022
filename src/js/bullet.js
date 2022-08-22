@@ -32,10 +32,11 @@ class Bullet extends EngineObject {
 	hitWall() {
 		// bullet holes
 		let pos = this.pos.add(this.velocity.normalize(rand(0.2, 0.6)));
+		g_game.holes.push({ pos: pos, color: g_game.colorBlack });
 		for (let i = 0; i < 4; i++) {
 			g_game.holes.push({
 				pos: pos.add(randInCircle(1 / 12)),
-				color: new Color(0, 0, 0, rand(0.1, 0.3)),
+				color: new Color(0, 0, 0, rand(0.1, 0.5)),
 			});
 		}
 		// sparks
