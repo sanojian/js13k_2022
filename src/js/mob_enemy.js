@@ -19,7 +19,7 @@ class Enemy extends Mob {
 		if (this.enemyThinkPause-- <= 0) {
 			this.enemyToTarget = g_game.player.pos.subtract(this.pos);
 			this.enemyThinkPause = rand(this.enemyThinkMin, this.enemyThinkMax);
-			this.groan(0.3, rand(0.5, 1));
+			this.groan(0.3, rand(0.8, 1.2));
 		}
 
 		// take a step

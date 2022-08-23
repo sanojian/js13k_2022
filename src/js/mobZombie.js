@@ -26,7 +26,7 @@ class Zombie extends Enemy {
 			1, 0.5, 329.6276, 0.16, 0.62, 0.33, 0, 0.5, 0, 0, -50, 0.14, 0.13, 2.5, 28, 0, 0, 0.9, 0.07, 0.12,
 		]);
 
-		this.groan(1, 0.4);
+		this.groan(1, rand(0.9, 1.1));
 	}
 
 	update() {
@@ -61,7 +61,7 @@ class Zombie extends Enemy {
 			if (toOther.length() < TOO_CLOSE) {
 				let pushForce = toOther.normalize(rand(0, 0.1) / (toOther.length() + 0.001));
 				o.applyForce(pushForce);
-				this.groan(0.1, 0.5);
+				this.groan(0.1, 0.8);
 			}
 		}
 
