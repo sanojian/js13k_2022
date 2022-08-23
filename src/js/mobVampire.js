@@ -12,7 +12,7 @@ class Vampire extends Enemy {
 		this.enemyMaxSpeed = 1;
 		this.enemyToTarget = undefined;
 		this.enemyMoveSpeed = rand(0.3, 0.5);
-		this.enemyJitterForce = .5;
+		this.enemyJitterForce = 0.5;
 		this._walkCycleFrames = 20;
 
 		this.transformTimer = undefined;
@@ -45,23 +45,6 @@ class Vampire extends Enemy {
 	}
 
 	update() {
-		// // think and look
-		// if (this._thinkPause-- <= 0) {
-		// 	this.toTarget = g_game.player.pos.subtract(this.pos);
-		// 	this._thinkPause = rand(20, 100);
-		// }
-
-		// // take a step
-		// if (rand(0, 100) < 10) {
-		// 	let force = vec2(0);
-		// 	if (this.toTarget) force = this.toTarget.normalize(this.walkingSpeed);
-
-		// 	this.applyForce(force);
-		// }
-
-		// this.applyDrag(1.5);
-		// this.velocity = this.velocity.clampLength(this._maxSpeed);
-
 		if (!this.transformed) {
 			// flap wings
 			this.angle = this.walkCyclePlace > this._walkCycleFrames / 2 ? 0 : Math.PI;

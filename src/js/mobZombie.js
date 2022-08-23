@@ -39,28 +39,6 @@ class Zombie extends Enemy {
 			return;
 		}
 
-		// think and look
-		// if (this.thinkPause-- <= 0) {
-		// 	this.toTarget = g_game.player.pos.subtract(this.pos);
-		// 	this.thinkPause = rand(20, 100);
-		// 	this.groan(0.3, rand(0.5, 1));
-		// }
-
-		// // take a step
-		// if (rand(0, 100) < 10) {
-		// 	let force = vec2(0);
-		// 	if (this.toTarget) force = this.toTarget.normalize(this.walkingSpeed);
-
-		// 	let jitter = randInCircle(JIT);
-
-		// 	force = force.add(jitter);
-
-		// 	this.applyForce(force);
-		// }
-
-		// this.applyDrag(1.5);
-		// this.velocity = this.velocity.clampLength(this._maxSpeed);
-
 		super.update();
 
 		// zombie limp
