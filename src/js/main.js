@@ -292,6 +292,10 @@ function gameRender() {
 		}
 	}
 
+	if (g_game.splatter.length > 1024) {
+		// clean up old splatter
+		g_game.splatter.splice(0, 1);
+	}
 	for (let i = 0; i < g_game.splatter.length; i++) {
 		for (let j = 0; j < g_game.splatter[i].pattern.length; j++) {
 			if (g_game.splatter[i].pattern[j]) {
