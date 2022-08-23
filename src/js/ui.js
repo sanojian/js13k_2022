@@ -35,7 +35,7 @@ function gameRenderPost() {
 	let pos = vec2(cameraPos.x, cameraPos.y - overlayCanvas.height / (cameraScale * 2) + 2);
 
 	// UI background
-	drawRect(vec2(pos.x, pos.y), vec2(10, 2), new Color(105 / 255, 106 / 255, 106 / 255, 0.7));
+	drawRect(vec2(pos.x, pos.y), vec2(10, 2), new Color(0.3, 0.3, 0.3, 0.8));
 
 	// portrait
 	let scaleX = frame % 240 > 200 ? -2 : 2;
@@ -43,9 +43,10 @@ function gameRenderPost() {
 
 	// total ammo
 
-	drawRect(vec2(pos.x - 2, pos.y + 0.6), vec2(1.5, 0.5), new Color(132 / 255, 126 / 255, 135 / 255));
-	drawRect(vec2(pos.x - 2, pos.y), vec2(1.5, 0.5), new Color(132 / 255, 126 / 255, 135 / 255));
-	drawRect(vec2(pos.x - 2, pos.y - 0.6), vec2(1.5, 0.5), new Color(132 / 255, 126 / 255, 135 / 255));
+	const rectCol = new Color(0.2, 0.2, 0.2);
+	drawRect(vec2(pos.x - 2, pos.y + 0.6), vec2(1.5, 0.5), rectCol);
+	drawRect(vec2(pos.x - 2, pos.y), vec2(1.5, 0.5), rectCol);
+	drawRect(vec2(pos.x - 2, pos.y - 0.6), vec2(1.5, 0.5), rectCol);
 
 	const iconSize = 0.45;
 	drawTile(vec2(pos.x - 2.5, pos.y + 0.6), vec2(iconSize), g_game.tileNumbers.bulletIcon, vec2(12));
@@ -53,7 +54,7 @@ function gameRenderPost() {
 	drawTile(vec2(pos.x - 2.5, pos.y - 0.6), vec2(iconSize), g_game.tileNumbers.shellIcon, vec2(12));
 
 	const txtSize = 0.4;
-	const txtCol = g_game.colorBlack;
+	const txtCol = new Color(0.9, 0.9, 0.9);
 	const txtDx = 1.5;
 	let y = pos.y - 0.025;
 
