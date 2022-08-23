@@ -23,6 +23,8 @@ function startNewGame() {
 function startNextLevel() {
 	engineObjectsDestroy(); // destroy all objects handled by the engine
 
+	g_game.moss = [];
+
 	g_game.mapMan = new MapManager();
 
 	g_game.mapMan.render();
@@ -32,7 +34,6 @@ function startNextLevel() {
 	g_game.holes = [];
 	g_game.sparks = [];
 	g_game.corpses = [];
-	g_game.moss = [];
 	g_game.shells = [];
 
 	enemiesSpawned = 0;
