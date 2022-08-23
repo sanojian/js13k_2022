@@ -12,12 +12,13 @@ class Zombie extends Enemy {
 
 		this.hp = 3;
 		this.mass = 2;
-		this.thinkPause = 0;
-		this.walkingSpeed = rand(0.05, 0.2);
 		this._myColor = new Color(55 / 255, 148 / 255, 110 / 255);
 
 		this.riseFrames = RISE_FRAMES;
-		this.pos.y -= 0.5;
+		this.pos.y -= 0.5; // for the rising to look good-ish
+
+		this.enemyJitterForce = 0.1;
+		this.enemyMoveSpeed = rand(0.05, 0.2);
 
 		this.pointingAngle = rand(2 * PI);
 
@@ -39,38 +40,38 @@ class Zombie extends Enemy {
 		}
 
 		// think and look
-		if (this.thinkPause-- <= 0) {
-			this.toPlayer = g_game.player.pos.subtract(this.pos);
-			this.thinkPause = rand(20, 100);
-			this.groan(0.3, rand(0.5, 1));
-		}
+		// if (this.thinkPause-- <= 0) {
+		// 	this.toTarget = g_game.player.pos.subtract(this.pos);
+		// 	this.thinkPause = rand(20, 100);
+		// 	this.groan(0.3, rand(0.5, 1));
+		// }
 
-		// take a step
-		if (rand(0, 100) < 10) {
-			let force = vec2(0);
-			if (this.toPlayer) force = this.toPlayer.normalize(this.walkingSpeed);
+		// // take a step
+		// if (rand(0, 100) < 10) {
+		// 	let force = vec2(0);
+		// 	if (this.toTarget) force = this.toTarget.normalize(this.walkingSpeed);
 
-			let jitter = randInCircle(JIT);
+		// 	let jitter = randInCircle(JIT);
 
-			force = force.add(jitter);
+		// 	force = force.add(jitter);
 
-			this.applyForce(force);
-		}
+		// 	this.applyForce(force);
+		// }
 
-		this.applyDrag(1.5);
-		this.velocity = this.velocity.clampLength(this._maxSpeed);
+		// this.applyDrag(1.5);
+		// this.velocity = this.velocity.clampLength(this._maxSpeed);
 
-		super.update(); // update object physics and position
+		super.update();
 
 		// zombie limp
 		this.bumpWalk = (0.2 * this.walkCyclePlace) / (this._walkCycleFrames * 2);
 	}
 
 	hit(velocity, pos) {
-		this.walkingSpeed = rand(0.05, 0.2);
-		this.thinkPause += rand(10, 30);
-		this.toPlayer = undefined;
-		this.groan(1, 1.2);
+		//this.moveSpeed = rand(0.05, 0.2);
+		this.enemyThinkPause += rand(10, 30);
+		this.enemyToTarget = undefined;
+		this.groan(1, 1.5);
 		return super.hit(velocity, pos);
 	}
 
@@ -82,7 +83,7 @@ class Zombie extends Enemy {
 			if (toOther.length() < TOO_CLOSE) {
 				let pushForce = toOther.normalize(rand(0, 0.1) / (toOther.length() + 0.001));
 				o.applyForce(pushForce);
-				this.groan(0.1, 0.1);
+				this.groan(0.1, 0.5);
 			}
 		}
 
@@ -99,7 +100,7 @@ class Zombie extends Enemy {
 
 	postRender() {
 		if (this.riseFrames > 0) {
-			this.toPlayer = vec2(0, 1);
+			this.enemyToTarget = vec2(0, 1);
 			this.pointingAngle = PI;
 		} else {
 			super.postRender();
@@ -107,7 +108,7 @@ class Zombie extends Enemy {
 
 		const armLenght = 4 / 12;
 
-		let toPlayer = this.toPlayer || g_game.player.pos.subtract(this.pos);
+		let toPlayer = this.enemyToTarget || g_game.player.pos.subtract(this.pos);
 		let toPlayerAngle = toPlayer.angle();
 
 		this.pointingAngle += turnTowards(toPlayerAngle - this.pointingAngle, (2 * PI) / 100); //turnTowards(this.pointingAngle, toPlayerAngle, rand(2 * PI) / 100);

@@ -21,7 +21,7 @@ class Mob extends EngineObject {
 
 		this.blood = [];
 
-		this.toPlayer = undefined;
+		this.enemyToTarget = undefined;
 		this.soundGroan = undefined;
 	}
 
@@ -44,8 +44,8 @@ class Mob extends EngineObject {
 
 		let vol = MAX_VOL;
 
-		if (this.toPlayer) {
-			let d = this.toPlayer.length() / 10;
+		if (this.enemyToTarget) {
+			let d = this.enemyToTarget.length() / 10;
 			vol = d < 1 ? MAX_VOL : MAX_VOL / (d * d);
 		}
 

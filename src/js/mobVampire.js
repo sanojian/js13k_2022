@@ -4,23 +4,24 @@ class Vampire extends Enemy {
 	constructor(pos) {
 		super(pos, vec2(0.8), g_game.tileNumbers.bat);
 
-		this._maxSpeed = 0.5;
-
-		this.hp = 3;
+		this.hp = 2;
 		this.mass = 2;
-		this.thinkPause = 0;
-		this.toPlayer = undefined;
-		this.walkingSpeed = rand(0.05, 0.2);
-		this._walkCycleFrames = 60;
+
+		// before transform! ... BAT STATS
+
+		this.enemyMaxSpeed = 1;
+		this.enemyToTarget = undefined;
+		this.enemyMoveSpeed = rand(0.3, 0.5);
+		this.enemyJitterForce = .5;
+		this._walkCycleFrames = 20;
 
 		this.transformTimer = undefined;
 		this.transforming = false;
 		this.transformed = false;
-		this._vampPower = 4;
 
-		this.pos.y -= 0.5;
+		//this.pos.y -= 0.5; //
 
-		this.soundGroan = this.soundScream = new Sound([
+		this.soundGroan = new Sound([
 			,
 			0.1,
 			3665.40639,
@@ -44,22 +45,22 @@ class Vampire extends Enemy {
 	}
 
 	update() {
-		// think and look
-		if (this.thinkPause-- <= 0) {
-			this.toPlayer = g_game.player.pos.subtract(this.pos);
-			this.thinkPause = rand(20, 100);
-		}
+		// // think and look
+		// if (this._thinkPause-- <= 0) {
+		// 	this.toTarget = g_game.player.pos.subtract(this.pos);
+		// 	this._thinkPause = rand(20, 100);
+		// }
 
-		// take a step
-		if (rand(0, 100) < 10) {
-			let force = vec2(0);
-			if (this.toPlayer) force = this.toPlayer.normalize(this.walkingSpeed);
+		// // take a step
+		// if (rand(0, 100) < 10) {
+		// 	let force = vec2(0);
+		// 	if (this.toTarget) force = this.toTarget.normalize(this.walkingSpeed);
 
-			this.applyForce(force);
-		}
+		// 	this.applyForce(force);
+		// }
 
-		this.applyDrag(1.5);
-		this.velocity = this.velocity.clampLength(this._maxSpeed);
+		// this.applyDrag(1.5);
+		// this.velocity = this.velocity.clampLength(this._maxSpeed);
 
 		if (!this.transformed) {
 			// flap wings
@@ -67,14 +68,18 @@ class Vampire extends Enemy {
 
 			if (this.transforming) {
 				if (this.transformTimer.elapsed()) {
-					// transform!
+					// transform! ... VAMPIRE STATS
 					this.angle = 0;
 					this.miniFace = g_game.miniTileNumbers.miniFaceVampire;
 					this._walkCycleFrames = 15;
 					makeParticles(this.pos, rand(1), new Color(155 / 255, 173 / 255, 183 / 255));
 					this.tileIndex = g_game.tileNumbers.vampire;
-					this.hp += 5;
-					this.walkingSpeed *= this._vampPower;
+					this.hp = 5;
+					this.mass = 2;
+					this.enemyMoveSpeed = rand(0.3, 0.4);
+					this.enemyThinkMin = 20;
+					this.enemyThinkMax = 50;
+					this.enemyJitterForce = 0;
 					this.transformed = true;
 				}
 			} else {
@@ -99,9 +104,9 @@ class Vampire extends Enemy {
 	}
 
 	hit(velocity, pos) {
-		this.walkingSpeed = rand(0.05, 0.2) * (this.transformed ? this._vampPower : 1);
-		this.thinkPause += rand(10, 30);
-		this.toPlayer = undefined;
+		//this.enemyMoveSpeed = rand(0.05, 0.2) * (this.transformed ? this._vampPower : 1);
+		this.enemyThinkPause += rand(10, 30);
+		this.enemyToTarget = undefined;
 		this.groan(1, this.transformed ? 1 : 0.3);
 		return super.hit(velocity, pos);
 	}

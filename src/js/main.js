@@ -222,8 +222,9 @@ function updateStatePlaying() {
 	}
 
 	if (g_CHEATMODE && mouseWasPressed(1)) {
-		g_game.state = STATE_CLEARED;
 		g_level++;
+		startNextLevel();
+		g_game.state = STATE_PLAYING;
 	}
 }
 
