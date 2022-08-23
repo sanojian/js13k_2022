@@ -21,7 +21,7 @@ class MapManager {
 			for (let x = 0; x < w; x++) {
 				// floor
 				let tld = new TileLayerData(
-					levelDefs[g_level % mapData.length].floorTile,
+					getLevelDef().floorTile,
 					Math.floor(rand(0, 3)),
 					false,
 					new Color(1, 1, 1, rand(0.2, 0.4))

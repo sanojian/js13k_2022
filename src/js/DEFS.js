@@ -79,13 +79,22 @@ const levelDefs = [
 	{
 		// start
 		floorTile: g_game.tileNumbers.floorStone,
+		spawns: [{ type: "Zombie", chance: 1 }],
 	},
 	{
 		// level2
 		floorTile: g_game.tileNumbers.floorStone,
+		spawns: [
+			{ type: "Zombie", chance: 0.5 },
+			{ type: "Vampire", chance: 0.5 },
+		],
 	},
 	{
 		// forest
 		floorTile: g_game.tileNumbers.floorGrass,
+		spawns: [
+			{ type: "Zombie", chance: 0.5 },
+			{ type: "Vampire", chance: 0.5 },
+		],
 	},
 ];
