@@ -37,7 +37,7 @@ function gameRenderPost() {
 	let pos = vec2(cameraPos.x, cameraPos.y - overlayCanvas.height / (cameraScale * 2) + 2);
 
 	// UI background
-	drawRect(vec2(pos.x, pos.y), vec2(10, 2), new Color(105 / 255, 106 / 255, 106 / 255));
+	drawRect(vec2(pos.x, pos.y), vec2(10, 2), new Color(105 / 255, 106 / 255, 106 / 255, 0.7));
 
 	// portrait
 	let scaleX = frame % 240 > 200 ? -2 : 2;
