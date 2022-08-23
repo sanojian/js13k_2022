@@ -96,8 +96,6 @@ class Gun extends EngineObject {
 	setOwner(player) {
 		if (player.gun) {
 			// throw current gun
-			// player.gun.pos.x += 2;
-			// player.gun.pos.y += 2;
 			player.gun.size.y = this._mysize;
 			player.gun.angle = 0;
 			player.gun.owner = null;
