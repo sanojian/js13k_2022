@@ -50,13 +50,22 @@ class Gun extends EngineObject {
 			if (this.reloading) {
 				if (this.reloadTimer.elapsed()) {
 					this.noExtraAmmo = false;
-					if (this.tileIndex == g_game.tileNumbers.pistol || this.tileIndex == g_game.tileNumbers.rifle) {
-						this.noExtraAmmo = g_game.player.ammoBullets <= 0;
-						g_game.player.ammoBullets = Math.max(0, g_game.player.ammoBullets - 1);
-					} else if (this.tileIndex == g_game.tileNumbers.shotgun) {
-						this.noExtraAmmo = g_game.player.ammoShells <= 0;
-						g_game.player.ammoShells = Math.max(0, g_game.player.ammoShells - 1);
+
+					switch (this.tileIndex) {
+						case g_game.tileNumbers.pistol:
+							this.noExtraAmmo = g_game.player.ammoBullets <= 0;
+							g_game.player.ammoBullets = Math.max(0, g_game.player.ammoBullets - 1);
+							break;
+						case g_game.tileNumbers.rifle:
+							this.noExtraAmmo = g_game.player.ammoRifle <= 0;
+							g_game.player.ammoRifle = Math.max(0, g_game.player.ammoRifle - 1);
+							break;
+						case g_game.tileNumbers.shotgun:
+							this.noExtraAmmo = g_game.player.ammoShells <= 0;
+							g_game.player.ammoShells = Math.max(0, g_game.player.ammoShells - 1);
+							break;
 					}
+
 					if (!this.noExtraAmmo) {
 						this.soundReload.play();
 						this.ammo = Math.min(this._maxAmmo, this.ammo + 1);

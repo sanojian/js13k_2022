@@ -40,6 +40,9 @@ let g_game = {
 	colorBulletCasing: new Color(138 / 255, 111 / 255, 48 / 255),
 	colorShell: new Color(217 / 255, 87 / 255, 99 / 255),
 	colorShellCasing: new Color(172 / 255, 50 / 255, 50 / 255),
+	colorRifleRound: new Color(0 / 255, 255 / 255, 255 / 255),
+	colorRifleRoundCasing: new Color(0 / 255, 255 / 255, 255 / 255),
+
 	colorSpark: new Color(251 / 255, 242 / 255, 54 / 255),
 
 	state: STATE_CLICK_TO_START,
@@ -59,8 +62,10 @@ let g_game = {
 		shotgun: 22,
 		shellIcon: 23,
 		bulletIcon: 24,
+		rifleAmmoIcon: 30,
 		boxBullets: 26,
 		boxShells: 27,
+		boxRifleAmmo: 33,
 		rifle: 28,
 		floorStone: 37,
 		floorDesert: 38,

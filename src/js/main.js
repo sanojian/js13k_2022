@@ -52,6 +52,7 @@ function startNextLevel() {
 
 	new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxBullets);
 	new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxShells);
+	new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxRifleAmmo);
 
 	if (g_CHEATMODE) new Pistol(g_game.player.pos, vec2(1));
 

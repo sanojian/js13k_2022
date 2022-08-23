@@ -9,7 +9,7 @@ class Rifle extends Gun {
 		this._speed = 0.5;
 
 		this._maxAmmo = 1;
-		this._ammoIconTile = g_game.tileNumbers.bulletIcon;
+		this._ammoIconTile = g_game.tileNumbers.rifleAmmoIcon;
 		this._hitbox = vec2(0.4);
 
 		this.ammo = this._maxAmmo;
@@ -22,7 +22,7 @@ class Rifle extends Gun {
 
 	fire() {
 		if (super.fire(g_game.colorBulletCasing)) {
-			let bullet = new Bullet(this.pos.copy(), 0, g_game.colorBullet, 40, 5);
+			let bullet = new Bullet(this.pos.copy(), 0, g_game.colorRifleRound, 40, 5);
 			bullet.velocity.x = Math.cos(-this.angle) * this._speed;
 			bullet.velocity.y = Math.sin(-this.angle) * this._speed;
 		}

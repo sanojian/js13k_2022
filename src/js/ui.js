@@ -1,10 +1,10 @@
+/** @format */
+
 // this draws the ui on top of everything (in theory)
 
 function gameRenderPost() {
 	// called after objects are rendered
 	// draw effects or hud that appear above all objects
-
-
 
 	if (!g_game.player) return;
 
@@ -13,12 +13,10 @@ function gameRenderPost() {
 		g_game.enemies[i].drawBlood();
 	}
 
-
 	for (const e of g_game.enemies) {
 		e.postRender && e.postRender();
 	}
 	g_game.player.postRender();
-
 
 	// scary transforms
 	for (let i = 0; i < g_game.transforms.length; i++) {
@@ -44,29 +42,24 @@ function gameRenderPost() {
 	drawTile(vec2(pos.x - 4, pos.y), vec2(scaleX, 2), g_game.tileNumbers.facePlayer, vec2(12));
 
 	// total ammo
-	drawRect(vec2(pos.x - 2, pos.y + 0.5), vec2(1.5, 0.6), new Color(132 / 255, 126 / 255, 135 / 255));
-	drawRect(vec2(pos.x - 2, pos.y - 0.5), vec2(1.5, 0.6), new Color(132 / 255, 126 / 255, 135 / 255));
-	drawTile(vec2(pos.x - 2.5, pos.y + 0.5), vec2(0.5), g_game.tileNumbers.bulletIcon, vec2(12));
-	drawTile(vec2(pos.x - 2.5, pos.y - 0.5), vec2(0.5), g_game.tileNumbers.shellIcon, vec2(12));
 
-	drawTextScreen(
-		g_game.player.ammoBullets,
-		vec2(overlayCanvas.width / 2 - 1.55 * cameraScale, overlayCanvas.height - 2.45 * cameraScale),
-		24,
-		g_game.colorBlack,
-		0,
-		g_game.colorBlack,
-		"right"
-	);
-	drawTextScreen(
-		g_game.player.ammoShells,
-		vec2(overlayCanvas.width / 2 - 1.55 * cameraScale, overlayCanvas.height - 1.45 * cameraScale),
-		24,
-		g_game.colorBlack,
-		0,
-		g_game.colorBlack,
-		"right"
-	);
+	drawRect(vec2(pos.x - 2, pos.y + 0.6), vec2(1.5, 0.5), new Color(132 / 255, 126 / 255, 135 / 255));
+	drawRect(vec2(pos.x - 2, pos.y), vec2(1.5, 0.5), new Color(132 / 255, 126 / 255, 135 / 255));
+	drawRect(vec2(pos.x - 2, pos.y - 0.6), vec2(1.5, 0.5), new Color(132 / 255, 126 / 255, 135 / 255));
+
+	const iconSize = 0.45;
+	drawTile(vec2(pos.x - 2.5, pos.y + 0.6), vec2(iconSize), g_game.tileNumbers.bulletIcon, vec2(12));
+	drawTile(vec2(pos.x - 2.5, pos.y), vec2(iconSize), g_game.tileNumbers.rifleAmmoIcon, vec2(12));
+	drawTile(vec2(pos.x - 2.5, pos.y - 0.6), vec2(iconSize), g_game.tileNumbers.shellIcon, vec2(12));
+
+	const txtSize = 0.4;
+	const txtCol = g_game.colorBlack;
+	const txtDx = 1.5;
+	let y = pos.y - 0.025;
+
+	drawText(g_game.player.ammoBullets, vec2(pos.x - txtDx, y + 0.6), txtSize, txtCol, -1, undefined, "right");
+	drawText(g_game.player.ammoRifle, vec2(pos.x - txtDx, y), txtSize, txtCol, -1, undefined, "right");
+	drawText(g_game.player.ammoShells, vec2(pos.x - txtDx, y - 0.6), txtSize, txtCol, -1, undefined, "right");
 
 	// ammo
 	if (g_game.player.gun) {
@@ -86,10 +79,8 @@ function gameRenderPost() {
 	// score
 	drawTextScreen(
 		g_score.toString(),
-		vec2( 2 * cameraScale, overlayCanvas.height - 2 * cameraScale),
+		vec2(2 * cameraScale, overlayCanvas.height - 2 * cameraScale),
 		100,
 		g_game.colorBlood
 	);
-
-
 }

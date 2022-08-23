@@ -15,6 +15,9 @@ class AmmoBox extends EngineObject {
 				case g_game.tileNumbers.boxShells:
 					g_game.player.ammoShells += 12;
 					break;
+				case g_game.tileNumbers.boxRifleAmmo:
+					g_game.player.ammoRifle += 4;
+					break;
 				default:
 					// i dunno, bullets?
 					g_game.player.ammoBullets += 24;

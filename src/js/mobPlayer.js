@@ -16,6 +16,7 @@ class MobPlayer extends Mob {
 
 		this.ammoBullets = 3;
 		this.ammoShells = 0;
+		this.ammoRifle = 0;
 
 		this.hp = 1;
 
