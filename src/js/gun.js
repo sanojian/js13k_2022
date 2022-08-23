@@ -120,9 +120,13 @@ class Gun extends EngineObject {
 		fx.addSpark(this.pos.add(this.pos.subtract(this.owner.pos).normalize(1 - this._distance)));
 
 		if (!g_CHEATMODE) this.ammo--;
-		this._soundFire.play(this.pos);
-		this._soundFire.play(this.pos);
-		this._soundFire.play(this.pos);
+
+		const shotVol = 3;
+
+		// playing the sound multiple times to make it "bigger" and louder
+		this._soundFire.play(this.pos, shotVol, 0.5);
+		this._soundFire.play(this.pos, shotVol, 1);
+		this._soundFire.play(this.pos, shotVol, 1.02);
 
 		// eject shell
 		g_game.shells.push({

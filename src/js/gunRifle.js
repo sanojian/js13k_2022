@@ -17,7 +17,7 @@ class Rifle extends Gun {
 		this.reloadTimer = undefined;
 		this.reloadTimePerBullet = 2;
 
-		this._soundFire = new Sound([2.21, , 164.8138, , , , 4, , , , , , , , , -0.3]);
+		this._soundFire = new Sound([3, , 164.8138, , , , 4, , , , , , , , , -0.3]);
 	}
 
 	fire() {
