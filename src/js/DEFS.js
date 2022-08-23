@@ -62,8 +62,10 @@ let g_game = {
 		boxBullets: 26,
 		boxShells: 27,
 		rifle: 28,
-		floor: 37,
+		floorStone: 37,
+		floorDesert: 38,
 		door: 43,
+		floorGrass: 45,
 	},
 	miniTileNumbers: {
 		miniFacePlayer: 21 * 6 + 0,
@@ -72,3 +74,18 @@ let g_game = {
 		moss: 21 * 7 + 0,
 	},
 };
+
+const levelDefs = [
+	{
+		// start
+		floorTile: g_game.tileNumbers.floorStone,
+	},
+	{
+		// level2
+		floorTile: g_game.tileNumbers.floorStone,
+	},
+	{
+		// forest
+		floorTile: g_game.tileNumbers.floorGrass,
+	},
+];

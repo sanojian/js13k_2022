@@ -20,6 +20,9 @@ class Mob extends EngineObject {
 		this.hp = 3;
 
 		this.blood = [];
+
+		this.toPlayer = undefined;
+		this.soundGroan = undefined;
 	}
 
 	applyDrag(dragConst) {
@@ -32,6 +35,21 @@ class Mob extends EngineObject {
 		let dragForce = this.velocity.normalize(drag);
 
 		this.velocity = this.velocity.subtract(dragForce);
+	}
+
+	groan(chance, strength) {
+		if (rand(1) > chance) return;
+
+		const MAX_VOL = 0.5;
+
+		let vol = MAX_VOL;
+
+		if (this.toPlayer) {
+			let d = this.toPlayer.length() / 10;
+			vol = d < 1 ? MAX_VOL : MAX_VOL / (d * d);
+		}
+
+		this.soundGroan.play(this.pos, strength * vol, strength * rand(1, 2), 0.5);
 	}
 
 	update() {

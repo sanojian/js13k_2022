@@ -19,6 +19,28 @@ class Vampire extends Enemy {
 		this._vampPower = 4;
 
 		this.pos.y -= 0.5;
+
+		this.soundGroan = this.soundScream = new Sound([
+			,
+			0.1,
+			3665.40639,
+			0.12,
+			0.05,
+			0.09,
+			3,
+			0.7,
+			7.4,
+			2.5,
+			,
+			0.19,
+			,
+			0.9,
+			12,
+			,
+			0.04,
+			-0.57,
+			0.13,
+		]);
 	}
 
 	update() {
@@ -47,7 +69,7 @@ class Vampire extends Enemy {
 				if (this.transformTimer.elapsed()) {
 					// transform!
 					this.angle = 0;
-					this.miniFace = g_game.miniTileNumbers.miniFaceZombie;
+					this.miniFace = g_game.miniTileNumbers.miniFaceVampire;
 					this._walkCycleFrames = 15;
 					makeParticles(this.pos, rand(1), new Color(155 / 255, 173 / 255, 183 / 255));
 					this.tileIndex = g_game.tileNumbers.vampire;
@@ -80,6 +102,7 @@ class Vampire extends Enemy {
 		this.walkingSpeed = rand(0.05, 0.2) * (this.transformed ? this._vampPower : 1);
 		this.thinkPause += rand(10, 30);
 		this.toPlayer = undefined;
+		this.groan(1, this.transformed ? 1 : 0.3);
 		return super.hit(velocity, pos);
 	}
 
@@ -92,6 +115,9 @@ class Vampire extends Enemy {
 				let pushForce = toOther.normalize(rand(0, 0.1) / (toOther.length() + 0.001));
 				o.applyForce(pushForce);
 			}
+		}
+		if (o instanceof MobPlayer) {
+			this.groan(0.01, 1);
 		}
 
 		return false;
