@@ -76,9 +76,13 @@ class Gun extends EngineObject {
 		} else if (!this.owner) {
 			// look for owner
 
-			if (g_game.player.hp > 0 && isOverlapping(this.pos, this._hitbox, g_game.player.pos, g_game.player._hitbox)) {
+			let playerTouch = isOverlapping(this.pos, this._hitbox, g_game.player.pos, g_game.player._hitbox);
+
+			if (g_game.player.hp > 0 && playerTouch && !this.playerTouchLastFrame) {
 				this.setOwner(g_game.player);
 			}
+
+			this.playerTouchLastFrame = playerTouch;
 		}
 
 		super.update(); // update object physics and position
@@ -92,9 +96,12 @@ class Gun extends EngineObject {
 	setOwner(player) {
 		if (player.gun) {
 			// throw current gun
-			player.gun.pos.x += 2;
-			player.gun.pos.y += 2;
+			// player.gun.pos.x += 2;
+			// player.gun.pos.y += 2;
+			player.gun.size.y = this._mysize;
+			player.gun.angle = 0;
 			player.gun.owner = null;
+			player.gun.pos = this.pos.copy();
 		}
 		this.owner = player;
 		player.gun = this;
