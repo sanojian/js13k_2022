@@ -6,13 +6,19 @@ function init() {
 }
 
 function gameInit() {
-	cameraScale = TILE_SIZE.x * 4;
+	scaleCameraToScreenSize();
 	document.body.style.cursor = "crosshair";
 
 	//touchGamepadEnable = 1;
 	//touchGamepadSize = 160;
 	//touchGamepadAnalog = 0;
 	startNewGame();
+}
+
+function scaleCameraToScreenSize() {
+	let smallest = Math.min(overlayCanvas.height, overlayCanvas.width);
+
+	cameraScale = (TILE_SIZE.x * smallest) / 30;
 }
 
 function startNewGame() {
