@@ -13,7 +13,6 @@ class Zombie extends Enemy {
 		this.hp = 3;
 		this.mass = 2;
 		this.thinkPause = 0;
-		this.toPlayer = undefined;
 		this.walkingSpeed = rand(0.05, 0.2);
 		this._myColor = new Color(55 / 255, 148 / 255, 110 / 255);
 
@@ -27,21 +26,6 @@ class Zombie extends Enemy {
 		]);
 
 		this.groan(1, 0.4);
-	}
-
-	groan(chance, strength) {
-		if (rand(1) > chance) return;
-
-		const MAX_VOL = 0.5;
-
-		let vol = MAX_VOL;
-
-		if (this.toPlayer) {
-			let d = this.toPlayer.length() / 10;
-			vol = d < 1 ? MAX_VOL : MAX_VOL / (d * d);
-		}
-
-		this.soundGroan.play(this.pos, strength * vol, strength * rand(1, 2), 0.5);
 	}
 
 	update() {

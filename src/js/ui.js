@@ -8,6 +8,18 @@ function gameRenderPost() {
 
 	if (!g_game.player) return;
 
+	// draw blood on creatures so it is on top of their sprite
+	for (let i = 0; i < g_game.enemies.length; i++) {
+		g_game.enemies[i].drawBlood();
+	}
+
+
+	for (const e of g_game.enemies) {
+		e.postRender && e.postRender();
+	}
+	g_game.player.postRender();
+
+
 	// scary transforms
 	for (let i = 0; i < g_game.transforms.length; i++) {
 		let trans = g_game.transforms[i];
@@ -19,10 +31,13 @@ function gameRenderPost() {
 		}
 	}
 
+	// TODO: make sure UI can fit onto screen
+	//let scaleUI = (overlayCanvas.width < 500) ? 0.5 : 1;
+
 	let pos = vec2(cameraPos.x, cameraPos.y - overlayCanvas.height / (cameraScale * 2) + 2);
 
 	// UI background
-	drawRect(vec2(pos.x, pos.y), vec2(10, 2), new Color(105 / 255, 106 / 255, 106 / 255));
+	drawRect(vec2(pos.x, pos.y), vec2(10, 2), new Color(105 / 255, 106 / 255, 106 / 255, 0.7));
 
 	// portrait
 	let scaleX = frame % 240 > 200 ? -2 : 2;
@@ -77,14 +92,4 @@ function gameRenderPost() {
 	);
 
 
-	// draw blood on creatures so it is on top of their sprite
-	for (let i = 0; i < g_game.enemies.length; i++) {
-		g_game.enemies[i].drawBlood();
-	}
-
-
-	for (const e of g_game.enemies) {
-		e.postRender && e.postRender();
-	}
-	g_game.player.postRender();
 }

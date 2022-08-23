@@ -62,8 +62,10 @@ let g_game = {
 		boxBullets: 26,
 		boxShells: 27,
 		rifle: 28,
-		floor: 37,
+		floorStone: 37,
+		floorDesert: 38,
 		door: 43,
+		floorGrass: 45,
 	},
 	miniTileNumbers: {
 		miniFacePlayer: 21 * 6 + 0,
@@ -72,3 +74,27 @@ let g_game = {
 		moss: 21 * 7 + 0,
 	},
 };
+
+const levelDefs = [
+	{
+		// start
+		floorTile: g_game.tileNumbers.floorStone,
+		spawns: [{ type: "Zombie", chance: 1 }],
+	},
+	{
+		// level2
+		floorTile: g_game.tileNumbers.floorStone,
+		spawns: [
+			{ type: "Zombie", chance: 0.5 },
+			{ type: "Vampire", chance: 0.5 },
+		],
+	},
+	{
+		// forest
+		floorTile: g_game.tileNumbers.floorGrass,
+		spawns: [
+			{ type: "Zombie", chance: 0.5 },
+			{ type: "Vampire", chance: 0.5 },
+		],
+	},
+];

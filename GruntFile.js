@@ -152,5 +152,6 @@ module.exports = function (grunt) {
 	grunt.registerTask('build', ['clean', 'processMap', 'concat:shared', 'copy']);
 	grunt.registerTask('default', ['build', 'http-server', 'dev']);
 	grunt.registerTask('prod', ['clean', 'image', 'concat:shared', 'concat:prod', 'closureCompiler', 'uglify', 'http-server', 'dev']);
+	grunt.registerTask('web', ['http-server', 'dev']);
 
 };

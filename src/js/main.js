@@ -6,13 +6,19 @@ function init() {
 }
 
 function gameInit() {
-	cameraScale = TILE_SIZE.x * 4;
+	scaleCameraToScreenSize();
 	document.body.style.cursor = "crosshair";
 
 	//touchGamepadEnable = 1;
 	//touchGamepadSize = 160;
 	//touchGamepadAnalog = 0;
 	startNewGame();
+}
+
+function scaleCameraToScreenSize() {
+	let smallest = Math.min(overlayCanvas.height, overlayCanvas.width);
+
+	cameraScale = (TILE_SIZE.x * smallest) / 30;
 }
 
 function startNewGame() {
@@ -69,7 +75,16 @@ function findFreePos(minDistToPlayer) {
 var enemiesSpawned = 0;
 function spawnEnemy() {
 	var p = findFreePos(5);
-	let enemy = g_level == 1 ? new Vampire(p) : new Zombie(p);
+	let enemyClass = getNextEnemySpawnClass();
+	//let enemy = g_level == 1 ? new Vampire(p) : new Zombie(p);
+	let enemy;
+	switch (enemyClass) {
+		case "Vampire":
+			enemy = new Vampire(p);
+			break;
+		default:
+			enemy = new Zombie(p);
+	}
 	g_game.enemies.push(enemy);
 	enemiesSpawned++;
 }

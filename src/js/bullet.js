@@ -39,14 +39,8 @@ class Bullet extends EngineObject {
 				color: new Color(0, 0, 0, rand(0.1, 0.5)),
 			});
 		}
-		// sparks
-		for (let i = 0; i < 4; i++) {
-			g_game.sparks.push({
-				pos: pos.copy(),
-				angle: rand(0, Math.PI * 2),
-				life: 6,
-			});
-		}
+
+		fx.addSpark(pos.copy());
 	}
 
 	collideWithTile(tileData, pos) {

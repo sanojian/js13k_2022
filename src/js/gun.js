@@ -119,6 +119,8 @@ class Gun extends EngineObject {
 			return false;
 		}
 
+		fx.addSpark(this.pos.add(this.pos.subtract(this.owner.pos).normalize(1 - this._distance)));
+
 		if (!g_CHEATMODE) this.ammo--;
 		this._soundFire.play();
 

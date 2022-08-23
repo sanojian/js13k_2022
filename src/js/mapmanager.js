@@ -19,6 +19,15 @@ class MapManager {
 
 		for (let y = 0; y < h; y++) {
 			for (let x = 0; x < w; x++) {
+				// floor
+				let tld = new TileLayerData(
+					getLevelDef().floorTile,
+					Math.floor(rand(0, 3)),
+					false,
+					new Color(1, 1, 1, rand(0.2, 0.4))
+				);
+				g_game.tileLayer.setData(vec2(x, h - 1 - y), tld);
+
 				let t = myMap[x + y * w];
 				if (t) {
 					if (t - 1 == g_game.tileNumbers.door) {
@@ -52,16 +61,6 @@ class MapManager {
 						});
 					}
 				}
-				// floor
-				let rando = rand(0.2, 0.4);
-				new EngineObject(
-					vec2(x + 0.5, h - 1 - y + 0.5),
-					vec2(1),
-					g_game.tileNumbers.floor,
-					TILE_SIZE,
-					(Math.PI / 2) * Math.floor(rand(0, 3)),
-					new Color(1, 1, 1, rando)
-				);
 			}
 		}
 
