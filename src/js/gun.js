@@ -120,7 +120,9 @@ class Gun extends EngineObject {
 		fx.addSpark(this.pos.add(this.pos.subtract(this.owner.pos).normalize(1 - this._distance)));
 
 		if (!g_CHEATMODE) this.ammo--;
-		this._soundFire.play();
+		this._soundFire.play(this.pos);
+		this._soundFire.play(this.pos);
+		this._soundFire.play(this.pos);
 
 		// eject shell
 		g_game.shells.push({
