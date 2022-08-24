@@ -84,7 +84,7 @@ class Mob extends EngineObject {
 		if (this.miniFace && this.velocity.y <= 0) {
 			drawTile(
 				this.pos.add(vec2((this.velocity.x > 0 ? 1 : 0) / 12, 3 / 12 + this.bumpWalk)),
-				vec2(1 / 3),
+				vec2(1 / 6),
 				this.miniFace,
 				MINI_TILE_SIZE
 			);
