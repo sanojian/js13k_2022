@@ -102,7 +102,32 @@ function createBlues() {
 	songData[1][0].push(unfoldPattern(3, 0, 7, snarePattern, drumStarts));
 }
 
-// function createMinorIssues() {}
+function createMinorIssues() {
+	// prettier-ignore
+	let chordStarts = [
+		2, 2, 2, 2,
+		0, 0, 0, 0,
+		2, 2, 2, 2,
+		0, 0, 0, 0,
+		7, 7, 7, 7,
+		5, 5, 5, 5,
+		9, 9, 11, 11,
+		13, 15, 17, 19
+	];
+
+	let bassPattern = [0, 12, 14, 15, 0, 12, 15, 14];
+
+	let bassNodes = unfoldPattern(1, -1, 7, bassPattern, chordStarts);
+	songData[1][0].push(bassNodes);
+
+	let drumStarts = Array(chordStarts.length).fill(0);
+ 
+	let bdPattern = [0, , , , 0, 0, , ,];
+	songData[1][0].push(unfoldPattern(2, 1, 7, bdPattern, drumStarts));
+
+	let snarePattern = [, , 0, , , , 0, ,];
+	songData[1][0].push(unfoldPattern(3, 0, 7, snarePattern, drumStarts));
+}
 
 var vol = 1; //0.2; //0.5; //.7;
 
@@ -110,8 +135,8 @@ var music;
 var source;
 
 function musicStart() {
-	createBlues();
-	//createMinorIssues();
+	//createBlues();
+	createMinorIssues();
 
 	if (music) return;
 
