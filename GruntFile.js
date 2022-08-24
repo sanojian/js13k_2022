@@ -33,7 +33,21 @@ module.exports = function (grunt) {
 			}
 		},
 		image: {
-			static: {
+			dev: {
+				options: {
+					optipng: false,
+					pngquant: false,
+					zopflipng: false,
+					jpegRecompress: false,
+					mozjpeg: false,
+					gifsicle: false,
+					svgo: false
+				},
+				files: {
+					'dist/t.png': 'src/gfx/tiles.png',
+				}
+			},
+			prod: {
 				options: {
 					optipng: false,
 					pngquant: true,
@@ -162,9 +176,9 @@ module.exports = function (grunt) {
 	grunt.registerTask('dev', [
 		'watch'
 	]);
-	grunt.registerTask('build', ['clean', 'processMap', 'concat:dev', 'concat:shared', 'image']);
+	grunt.registerTask('build', ['clean', 'processMap', 'concat:dev', 'concat:shared', 'image:dev']);
 	grunt.registerTask('default', ['build', 'http-server', 'dev']);
-	grunt.registerTask('prod', ['clean', 'image', 'concat:shared', 'concat:prod', 'closureCompiler', 'uglify']);
+	grunt.registerTask('prod', ['clean', 'image:prod', 'concat:shared', 'concat:prod', 'closureCompiler', 'uglify']);
 	grunt.registerTask('web', ['http-server', 'dev']);
 
 };
