@@ -29,49 +29,52 @@ function gameRenderPost() {
 		}
 	}
 
-	// TODO: make sure UI can fit onto screen
-	//let scaleUI = (overlayCanvas.width < 500) ? 0.5 : 1;
+	// make sure UI can fit onto screen
+	let scaleUI = min(1, overlayCanvas.width / (12 * cameraScale));
 
-	let pos = vec2(cameraPos.x, cameraPos.y - overlayCanvas.height / (cameraScale * 2) + 2);
+	let pos = vec2(
+		cameraPos.x + overlayCanvas.width / (cameraScale * 2) - 5 * scaleUI,
+		cameraPos.y - overlayCanvas.height / (cameraScale * 2) + 1 * scaleUI
+	);
 
 	// UI background
-	drawRect(vec2(pos.x, pos.y), vec2(10, 2), new Color(0.3, 0.3, 0.3, 0.8));
+	drawRect(pos, vec2(10, 2).scale(scaleUI), new Color(0.3, 0.3, 0.3, 0.7));
 
 	// portrait
 	let scaleX = frame % 240 > 200 ? -2 : 2;
-	drawTile(vec2(pos.x - 4, pos.y), vec2(scaleX, 2), g_game.tileNumbers.facePlayer, vec2(12));
+	drawTile(vec2(pos.x - 4 * scaleUI, pos.y), vec2(scaleX, 2).scale(scaleUI), g_game.tileNumbers.facePlayer, TILE_SIZE);
 
 	// total ammo
-
 	const rectCol = new Color(0.2, 0.2, 0.2);
-	drawRect(vec2(pos.x - 2, pos.y + 0.6), vec2(1.5, 0.5), rectCol);
-	drawRect(vec2(pos.x - 2, pos.y), vec2(1.5, 0.5), rectCol);
-	drawRect(vec2(pos.x - 2, pos.y - 0.6), vec2(1.5, 0.5), rectCol);
+	const boxSize = vec2(1.5, 0.5).scale(scaleUI);
+	drawRect(vec2(pos.x - 2 * scaleUI, pos.y + 0.6 * scaleUI), boxSize, rectCol);
+	drawRect(vec2(pos.x - 2 * scaleUI, pos.y), boxSize, rectCol);
+	drawRect(vec2(pos.x - 2 * scaleUI, pos.y - 0.6 * scaleUI), boxSize, rectCol);
 
-	const iconSize = 0.45;
-	drawTile(vec2(pos.x - 2.5, pos.y + 0.6), vec2(iconSize), g_game.tileNumbers.bulletIcon, vec2(12));
-	drawTile(vec2(pos.x - 2.5, pos.y), vec2(iconSize), g_game.tileNumbers.rifleAmmoIcon, vec2(12));
-	drawTile(vec2(pos.x - 2.5, pos.y - 0.6), vec2(iconSize), g_game.tileNumbers.shellIcon, vec2(12));
+	const iconSize = vec2(0.45).scale(scaleUI);
+	drawTile(vec2(pos.x - 2.5 * scaleUI, pos.y + 0.6 * scaleUI), iconSize, g_game.tileNumbers.bulletIcon, TILE_SIZE);
+	drawTile(vec2(pos.x - 2.5 * scaleUI, pos.y), iconSize, g_game.tileNumbers.rifleAmmoIcon, TILE_SIZE);
+	drawTile(vec2(pos.x - 2.5 * scaleUI, pos.y - 0.6 * scaleUI), iconSize, g_game.tileNumbers.shellIcon, TILE_SIZE);
 
-	const txtSize = 0.4;
+	const txtSize = 0.4 * scaleUI;
 	const txtCol = new Color(0.9, 0.9, 0.9);
-	const txtDx = 1.5;
+	const txtDx = 1.5 * scaleUI;
 	let y = pos.y - 0.025;
 
-	drawText(g_game.player.ammoBullets, vec2(pos.x - txtDx, y + 0.6), txtSize, txtCol, -1, undefined, "right");
+	drawText(g_game.player.ammoBullets, vec2(pos.x - txtDx, y + 0.6 * scaleUI), txtSize, txtCol, -1, undefined, "right");
 	drawText(g_game.player.ammoRifle, vec2(pos.x - txtDx, y), txtSize, txtCol, -1, undefined, "right");
-	drawText(g_game.player.ammoShells, vec2(pos.x - txtDx, y - 0.6), txtSize, txtCol, -1, undefined, "right");
+	drawText(g_game.player.ammoShells, vec2(pos.x - txtDx, y - 0.6 * scaleUI), txtSize, txtCol, -1, undefined, "right");
 
 	// ammo
+	const colorHere = new Color(1, 1, 1);
+	const colorGone = new Color(0.3, 0.3, 0.3);
 	if (g_game.player.gun) {
-		const colorHere = new Color(1, 1, 1);
-		const colorGone = new Color(0.3, 0.3, 0.3);
 		for (let i = 0; i < g_game.player.gun._maxAmmo; i++) {
 			drawTile(
-				vec2(pos.x - 0.4 + i * 0.95, pos.y),
-				vec2(1),
+				vec2(pos.x - 0.4 * scaleUI + i * 0.95 * scaleUI, pos.y),
+				vec2(scaleUI),
 				g_game.player.gun._ammoIconTile,
-				vec2(12),
+				TILE_SIZE,
 				i + 1 > g_game.player.gun.ammo ? colorGone : colorHere
 			);
 		}
@@ -80,8 +83,8 @@ function gameRenderPost() {
 	// score
 	drawTextScreen(
 		g_score.toString(),
-		vec2(2 * cameraScale, overlayCanvas.height - 2 * cameraScale),
-		100,
+		vec2(1 * cameraScale * scaleUI, overlayCanvas.height - 1 * cameraScale * scaleUI),
+		100 * scaleUI,
 		g_game.colorBlood
 	);
 }
