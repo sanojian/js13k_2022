@@ -35,7 +35,7 @@ module.exports = function (grunt) {
 		image: {
 			dev: {
 				options: {
-					optipng: false,
+					optipng: true,
 					pngquant: false,
 					zopflipng: false,
 					jpegRecompress: false,
@@ -96,7 +96,7 @@ module.exports = function (grunt) {
 				}
 			}
 		},
-		clean: ['dist/*.html', 'dist/js/'],
+		clean: ['dist/*.html', 'dist/*.png', 'dist/js/'],
 		concat: {
 			dev: {
 				files: {
@@ -135,7 +135,24 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('roadroller', 'compress the js file', function () {
 		// NOT WORKING! :-(
-		require("child_process").spawn('npx' ['roadroller', 'dist/i.min.js', '-o', 'dist/i.min.js'], { cwd: './' });
+		//require("child_process").spawn('npx' ['roadroller', 'dist/i.min.js', '-o', 'dist/i.min.js'], { cwd: './' });
+
+		const { spawn } = require('node:child_process');
+		const ls = spawn('npx' ['roadroller', 'dist/i.min.js', '-o', 'dist/i.min.js']);
+
+		ls.stdout.on('data', (data) => {
+			console.log(`stdout: ${data}`);
+		});
+
+		ls.stderr.on('data', (data) => {
+			console.error(`stderr: ${data}`);
+		});
+
+		ls.on('close', (code) => {
+			console.log(`child process exited with code ${code}`);
+		});
+
+		ls();
 
 	});
 	grunt.registerTask('zip', 'compress the files and create archive', function () {
