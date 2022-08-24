@@ -153,7 +153,7 @@ class Gun extends EngineObject {
 	reload() {
 		if (g_CHEATMODE) this.reloadTimePerBullet = 0.1;
 
-		if (this.reloading) {
+		if (this.reloading || this.ammo == this._maxAmmo) {
 			return;
 		}
 

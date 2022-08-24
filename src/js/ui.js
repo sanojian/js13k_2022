@@ -8,6 +8,8 @@ function gameRenderPost() {
 
 	if (!g_game.player) return;
 
+	scaleCameraToScreenSize();
+
 	// draw blood on creatures so it is on top of their sprite
 	for (let i = 0; i < g_game.enemies.length; i++) {
 		g_game.enemies[i].drawBlood();
