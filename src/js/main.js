@@ -16,9 +16,8 @@ function gameInit() {
 }
 
 function scaleCameraToScreenSize() {
-	let smallest = Math.min(overlayCanvas.height, overlayCanvas.width);
-
-	cameraScale = (TILE_SIZE.x * smallest) / 30;
+	// try to fit same tiles on a screen
+	cameraScale = Math.min(window.innerWidth, window.innerHeight) / TILES_PER_SCREEN;
 }
 
 function startNewGame() {
@@ -114,15 +113,13 @@ function gameUpdate() {
 	}
 }
 
-var black = new Color(0, 0, 0);
-
 function updateStateClickToStart() {
 	for (let i = 0; i < 10; i++) {
 		drawTextScreen(
 			"DEAD AGAIN",
 			vec2((rand(0.99, 1.01) * mainCanvas.width) / 2, (rand(0.99, 1.01) * mainCanvas.height) / 3),
 			mainCanvas.width / 10,
-			black.lerp(g_game.colorBlood, i / 10)
+			g_game.colorBlack.lerp(g_game.colorBlood, i / 10)
 		);
 	}
 
