@@ -1,17 +1,17 @@
 /** @format */
 
 class Enemy extends Mob {
-	enemyThinkPause = 0;
-	enemyThinkMin = 20;
-	enemyThinkMax = 100;
-	enemyMoveSpeed = 0.1;
-	enemyJitterForce = 0.01;
-	enemyDrag = 1.5;
-	enemyMaxSpeed = 0.5;
-	enemyToTarget = undefined;
-
 	constructor(pos, size, tileIndex) {
 		super(pos, size, tileIndex);
+
+		this.enemyThinkPause = 0;
+		this.enemyThinkMin = 20;
+		this.enemyThinkMax = 100;
+		this.enemyMoveSpeed = 0.1;
+		this.enemyJitterForce = 0.01;
+		this.enemyDrag = 1.5;
+		this.enemyMaxSpeed = 0.5;
+		this.enemyToTarget = undefined;
 	}
 
 	update() {
