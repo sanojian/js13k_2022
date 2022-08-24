@@ -2,7 +2,7 @@
 
 function init() {
 	// startup LittleJS with your game functions after the tile image is loaded
-	engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRenderPost, "tiles.png");
+	engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRenderPost, "t.png");
 }
 
 function gameInit() {

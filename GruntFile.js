@@ -44,7 +44,7 @@ module.exports = function (grunt) {
 					svgo: true
 				},
 				files: {
-					'dist/tiles.png': 'src/gfx/tiles.png',
+					'dist/t.png': 'src/gfx/tiles.png',
 				}
 			},
 		},
@@ -83,20 +83,16 @@ module.exports = function (grunt) {
 			}
 		},
 		clean: ['dist/*.html', 'dist/js/'],
-		copy: {
-			images: {
-				src: '*.*',
-				dest: 'dist/',
-				cwd: 'src/gfx',
-				expand: true
-			}
-		},
 		concat: {
-			shared: {
+			dev: {
 				files: {
 					'dist/index.html': [
 						'src/html/index_dev.html'
 					],
+				}
+			},
+			shared: {
+				files: {
 					'dist/js/index.js': [
 						'src/js/lib/*.js',
 						'src/js/main.js',
@@ -123,6 +119,23 @@ module.exports = function (grunt) {
 	// These plugins provide necessary tasks.
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
+	grunt.registerTask('roadroller', 'compress the js file', function () {
+		// NOT WORKING! :-(
+		require("child_process").spawn('npx' ['roadroller', 'dist/i.min.js', '-o', 'dist/i.min.js'], { cwd: './' });
+
+	});
+	grunt.registerTask('zip', 'compress the files and create archive', function () {
+		// NOT WORKING! :-(
+		require("child_process").spawn('zip -X9 a.zip index.html t.png', null, { cwd: './dist' });
+
+	});
+	grunt.registerTask('rollup', 'combine html and js', function () {
+
+		let src = grunt.file.read('dist/i.min.js');
+
+		grunt.file.write('dist/index.html', '<script>' + src + '</script>');
+
+	});
 	grunt.registerTask('processMap', 'get map data from Tiled', function () {
 		
 		// ADD MAPS HERE!
@@ -149,9 +162,9 @@ module.exports = function (grunt) {
 	grunt.registerTask('dev', [
 		'watch'
 	]);
-	grunt.registerTask('build', ['clean', 'processMap', 'concat:shared', 'copy']);
+	grunt.registerTask('build', ['clean', 'processMap', 'concat:dev', 'concat:shared', 'image']);
 	grunt.registerTask('default', ['build', 'http-server', 'dev']);
-	grunt.registerTask('prod', ['clean', 'image', 'concat:shared', 'concat:prod', 'closureCompiler', 'uglify', 'http-server', 'dev']);
+	grunt.registerTask('prod', ['clean', 'image', 'concat:shared', 'concat:prod', 'closureCompiler', 'uglify']);
 	grunt.registerTask('web', ['http-server', 'dev']);
 
 };
