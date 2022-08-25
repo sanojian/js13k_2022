@@ -219,6 +219,10 @@ function updateStatePlaying() {
 		cameraPos.y = g_game.player.pos.y + g_game.CAMERA_LAG;
 	}
 
+	fx.updateScreenShake();
+
+	cameraPos = cameraPos.add(g_screenShake);
+
 	if (g_CHEATMODE && mouseWasPressed(1)) {
 		g_level++;
 		startNextLevel();
