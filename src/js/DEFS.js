@@ -11,13 +11,15 @@ const ENMIES_MAX_ALIVE = 10;
 const TILE_SIZE = vec2(12);
 const MINI_TILE_SIZE = vec2(4);
 const MOB_SIZE = vec2(11, 12);
-const TILES_PER_SCREEN = 14;
+const TILES_PER_SCREEN = 15;
 
 var g_CHEATMODE = 0;
 let g_score = 0;
 let g_level = 0;
 
 let g_soundPickup = new Sound([1, 0.1, 200, 0, 0, 0, 4, 0, 0, 1.2, 50, 0.57, 0, 0, 0, 0.2, 0.19, 0, 0.14, 0]);
+
+let g_screenShake = vec2(0);
 
 let g_game = {
 	CAMERA_LAG: 1,

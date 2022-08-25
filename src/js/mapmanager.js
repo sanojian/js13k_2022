@@ -41,6 +41,9 @@ class MapManager {
 					} else if (t - 1 == g_game.tileNumbers.npc) {
 						new Npc(vec2(x + 0.5, h - 1 - y + 0.5), vec2(1));
 						continue;
+					} else if (t - 1 == g_game.tileNumbers.beefyZombie) {
+						new BossZombie(vec2(x + 0.5, h - 1 - y + 0.5));
+						continue;
 					} else if (t - 1 == g_game.tileNumbers.boxBullets) {
 						new AmmoBox(vec2(x + 0.5, h - 1 - y + 0.5), vec2(1), t - 1);
 						continue;
