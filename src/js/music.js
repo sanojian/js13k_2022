@@ -40,7 +40,8 @@ function createMinorIssues() {
 		7, 7, 7, 7,
 		5, 5, 5, 5,
 		9, 9, 11, 11,
-		13, 15, 17, 19
+		13, 15, 17, 19,
+		undefined, undefined, undefined, undefined 
 	];
 
 	let bassPattern = [0, 12, 14, 15, 0, 12, 15, 14];
