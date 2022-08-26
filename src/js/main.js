@@ -43,7 +43,7 @@ function startNextLevel() {
 
 	enemiesSpawned = 0;
 
-	g_game.player = new MobPlayer(vec2(15, 10));
+	g_game.player = new MobPlayer(g_game.playerSpawn);
 
 	new Pistol(findFreePos(), vec2(1));
 	new ShotGun(findFreePos(), vec2(1));

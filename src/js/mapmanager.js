@@ -32,7 +32,10 @@ class MapManager {
 						g_game.doors[x + "_" + (h - 1 - y)] = { hp: 3 };
 					}
 
-					if (t - 1 == g_game.tileNumbers.vampire) {
+					if (t - 1 == g_game.tileNumbers.player) {
+						g_game.playerSpawn = vec2(x + 0.5, h - 1 - y + 0.5);
+						continue;
+					} else if (t - 1 == g_game.tileNumbers.vampire) {
 						let vamp = new Vampire(vec2(x + 0.75, h - 1 - y + 0.75));
 						g_game.enemies.push(vamp);
 						continue;
