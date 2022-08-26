@@ -188,7 +188,13 @@ var ticsToSpawn = 0;
 
 function updateStatePlaying() {
 	ticsToSpawn--;
-	if (g_game.enemies.length < ENMIES_MAX_ALIVE && enemiesSpawned < ENEMIES_TO_SPAWN && ticsToSpawn <= 0) {
+
+	let levelDef = getLevelDef();
+	if (
+		g_game.enemies.length < levelDef.enemiesMaxAlive &&
+		enemiesSpawned < levelDef.enemiesToSpawn &&
+		ticsToSpawn <= 0
+	) {
 		spawnEnemy();
 		ticsToSpawn = rand(0, 120);
 	}
@@ -199,7 +205,7 @@ function updateStatePlaying() {
 		return;
 	}
 
-	if (enemiesSpawned == ENEMIES_TO_SPAWN && g_game.enemies.length == 0) {
+	if (enemiesSpawned == levelDef.enemiesToSpawn && g_game.enemies.length == 0) {
 		g_game.state = STATE_CLEARED;
 		g_level++;
 		return;

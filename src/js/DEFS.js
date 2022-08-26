@@ -5,9 +5,6 @@ const STATE_PLAYING = 1;
 const STATE_DEAD = 2;
 const STATE_CLEARED = 3;
 
-const ENEMIES_TO_SPAWN = 20;
-const ENMIES_MAX_ALIVE = 10;
-
 const TILE_SIZE = vec2(12);
 const MINI_TILE_SIZE = vec2(4);
 const MOB_SIZE = vec2(11, 12);
@@ -87,11 +84,15 @@ const levelDefs = [
 	{
 		// start
 		floorTile: g_game.tileNumbers.floorStone,
+		enemiesToSpawn: 2,
+		enemiesMaxAlive: 1,
 		spawns: [{ type: "Zombie", chance: 1 }],
 	},
 	{
 		// level2
 		floorTile: g_game.tileNumbers.floorStone,
+		enemiesToSpawn: 2,
+		enemiesMaxAlive: 1,
 		spawns: [
 			{ type: "Zombie", chance: 0.5 },
 			{ type: "Vampire", chance: 0.5 },
@@ -100,6 +101,8 @@ const levelDefs = [
 	{
 		// forest
 		floorTile: g_game.tileNumbers.floorGrass,
+		enemiesToSpawn: 2,
+		enemiesMaxAlive: 1,
 		spawns: [
 			{ type: "Zombie", chance: 0.5 },
 			{ type: "Vampire", chance: 0.5 },
