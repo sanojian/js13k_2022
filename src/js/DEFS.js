@@ -86,6 +86,10 @@ const mobDefs = {
 		hp: 2,
 		maxSpeed: 0.5,
 	},
+	BossZombie: {
+		hp: 22,
+		maxSpeed: 0.5,
+	},
 	Vampire: {
 		hp: 1,
 		maxSpeed: 1,

@@ -70,7 +70,12 @@ class MobPlayer extends Mob {
 	}
 
 	collideWithObject(o) {
-		if ((o instanceof Vampire && o.transformed) || o instanceof Zombie) {
+		if (
+			(o instanceof Vampire && o.transformed) ||
+			o instanceof Zombie ||
+			o instanceof BossZombie ||
+			o instanceof Boulder
+		) {
 			let v = this.pos.subtract(o.pos);
 			let d = v.length();
 			if (d < 0.5) {

@@ -8,7 +8,8 @@ class BossZombie extends Enemy {
 			1, 0.5, 329.6276, 0.16, 0.62, 0.33, 0, 0.5, 0, 0, -50, 0.14, 0.13, 2.5, 28, 0, 0, 0.9, 0.07, 0.12,
 		]);
 
-		this.hp = 22;
+		this.hp = mobDefs.BossZombie.hp + g_game.difficulty * 5;
+		this.mass = 12;
 
 		this.oldMirror = false;
 		this.throwing = false;
@@ -24,6 +25,7 @@ class BossZombie extends Enemy {
 		if (g_game.state == STATE_DEAD) return;
 
 		if (this.tearing) {
+			this.boulder.pos = this.pos.copy();
 			if (!this.tearingTimer.elapsed()) return;
 
 			// throw chunk
