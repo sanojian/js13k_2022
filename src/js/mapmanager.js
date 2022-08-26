@@ -12,10 +12,8 @@ class MapManager {
 
 		g_game.doors = {};
 
-		if (g_game.TILE_LAYER_COLLISION) {
-			g_game.tileLayer = new TileLayer(vec2(0, 0), vec2(w, h), TILE_SIZE, vec2(1));
-			initTileCollision(vec2(w, h));
-		}
+		g_game.tileLayer = new TileLayer(vec2(0, 0), vec2(w, h), TILE_SIZE, vec2(1));
+		initTileCollision(vec2(w, h));
 
 		for (let y = 0; y < h; y++) {
 			for (let x = 0; x < w; x++) {

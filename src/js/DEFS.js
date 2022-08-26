@@ -20,7 +20,8 @@ let g_screenShake = vec2(0);
 
 let g_game = {
 	CAMERA_LAG: 1,
-	TILE_LAYER_COLLISION: true,
+
+	difficulty: 0,
 
 	player: null,
 	enemies: [],
@@ -83,9 +84,11 @@ let g_game = {
 const mobDefs = {
 	Zombie: {
 		hp: 2,
+		maxSpeed: 0.5,
 	},
 	Vampire: {
 		hp: 1,
+		maxSpeed: 1,
 		addTransformHp: 5,
 	},
 };

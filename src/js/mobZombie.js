@@ -7,10 +7,10 @@ class Zombie extends Enemy {
 	constructor(pos) {
 		super(pos, vec2(0.8), g_game.tileNumbers.zombie);
 
-		this._maxSpeed = 0.5;
+		this._maxSpeed = mobDefs.Zombie.maxSpeed + mobDefs.Zombie.maxSpeed * 1.2 * g_game.difficulty;
 		this.miniFace = g_game.miniTileNumbers.miniFaceZombie;
 
-		this.hp = mobDefs.Zombie.hp + Math.floor(g_level / mapData.length);
+		this.hp = mobDefs.Zombie.hp + g_game.difficulty;
 		this.mass = 2;
 		this._myColor = new Color(55 / 255, 148 / 255, 110 / 255);
 
