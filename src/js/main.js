@@ -189,10 +189,13 @@ var ticsToSpawn = 0;
 function updateStatePlaying() {
 	ticsToSpawn--;
 
+	// game gets more difficult as you play
+	let difficulty = Math.floor(g_level / mapData.length);
+
 	let levelDef = getLevelDef();
 	if (
-		g_game.enemies.length < levelDef.enemiesMaxAlive &&
-		enemiesSpawned < levelDef.enemiesToSpawn &&
+		g_game.enemies.length < levelDef.enemiesMaxAlive + difficulty &&
+		enemiesSpawned < levelDef.enemiesToSpawn + difficulty &&
 		ticsToSpawn <= 0
 	) {
 		spawnEnemy();
@@ -205,7 +208,7 @@ function updateStatePlaying() {
 		return;
 	}
 
-	if (enemiesSpawned == levelDef.enemiesToSpawn && g_game.enemies.length == 0) {
+	if (enemiesSpawned == levelDef.enemiesToSpawn + difficulty && g_game.enemies.length == 0) {
 		g_game.state = STATE_CLEARED;
 		g_level++;
 		return;

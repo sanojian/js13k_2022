@@ -37,9 +37,9 @@ let g_game = {
 	colorWhite: new Color(1, 1, 1),
 	colorBlood: new Color(172 / 255, 50 / 255, 50 / 255),
 	colorBullet: new Color(251 / 255, 242 / 255, 54 / 255),
-	colorBulletCasing: new Color(138 / 255, 111 / 255, 48 / 255),
+	colorBulletCasing: new Color(138 / 255, 111 / 255, 48 / 255, 0.8),
 	colorShell: new Color(217 / 255, 87 / 255, 99 / 255),
-	colorShellCasing: new Color(172 / 255, 50 / 255, 50 / 255),
+	colorShellCasing: new Color(172 / 255, 50 / 255, 50 / 255, 0.8),
 	colorRifleRound: new Color(0 / 255, 255 / 255, 255 / 255),
 	colorRifleRoundCasing: new Color(0 / 255, 255 / 255, 255 / 255),
 
@@ -77,6 +77,16 @@ let g_game = {
 		miniFaceZombie: 21 * 6 + 1,
 		miniFaceVampire: 21 * 6 + 2,
 		moss: 21 * 7 + 0,
+	},
+};
+
+const mobDefs = {
+	Zombie: {
+		hp: 2,
+	},
+	Vampire: {
+		hp: 1,
+		addTransformHp: 5,
 	},
 };
 
