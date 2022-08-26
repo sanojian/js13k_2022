@@ -1,11 +1,11 @@
 /** @format */
 
 class Gun extends EngineObject {
-	constructor(pos, size, tileIndex) {
-		super(pos, size, tileIndex, TILE_SIZE);
+	constructor(pos, tileIndex) {
+		super(pos, vec2(1), tileIndex, TILE_SIZE);
 		// your object init code here
 		this._distance = 0.7;
-		this._mysize = size.y;
+		this._mysize = this.size.y;
 		this._speed = 0.4;
 
 		this._maxAmmo = 6;

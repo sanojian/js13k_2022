@@ -30,6 +30,8 @@ function startNextLevel() {
 
 	g_game.moss = [];
 
+	g_game.player = new MobPlayer(vec2(1));
+
 	g_game.mapMan = new MapManager();
 
 	g_game.mapMan.render();
@@ -43,17 +45,13 @@ function startNextLevel() {
 
 	enemiesSpawned = 0;
 
-	g_game.player = new MobPlayer(g_game.playerSpawn);
-
-	new Pistol(findFreePos(), vec2(1));
-	new ShotGun(findFreePos(), vec2(1));
-	new Rifle(findFreePos(), vec2(1));
+	g_game.player.pos = g_game.playerSpawn;
 
 	new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxBullets);
 	new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxShells);
 	new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxRifleAmmo);
 
-	if (g_CHEATMODE) new Pistol(g_game.player.pos, vec2(1));
+	if (g_CHEATMODE) new Pistol(g_game.player.pos);
 
 	g_game.state = STATE_PLAYING;
 

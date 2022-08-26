@@ -1,9 +1,8 @@
 /** @format */
-class ShotGun extends Gun {
-	constructor(pos, size) {
-		super(pos, size, g_game.tileNumbers.shotgun);
+class Shotgun extends Gun {
+	constructor(pos) {
+		super(pos, g_game.tileNumbers.shotgun);
 		this._distance = 0.3;
-		this._mysize = size.y;
 		this._speed = 0.3;
 		this._maxAmmo = 2;
 		this._ammoIconTile = g_game.tileNumbers.shellIcon;

@@ -1,11 +1,10 @@
 /** @format */
 
 class Rifle extends Gun {
-	constructor(pos, size) {
-		super(pos, size, g_game.tileNumbers.rifle);
+	constructor(pos) {
+		super(pos, g_game.tileNumbers.rifle);
 		// your object init code here
 		this._distance = 0.3;
-		this._mysize = size.y;
 		this._speed = 0.5;
 
 		this._maxAmmo = 1;
