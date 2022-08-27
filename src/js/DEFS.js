@@ -107,7 +107,7 @@ const levelDefs = [
 		floorTile: g_game.tileNumbers.floorStone,
 		enemiesToSpawn: 2,
 		enemiesMaxAlive: 1,
-		spawns: [{ type: "Ghost", chance: 1 }],
+		spawns: [{ type: "Zombie", chance: 1 }],
 	},
 	{
 		// level2

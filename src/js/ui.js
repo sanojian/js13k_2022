@@ -10,16 +10,6 @@ function gameRenderPost() {
 
 	scaleCameraToScreenSize();
 
-	// draw blood on creatures so it is on top of their sprite
-	for (let i = 0; i < g_game.enemies.length; i++) {
-		g_game.enemies[i].drawBlood();
-	}
-
-	for (const e of g_game.enemies) {
-		e.postRender && e.postRender();
-	}
-	g_game.player.postRender();
-
 	// scary transforms
 	for (let i = 0; i < g_game.transforms.length; i++) {
 		let trans = g_game.transforms[i];

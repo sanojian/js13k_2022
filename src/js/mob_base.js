@@ -81,6 +81,7 @@ class Mob extends EngineObject {
 			this.angle,
 			this.mirror
 		);
+		this.postRender();
 	}
 
 	postRender() {
@@ -93,6 +94,7 @@ class Mob extends EngineObject {
 				MINI_TILE_SIZE
 			);
 		}
+		this.drawBlood();
 	}
 
 	drawBlood() {
