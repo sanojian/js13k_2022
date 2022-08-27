@@ -21,6 +21,10 @@ class Mob extends EngineObject {
 
 		this.blood = [];
 
+		// for arms
+		this.pointingAngle = rand(2 * PI);
+		this._myColor = undefined;
+
 		this.enemyToTarget = undefined;
 		this.soundGroan = undefined;
 	}
@@ -142,12 +146,28 @@ class Mob extends EngineObject {
 		this.splatter(pos);
 
 		// splatter on mob
-		let wound = { pos: vec2((pos.x - this.pos.x) / 2, (pos.y - this.pos.y) / 2), pattern: [] };
+		let wound = { pos: vec2((pos.x - this.pos.x) / 3, (pos.y - this.pos.y) / 3), pattern: [] };
 		for (let i = 0; i < 4; i++) {
 			wound.pattern.push(Math.random() > 0.5 ? 1 : 0);
 		}
 		this.blood.push(wound);
 
 		return false;
+	}
+
+	drawReachingArms() {
+		const armLenght = 4 / 12;
+
+		let toPlayer = this.enemyToTarget || g_game.player.pos.subtract(this.pos);
+		let toPlayerAngle = toPlayer.angle();
+
+		this.pointingAngle += turnTowards(toPlayerAngle - this.pointingAngle, (2 * PI) / 100); //turnTowards(this.pointingAngle, toPlayerAngle, rand(2 * PI) / 100);
+		let pointing = vec2(1).setAngle(this.pointingAngle, armLenght);
+
+		// draw arms
+		let pos = this.pos.add(vec2(3 / 12, 2.3 / 12 + this.bumpWalk));
+		drawLine(pos, pos.add(pointing), 1.2 / 12, this._myColor, !!glEnable);
+		pos = this.pos.add(vec2(-3 / 12, 2.3 / 12 + this.bumpWalk));
+		drawLine(pos, pos.add(pointing), 1.2 / 12, this._myColor, !!glEnable);
 	}
 }

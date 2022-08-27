@@ -7,7 +7,7 @@ class Zombie extends Enemy {
 	constructor(pos) {
 		super(pos, vec2(0.8), g_game.tileNumbers.zombie);
 
-		this._maxSpeed = mobDefs.Zombie.maxSpeed + mobDefs.Zombie.maxSpeed * 1.2 * g_game.difficulty;
+		this._maxSpeed = mobDefs.Zombie.maxSpeed + mobDefs.Zombie.maxSpeed * 1.1 * g_game.difficulty;
 		this.miniFace = g_game.miniTileNumbers.miniFaceZombie;
 
 		this.hp = mobDefs.Zombie.hp + g_game.difficulty;
@@ -21,10 +21,6 @@ class Zombie extends Enemy {
 		this.enemyMoveSpeed = rand(0.05, 0.2);
 
 		this.pointingAngle = rand(2 * PI);
-
-		this.soundGroan = new Sound([
-			1, 0.5, 329.6276, 0.16, 0.62, 0.33, 0, 0.5, 0, 0, -50, 0.14, 0.13, 2.5, 28, 0, 0, 0.9, 0.07, 0.12,
-		]);
 
 		this.groan(1, rand(0.9, 1.1));
 	}
@@ -84,19 +80,7 @@ class Zombie extends Enemy {
 			super.postRender();
 		}
 
-		const armLenght = 4 / 12;
-
-		let toPlayer = this.enemyToTarget || g_game.player.pos.subtract(this.pos);
-		let toPlayerAngle = toPlayer.angle();
-
-		this.pointingAngle += turnTowards(toPlayerAngle - this.pointingAngle, (2 * PI) / 100); //turnTowards(this.pointingAngle, toPlayerAngle, rand(2 * PI) / 100);
-		let pointing = vec2(1).setAngle(this.pointingAngle, armLenght);
-
-		// draw arms
-		let pos = this.pos.add(vec2(3 / 12, 2.3 / 12 + this.bumpWalk));
-		drawLine(pos, pos.add(pointing), 1.2 / 12, this._myColor, !!glEnable);
-		pos = this.pos.add(vec2(-3 / 12, 2.3 / 12 + this.bumpWalk));
-		drawLine(pos, pos.add(pointing), 1.2 / 12, this._myColor, !!glEnable);
+		this.drawReachingArms();
 	}
 }
 

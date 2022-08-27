@@ -53,7 +53,7 @@ let g_game = {
 		zombie: 1,
 		vampire: 2,
 		bat: 3,
-		beefyHero: 4,
+		ghost: 4,
 		beefyZombie: 5,
 		npc: 6,
 		facePlayer: 7,
@@ -63,11 +63,11 @@ let g_game = {
 		shotgun: 22,
 		shellIcon: 23,
 		bulletIcon: 24,
-		rifleAmmoIcon: 30,
-		boxBullets: 26,
+		boxBullets: 20,
 		boxShells: 27,
 		boxRifleAmmo: 33,
 		rifle: 28,
+		rifleAmmoIcon: 30,
 		floorStone: 37,
 		floorDesert: 38,
 		door: 43,
@@ -77,6 +77,7 @@ let g_game = {
 		miniFacePlayer: 21 * 6 + 0,
 		miniFaceZombie: 21 * 6 + 1,
 		miniFaceVampire: 21 * 6 + 2,
+		miniFaceGhost: 21 * 6 + 3,
 		moss: 21 * 7 + 0,
 	},
 };
@@ -95,6 +96,10 @@ const mobDefs = {
 		maxSpeed: 1,
 		addTransformHp: 5,
 	},
+	Ghost: {
+		hp: 3,
+		maxSpeed: 1,
+	},
 };
 
 const levelDefs = [
@@ -103,7 +108,7 @@ const levelDefs = [
 		floorTile: g_game.tileNumbers.floorStone,
 		enemiesToSpawn: 2,
 		enemiesMaxAlive: 1,
-		spawns: [{ type: "Zombie", chance: 1 }],
+		spawns: [{ type: "Ghost", chance: 1 }],
 	},
 	{
 		// level2

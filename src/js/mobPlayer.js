@@ -73,6 +73,7 @@ class MobPlayer extends Mob {
 		if (
 			(o instanceof Vampire && o.transformed) ||
 			o instanceof Zombie ||
+			o instanceof Ghost ||
 			o instanceof BossZombie ||
 			o instanceof Boulder
 		) {

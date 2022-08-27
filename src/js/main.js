@@ -81,6 +81,9 @@ function spawnEnemy() {
 		case "Vampire":
 			enemy = new Vampire(p);
 			break;
+		case "Ghost":
+			enemy = new Ghost(p);
+			break;
 		default:
 			enemy = new Zombie(p);
 	}
