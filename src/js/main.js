@@ -28,6 +28,8 @@ function startNewGame() {
 function startNextLevel() {
 	engineObjectsDestroy(); // destroy all objects handled by the engine
 
+	g_levelDef = levelDefs[g_level % levelDefs.length];
+
 	g_game.moss = [];
 
 	g_game.player = new MobPlayer(vec2(1));
@@ -48,10 +50,6 @@ function startNextLevel() {
 
 	g_game.player.pos = g_game.playerSpawn;
 
-	//new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxBullets);
-	//new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxShells);
-	//new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxRifleAmmo);
-
 	if (g_CHEATMODE) new Pistol(g_game.player.pos);
 
 	g_game.state = STATE_PLAYING;
@@ -63,7 +61,7 @@ function findFreePos(minDistToPlayer) {
 	let pos, dist2player, inTileCol;
 
 	do {
-		pos = vec2(rand(mapData[g_level % mapData.length].w), rand(mapData[g_level % mapData.length].h));
+		pos = vec2(rand(mapData[g_levelDef.map].w), rand(mapData[g_levelDef.map].h));
 		dist2player = pos.distance(g_game.player.pos);
 		inTileCol = tileCollisionTest(pos, vec2(1));
 	} while (dist2player < minDistToPlayer || inTileCol);
@@ -192,12 +190,11 @@ function updateStatePlaying() {
 	ticsToSpawn--;
 
 	// game gets more difficult as you play
-	g_game.difficulty = Math.floor(g_level / mapData.length);
+	g_game.difficulty = Math.floor(g_level / levelDefs.length);
 
-	let levelDef = getLevelDef();
 	if (
-		g_game.enemies.length < levelDef.enemiesMaxAlive + g_game.difficulty &&
-		enemiesSpawned < levelDef.enemiesToSpawn + g_game.difficulty &&
+		g_game.enemies.length < g_levelDef.enemiesMaxAlive + g_game.difficulty &&
+		enemiesSpawned < g_levelDef.enemiesToSpawn + g_game.difficulty &&
 		ticsToSpawn <= 0
 	) {
 		spawnEnemy();
@@ -219,7 +216,7 @@ function updateStatePlaying() {
 		g_game.ammoSpawned = false;
 	}
 
-	if (enemiesSpawned == levelDef.enemiesToSpawn + g_game.difficulty && g_game.enemies.length == 0) {
+	if (enemiesSpawned == g_levelDef.enemiesToSpawn + g_game.difficulty && g_game.enemies.length == 0) {
 		g_game.state = STATE_CLEARED;
 		g_level++;
 		return;

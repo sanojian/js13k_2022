@@ -6,9 +6,9 @@ class MapManager {
 	}
 
 	createMap() {
-		let myMap = mapData[g_level % mapData.length].data;
-		let w = mapData[g_level % mapData.length].w;
-		let h = mapData[g_level % mapData.length].h;
+		let myMap = mapData[g_levelDef.map].data;
+		let w = mapData[g_levelDef.map].w;
+		let h = mapData[g_levelDef.map].h;
 
 		g_game.doors = {};
 
@@ -19,7 +19,7 @@ class MapManager {
 			for (let x = 0; x < w; x++) {
 				// floor
 				let tld = new TileLayerData(
-					getLevelDef().floorTile,
+					g_levelDef.floorTile,
 					Math.floor(rand(0, 3)),
 					false,
 					new Color(1, 1, 1, rand(0.2, 0.4))
@@ -64,7 +64,7 @@ class MapManager {
 						new AmmoBox(vec2(x + 0.5, h - 1 - y + 0.5), g_game.tileNumbers.rifle);
 						continue;
 					}
-					
+
 					setTileCollisionData(vec2(x, h - 1 - y), t - 1);
 					let tld = new TileLayerData(t - 1, 0, false, new Color(rand(0.8, 1), rand(0.8, 1), rand(0.8, 1)));
 					g_game.tileLayer.setData(vec2(x, h - 1 - y), tld);

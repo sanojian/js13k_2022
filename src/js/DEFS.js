@@ -12,6 +12,7 @@ const TILES_PER_SCREEN = 15;
 var g_CHEATMODE = 0;
 let g_score = 0;
 let g_level = 0;
+let g_levelDef = undefined;
 
 let g_soundPickup = new Sound([1, 0.1, 200, 0, 0, 0, 4, 0, 0, 1.2, 50, 0.57, 0, 0, 0, 0.2, 0.19, 0, 0.14, 0]);
 
@@ -104,6 +105,7 @@ const mobDefs = {
 const levelDefs = [
 	{
 		// start
+		map: 0,
 		floorTile: g_game.tileNumbers.floorStone,
 		enemiesToSpawn: 2,
 		enemiesMaxAlive: 1,
@@ -111,6 +113,7 @@ const levelDefs = [
 	},
 	{
 		// level2
+		map: 1,
 		floorTile: g_game.tileNumbers.floorStone,
 		enemiesToSpawn: 2,
 		enemiesMaxAlive: 1,
@@ -121,6 +124,7 @@ const levelDefs = [
 	},
 	{
 		// forest
+		map: 2,
 		floorTile: g_game.tileNumbers.floorGrass,
 		enemiesToSpawn: 2,
 		enemiesMaxAlive: 1,
