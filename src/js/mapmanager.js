@@ -55,12 +55,16 @@ class MapManager {
 						g_game.enemies.push(new BossZombie(vec2(x + 0.5, h - 1 - y + 0.5)));
 						continue;
 					} else if (t - 1 == g_game.tileNumbers.boxBullets) {
-						new AmmoBox(vec2(x + 0.5, h - 1 - y + 0.5), vec2(1), t - 1);
+						new AmmoBox(vec2(x + 0.5, h - 1 - y + 0.5), g_game.tileNumbers.pistol);
 						continue;
 					} else if (t - 1 == g_game.tileNumbers.boxShells) {
-						new AmmoBox(vec2(x + 0.5, h - 1 - y + 0.5), vec2(1), t - 1);
+						new AmmoBox(vec2(x + 0.5, h - 1 - y + 0.5), g_game.tileNumbers.shotgun);
+						continue;
+					} else if (t - 1 == g_game.tileNumbers.boxRifleAmmo) {
+						new AmmoBox(vec2(x + 0.5, h - 1 - y + 0.5), g_game.tileNumbers.rifle);
 						continue;
 					}
+					
 					setTileCollisionData(vec2(x, h - 1 - y), t - 1);
 					let tld = new TileLayerData(t - 1, 0, false, new Color(rand(0.8, 1), rand(0.8, 1), rand(0.8, 1)));
 					g_game.tileLayer.setData(vec2(x, h - 1 - y), tld);

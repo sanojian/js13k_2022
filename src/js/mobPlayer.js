@@ -26,6 +26,17 @@ class MobPlayer extends Mob {
 		]);
 	}
 
+	getAmmoForGunType(gunType) {
+		switch (gunType) {
+			case g_game.tileNumbers.shotgun:
+				return this.ammoShells;
+			case g_game.tileNumbers.rifle:
+				return this.ammoRifle;
+			default:
+				return this.ammoBullets;
+		}
+	}
+
 	update() {
 		const speed = 0.01;
 

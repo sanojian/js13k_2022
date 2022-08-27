@@ -48,9 +48,9 @@ function startNextLevel() {
 
 	g_game.player.pos = g_game.playerSpawn;
 
-	new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxBullets);
-	new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxShells);
-	new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxRifleAmmo);
+	//new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxBullets);
+	//new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxShells);
+	//new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxRifleAmmo);
 
 	if (g_CHEATMODE) new Pistol(g_game.player.pos);
 
@@ -208,6 +208,15 @@ function updateStatePlaying() {
 		g_game.state = STATE_DEAD;
 		localStorage.daScore = localStorage.daScore ? Math.max(g_score, localStorage.daScore) : g_score;
 		return;
+	}
+
+	if (!g_game.ammoSpawned && g_game.player.gun && g_game.player.getAmmoForGunType(g_game.player.gun.tileIndex) == 0) {
+		// spawn more ammo
+		new AmmoBox(findFreePos(), g_game.player.gun.tileIndex);
+		g_game.ammoSpawned = true;
+	} else if (g_game.player.gun && g_game.player.getAmmoForGunType(g_game.player.gun.tileIndex) != 0) {
+		// allow ammo to spawn again when player is empty
+		g_game.ammoSpawned = false;
 	}
 
 	if (enemiesSpawned == levelDef.enemiesToSpawn + g_game.difficulty && g_game.enemies.length == 0) {

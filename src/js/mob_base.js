@@ -1,7 +1,7 @@
 /** @format */
 class Mob extends EngineObject {
 	constructor(pos, size, tileIndex) {
-		super(pos, size, tileIndex, MOB_SIZE);
+		super(pos, size, tileIndex, vec2(11, 12));
 
 		this.walkCyclePlace = 0;
 		this._walkCycleFrames = 60;
