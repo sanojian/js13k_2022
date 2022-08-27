@@ -187,8 +187,10 @@ module.exports = function (grunt) {
 	});
 
 	// TODO: add roadroller to script
-	// npx roadroller dist/i.min.js -o dist/i.min.js
-	// "zip -X9" for max compression !
+	// npx roadroller --optimize 2 dist/i.min.js -o dist/i.min.js
+	// grunt rollup
+	// cd dist
+	// zip -X9 a.zip index.html t.png 
 
 	grunt.registerTask('dev', [
 		'watch'

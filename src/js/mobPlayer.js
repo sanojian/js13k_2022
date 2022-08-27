@@ -110,21 +110,17 @@ class MobPlayer extends Mob {
 
 		if (this.hp > 0) {
 			// arms
-			let toPos = this.gun
-				? this.gun.pos
-				: vec2(this.pos.x + (this.mirror ? 3 : 6) / 12, this.pos.y + 7 / 16 + this.bumpWalk);
+			let toPos = this.gun ? this.gun.pos : this.pos.add(vec2((this.mirror ? 3 : 6) / 12, 7 / 16 + this.bumpWalk));
 			drawLine(
-				vec2(this.pos.x + 3 / 12, this.pos.y + 2 / 16 + this.bumpWalk),
+				this.pos.add(vec2(3 / 12, 2 / 16 + this.bumpWalk)),
 				toPos,
 				1 / 12,
 				new Color(172 / 255, 50 / 255, 50 / 255),
 				!!glEnable
 			);
-			toPos = this.gun
-				? this.gun.pos
-				: vec2(this.pos.x - (this.mirror ? 6 : 3) / 12, this.pos.y + 7 / 16 + this.bumpWalk);
+			toPos = this.gun ? this.gun.pos : this.pos.add(vec2(-(this.mirror ? 6 : 3) / 12, 7 / 16 + this.bumpWalk));
 			drawLine(
-				vec2(this.pos.x - 3 / 12, this.pos.y + 2 / 16 + this.bumpWalk),
+				this.pos.add(vec2(-3 / 12, 2 / 16 + this.bumpWalk)),
 				toPos,
 				1 / 12,
 				new Color(172 / 255, 50 / 255, 50 / 255),

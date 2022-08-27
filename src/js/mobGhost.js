@@ -17,8 +17,6 @@ class Ghost extends Enemy {
 	}
 
 	update() {
-		super.update();
-
 		// transform
 		if (rand(0, 1) < 0.01) {
 			let solid = rand(0, 1) > 0.5;
@@ -29,6 +27,8 @@ class Ghost extends Enemy {
 		// float
 		this.counter += Math.PI / 64;
 		this.bumpWalk = (Math.sin(this.counter) * 5) / 12;
+
+		super.update();
 	}
 
 	postRender() {
