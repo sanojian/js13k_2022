@@ -65,7 +65,7 @@ let g_game = {
 		bulletIcon: 24,
 		boxBullets: 20,
 		boxShells: 27,
-		boxRifleAmmo: 33,
+		boxRifleAmmo: 34,
 		rifle: 28,
 		rifleAmmoIcon: 30,
 		floorStone: 37,
@@ -97,7 +97,7 @@ const mobDefs = {
 		addTransformHp: 5,
 	},
 	Ghost: {
-		hp: 3,
+		hp: 2,
 		maxSpeed: 1,
 	},
 };
