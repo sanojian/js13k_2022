@@ -57,7 +57,7 @@ class Vampire extends Enemy {
 					this._walkCycleFrames = 15;
 					makeParticles(this.pos, rand(1), new Color(155 / 255, 173 / 255, 183 / 255));
 					this.tileIndex = g_game.tileNumbers.vampire;
-					this.hp += mobDefs.Vampire.addTransformHp;
+					this.hp += mobDefs.Vampire.addTransformHp + g_game.difficulty;
 					this.mass = 2;
 					this.enemyMoveSpeed = rand(0.3, 0.4);
 					this.enemyThinkMin = 20;

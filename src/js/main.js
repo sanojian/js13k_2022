@@ -149,6 +149,8 @@ function gameUpdate() {
 }
 
 function updateStateClickToStart() {
+	drawTile(cameraPos, vec2(4), g_game.tileNumbers.faceZombie, TILE_SIZE, new Color(1, 1, 1, 0.2));
+
 	for (let i = 0; i < 10; i++) {
 		drawTextScreen(
 			"DEAD AGAIN",

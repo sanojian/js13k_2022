@@ -136,7 +136,7 @@ const levelDefs = [
 	{
 		// final boss
 		map: 2,
-		floorTile: g_game.tileNumbers.floorGrass,
+		floorTile: g_game.tileNumbers.floorStone,
 		enemiesToSpawn: 6,
 		enemiesMaxAlive: 3,
 		spawns: [

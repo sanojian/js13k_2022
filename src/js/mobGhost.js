@@ -4,7 +4,7 @@ class Ghost extends Enemy {
 	constructor(pos) {
 		super(pos, vec2(0.8), g_game.tileNumbers.ghost);
 
-		this.hp = mobDefs.Ghost.hp + g_game.difficulty * 5;
+		this.hp = mobDefs.Ghost.hp + g_game.difficulty;
 		this.miniFace = g_game.miniTileNumbers.miniFaceGhost;
 		this.mass = 2;
 
