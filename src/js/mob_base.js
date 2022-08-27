@@ -142,7 +142,7 @@ class Mob extends EngineObject {
 		this.splatter(pos);
 
 		// splatter on mob
-		let wound = { pos: vec2((this.pos.x - pos.x) / 2, (this.pos.y - pos.y) / 2), pattern: [] };
+		let wound = { pos: vec2((pos.x - this.pos.x) / 2, (pos.y - this.pos.y) / 2), pattern: [] };
 		for (let i = 0; i < 4; i++) {
 			wound.pattern.push(Math.random() > 0.5 ? 1 : 0);
 		}

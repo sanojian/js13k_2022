@@ -32,11 +32,12 @@ function startNextLevel() {
 
 	g_game.player = new MobPlayer(vec2(1));
 
+	g_game.enemies = [];
+
 	g_game.mapMan = new MapManager();
 
 	g_game.mapMan.render();
 
-	g_game.enemies = [];
 	g_game.splatter = [];
 	g_game.holes = [];
 	g_game.sparks = [];
