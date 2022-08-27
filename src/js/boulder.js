@@ -13,6 +13,7 @@ class Boulder extends EngineObject {
 		fx.shakeScreen(0.5);
 
 		this.soundDestroy.play();
+		makeParticles(this.pos, rand(0.4, 0.8), new Color(105 / 255, 106 / 255, 106 / 255));
 		this.destroy();
 		return false;
 	}
