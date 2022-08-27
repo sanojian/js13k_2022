@@ -26,6 +26,20 @@ function startNewGame() {
 }
 
 function startNextLevel() {
+	// save gun and ammo
+	let ammoPistol = 0;
+	let ammoShotgun = 0;
+	let ammoRifle = 0;
+	let currentGun;
+	let gunAmmo = 0;
+	if (g_game.player) {
+		ammoPistol = g_game.player.ammoBullets;
+		ammoShotgun = g_game.player.ammoShells;
+		ammoRifle = g_game.player.ammoRifle;
+		currentGun = g_game.player.gun.tileIndex;
+		gunAmmo = g_game.player.gun.ammo;
+	}
+
 	engineObjectsDestroy(); // destroy all objects handled by the engine
 
 	g_levelDef = levelDefs[g_level % levelDefs.length];
@@ -49,6 +63,26 @@ function startNextLevel() {
 	enemiesSpawned = 0;
 
 	g_game.player.pos = g_game.playerSpawn;
+
+	// give player saved equipment
+	g_game.player.ammoBullets = ammoPistol;
+	g_game.player.ammoShells = ammoShotgun;
+	g_game.player.ammoRifle = ammoRifle;
+	let theGun;
+	switch (currentGun) {
+		case g_game.tileNumbers.pistol:
+			theGun = new Pistol(g_game.player.pos);
+			break;
+		case g_game.tileNumbers.shotgun:
+			theGun = new Shotgun(g_game.player.pos);
+			break;
+		case g_game.tileNumbers.rifle:
+			theGun = new Rifle(g_game.player.pos);
+			break;
+	}
+	if (theGun) {
+		theGun.ammo = gunAmmo;
+	}
 
 	if (g_CHEATMODE) new Pistol(g_game.player.pos);
 

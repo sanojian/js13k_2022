@@ -178,7 +178,8 @@ module.exports = function (grunt) {
 		grunt.file.write('src/js/start_GEN.js', str);
 	});
 
-	// TODO: add roadroller to script
+	// TODO: add roadroller and zip to script
+	// Follow these steps after production build
 	// npx roadroller --optimize 2 dist/i.min.js -o dist/i.min.js
 	// grunt rollup
 	// cd dist

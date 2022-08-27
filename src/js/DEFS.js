@@ -105,8 +105,8 @@ const mobDefs = {
 const levelDefs = [
 	{
 		// start
-		map: 0,
-		floorTile: g_game.tileNumbers.floorStone,
+		map: 2,
+		floorTile: g_game.tileNumbers.floorGrass,
 		enemiesToSpawn: 2,
 		enemiesMaxAlive: 1,
 		spawns: [{ type: "Zombie", chance: 1 }],
