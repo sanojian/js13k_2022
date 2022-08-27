@@ -72,10 +72,10 @@ class MapManager {
 					g_game.tileLayer.setData(vec2(x, h - 1 - y), tld);
 
 					// moss
-					if (Math.random() < 0.3) {
+					if (Math.random() < 0.9) {
 						g_game.moss.push({
 							pos: offsetVec.add(randInCircle(5 / 12)),
-							tileIndex: g_game.miniTileNumbers.moss + Math.floor(Math.random() * 4),
+							tileIndex: g_game.miniTileNumbers.moss + Math.floor(Math.random() * 10),
 							angle: rand(0, Math.PI * 2),
 						});
 					}

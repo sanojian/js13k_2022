@@ -105,17 +105,17 @@ const mobDefs = {
 const levelDefs = [
 	{
 		// start
-		map: 2,
+		map: 0,
 		floorTile: g_game.tileNumbers.floorGrass,
-		enemiesToSpawn: 2,
+		enemiesToSpawn: 3,
 		enemiesMaxAlive: 1,
 		spawns: [{ type: "Zombie", chance: 1 }],
 	},
 	{
-		// level2
+		// intro to vampires
 		map: 1,
 		floorTile: g_game.tileNumbers.floorStone,
-		enemiesToSpawn: 2,
+		enemiesToSpawn: 3,
 		enemiesMaxAlive: 1,
 		spawns: [
 			{ type: "Zombie", chance: 0.5 },
@@ -123,14 +123,26 @@ const levelDefs = [
 		],
 	},
 	{
-		// forest
-		map: 2,
-		floorTile: g_game.tileNumbers.floorGrass,
-		enemiesToSpawn: 2,
-		enemiesMaxAlive: 1,
+		// intro to ghosts
+		map: 1,
+		floorTile: g_game.tileNumbers.floorStone,
+		enemiesToSpawn: 4,
+		enemiesMaxAlive: 2,
 		spawns: [
 			{ type: "Zombie", chance: 0.5 },
-			{ type: "Vampire", chance: 0.5 },
+			{ type: "Ghost", chance: 0.5 },
+		],
+	},
+	{
+		// final boss
+		map: 2,
+		floorTile: g_game.tileNumbers.floorGrass,
+		enemiesToSpawn: 6,
+		enemiesMaxAlive: 3,
+		spawns: [
+			{ type: "Zombie", chance: 0.4 },
+			{ type: "Vampire", chance: 0.3 },
+			{ type: "Ghost", chance: 0.3 },
 		],
 	},
 ];
