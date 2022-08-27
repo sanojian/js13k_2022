@@ -32,36 +32,38 @@ class MapManager {
 						g_game.doors[x + "_" + (h - 1 - y)] = { hp: 3 };
 					}
 
+					let offsetVec = vec2(x + 0.5, h - 1 - y + 0.5);
+
 					if (t - 1 == g_game.tileNumbers.player) {
-						g_game.playerSpawn = vec2(x + 0.5, h - 1 - y + 0.5);
+						g_game.playerSpawn = offsetVec;
 						continue;
 					} else if (t - 1 == g_game.tileNumbers.pistol) {
-						new Pistol(vec2(x + 0.5, h - 1 - y + 0.5));
+						new Pistol(offsetVec);
 						continue;
 					} else if (t - 1 == g_game.tileNumbers.shotgun) {
-						new Shotgun(vec2(x + 0.5, h - 1 - y + 0.5));
+						new Shotgun(offsetVec);
 						continue;
 					} else if (t - 1 == g_game.tileNumbers.rifle) {
-						new Rifle(vec2(x + 0.5, h - 1 - y + 0.5));
+						new Rifle(offsetVec);
 						continue;
 					} else if (t - 1 == g_game.tileNumbers.vampire) {
-						let vamp = new Vampire(vec2(x + 0.75, h - 1 - y + 0.75));
+						let vamp = new Vampire(offsetVec);
 						g_game.enemies.push(vamp);
 						continue;
 					} else if (t - 1 == g_game.tileNumbers.npc) {
-						new Npc(vec2(x + 0.5, h - 1 - y + 0.5), vec2(1));
+						new Npc(offsetVec, vec2(1));
 						continue;
 					} else if (t - 1 == g_game.tileNumbers.beefyZombie) {
-						g_game.enemies.push(new BossZombie(vec2(x + 0.5, h - 1 - y + 0.5)));
+						g_game.enemies.push(new BossZombie(offsetVec));
 						continue;
 					} else if (t - 1 == g_game.tileNumbers.boxBullets) {
-						new AmmoBox(vec2(x + 0.5, h - 1 - y + 0.5), g_game.tileNumbers.pistol);
+						new AmmoBox(offsetVec, g_game.tileNumbers.pistol);
 						continue;
 					} else if (t - 1 == g_game.tileNumbers.boxShells) {
-						new AmmoBox(vec2(x + 0.5, h - 1 - y + 0.5), g_game.tileNumbers.shotgun);
+						new AmmoBox(offsetVec, g_game.tileNumbers.shotgun);
 						continue;
 					} else if (t - 1 == g_game.tileNumbers.boxRifleAmmo) {
-						new AmmoBox(vec2(x + 0.5, h - 1 - y + 0.5), g_game.tileNumbers.rifle);
+						new AmmoBox(offsetVec, g_game.tileNumbers.rifle);
 						continue;
 					}
 
@@ -72,7 +74,7 @@ class MapManager {
 					// moss
 					if (Math.random() < 0.3) {
 						g_game.moss.push({
-							pos: vec2(x + 0.5, h - 1 - y + 0.5).add(randInCircle(5 / 12)),
+							pos: offsetVec.add(randInCircle(5 / 12)),
 							tileIndex: g_game.miniTileNumbers.moss + Math.floor(Math.random() * 4),
 							angle: rand(0, Math.PI * 2),
 						});
