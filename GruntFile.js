@@ -38,10 +38,6 @@ module.exports = function (grunt) {
 					optipng: true,
 					pngquant: false,
 					zopflipng: false,
-					jpegRecompress: false,
-					mozjpeg: false,
-					gifsicle: false,
-					svgo: false
 				},
 				files: {
 					'dist/t.png': 'src/gfx/tiles.png',
@@ -49,13 +45,9 @@ module.exports = function (grunt) {
 			},
 			prod: {
 				options: {
-					optipng: false,
-					pngquant: true,
-					zopflipng: true,
-					jpegRecompress: false,
-					mozjpeg: true,
-					gifsicle: true,
-					svgo: true
+					optipng: ['-o 7', '-zc 7'],
+					pngquant: ['-s1', '--quality=40-60'],
+					zopflipng: ['-m']
 				},
 				files: {
 					'dist/t.png': 'src/gfx/tiles.png',
