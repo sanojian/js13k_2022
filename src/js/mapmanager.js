@@ -36,7 +36,7 @@ class MapManager {
 
 					if (t - 1 == g_game.tileNumbers.floorGrass - 3) {
 						// tree
-						pushers.push(new Pusher(vec2(x + 0.5, h - 1 - y + 0.5), 0.01, 1, 2, 10000));
+						pushers.push(new Pusher(vec2(x + 0.5, h - 1 - y + 0.5), 0.1, 0.9, 1.25, 0));
 					}
 
 					if (t - 1 == g_game.tileNumbers.player) {
