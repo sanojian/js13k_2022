@@ -187,6 +187,8 @@ function updateStateCleared() {
 var ticsToSpawn = 0;
 
 function updateStatePlaying() {
+	updatePushers();
+
 	ticsToSpawn--;
 	if (g_game.enemies.length < ENMIES_MAX_ALIVE && enemiesSpawned < ENEMIES_TO_SPAWN && ticsToSpawn <= 0) {
 		spawnEnemy();
@@ -333,4 +335,6 @@ function gameRender() {
 	}
 
 	drawStats && drawStats();
+
+	// drawPushers();
 }

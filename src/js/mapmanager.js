@@ -34,6 +34,11 @@ class MapManager {
 						g_game.doors[x + "_" + (h - 1 - y)] = { hp: 3 };
 					}
 
+					if (t - 1 == g_game.tileNumbers.floorGrass - 3) {
+						// tree
+						pushers.push(new Pusher(vec2(x + 0.5, h - 1 - y + 0.5), 0.01, 1, 2, 10000));
+					}
+
 					if (t - 1 == g_game.tileNumbers.vampire) {
 						let vamp = new Vampire(vec2(x + 0.75, h - 1 - y + 0.75));
 						g_game.enemies.push(vamp);
