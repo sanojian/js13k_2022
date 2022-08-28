@@ -19,6 +19,10 @@ class Enemy extends Mob {
 	}
 
 	update() {
+		if (rand(0, 100) < 0.1) {
+			pushers.push(new Pusher(this.pos.copy(), 0.1, 0.9, 1.25, rand(2)));
+		}
+
 		// think and look
 		if (this.enemyThinkPause-- <= 0) {
 			this.enemyToTarget = g_game.player.pos.subtract(this.pos);

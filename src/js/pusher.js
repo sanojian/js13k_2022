@@ -10,21 +10,21 @@ class Pusher {
 	 * @param {number} pushStrength
 	 * @param {number} minDist
 	 * @param {number} maxDist
-	 * @param {number} tics Game ticks to live. If 0 or negative, live "for ever".
+	 * @param {number} secs Game ticks to live. If 0 or negative, live "for ever".
 	 */
-	constructor(pos, pushStrength, minDist, maxDist, tics = 0) {
+	constructor(pos, pushStrength, minDist, maxDist, secs = 0) {
 		this.pos = pos;
 		this.minDist = minDist;
 		this.maxDist = maxDist;
 		this.pushStrength = pushStrength;
-		this.tics = tics;
+		this.tics = Math.round(secs * 60);
 
 		ASSERT(this.minDist < this.maxDist);
 		ASSERT(this.pushStrength > 0);
 	}
 
 	update() {
-		this.tics--;
+		this.tics = this.tics - 1;
 
 		for (const e of g_game.enemies) {
 			let toEnemy = e.pos.subtract(this.pos);
@@ -52,18 +52,21 @@ class Pusher {
 	}
 
 	draw() {
-		// drawRect(this.pos, vec2(1), new Color(1, 0, 1, 0.5));
-
-		debugCircle(this.pos, this.minDist, "#f00", 1 / 60, false);
-		debugCircle(this.pos, this.maxDist, "#0f0", 1 / 60, false);
+		debugCircle(this.pos, this.minDist, "#f00", 1 / 60000, false);
+		debugCircle(this.pos, this.maxDist, "#0f0", 1 / 60000, false);
 	}
 }
 
 var pushers = [];
 
 function updatePushers() {
-	for (const p of pushers) {
+	for (let i = 0; i < pushers.length; i++) {
+		let p = pushers[i];
 		p.update();
+		if (p.tics === 0) {
+			pushers.splice(i, 1);
+			//i--;
+		}
 	}
 }
 
