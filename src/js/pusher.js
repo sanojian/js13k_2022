@@ -42,7 +42,7 @@ class Pusher {
 				strenght = this.pushStrength / (dist * dist + 1);
 			}
 
-			console.log("strenght", strenght);
+			// console.log("strenght", strenght);
 
 			let force = toEnemy.normalize(strenght);
 
@@ -52,10 +52,10 @@ class Pusher {
 	}
 
 	draw() {
-		drawRect(this.pos, vec2(1), new Color(1, 0, 1, 0.5));
+		// drawRect(this.pos, vec2(1), new Color(1, 0, 1, 0.5));
 
-		debugCircle(this.pos, this.minDist, "#ff00ff", 1 / 60, false);
-		debugCircle(this.pos, this.maxDist, "#ff00ff", 1 / 60, false);
+		debugCircle(this.pos, this.minDist, "#f00", 1 / 60, false);
+		debugCircle(this.pos, this.maxDist, "#0f0", 1 / 60, false);
 	}
 }
 
