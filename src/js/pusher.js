@@ -53,3 +53,7 @@ function drawPushers() {
 		p.draw();
 	}
 }
+
+function clearPushers() {
+	pushers = [];
+}

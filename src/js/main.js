@@ -37,8 +37,8 @@ function startNextLevel() {
 		ammoPistol = g_game.player.ammoBullets;
 		ammoShotgun = g_game.player.ammoShells;
 		ammoRifle = g_game.player.ammoRifle;
-		currentGun = g_game.player.gun.tileIndex;
-		gunAmmo = g_game.player.gun.ammo;
+		currentGun = g_game.player.gun?.tileIndex;
+		gunAmmo = g_game.player.gun?.ammo;
 	}
 
 	engineObjectsDestroy(); // destroy all objects handled by the engine
@@ -50,6 +50,8 @@ function startNextLevel() {
 	g_game.player = new MobPlayer(vec2(1));
 
 	g_game.enemies = [];
+
+	clearPushers();
 
 	g_game.mapMan = new MapManager();
 
@@ -396,5 +398,5 @@ function gameRender() {
 
 	drawStats && drawStats();
 
-	// drawPushers();
+	drawPushers();
 }
