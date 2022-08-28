@@ -23,18 +23,38 @@ function scaleCameraToScreenSize() {
 function startNewGame() {
 	g_score = 0;
 	g_level = 0;
+	delete g_game.player;
 }
 
 function startNextLevel() {
+	// save gun and ammo
+	let ammoPistol = 0;
+	let ammoShotgun = 0;
+	let ammoRifle = 0;
+	let currentGun;
+	let gunAmmo = 0;
+	if (g_game.player) {
+		ammoPistol = g_game.player.ammoBullets;
+		ammoShotgun = g_game.player.ammoShells;
+		ammoRifle = g_game.player.ammoRifle;
+		currentGun = g_game.player.gun.tileIndex;
+		gunAmmo = g_game.player.gun.ammo;
+	}
+
 	engineObjectsDestroy(); // destroy all objects handled by the engine
 
+	g_levelDef = levelDefs[g_level % levelDefs.length];
+
 	g_game.moss = [];
+
+	g_game.player = new MobPlayer(vec2(1));
+
+	g_game.enemies = [];
 
 	g_game.mapMan = new MapManager();
 
 	g_game.mapMan.render();
 
-	g_game.enemies = [];
 	g_game.splatter = [];
 	g_game.holes = [];
 	g_game.sparks = [];
@@ -43,17 +63,29 @@ function startNextLevel() {
 
 	enemiesSpawned = 0;
 
-	g_game.player = new MobPlayer(vec2(15, 10));
+	g_game.player.pos = g_game.playerSpawn;
 
-	new Pistol(findFreePos(), vec2(1));
-	new ShotGun(findFreePos(), vec2(1));
-	new Rifle(findFreePos(), vec2(1));
+	// give player saved equipment
+	g_game.player.ammoBullets = ammoPistol;
+	g_game.player.ammoShells = ammoShotgun;
+	g_game.player.ammoRifle = ammoRifle;
+	let theGun;
+	switch (currentGun) {
+		case g_game.tileNumbers.pistol:
+			theGun = new Pistol(g_game.player.pos);
+			break;
+		case g_game.tileNumbers.shotgun:
+			theGun = new Shotgun(g_game.player.pos);
+			break;
+		case g_game.tileNumbers.rifle:
+			theGun = new Rifle(g_game.player.pos);
+			break;
+	}
+	if (theGun) {
+		theGun.ammo = gunAmmo;
+	}
 
-	new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxBullets);
-	new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxShells);
-	new AmmoBox(findFreePos(), vec2(1), g_game.tileNumbers.boxRifleAmmo);
-
-	if (g_CHEATMODE) new Pistol(g_game.player.pos, vec2(1));
+	if (g_CHEATMODE) new Pistol(g_game.player.pos);
 
 	g_game.state = STATE_PLAYING;
 
@@ -64,7 +96,7 @@ function findFreePos(minDistToPlayer) {
 	let pos, dist2player, inTileCol;
 
 	do {
-		pos = vec2(rand(mapData[g_level % mapData.length].w), rand(mapData[g_level % mapData.length].h));
+		pos = vec2(rand(mapData[g_levelDef.map].w), rand(mapData[g_levelDef.map].h));
 		dist2player = pos.distance(g_game.player.pos);
 		inTileCol = tileCollisionTest(pos, vec2(1));
 	} while (dist2player < minDistToPlayer || inTileCol);
@@ -81,6 +113,9 @@ function spawnEnemy() {
 	switch (enemyClass) {
 		case "Vampire":
 			enemy = new Vampire(p);
+			break;
+		case "Ghost":
+			enemy = new Ghost(p);
 			break;
 		default:
 			enemy = new Zombie(p);
@@ -114,6 +149,14 @@ function gameUpdate() {
 }
 
 function updateStateClickToStart() {
+	drawTile(
+		cameraPos,
+		vec2(4),
+		g_game.tileNumbers.faceZombie,
+		TILE_SIZE,
+		new Color(1, 1, 1, Math.max(0, 0.2 * Math.sin((frame * PI) / 1000)))
+	);
+
 	for (let i = 0; i < 10; i++) {
 		drawTextScreen(
 			"DEAD AGAIN",
@@ -190,7 +233,15 @@ function updateStatePlaying() {
 	updatePushers();
 
 	ticsToSpawn--;
-	if (g_game.enemies.length < ENMIES_MAX_ALIVE && enemiesSpawned < ENEMIES_TO_SPAWN && ticsToSpawn <= 0) {
+
+	// game gets more difficult as you play
+	g_game.difficulty = Math.floor(g_level / levelDefs.length);
+
+	if (
+		g_game.enemies.length < g_levelDef.enemiesMaxAlive + g_game.difficulty &&
+		enemiesSpawned < g_levelDef.enemiesToSpawn + g_game.difficulty &&
+		ticsToSpawn <= 0
+	) {
 		spawnEnemy();
 		ticsToSpawn = rand(0, 120);
 	}
@@ -201,7 +252,16 @@ function updateStatePlaying() {
 		return;
 	}
 
-	if (enemiesSpawned == ENEMIES_TO_SPAWN && g_game.enemies.length == 0) {
+	if (!g_game.ammoSpawned && g_game.player.gun && g_game.player.getAmmoForGunType(g_game.player.gun.tileIndex) == 0) {
+		// spawn more ammo
+		new AmmoBox(findFreePos(), g_game.player.gun.tileIndex);
+		g_game.ammoSpawned = true;
+	} else if (g_game.player.gun && g_game.player.getAmmoForGunType(g_game.player.gun.tileIndex) != 0) {
+		// allow ammo to spawn again when player is empty
+		g_game.ammoSpawned = false;
+	}
+
+	if (enemiesSpawned == g_levelDef.enemiesToSpawn + g_game.difficulty && g_game.enemies.length == 0) {
 		g_game.state = STATE_CLEARED;
 		g_level++;
 		return;

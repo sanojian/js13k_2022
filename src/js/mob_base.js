@@ -1,7 +1,7 @@
 /** @format */
 class Mob extends EngineObject {
 	constructor(pos, size, tileIndex) {
-		super(pos, size, tileIndex, MOB_SIZE);
+		super(pos, size, tileIndex, vec2(11, 12));
 
 		this.walkCyclePlace = 0;
 		this._walkCycleFrames = 60;
@@ -20,6 +20,10 @@ class Mob extends EngineObject {
 		this.hp = 3;
 
 		this.blood = [];
+
+		// for arms
+		this.pointingAngle = rand(2 * PI);
+		this._myColor = undefined;
 
 		this.enemyToTarget = undefined;
 		this.soundGroan = undefined;
@@ -77,6 +81,7 @@ class Mob extends EngineObject {
 			this.angle,
 			this.mirror
 		);
+		this.postRender();
 	}
 
 	postRender() {
@@ -89,6 +94,7 @@ class Mob extends EngineObject {
 				MINI_TILE_SIZE
 			);
 		}
+		this.drawBlood();
 	}
 
 	drawBlood() {
@@ -127,7 +133,7 @@ class Mob extends EngineObject {
 		this.bloodEmitter = makeParticles(this.pos, rand(1));
 
 		if (this.hp == 0) {
-			let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex);
+			let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex, this.tileSize);
 			corpse.push(velocity);
 			g_game.corpses.push(corpse);
 			this.destroy();
@@ -142,12 +148,28 @@ class Mob extends EngineObject {
 		this.splatter(pos);
 
 		// splatter on mob
-		let wound = { pos: vec2((this.pos.x - pos.x) / 2, (this.pos.y - pos.y) / 2), pattern: [] };
+		let wound = { pos: vec2((pos.x - this.pos.x) / 3, (pos.y - this.pos.y) / 3), pattern: [] };
 		for (let i = 0; i < 4; i++) {
 			wound.pattern.push(Math.random() > 0.5 ? 1 : 0);
 		}
 		this.blood.push(wound);
 
 		return false;
+	}
+
+	drawReachingArms() {
+		const armLenght = 4 / 12;
+
+		let toPlayer = this.enemyToTarget || g_game.player.pos.subtract(this.pos);
+		let toPlayerAngle = toPlayer.angle();
+
+		this.pointingAngle += turnTowards(toPlayerAngle - this.pointingAngle, (2 * PI) / 100); //turnTowards(this.pointingAngle, toPlayerAngle, rand(2 * PI) / 100);
+		let pointing = vec2(1).setAngle(this.pointingAngle, armLenght);
+
+		// draw arms
+		let pos = this.pos.add(vec2(3 / 12, 2.3 / 12 + this.bumpWalk));
+		drawLine(pos, pos.add(pointing), 1.2 / 12, this._myColor, !!glEnable);
+		pos = this.pos.add(vec2(-3 / 12, 2.3 / 12 + this.bumpWalk));
+		drawLine(pos, pos.add(pointing), 1.2 / 12, this._myColor, !!glEnable);
 	}
 }

@@ -4,12 +4,12 @@ class Vampire extends Enemy {
 	constructor(pos) {
 		super(pos, vec2(0.8), g_game.tileNumbers.bat);
 
-		this.hp = 2;
 		this.mass = 2;
 
 		// before transform! ... BAT STATS
 
-		this.enemyMaxSpeed = 1;
+		this.hp = mobDefs.Vampire.hp + g_game.difficulty;
+		this.enemyMaxSpeed = mobDefs.Vampire.maxSpeed + mobDefs.Vampire.maxSpeed * 1.2 * g_game.difficulty;
 		this.enemyToTarget = undefined;
 		this.enemyMoveSpeed = rand(0.3, 0.5);
 		this.enemyJitterForce = 0.5;
@@ -57,7 +57,7 @@ class Vampire extends Enemy {
 					this._walkCycleFrames = 15;
 					makeParticles(this.pos, rand(1), new Color(155 / 255, 173 / 255, 183 / 255));
 					this.tileIndex = g_game.tileNumbers.vampire;
-					this.hp = 5;
+					this.hp += mobDefs.Vampire.addTransformHp + g_game.difficulty;
 					this.mass = 2;
 					this.enemyMoveSpeed = rand(0.3, 0.4);
 					this.enemyThinkMin = 20;

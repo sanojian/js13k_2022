@@ -26,6 +26,17 @@ class MobPlayer extends Mob {
 		]);
 	}
 
+	getAmmoForGunType(gunType) {
+		switch (gunType) {
+			case g_game.tileNumbers.shotgun:
+				return this.ammoShells;
+			case g_game.tileNumbers.rifle:
+				return this.ammoRifle;
+			default:
+				return this.ammoBullets;
+		}
+	}
+
 	update() {
 		const speed = 0.01;
 
@@ -70,7 +81,13 @@ class MobPlayer extends Mob {
 	}
 
 	collideWithObject(o) {
-		if ((o instanceof Vampire && o.transformed) || o instanceof Zombie) {
+		if (
+			(o instanceof Vampire && o.transformed) ||
+			o instanceof Zombie ||
+			o instanceof Ghost ||
+			o instanceof BossZombie ||
+			o instanceof Boulder
+		) {
 			let v = this.pos.subtract(o.pos);
 			let d = v.length();
 			if (d < 0.5) {
@@ -104,21 +121,17 @@ class MobPlayer extends Mob {
 
 		if (this.hp > 0) {
 			// arms
-			let toPos = this.gun
-				? this.gun.pos
-				: vec2(this.pos.x + (this.mirror ? 3 : 6) / 12, this.pos.y + 7 / 16 + this.bumpWalk);
+			let toPos = this.gun ? this.gun.pos : this.pos.add(vec2((this.mirror ? 3 : 6) / 12, 7 / 16 + this.bumpWalk));
 			drawLine(
-				vec2(this.pos.x + 3 / 12, this.pos.y + 2 / 16 + this.bumpWalk),
+				this.pos.add(vec2(3 / 12, 2 / 16 + this.bumpWalk)),
 				toPos,
 				1 / 12,
 				new Color(172 / 255, 50 / 255, 50 / 255),
 				!!glEnable
 			);
-			toPos = this.gun
-				? this.gun.pos
-				: vec2(this.pos.x - (this.mirror ? 6 : 3) / 12, this.pos.y + 7 / 16 + this.bumpWalk);
+			toPos = this.gun ? this.gun.pos : this.pos.add(vec2(-(this.mirror ? 6 : 3) / 12, 7 / 16 + this.bumpWalk));
 			drawLine(
-				vec2(this.pos.x - 3 / 12, this.pos.y + 2 / 16 + this.bumpWalk),
+				this.pos.add(vec2(-3 / 12, 2 / 16 + this.bumpWalk)),
 				toPos,
 				1 / 12,
 				new Color(172 / 255, 50 / 255, 50 / 255),
