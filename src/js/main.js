@@ -149,7 +149,13 @@ function gameUpdate() {
 }
 
 function updateStateClickToStart() {
-	drawTile(cameraPos, vec2(4), g_game.tileNumbers.faceZombie, TILE_SIZE, new Color(1, 1, 1, 0.2));
+	drawTile(
+		cameraPos,
+		vec2(4),
+		g_game.tileNumbers.faceZombie,
+		TILE_SIZE,
+		new Color(1, 1, 1, Math.max(0, 0.2 * Math.sin((frame * PI) / 1000)))
+	);
 
 	for (let i = 0; i < 10; i++) {
 		drawTextScreen(
