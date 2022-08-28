@@ -25,12 +25,12 @@ function gameRenderPost() {
 	let scaleUI = min(1, overlayCanvas.width / (12 * cameraScale));
 
 	let pos = vec2(
-		cameraPos.x + overlayCanvas.width / (cameraScale * 2) - 4 * scaleUI,
+		cameraPos.x - overlayCanvas.width / (cameraScale * 2) + 6 * scaleUI,
 		cameraPos.y - overlayCanvas.height / (cameraScale * 2) + 1 * scaleUI
 	);
 
 	// UI background
-	drawRect(pos, vec2(8, 2).scale(scaleUI), new Color(0.3, 0.3, 0.3, 0.7));
+	drawRect(pos, vec2(8, 2).scale(scaleUI), new Color(0.3, 0.3, 0.3, 0.4));
 
 	// portrait
 	let scaleX = frame % 240 > 200 ? -2 : 2;
@@ -39,7 +39,7 @@ function gameRenderPost() {
 		vec2(scaleX, 2).scale(scaleUI),
 		g_game.tileNumbers.facePlayer,
 		TILE_SIZE,
-		new Color(1, 1, 1, 0.7)
+		new Color(1, 1, 1, 0.4)
 	);
 
 	// total ammo
@@ -81,7 +81,7 @@ function gameRenderPost() {
 	// score
 	drawTextScreen(
 		g_score.toString(),
-		vec2(1 * cameraScale * scaleUI, overlayCanvas.height - 1 * cameraScale * scaleUI),
+		vec2(overlayCanvas.width - 2 * cameraScale * scaleUI, overlayCanvas.height - 1 * cameraScale * scaleUI),
 		100 * scaleUI,
 		g_game.colorBlood
 	);
