@@ -84,20 +84,24 @@ let g_game = {
 
 const mobDefs = {
 	Zombie: {
-		hp: 2,
+		hp: 1,
+		hpGainPerlevel: 1,
 		maxSpeed: 0.5,
 	},
 	BossZombie: {
 		hp: 22,
+		hpGainPerlevel: 5,
 		maxSpeed: 0.5,
 	},
 	Vampire: {
 		hp: 1,
+		hpGainPerlevel: 0.5,
 		maxSpeed: 1,
 		addTransformHp: 5,
 	},
 	Ghost: {
-		hp: 2,
+		hp: 1,
+		hpGainPerlevel: 0.5,
 		maxSpeed: 1,
 	},
 };
@@ -107,16 +111,16 @@ const levelDefs = [
 		// start
 		map: 0,
 		floorTile: g_game.tileNumbers.floorGrass,
-		enemiesToSpawn: 3,
-		enemiesMaxAlive: 1,
+		enemiesToSpawn: 6,
+		enemiesMaxAlive: 2,
 		spawns: [{ type: "Zombie", chance: 1 }],
 	},
 	{
 		// intro to vampires
 		map: 1,
 		floorTile: g_game.tileNumbers.floorStone,
-		enemiesToSpawn: 3,
-		enemiesMaxAlive: 1,
+		enemiesToSpawn: 6,
+		enemiesMaxAlive: 2,
 		spawns: [
 			{ type: "Zombie", chance: 0.5 },
 			{ type: "Vampire", chance: 0.5 },
@@ -126,8 +130,8 @@ const levelDefs = [
 		// intro to ghosts
 		map: 1,
 		floorTile: g_game.tileNumbers.floorStone,
-		enemiesToSpawn: 4,
-		enemiesMaxAlive: 2,
+		enemiesToSpawn: 8,
+		enemiesMaxAlive: 3,
 		spawns: [
 			{ type: "Zombie", chance: 0.5 },
 			{ type: "Ghost", chance: 0.5 },
@@ -137,8 +141,8 @@ const levelDefs = [
 		// final boss
 		map: 2,
 		floorTile: g_game.tileNumbers.floorStone,
-		enemiesToSpawn: 6,
-		enemiesMaxAlive: 3,
+		enemiesToSpawn: 10,
+		enemiesMaxAlive: 4,
 		spawns: [
 			{ type: "Zombie", chance: 0.4 },
 			{ type: "Vampire", chance: 0.3 },
