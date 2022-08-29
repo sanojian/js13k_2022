@@ -15,7 +15,7 @@ class AmmoBox extends EngineObject {
 		}
 		super(pos, vec2(1), tileIndex, TILE_SIZE);
 
-		this._hitbox = vec2(0.4);
+		this._hitbox = vec2(0.5);
 	}
 
 	update() {
