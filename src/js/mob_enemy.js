@@ -20,7 +20,7 @@ class Enemy extends Mob {
 
 	update() {
 		if (rand(0, 100) < 0.1) {
-			pushers.push(new Pusher(this.pos.copy(), 0.1, 0.9, 1.25, rand(2)));
+			pushers.push(new Pusher(this.pos.copy(), 0.1, 0, 1, rand(2, 4)));
 		}
 
 		// think and look

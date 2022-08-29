@@ -36,10 +36,15 @@ class Pusher {
 			let strenght = this.pushStrength;
 
 			if (dist > this.minDist) {
-				dist -= this.minDist;
-				dist /= this.maxDist - this.minDist;
-				dist *= 10;
-				strenght = this.pushStrength / (dist * dist + 1);
+				let p = 1 - percent(dist, this.minDist, this.maxDist);
+				//strenght *= p; // lineary falloff
+
+				strenght *= (1 + Math.cos(p * PI)) / 2; // sigmoidal falloff
+
+				// dist -= this.minDist;
+				// dist /= this.maxDist - this.minDist;
+				// dist *= 10;
+				// strenght = this.pushStrength / (dist * dist + 1);
 			}
 
 			// console.log("strenght", strenght);
@@ -65,7 +70,7 @@ function updatePushers() {
 		p.update();
 		if (p.tics === 0) {
 			pushers.splice(i, 1);
-			//i--;
+			i--;
 		}
 	}
 }
