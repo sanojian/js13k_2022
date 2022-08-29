@@ -299,7 +299,7 @@ function textsDraw() {
 		for (let i = 0; i < 10; i++) {
 			drawTextScreen(
 				textTitle,
-				vec2((rand(0.99, 1.01) * mainCanvas.width) / 2, (rand(0.99, 1.01) * mainCanvas.height) / 3),
+				vec2((rand(0.99, 1.01) * mainCanvas.width) / 2, (rand(0.98, 1.02) * mainCanvas.height) / 3),
 				mainCanvas.width / 10,
 				g_game.colorBlack.lerp(g_game.colorBlood, i / 10)
 			);
@@ -310,16 +310,16 @@ function textsDraw() {
 		drawTextScreen(
 			textMiddle,
 			vec2(mainCanvas.width / 2, mainCanvas.height / 2),
-			mainCanvas.width / 30,
+			mainCanvas.width / 20,
 			g_game.colorBlood
 		);
 	}
 
 	if (textBottom) {
-		let amt = 0.5 + Math.sin(frame / 15) / 2;
+		let amt = 0.5 + Math.sin(frame / 10) / 2;
 		let col = new Color((amt * 172) / 255, (amt * 50) / 255, (amt * 50) / 255);
 
-		drawTextScreen(textBottom, vec2(mainCanvas.width / 2, (3 * mainCanvas.height) / 4), mainCanvas.width / 20, col);
+		drawTextScreen(textBottom, vec2(mainCanvas.width / 2, (4 * mainCanvas.height) / 5), mainCanvas.width / 30, col);
 	}
 }
 

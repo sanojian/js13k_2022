@@ -40,31 +40,30 @@ class MobPlayer extends Mob {
 	update() {
 		const speed = 0.01;
 
+		super.update(); // update object physics and position
+
 		if (this.hp > 0) {
 			let dx = 0;
 			let dy = 0;
 
-			//if (isUsingGamepad) {
-			//	dx = gamepadStick(0).x * this._speed;
-			//	dy = gamepadStick(0).y * this._speed;
-			//} else {
-			if (keyIsDown(38)) {
-				// key w
-				dy = speed;
+			if (g_game.state == STATE_PLAYING) {
+				if (keyIsDown(38)) {
+					// key w
+					dy = speed;
+				}
+				if (keyIsDown(37)) {
+					// key a
+					dx = -speed;
+				}
+				if (keyIsDown(40)) {
+					// key s
+					dy = -speed;
+				}
+				if (keyIsDown(39)) {
+					// key d
+					dx = speed;
+				}
 			}
-			if (keyIsDown(37)) {
-				// key a
-				dx = -speed;
-			}
-			if (keyIsDown(40)) {
-				// key s
-				dy = -speed;
-			}
-			if (keyIsDown(39)) {
-				// key d
-				dx = speed;
-			}
-			//}
 
 			this.applyForce(new Vector2(dx, dy));
 
@@ -76,8 +75,6 @@ class MobPlayer extends Mob {
 			}
 			this.applyDrag(1.7);
 		}
-
-		super.update(); // update object physics and position
 	}
 
 	collideWithObject(o) {
