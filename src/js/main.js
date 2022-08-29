@@ -87,7 +87,7 @@ function startNextLevel() {
 		theGun.ammo = gunAmmo;
 	}
 
-	g_game.state = STATE_PLAYING;
+	changeState(STATE_PLAYING);
 
 	musicStart();
 }
@@ -163,74 +163,53 @@ function updateStateClickToStart() {
 		new Color(1, 1, 1, Math.max(0, 0.2 * Math.sin((frame * PI) / 1000)))
 	);
 
-	for (let i = 0; i < 10; i++) {
-		drawTextScreen(
-			"DEAD AGAIN",
-			vec2((rand(0.99, 1.01) * mainCanvas.width) / 2, (rand(0.99, 1.01) * mainCanvas.height) / 3),
-			mainCanvas.width / 10,
-			g_game.colorBlack.lerp(g_game.colorBlood, i / 10)
-		);
-	}
+	textTitle = "DEAD AGAIN";
+
+	textMiddle = "Move: WASD\nAim & shoot: mouse\nReload: space";
 
 	if (g_score) {
-		drawTextScreen(
-			"Score: " + g_score,
-			vec2(mainCanvas.width / 2, mainCanvas.height / 2 - cameraScale),
-			mainCanvas.width / 20,
-			g_game.colorBlood
-		);
-		drawTextScreen(
-			"  Top: " + localStorage.daScore,
-			vec2(mainCanvas.width / 2, mainCanvas.height / 2 + cameraScale),
-			mainCanvas.width / 20,
-			g_game.colorBlood
-		);
+		textMiddle = "Score: " + g_score + "  Top: " + localStorage.daScore;
 	}
 
-	let amt = 0.5 + Math.sin(frame / 15) / 2;
-	let col = new Color((amt * 172) / 255, (amt * 50) / 255, (amt * 50) / 255);
-
-	drawTextScreen("Click to start", vec2(mainCanvas.width / 2, (3 * mainCanvas.height) / 4), mainCanvas.width / 20, col);
+	textBottom = "Click to start";
 
 	if (mouseWasReleased(0)) {
 		startNewGame();
 		startNextLevel();
+		textsClear();
 	}
 }
 
-var deadTimer;
 function updateStateDead() {
-	drawTextScreen("YOU DIED !", vec2(mainCanvas.width / 2, mainCanvas.height / 2), 100, g_game.colorBlood);
-	if (!deadTimer) {
-		deadTimer = setTimeout(() => {
-			deadTimer = undefined;
-			g_game.state = STATE_CLICK_TO_START;
-		}, 2000);
+	textMiddle = "YOU DIED";
+
+	if (getMsSinceStateChange() > 2000) {
+		changeState(STATE_CLICK_TO_START);
 	}
 }
 
-var clearedEnterTime;
 function updateStateCleared() {
-	drawTextScreen("Level cleared !", vec2(mainCanvas.width / 2, mainCanvas.height / 2), 100, g_game.colorBlood);
+	textMiddle = "Level cleared";
 
-	if (!clearedEnterTime) {
-		clearedEnterTime = new Date().getTime();
-	}
-
-	if (new Date().getTime() - clearedEnterTime > 2000) {
-		drawTextScreen(
-			"Click to continue",
-			vec2(mainCanvas.width / 2, (3 * mainCanvas.height) / 4),
-			mainCanvas.width / 20,
-			g_game.colorBlood
-		);
+	if (getMsSinceStateChange() > 2000) {
+		textBottom = "Click to continue";
 
 		if (mouseWasPressed(0)) {
-			clearedEnterTime = undefined;
 			startNextLevel();
-			g_game.state = STATE_PLAYING;
+			changeState(STATE_PLAYING);
 		}
 	}
+}
+
+var stateChangedTimer;
+function changeState(newState) {
+	textsClear();
+	stateChangedTimer = new Date().getTime();
+	g_game.state = newState;
+}
+
+function getMsSinceStateChange() {
+	return new Date().getTime() - stateChangedTimer;
 }
 
 var ticsToSpawn = 0;
@@ -303,9 +282,45 @@ function gameUpdatePost() {
 	// setup camera and prepare for render
 }
 
-function drawStats() {
-	let l = 1;
-	if (g_CHEATMODE) drawTextScreen("CHEAT MODE ON ", vec2(100, 25 * l++), 20, new Color(1, 1, 1), 0, undefined, "left");
+var textTitle;
+var textMiddle;
+var textBottom;
+
+function textsClear() {
+	textTitle = undefined;
+	textMiddle = undefined;
+	textBottom = undefined;
+}
+
+function textsDraw() {
+	if (g_CHEATMODE) drawTextScreen("CHEAT MODE ON ", vec2(100, 25), 20, new Color(1, 1, 1), 0, undefined, "left");
+
+	if (textTitle) {
+		for (let i = 0; i < 10; i++) {
+			drawTextScreen(
+				textTitle,
+				vec2((rand(0.99, 1.01) * mainCanvas.width) / 2, (rand(0.99, 1.01) * mainCanvas.height) / 3),
+				mainCanvas.width / 10,
+				g_game.colorBlack.lerp(g_game.colorBlood, i / 10)
+			);
+		}
+	}
+
+	if (textMiddle) {
+		drawTextScreen(
+			textMiddle,
+			vec2(mainCanvas.width / 2, mainCanvas.height / 2),
+			mainCanvas.width / 30,
+			g_game.colorBlood
+		);
+	}
+
+	if (textBottom) {
+		let amt = 0.5 + Math.sin(frame / 15) / 2;
+		let col = new Color((amt * 172) / 255, (amt * 50) / 255, (amt * 50) / 255);
+
+		drawTextScreen(textBottom, vec2(mainCanvas.width / 2, (3 * mainCanvas.height) / 4), mainCanvas.width / 20, col);
+	}
 }
 
 function gameRender() {
@@ -369,7 +384,7 @@ function gameRender() {
 		}
 	}
 
-	drawStats && drawStats();
+	textsDraw();
 
 	drawPushers();
 }
