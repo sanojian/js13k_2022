@@ -21,6 +21,7 @@ function scaleCameraToScreenSize() {
 }
 
 function startNewGame() {
+	fontDefault = "Courier New";
 	g_score = 0;
 	g_level = 0;
 	delete g_game.player;
@@ -188,7 +189,7 @@ function updateStateDead() {
 }
 
 function updateStateCleared() {
-	textMiddle = "Level cleared";
+	textMiddle = "Level " + g_level + " cleared";
 
 	if (getMsSinceStateChange() > 2000) {
 		textBottom = "Click to continue";
