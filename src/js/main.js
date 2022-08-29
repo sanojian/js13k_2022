@@ -176,7 +176,6 @@ function updateStateClickToStart() {
 	if (mouseWasReleased(0)) {
 		startNewGame();
 		startNextLevel();
-		textsClear();
 	}
 }
 
