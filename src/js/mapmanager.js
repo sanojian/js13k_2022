@@ -28,52 +28,52 @@ class MapManager {
 
 				let t = myMap[x + y * w];
 				if (t) {
-					if (t - 1 == g_game.tileNumbers.door) {
-						g_game.doors[x + "_" + (h - 1 - y)] = { hp: 3 };
-					}
+					t -= 1;
 
 					let offsetVec = vec2(x + 0.5, h - 1 - y + 0.5);
 
-					if (t - 1 == g_game.tileNumbers.floorGrass - 3) {
-						// tree
-						pushers.push(new Pusher(vec2(x + 0.5, h - 1 - y + 0.5), 0.01, 0.5, 1, 0));
-					}
-
-					if (t - 1 == g_game.tileNumbers.player) {
+					if (t == g_game.tileNumbers.player) {
 						g_game.playerSpawn = offsetVec;
 						continue;
-					} else if (t - 1 == g_game.tileNumbers.pistol) {
+					} else if (t == g_game.tileNumbers.pistol) {
 						new Pistol(offsetVec);
 						continue;
-					} else if (t - 1 == g_game.tileNumbers.shotgun) {
+					} else if (t == g_game.tileNumbers.shotgun) {
 						new Shotgun(offsetVec);
 						continue;
-					} else if (t - 1 == g_game.tileNumbers.rifle) {
+					} else if (t == g_game.tileNumbers.rifle) {
 						new Rifle(offsetVec);
 						continue;
-					} else if (t - 1 == g_game.tileNumbers.vampire) {
+					} else if (t == g_game.tileNumbers.vampire) {
 						let vamp = new Vampire(offsetVec);
 						g_game.enemies.push(vamp);
 						continue;
-					} else if (t - 1 == g_game.tileNumbers.npc) {
+					} else if (t == g_game.tileNumbers.npc) {
 						new Npc(offsetVec, vec2(1));
 						continue;
-					} else if (t - 1 == g_game.tileNumbers.beefyZombie) {
+					} else if (t == g_game.tileNumbers.beefyZombie) {
 						g_game.enemies.push(new BossZombie(offsetVec));
 						continue;
-					} else if (t - 1 == g_game.tileNumbers.boxBullets) {
+					} else if (t == g_game.tileNumbers.boxBullets) {
 						new AmmoBox(offsetVec, g_game.tileNumbers.pistol);
 						continue;
-					} else if (t - 1 == g_game.tileNumbers.boxShells) {
+					} else if (t == g_game.tileNumbers.boxShells) {
 						new AmmoBox(offsetVec, g_game.tileNumbers.shotgun);
 						continue;
-					} else if (t - 1 == g_game.tileNumbers.boxRifleAmmo) {
+					} else if (t == g_game.tileNumbers.boxRifleAmmo) {
 						new AmmoBox(offsetVec, g_game.tileNumbers.rifle);
 						continue;
 					}
 
-					setTileCollisionData(vec2(x, h - 1 - y), t - 1);
-					let tld = new TileLayerData(t - 1, 0, rand(0, 1) < 0.5, new Color(rand(0.8, 1), rand(0.8, 1), rand(0.8, 1)));
+					if (t == g_game.tileNumbers.door) {
+						g_game.doors[x + "_" + (h - 1 - y)] = { hp: 3 };
+					} else {
+						// pushers on all collision stuff except doors
+						pushers.push(new Pusher(vec2(x + 0.5, h - 1 - y + 0.5), 0.01, 0.5, 1, 0));
+					}
+
+					setTileCollisionData(vec2(x, h - 1 - y), t);
+					let tld = new TileLayerData(t, 0, rand(0, 1) < 0.5, new Color(rand(0.8, 1), rand(0.8, 1), rand(0.8, 1)));
 					g_game.tileLayer.setData(vec2(x, h - 1 - y), tld);
 
 					// moss

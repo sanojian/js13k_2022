@@ -71,6 +71,7 @@ let g_game = {
 		floorStone: 37,
 		floorDesert: 38,
 		door: 43,
+		tree: 42,
 		floorGrass: 45,
 	},
 	miniTileNumbers: {

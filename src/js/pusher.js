@@ -18,9 +18,6 @@ class Pusher {
 		this.maxDist = maxDist;
 		this.pushStrength = pushStrength;
 		this.tics = Math.round(secs * 60);
-
-		ASSERT(this.minDist < this.maxDist);
-		ASSERT(this.pushStrength > 0);
 	}
 
 	update() {
