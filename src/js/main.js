@@ -87,8 +87,6 @@ function startNextLevel() {
 		theGun.ammo = gunAmmo;
 	}
 
-	if (g_CHEATMODE) new Pistol(g_game.player.pos);
-
 	g_game.state = STATE_PLAYING;
 
 	musicStart();
@@ -126,10 +124,16 @@ function spawnEnemy() {
 	enemiesSpawned++;
 }
 
-function gameUpdate() {
-	if (keyIsDown(18) && keyWasReleased(67)) {
-		g_CHEATMODE = 1 - g_CHEATMODE;
+function handleDebugKeys() {
+	if (keyIsDown(18)) {
+		if (keyWasReleased(67)) g_CHEATMODE = 1 - g_CHEATMODE; // c
+
+		if (keyWasReleased(80)) pushersDoDraw = !pushersDoDraw; // p
 	}
+}
+
+function gameUpdate() {
+	debug && handleDebugKeys();
 
 	switch (g_game.state) {
 		case STATE_CLICK_TO_START:
@@ -301,37 +305,6 @@ function gameUpdatePost() {
 
 function drawStats() {
 	let l = 1;
-	// drawTextScreen(
-	// 	"enemies in list " + g_game.enemies.length,
-	// 	vec2(100, 25 * l++),
-	// 	20,
-	// 	new Color(1, 1, 1),
-	// 	0,
-	// 	undefined,
-	// 	"left"
-	// );
-
-	// let e = 0;
-	// for (const o of engineObjects) {
-	// 	if (o instanceof Enemy) e++;
-	// }
-
-	// drawTextScreen("enemies in engine " + e, vec2(100, 25 * l++), 20, new Color(1, 1, 1), 0, undefined, "left");
-
-	// if (e != g_game.enemies.length) {
-	// 	debugger;
-	// }
-
-	// drawTextScreen(
-	// 	"enemies spawned " + enemiesSpawned,
-	// 	vec2(100, 25 * l++),
-	// 	20,
-	// 	new Color(1, 1, 1),
-	// 	0,
-	// 	undefined,
-	// 	"left"
-	// );
-
 	if (g_CHEATMODE) drawTextScreen("CHEAT MODE ON ", vec2(100, 25 * l++), 20, new Color(1, 1, 1), 0, undefined, "left");
 }
 

@@ -26,10 +26,12 @@ class Pusher {
 	update() {
 		this.tics = this.tics - 1;
 
-		for (const e of g_game.enemies) {
-			let toEnemy = e.pos.subtract(this.pos);
+		//g_game.enemies.push(g_game.player);
 
-			let dist = toEnemy.length();
+		for (const e of g_game.enemies) {
+			let toMob = e.pos.subtract(this.pos);
+
+			let dist = toMob.length();
 
 			if (dist > this.maxDist) continue;
 
@@ -38,22 +40,18 @@ class Pusher {
 			if (dist > this.minDist) {
 				let p = 1 - percent(dist, this.minDist, this.maxDist);
 				//strenght *= p; // lineary falloff
-
 				strenght *= (1 + Math.cos(p * PI)) / 2; // sigmoidal falloff
-
-				// dist -= this.minDist;
-				// dist /= this.maxDist - this.minDist;
-				// dist *= 10;
-				// strenght = this.pushStrength / (dist * dist + 1);
 			}
 
 			// console.log("strenght", strenght);
 
-			let force = toEnemy.normalize(strenght);
+			let force = toMob.normalize(rand(strenght));
 
 			e.applyForce(force);
 			// debugLine(e.pos, e.pos + force.scale(100), "#ff00ff", 10, 1000);
 		}
+
+		//g_game.enemies.pop();
 	}
 
 	draw() {
@@ -63,6 +61,8 @@ class Pusher {
 }
 
 var pushers = [];
+
+var pushersDoDraw = false;
 
 function updatePushers() {
 	for (let i = 0; i < pushers.length; i++) {
@@ -76,6 +76,8 @@ function updatePushers() {
 }
 
 function drawPushers() {
+	if (!pushersDoDraw) return;
+
 	for (const p of pushers) {
 		p.draw();
 	}

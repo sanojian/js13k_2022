@@ -12,6 +12,7 @@ class Enemy extends Mob {
 		this.enemyDrag = 1.5;
 		this.enemyMaxSpeed = 0.5;
 		this.enemyToTarget = undefined;
+		this.lastTilePos = undefined;
 
 		this.soundGroan = new Sound([
 			1, 0.5, 329.6276, 0.16, 0.62, 0.33, 0, 0.5, 0, 0, -50, 0.14, 0.13, 2.5, 28, 0, 0, 0.9, 0.07, 0.12,
@@ -19,10 +20,6 @@ class Enemy extends Mob {
 	}
 
 	update() {
-		if (rand(0, 100) < 0.1) {
-			pushers.push(new Pusher(this.pos.copy(), 0.1, 0, 1, rand(2, 4)));
-		}
-
 		// think and look
 		if (this.enemyThinkPause-- <= 0) {
 			this.enemyToTarget = g_game.player.pos.subtract(this.pos);
@@ -45,5 +42,18 @@ class Enemy extends Mob {
 		this.velocity = this.velocity.clampLength(this.enemyMaxSpeed);
 
 		super.update();
+	}
+
+	collideWithTile(tileData, tilePos) {
+		if (this.lastTilePos && tilePos.distanceSquared(this.lastTilePos) < 0.01) {
+			if (rand(0, 100) < 10) {
+				let colPos = tilePos.add(vec2(0.5));
+				colPos = colPos.lerp(this.pos, 0.5);
+				pushers.push(new Pusher(colPos, 0.01, 0, 1, rand(1, 2)));
+			}
+		}
+
+		this.lastTilePos = tilePos.copy();
+		return true;
 	}
 }
