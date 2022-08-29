@@ -11,6 +11,8 @@ const TILES_PER_SCREEN = 15;
 
 fontDefault = "Courier";
 
+// "Courier";
+// "American Typewriter";
 // "Courier New";
 // "Luminari"
 
