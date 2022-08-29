@@ -165,7 +165,7 @@ function updateStateClickToStart() {
 
 	textTitle = "DEAD AGAIN";
 
-	textMiddle = "Move: WASD\nAim & shoot: mouse\nReload: space";
+	textMiddle = "WASD + mouse";
 
 	if (g_score) {
 		textMiddle = "Score: " + g_score + "  Top: " + localStorage.daScore;
@@ -200,15 +200,15 @@ function updateStateCleared() {
 	}
 }
 
-var stateChangedTimer;
+var stateChangedTime = new Date().getTime();
 function changeState(newState) {
 	textsClear();
-	stateChangedTimer = new Date().getTime();
+	stateChangedTime = new Date().getTime();
 	g_game.state = newState;
 }
 
 function getMsSinceStateChange() {
-	return new Date().getTime() - stateChangedTimer;
+	return new Date().getTime() - stateChangedTime;
 }
 
 var ticsToSpawn = 0;
@@ -231,7 +231,7 @@ function updateStatePlaying() {
 	}
 
 	if (g_game.player.hp <= 0) {
-		g_game.state = STATE_DEAD;
+		changeState(STATE_DEAD);
 		localStorage.daScore = localStorage.daScore ? Math.max(g_score, localStorage.daScore) : g_score;
 		return;
 	}
@@ -246,7 +246,7 @@ function updateStatePlaying() {
 	}
 
 	if (enemiesSpawned == g_levelDef.enemiesToSpawn + g_game.difficulty && g_game.enemies.length == 0) {
-		g_game.state = STATE_CLEARED;
+		changeState(STATE_CLEARED);
 		g_level++;
 		return;
 	}
@@ -272,7 +272,7 @@ function updateStatePlaying() {
 	if (g_CHEATMODE && mouseWasPressed(1)) {
 		g_level++;
 		startNextLevel();
-		g_game.state = STATE_PLAYING;
+		changeState(STATE_PLAYING);
 	}
 }
 
