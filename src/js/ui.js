@@ -39,7 +39,7 @@ function gameRenderPost() {
 		vec2(scaleX, 2).scale(scaleUI),
 		g_game.tileNumbers.facePlayer,
 		TILE_SIZE,
-		new Color(1, 1, 1, 0.4)
+		new Color(1, 1, 1, 0.7)
 	);
 
 	// total ammo
