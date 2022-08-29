@@ -21,7 +21,6 @@ function scaleCameraToScreenSize() {
 }
 
 function startNewGame() {
-	fontDefault = "Courier New";
 	g_score = 0;
 	g_level = 0;
 	delete g_game.player;

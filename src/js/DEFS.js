@@ -9,6 +9,11 @@ const TILE_SIZE = vec2(12);
 const MINI_TILE_SIZE = vec2(4);
 const TILES_PER_SCREEN = 15;
 
+fontDefault = "Courier";
+
+// "Courier New";
+// "Luminari"
+
 var g_CHEATMODE = 0;
 let g_score = 0;
 let g_level = 0;
