@@ -43,6 +43,7 @@ let g_game = {
 	colorWhite: new Color(1, 1, 1),
 	colorBlood: new Color(172 / 255, 50 / 255, 50 / 255),
 	colorBullet: new Color(251 / 255, 242 / 255, 54 / 255),
+	colorScoreText: new Color(106 / 255, 190 / 255, 48 / 255),
 	colorBulletCasing: new Color(138 / 255, 111 / 255, 48 / 255, 0.8),
 	colorShell: new Color(217 / 255, 87 / 255, 99 / 255),
 	colorShellCasing: new Color(172 / 255, 50 / 255, 50 / 255, 0.8),

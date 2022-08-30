@@ -252,7 +252,7 @@ function updateStatePlaying() {
 	}
 
 	// camera goes halfway between player and mouse
-	cameraPos = cameraPos.lerp(g_game.player.pos.add(mousePos.subtract(g_game.player.pos).scale(0.5)), 0.05);
+	cameraPos = cameraPos.lerp(g_game.player.pos.add(mousePos.subtract(g_game.player.pos).scale(0.5)), 0.03);
 
 	fx.updateScreenShake();
 
