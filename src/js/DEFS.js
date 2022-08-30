@@ -145,7 +145,7 @@ const levelDefs = [
 		// final boss
 		map: 2,
 		floorTile: g_game.tileNumbers.floorStone,
-		enemiesToSpawn: 16,
+		enemiesToSpawn: Infinity,
 		enemiesMaxAlive: 5,
 		spawns: [
 			{ type: "Zombie", chance: 0.4 },
