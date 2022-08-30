@@ -62,7 +62,6 @@ let g_game = {
 		bat: 3,
 		ghost: 4,
 		beefyZombie: 5,
-		npc: 6,
 		facePlayer: 7,
 		faceZombie: 8,
 		faceVampire: 10,

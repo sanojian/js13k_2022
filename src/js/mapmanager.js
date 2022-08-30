@@ -44,13 +44,6 @@ class MapManager {
 					} else if (t == g_game.tileNumbers.rifle) {
 						new Rifle(offsetVec);
 						continue;
-					} else if (t == g_game.tileNumbers.vampire) {
-						let vamp = new Vampire(offsetVec);
-						g_game.enemies.push(vamp);
-						continue;
-					} else if (t == g_game.tileNumbers.npc) {
-						new Npc(offsetVec, vec2(1));
-						continue;
 					} else if (t == g_game.tileNumbers.beefyZombie) {
 						g_game.enemies.push(new BossZombie(offsetVec));
 						continue;
