@@ -40,7 +40,7 @@ class Gun extends EngineObject {
 			this.pos.y = this.owner.pos.y + this._distance * Math.sin(angle);
 
 			this.angle = -angle;
-			this.size.y = Math.abs(this.angle) > Math.PI / 2 ? -this._mysize : this._mysize;
+			this.size.y = abs(this.angle) > PI / 2 ? -this._mysize : this._mysize;
 
 			if (mouseWasPressed(0) && g_game.state == STATE_PLAYING) {
 				musicResume();
@@ -54,21 +54,21 @@ class Gun extends EngineObject {
 					switch (this.tileIndex) {
 						case g_game.tileNumbers.pistol:
 							this.noExtraAmmo = g_game.player.ammoBullets <= 0;
-							g_game.player.ammoBullets = Math.max(0, g_game.player.ammoBullets - 1);
+							g_game.player.ammoBullets = max(0, g_game.player.ammoBullets - 1);
 							break;
 						case g_game.tileNumbers.rifle:
 							this.noExtraAmmo = g_game.player.ammoRifle <= 0;
-							g_game.player.ammoRifle = Math.max(0, g_game.player.ammoRifle - 1);
+							g_game.player.ammoRifle = max(0, g_game.player.ammoRifle - 1);
 							break;
 						case g_game.tileNumbers.shotgun:
 							this.noExtraAmmo = g_game.player.ammoShells <= 0;
-							g_game.player.ammoShells = Math.max(0, g_game.player.ammoShells - 1);
+							g_game.player.ammoShells = max(0, g_game.player.ammoShells - 1);
 							break;
 					}
 
 					if (!this.noExtraAmmo) {
 						this.soundReload.play();
-						this.ammo = Math.min(this._maxAmmo, this.ammo + 1);
+						this.ammo = min(this._maxAmmo, this.ammo + 1);
 						this.reloadTimer.set(this.reloadTimePerBullet);
 					}
 					if (this.ammo == this._maxAmmo || this.noExtraAmmo) {

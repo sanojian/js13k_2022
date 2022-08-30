@@ -8,7 +8,7 @@ class Corpse extends EngineObject {
 
 		this.timeAlive = 0;
 		this.fallDirection = 1;
-		this.finalAngle = Math.PI;
+		this.finalAngle = PI;
 		this.setCollision(false, false, true);
 
 		var radius = 2;
@@ -19,7 +19,7 @@ class Corpse extends EngineObject {
 	update() {
 		this.timeAlive++;
 
-		this.angle = (this.fallDirection * Math.min(1, this.timeAlive / this._animLifetime) * this.finalAngle) / 2;
+		this.angle = (this.fallDirection * min(1, this.timeAlive / this._animLifetime) * this.finalAngle) / 2;
 
 		this.velocity.x = this.velocity.x * 0.9;
 		this.velocity.y = this.velocity.y * 0.9;
@@ -38,6 +38,6 @@ class Corpse extends EngineObject {
 		this.velocity.x = velocity.x / 3;
 		this.velocity.y = velocity.y / 3;
 		this.fallDirection = velocity.x > 0 ? 1 : -1;
-		this.finalAngle = -Math.PI / 2 + Math.random() * Math.PI + Math.PI;
+		this.finalAngle = -PI / 2 + rand(0, PI) + PI;
 	}
 }

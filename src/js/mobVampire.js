@@ -46,7 +46,7 @@ class Vampire extends Enemy {
 	update() {
 		if (!this.transformed) {
 			// flap wings
-			this.angle = this.walkCyclePlace > this._walkCycleFrames / 2 ? 0 : Math.PI;
+			this.angle = this.walkCyclePlace > this._walkCycleFrames / 2 ? 0 : PI;
 
 			if (this.transforming) {
 				if (this.transformTimer.elapsed()) {

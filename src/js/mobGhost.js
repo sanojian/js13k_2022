@@ -24,7 +24,7 @@ class Ghost extends Enemy {
 		}
 
 		// float
-		this.counter += Math.PI / 64;
+		this.counter += PI / 64;
 		this.bumpWalk = (Math.sin(this.counter) * 5) / 12;
 
 		super.update();

@@ -165,8 +165,6 @@ function updateStateClickToStart() {
 
 	textTitle = "DEAD AGAIN";
 
-	textMiddle = "WASD + mouse";
-
 	if (g_score) {
 		textMiddle = "Score: " + g_score + "  Top: " + localStorage.daScore;
 	}

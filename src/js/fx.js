@@ -5,7 +5,7 @@ const fx = {
 		for (let i = 0; i < 4; i++) {
 			g_game.sparks.push({
 				pos: pos.copy(),
-				angle: rand(0, Math.PI * 2),
+				angle: rand(0, PI * 2),
 				life: 6,
 			});
 		}

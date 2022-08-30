@@ -75,7 +75,6 @@ let g_game = {
 		rifle: 28,
 		rifleAmmoIcon: 30,
 		floorStone: 37,
-		floorDesert: 38,
 		door: 43,
 		tree: 42,
 		floorGrass: 45,

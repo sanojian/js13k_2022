@@ -67,9 +67,9 @@ function angleNormalize(angleRad) {
 function turnTowards(toRad, maxTurnRad) {
 	toRad = angleNormalize(toRad);
 
-	if (Math.abs(toRad) < maxTurnRad) return toRad;
+	if (abs(toRad) < maxTurnRad) return toRad;
 
-	if (toRad > 0 && Math.abs(toRad) < PI) {
+	if (toRad > 0 && abs(toRad) < PI) {
 		return maxTurnRad;
 	} else {
 		return -maxTurnRad;
