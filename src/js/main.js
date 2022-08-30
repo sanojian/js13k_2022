@@ -89,7 +89,6 @@ function startNextLevel() {
 	}
 
 	changeState(STATE_PLAYING);
-
 	musicStart();
 }
 
@@ -214,6 +213,8 @@ var ticsToSpawn = 0;
 
 function updateStatePlaying() {
 	updatePushers();
+
+	textMiddle = getMsSinceStateChange() > 2000 ? "" : "Level " + (g_level+1);
 
 	ticsToSpawn--;
 
