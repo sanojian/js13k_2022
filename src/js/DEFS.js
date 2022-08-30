@@ -26,8 +26,6 @@ let g_soundPickup = new Sound([1, 0.1, 200, 0, 0, 0, 4, 0, 0, 1.2, 50, 0.57, 0, 
 let g_screenShake = vec2(0);
 
 let g_game = {
-	CAMERA_LAG: 1,
-
 	difficulty: 0,
 
 	player: null,

@@ -66,6 +66,7 @@ function startNextLevel() {
 	enemiesSpawned = 0;
 
 	g_game.player.pos = g_game.playerSpawn;
+	cameraPos = g_game.playerSpawn.copy();
 
 	// give player saved equipment
 	g_game.player.ammoBullets = ammoPistol;
@@ -249,19 +250,8 @@ function updateStatePlaying() {
 		return;
 	}
 
-	// camera follow player
-	if (g_game.player.pos.x > cameraPos.x + g_game.CAMERA_LAG) {
-		cameraPos.x = g_game.player.pos.x - g_game.CAMERA_LAG;
-	}
-	if (g_game.player.pos.x < cameraPos.x - g_game.CAMERA_LAG) {
-		cameraPos.x = g_game.player.pos.x + g_game.CAMERA_LAG;
-	}
-	if (g_game.player.pos.y > cameraPos.y + g_game.CAMERA_LAG) {
-		cameraPos.y = g_game.player.pos.y - g_game.CAMERA_LAG;
-	}
-	if (g_game.player.pos.y < cameraPos.y - g_game.CAMERA_LAG) {
-		cameraPos.y = g_game.player.pos.y + g_game.CAMERA_LAG;
-	}
+	// camera goes halfway between player and mouse
+	cameraPos = cameraPos.lerp(g_game.player.pos.add(mousePos.subtract(g_game.player.pos).scale(0.5)), 0.05);
 
 	fx.updateScreenShake();
 
