@@ -336,8 +336,7 @@ function gameRender() {
 		let shell = g_game.shells[i];
 		drawRect(shell.pos, vec2(1 / 12, 2 / 12), shell.color, shell.angle);
 		if (shell.life > 0) {
-			shell.pos.x += shell.velocity.x;
-			shell.pos.y += shell.velocity.y;
+			shell.pos = shell.pos.add(shell.velocity);
 			shell.velocity.y -= 1 / 144;
 			shell.angle += shell.angularVelocity;
 			shell.life--;
