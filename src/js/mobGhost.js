@@ -14,16 +14,21 @@ class Ghost extends Enemy {
 
 		this.counter = rand(0, Math.PI * 2);
 
-		this.setCollision(false, false, false);
+		this.transformCount = rand(30, 120);
+		this.solid = false;
 	}
 
 	update() {
+		this.transformCount--;
+
 		// transform
-		if (rand(0, 1) < 0.01) {
-			let solid = rand(0, 1) > 0.5;
-			this.setCollision(solid, solid, solid);
-			this.color = new Color(1, 1, 1, solid ? 1 : 0.3);
+		if (this.transformCount < 0) {
+			this.transformCount = rand(30, 120);
+			this.solid = !this.solid;
+			this.color = new Color(1, 1, 1, this.solid ? 1 : 0.3);
 		}
+
+		this.setCollision(this.solid, this.solid, this.solid);
 
 		// float
 		this.counter += PI / 64;
