@@ -38,13 +38,13 @@ class Corpse extends EngineObject {
 			drawText(
 				"+" + this.scoreObj.score,
 				this.pos.add(vec2(0, this.scoreObj.y)),
-				0.4,
+				0.5,
 				g_game.colorScoreText,
 				1 / 6,
 				undefined,
 				"center"
 			);
-			this.scoreObj.y += (1 - this.scoreObj.y / 3) / 12;
+			this.scoreObj.y += (1 - (3 * this.scoreObj.y) / 4) / 12;
 			this.scoreObj.life--;
 		}
 	}
