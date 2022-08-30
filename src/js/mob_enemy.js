@@ -86,12 +86,22 @@ class Enemy extends Mob {
 
 		if (this.hp == 0) {
 			let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex, this.tileSize);
-			corpse.push(velocity, 1);
+			corpse.push(velocity, 1 + g_game.difficulty);
 			g_game.corpses.push(corpse);
-			this.destroy();
 
 			let i = g_game.enemies.indexOf(this);
 			g_game.enemies.splice(i, 1);
+
+			if (this instanceof BossZombie) {
+				// level complete
+				for (let i = 0; i < g_game.enemies.length; i++) {
+					g_game.enemies[i].destroy();
+				}
+				changeState(STATE_CLEARED);
+				g_level++;
+			}
+
+			this.destroy();
 
 			g_score++;
 			return true;

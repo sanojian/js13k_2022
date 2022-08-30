@@ -34,7 +34,8 @@ class Corpse extends EngineObject {
 	}
 
 	postRender() {
-		if (this.scoreObj && this.scoreObj.life > 0) {
+		// draw score
+		if (this.scoreObj && this.scoreObj.life) {
 			drawText(
 				"+" + this.scoreObj.score,
 				this.pos.add(vec2(0, this.scoreObj.y)),
