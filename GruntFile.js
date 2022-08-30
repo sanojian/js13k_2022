@@ -185,6 +185,7 @@ module.exports = function (grunt) {
 	// grunt rollup
 	// cd dist
 	// zip -X9 a.zip index.html t.png 
+	// npx advzip-bin --recompress --shrink-extra a.zip
 
 	grunt.registerTask('dev', [
 		'watch'

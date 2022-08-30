@@ -2,20 +2,22 @@
 	"name": "js13k_2022",
 	"version": "0.0.1",
 	"private": true,
-
 	"devDependencies": {
+		"google-closure-compiler": "*",
 		"grunt": "*",
+		"grunt-closure-tools": "*",
+		"grunt-contrib-clean": "*",
 		"grunt-contrib-concat": "*",
 		"grunt-contrib-copy": "*",
-		"grunt-contrib-clean": "*",
-		"grunt-contrib-watch": "*",
 		"grunt-contrib-uglify": "*",
+		"grunt-contrib-watch": "*",
 		"grunt-develop": "*",
-		"google-closure-compiler": "*",
-		"grunt-closure-tools": "*",
-		"grunt-image": "*",
-		"roadroller": "*",
 		"grunt-http-server": "*",
-		"matchdep": "*"
+		"grunt-image": "*",
+		"matchdep": "*",
+		"roadroller": "*"
+	},
+	"dependencies": {
+		"advzip-bin": "^2.0.0"
 	}
 }
