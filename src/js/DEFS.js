@@ -7,7 +7,7 @@ const STATE_CLEARED = 3;
 
 const TILE_SIZE = vec2(12);
 const MINI_TILE_SIZE = vec2(4);
-const TILES_PER_SCREEN = 15;
+const TILES_PER_SCREEN = 12;
 
 fontDefault = "Courier";
 
