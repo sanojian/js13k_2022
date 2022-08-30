@@ -20,10 +20,7 @@ class MobPlayer extends Mob {
 
 		this.hp = 1;
 
-		this.soundScream = new Sound([
-			1, 0, 440, 0, 0.1, 1, 3, 1, -0.2, 0, 50, 0, 0, 0.4, 0, 0.05, 0.05, 0.9, 0.5, 0,
-			//1, 0, 523.2511, 0, 1, 1, 0, 0, -0.1, 0, 0, 0, 0, 0.5, 0, 0.05, 0.5, 0.8, 1, 0
-		]);
+		this.soundScream = new Sound([1, 0, 440, 0, 0.1, 1, 3, 1, -0.2, 0, 50, 0, 0, 0.4, 0, 0.05, 0.05, 0.9, 0.5, 0]);
 	}
 
 	getAmmoForGunType(gunType) {
@@ -118,18 +115,16 @@ class MobPlayer extends Mob {
 
 		if (this.hp > 0) {
 			// arms
-			let toPos = this.gun ? this.gun.pos : this.pos.add(vec2((this.mirror ? 3 : 6) / 12, 7 / 16 + this.bumpWalk));
 			drawLine(
 				this.pos.add(vec2(3 / 12, 2 / 16 + this.bumpWalk)),
-				toPos,
+				this.gun.pos,
 				1 / 12,
 				new Color(172 / 255, 50 / 255, 50 / 255),
 				!!glEnable
 			);
-			toPos = this.gun ? this.gun.pos : this.pos.add(vec2(-(this.mirror ? 6 : 3) / 12, 7 / 16 + this.bumpWalk));
 			drawLine(
 				this.pos.add(vec2(-3 / 12, 2 / 16 + this.bumpWalk)),
-				toPos,
+				this.gun.pos,
 				1 / 12,
 				new Color(172 / 255, 50 / 255, 50 / 255),
 				!!glEnable
