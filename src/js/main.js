@@ -28,10 +28,10 @@ function startNewGame() {
 
 function startNextLevel() {
 	// save gun and ammo
-	let ammoPistol = 0;
+	let ammoPistol = max(3, 0);
 	let ammoShotgun = 0;
 	let ammoRifle = 0;
-	let currentGun;
+	let currentGun = g_game.tileNumbers.pistol; // default
 	let gunAmmo = 0;
 	if (g_game.player) {
 		ammoPistol = g_game.player.ammoBullets;
