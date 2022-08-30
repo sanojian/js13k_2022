@@ -214,7 +214,7 @@ var ticsToSpawn = 0;
 function updateStatePlaying() {
 	updatePushers();
 
-	textMiddle = getMsSinceStateChange() > 2000 ? "" : "Level " + (g_level+1);
+	textMiddle = getMsSinceStateChange() > 2000 ? "" : "Level " + (g_level + 1);
 
 	ticsToSpawn--;
 
@@ -280,6 +280,16 @@ function textsClear() {
 	textBottom = undefined;
 }
 
+function drawTextWithOutline(text, pos, size, textColor, outlineColor = g_game.colorBlack) {
+	for (let i = 0; i < 9; i++) {
+		let dx = (i % 3) - 1;
+		let dy = Math.floor(i / 3) - 1;
+		drawTextScreen(text, pos.add(vec2(dx, dy).scale(size / 20)), size, outlineColor);
+	}
+
+	drawTextScreen(text, pos, size, textColor);
+}
+
 function textsDraw() {
 	if (g_CHEATMODE) drawTextScreen("CHEAT MODE ON ", vec2(100, 25), 20, new Color(1, 1, 1), 0, undefined, "left");
 
@@ -295,7 +305,7 @@ function textsDraw() {
 	}
 
 	if (textMiddle) {
-		drawTextScreen(
+		drawTextWithOutline(
 			textMiddle,
 			vec2(mainCanvas.width / 2, mainCanvas.height / 2),
 			mainCanvas.width / 20,
@@ -307,7 +317,12 @@ function textsDraw() {
 		let amt = 0.5 + Math.sin(frame / 10) / 2;
 		let col = new Color((amt * 172) / 255, (amt * 50) / 255, (amt * 50) / 255);
 
-		drawTextScreen(textBottom, vec2(mainCanvas.width / 2, (4 * mainCanvas.height) / 5), mainCanvas.width / 30, col);
+		drawTextWithOutline(
+			textBottom,
+			vec2(mainCanvas.width / 2, (4 * mainCanvas.height) / 5),
+			mainCanvas.width / 30,
+			col
+		);
 	}
 }
 

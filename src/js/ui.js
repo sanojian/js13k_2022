@@ -6,9 +6,9 @@ function gameRenderPost() {
 	// called after objects are rendered
 	// draw effects or hud that appear above all objects
 
-	if (!g_game.player) return;
-
 	scaleCameraToScreenSize();
+
+	if (!g_game.player) return;
 
 	// scary transforms
 	for (let i = 0; i < g_game.transforms.length; i++) {
