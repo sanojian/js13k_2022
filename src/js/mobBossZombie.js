@@ -6,6 +6,9 @@ class BossZombie extends Enemy {
 
 		this.mass = 12;
 
+		this._maxSpeed = mobDefs.BossZombie.maxSpeed + mobDefs.BossZombie.maxSpeed * 1.1 * g_game.difficulty;
+		this.hp = mobDefs.BossZombie.hp + Math.floor(g_game.difficulty * mobDefs.BossZombie.hpGainPerlevel);
+
 		this.oldMirror = false;
 		this.throwing = false;
 		this.tearing = false;

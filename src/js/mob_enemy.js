@@ -10,12 +10,8 @@ class Enemy extends Mob {
 		this.enemyMoveSpeed = 0.1;
 		this.enemyJitterForce = 0.01;
 		this.enemyDrag = 1.5;
-		this.enemyMaxSpeed = 0.5;
 		this.enemyToTarget = undefined;
 		this.lastTilePos = undefined;
-
-		let def = mobDefs[this.constructor.name];
-		this.hp = def.hp + Math.floor(g_game.difficulty * def.hpGainPerlevel);
 
 		this.soundGroan = new Sound([
 			1, 0.5, 329.6276, 0.16, 0.62, 0.33, 0, 0.5, 0, 0, -50, 0.14, 0.13, 2.5, 28, 0, 0, 0.9, 0.07, 0.12,
@@ -42,7 +38,7 @@ class Enemy extends Mob {
 		}
 
 		this.applyDrag(this.enemyDrag);
-		this.velocity = this.velocity.clampLength(this.enemyMaxSpeed);
+		this.velocity = this.velocity.clampLength(this._maxSpeed);
 
 		super.update();
 	}

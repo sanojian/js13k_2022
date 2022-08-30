@@ -234,11 +234,11 @@ function updateStatePlaying() {
 		return;
 	}
 
-	if (!g_game.ammoSpawned && g_game.player.gun && g_game.player.getAmmoForGunType(g_game.player.gun.tileIndex) == 0) {
+	if (!g_game.ammoSpawned && g_game.player.getAmmoForGunType(g_game.player.gun.tileIndex) == 0) {
 		// spawn more ammo
 		new AmmoBox(findFreePos(), g_game.player.gun.tileIndex);
 		g_game.ammoSpawned = true;
-	} else if (g_game.player.gun && g_game.player.getAmmoForGunType(g_game.player.gun.tileIndex) != 0) {
+	} else if (g_game.player.getAmmoForGunType(g_game.player.gun.tileIndex) != 0) {
 		// allow ammo to spawn again when player is empty
 		g_game.ammoSpawned = false;
 	}
