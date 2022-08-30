@@ -92,21 +92,4 @@ class Vampire extends Enemy {
 		this.groan(1, this.transformed ? 1 : 0.3);
 		return super.hit(velocity, pos);
 	}
-
-	collideWithObject(o) {
-		if ((this.transformed && o instanceof Vampire && o.transformed) || o instanceof Zombie) {
-			const TOO_CLOSE = 0.7;
-
-			let toOther = o.pos.subtract(this.pos);
-			if (toOther.length() < TOO_CLOSE) {
-				let pushForce = toOther.normalize(rand(0, 0.1) / (toOther.length() + 0.001));
-				o.applyForce(pushForce);
-			}
-		}
-		if (o instanceof MobPlayer) {
-			this.groan(0.01, 1);
-		}
-
-		return false;
-	}
 }

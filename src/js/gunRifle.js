@@ -9,11 +9,8 @@ class Rifle extends Gun {
 
 		this._maxAmmo = 1;
 		this._ammoIconTile = g_game.tileNumbers.rifleAmmoIcon;
-		this._hitbox = vec2(0.4);
 
 		this.ammo = this._maxAmmo;
-		this.reloading = false;
-		this.reloadTimer = undefined;
 		this.reloadTimePerBullet = 2;
 
 		this._soundFire = new Sound([3, , 164.8138, , , , 4, , , , , , , , , -0.3]);

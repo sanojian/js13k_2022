@@ -97,11 +97,6 @@ class Gun extends EngineObject {
 		super.update(); // update object physics and position
 	}
 
-	render() {
-		super.render(); // draw object as a sprite
-		// your object render code here
-	}
-
 	setOwner(player) {
 		if (player.gun) {
 			// throw current gun
