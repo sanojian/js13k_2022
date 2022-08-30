@@ -281,13 +281,7 @@ function textsClear() {
 }
 
 function drawTextWithOutline(text, pos, size, textColor, outlineColor = g_game.colorBlack) {
-	for (let i = 0; i < 9; i++) {
-		let dx = (i % 3) - 1;
-		let dy = Math.floor(i / 3) - 1;
-		drawTextScreen(text, pos.add(vec2(dx, dy).scale(size / 20)), size, outlineColor);
-	}
-
-	drawTextScreen(text, pos, size, textColor);
+	drawTextScreen(text, pos, size, textColor, size / 20, outlineColor);
 }
 
 function textsDraw() {
