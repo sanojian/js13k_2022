@@ -299,9 +299,10 @@ function drawTextWithOutline(text, pos, size, textColor, outlineColor = g_game.c
 }
 
 function textsDraw() {
-	if (g_CHEATMODE) drawTextScreen("CHEAT MODE ON ", vec2(100, 25), 20, new Color(1, 1, 1), 0, undefined, "left");
-
-	drawTextScreen("enemies: " + g_game.enemies.length, vec2(100, 50), 20, new Color(1, 1, 1), 0, undefined, "left");
+	if (g_CHEATMODE) {
+		drawTextScreen("CHEAT MODE ON ", vec2(100, 25), 20, new Color(1, 1, 1), 0, undefined, "left");
+		drawTextScreen("enemies: " + g_game.enemies.length, vec2(100, 50), 20, new Color(1, 1, 1), 0, undefined, "left");
+	}
 
 	if (textTitle) {
 		for (let i = 0; i < 10; i++) {

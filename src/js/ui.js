@@ -21,7 +21,7 @@ function uiFading() {
 	// fade
 	const FADE_TIME = 1;
 	const fadeSpeed = 1 / (FADE_TIME * 60);
-	let dFade = ui_fadeTarget == 0 ? -fadeSpeed : fadeSpeed;
+	let dFade = ui_fadeTarget == 0 ? -fadeSpeed / 1.5 : fadeSpeed; // fading in looks slower somehow ... strange but true
 
 	ui_fadeBlacness = clamp(ui_fadeBlacness + dFade, 0, 1);
 
