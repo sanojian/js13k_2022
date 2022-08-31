@@ -2,10 +2,12 @@
 
 function init() {
 	// startup LittleJS with your game functions after the tile image is loaded
+	console.log("INIT");
 	engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRenderPost, "t.png");
 }
 
 function gameInit() {
+	console.log("gameInit");
 	scaleCameraToScreenSize();
 	document.body.style.cursor = "crosshair";
 
@@ -21,12 +23,15 @@ function scaleCameraToScreenSize() {
 }
 
 function startNewGame() {
+	console.log("StartNewGame");
 	g_score = 0;
 	g_level = 0;
 	delete g_game.player;
 }
 
 function startNextLevel() {
+	console.log("startNextLevel");
+
 	// save gun and ammo
 	let ammoPistol = max(3, 0);
 	let ammoShotgun = 0;
@@ -88,7 +93,6 @@ function startNextLevel() {
 		theGun.ammo = gunAmmo;
 	}
 
-	changeState(STATE_PLAYING);
 	musicStart();
 }
 
@@ -135,6 +139,9 @@ function handleDebugKeys() {
 function gameUpdate() {
 	debug && handleDebugKeys();
 
+	//if (uiIsFading()) return;
+	uiFading();
+
 	switch (g_game.state) {
 		case STATE_CLICK_TO_START:
 			updateStateClickToStart();
@@ -172,8 +179,11 @@ function updateStateClickToStart() {
 	textBottom = "Click to start";
 
 	if (mouseWasReleased(0)) {
-		startNewGame();
-		startNextLevel();
+		uiFadeOutAndCall(() => {
+			startNewGame();
+			startNextLevel();
+			changeState(STATE_PLAYING);
+		});
 	}
 }
 
@@ -192,8 +202,10 @@ function updateStateCleared() {
 		textBottom = "Click to continue";
 
 		if (mouseWasPressed(0)) {
-			startNextLevel();
-			changeState(STATE_PLAYING);
+			uiFadeOutAndCall(() => {
+				startNextLevel();
+				changeState(STATE_PLAYING);
+			});
 		}
 	}
 }
@@ -236,13 +248,15 @@ function updateStatePlaying() {
 		return;
 	}
 
-	if (!g_game.ammoSpawned && g_game.player.getAmmoForGunType(g_game.player.gun.tileIndex) == 0) {
-		// spawn more ammo
-		new AmmoBox(findFreePos(), g_game.player.gun.tileIndex);
-		g_game.ammoSpawned = true;
-	} else if (g_game.player.getAmmoForGunType(g_game.player.gun.tileIndex) != 0) {
-		// allow ammo to spawn again when player is empty
-		g_game.ammoSpawned = false;
+	if (g_game.player.gun) {
+		if (!g_game.ammoSpawned && g_game.player.getAmmoForGunType(g_game.player.gun.tileIndex) == 0) {
+			// spawn more ammo
+			new AmmoBox(findFreePos(), g_game.player.gun.tileIndex);
+			g_game.ammoSpawned = true;
+		} else if (g_game.player.getAmmoForGunType(g_game.player.gun.tileIndex) != 0) {
+			// allow ammo to spawn again when player is empty
+			g_game.ammoSpawned = false;
+		}
 	}
 
 	if (enemiesSpawned == g_levelDef.enemiesToSpawn + g_game.difficulty && g_game.enemies.length == 0) {
@@ -286,6 +300,8 @@ function drawTextWithOutline(text, pos, size, textColor, outlineColor = g_game.c
 
 function textsDraw() {
 	if (g_CHEATMODE) drawTextScreen("CHEAT MODE ON ", vec2(100, 25), 20, new Color(1, 1, 1), 0, undefined, "left");
+
+	drawTextScreen("enemies: " + g_game.enemies.length, vec2(100, 50), 20, new Color(1, 1, 1), 0, undefined, "left");
 
 	if (textTitle) {
 		for (let i = 0; i < 10; i++) {
@@ -380,7 +396,7 @@ function gameRender() {
 		}
 	}
 
-	textsDraw();
+	//textsDraw();
 
 	drawPushers();
 }
