@@ -9,9 +9,7 @@ const TILE_SIZE = vec2(12);
 const MINI_TILE_SIZE = vec2(4);
 const TILES_PER_SCREEN = 12;
 
-fontDefault = "Courier";
-//glEnable = 0;
-//glOverlay = 0;
+fontDefault = "Courier New";
 
 // "Courier";
 // "American Typewriter";
