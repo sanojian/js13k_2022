@@ -132,5 +132,12 @@ function gameRenderPost() {
 
 	textsDraw();
 
-	drawTileScreenSpace(vec2(0), vec2(10000), -1, tileSizeDefault, new Color(0, 0, 0, ui_fadeBlacness));
+	//drawTileScreenSpace(vec2(0), vec2(10000), -1, tileSizeDefault, new Color(0, 0, 0, ui_fadeBlacness));
+
+	overlayContext.rect(0, 0, mainCanvasSize.x, mainCanvasSize.y);
+	overlayContext.globalAlpha = ui_fadeBlacness;
+	overlayContext.fillStyle = "#000";
+	overlayContext.fill();
+
+	overlayContext.globalAlpha = 0;
 }
