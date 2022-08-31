@@ -78,7 +78,7 @@ class Gun extends EngineObject {
 				}
 			}
 
-			if (!this.ammo && !this.reloading) {
+			if (this.ammo <= 0 && !this.reloading) {
 				//this.soundEmpty.play();
 				this.reload();
 			}
@@ -111,15 +111,16 @@ class Gun extends EngineObject {
 	}
 
 	fire(color) {
-		if (this.noExtraAmmo && this.ammo <= 0) {
-			this.soundEmpty.play(this.pos);
-			return false;
-		}
-
 		if (this.reloading) {
 			// this.soundEmpty.play(this.pos, .5, 1);
 			return false;
 		}
+
+		if (this.ammo <= 0) {
+			this.soundEmpty.play(this.pos);
+			return false;
+		}
+
 		//fx.shakeScreen(0.1);
 		fx.addSpark(this.pos.add(this.pos.subtract(this.owner.pos).normalize(1 - this._distance)));
 
