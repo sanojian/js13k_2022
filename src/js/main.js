@@ -161,10 +161,11 @@ function gameUpdate() {
 	}
 }
 
-function uiSound() {
-	soundRifle.play(undefined, 2, 1.1);
-	soundRifle.play(undefined, 2, 1.0);
-	soundRifle.play(undefined, 2, 0.5);
+function uiSound(f = 5) {
+	for (let i = 0; i < f; i++) {
+		soundRifle.play(null, 1, 0.5 + i / 10);
+		setTimeout(() => soundEnemyGroan.play(null, 0.5, 1 + i / 10, 0.1), 300 + i * 100);
+	}
 }
 
 function updateStateClickToStart() {
@@ -209,7 +210,7 @@ function updateStateCleared() {
 		textBottom = "Click to continue";
 
 		if (mouseWasPressed(0)) {
-			uiSound();
+			uiSound(3);
 			uiFadeOutAndCall(() => {
 				startNextLevel();
 				changeState(STATE_PLAYING);
@@ -313,10 +314,15 @@ function textsDraw() {
 	}
 
 	if (textTitle) {
+		let flicker = (1.5 + Math.sin(frame / 50)) * 0.01;
+
 		for (let i = 0; i < 10; i++) {
 			drawTextScreen(
 				textTitle,
-				vec2((rand(0.99, 1.01) * mainCanvas.width) / 2, (rand(0.98, 1.02) * mainCanvas.height) / 3),
+				vec2(
+					(rand(1 - flicker, 1 + flicker) * mainCanvas.width) / 2,
+					(rand(1 - flicker, 1 + flicker) * mainCanvas.height) / 3
+				),
 				mainCanvas.width / 10,
 				g_game.colorBlack.lerp(g_game.colorBlood, i / 10)
 			);
