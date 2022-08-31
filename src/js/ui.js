@@ -34,6 +34,14 @@ function uiFading() {
 	}
 }
 
+var ui_flashColor = undefined;
+var ui_flashFrames = 0;
+
+function uiflashScreen(colorString, frames) {
+	ui_flashColor = colorString;
+	ui_flashFrames = frames;
+}
+
 function gameRenderPost() {
 	// called after objects are rendered
 	// draw effects or hud that appear above all objects
@@ -132,11 +140,20 @@ function gameRenderPost() {
 
 	textsDraw();
 
-	//drawTileScreenSpace(vec2(0), vec2(10000), -1, tileSizeDefault, new Color(0, 0, 0, ui_fadeBlacness));
+	// FADE THE SCREEN
+
+	let color = "#000";
+	let alpha = ui_fadeBlacness;
+
+	if (ui_flashFrames > 0) {
+		ui_flashFrames--;
+		alpha = 0.5;
+		color = ui_flashColor;
+	}
 
 	overlayContext.rect(0, 0, mainCanvasSize.x, mainCanvasSize.y);
-	overlayContext.globalAlpha = ui_fadeBlacness;
-	overlayContext.fillStyle = "#000";
+	overlayContext.globalAlpha = alpha;
+	overlayContext.fillStyle = color;
 	overlayContext.fill();
 
 	overlayContext.globalAlpha = 0;
