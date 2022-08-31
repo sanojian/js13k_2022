@@ -295,7 +295,7 @@ function textsClear() {
 }
 
 function drawTextWithOutline(text, pos, size, textColor, outlineColor = g_game.colorBlack) {
-	drawTextScreen(text, pos, size, textColor, size / 20, outlineColor);
+	drawTextScreen(text, pos, size, textColor, size / 15, outlineColor);
 }
 
 function textsDraw() {
