@@ -10,7 +10,7 @@ class Shotgun extends Gun {
 		this.ammo = this._maxAmmo;
 		this.reloadTimePerBullet = 0.6;
 
-		this._soundFire = new Sound([3, , 352, 0.07, 0.01, 0.2, 4, 3.04, , 0.4, , , 0.15, 1.5, , 0.7, 0.12, 0.2]);
+		this._soundFire = soundShotgun;
 	}
 
 	fire() {

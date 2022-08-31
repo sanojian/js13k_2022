@@ -20,8 +20,8 @@ class Gun extends EngineObject {
 		this._soundFire = undefined;
 		this.noExtraAmmo = false;
 
-		this.soundReload = new Sound([, 0.3, 0, 0.01, , 0.01, 4, 0, 20, 6.6, 600, 0.07, 0.32, 3.6, 12, , , , , 0.12]);
-		this.soundEmpty = new Sound([1, 0, 65, 0, 0, 0.02, 4, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0]);
+		this.soundReload = soundGunReload;
+		this.soundEmpty = soundGunEmpty;
 	}
 
 	update() {
@@ -107,7 +107,7 @@ class Gun extends EngineObject {
 		}
 		this.owner = player;
 		player.gun = this;
-		g_soundPickup.play(this.pos);
+		soundPickup.play(this.pos);
 	}
 
 	fire(color) {

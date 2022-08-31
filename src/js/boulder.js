@@ -6,7 +6,7 @@ class Boulder extends EngineObject {
 
 		this.setCollision(true, true);
 
-		this.soundDestroy = new Sound([1.08, , 50, , 0.18, 0.45, 4, 0, , , , , 0.01, 0.3, , 1.7, , 0.3, 0.11]);
+		this.soundDestroy = soundBoulderDestroy;
 	}
 
 	collideWithTile() {

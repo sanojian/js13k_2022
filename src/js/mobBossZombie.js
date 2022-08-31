@@ -14,9 +14,9 @@ class BossZombie extends Enemy {
 		this.tearing = false;
 		this.boulder = undefined;
 
-		this.soundStep = new Sound([3.5, , 15, 0.02, 0.1, 0.05, , 3.67, , 0.6, , , 0.13, 1.8, , 0.3, , 0.35, 0.01]);
-		this.soundThrow = new Sound([, , 1650, 0.01, 0.09, 0.02, 4, 0.5, 1, , , 0.06, , , 13, , , 0.9, 0.1]);
-		this.soundTearing = new Sound([1.08, , 50, , 0.18, 0.45, 4, 0, , , , , 0.01, 0.3, , 1.2, , 0.3, 0.11]);
+		this.soundStep = soundBossStep;
+		this.soundThrow = soundBossThrow;
+		this.soundTearing = soundBossTearing;
 	}
 
 	update() {

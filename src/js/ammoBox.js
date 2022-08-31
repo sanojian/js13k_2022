@@ -30,7 +30,7 @@ class AmmoBox extends EngineObject {
 				default:
 					g_game.player.ammoBullets += 24;
 			}
-			g_soundPickup.play(this.pos);
+			soundPickup.play(this.pos);
 			this.destroy();
 		}
 	}

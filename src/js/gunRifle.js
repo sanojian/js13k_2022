@@ -1,7 +1,5 @@
 /** @format */
 
-var soundRifle = new Sound([3, , 164.8138, , , , 4, , , , , , , , , -0.3]);
-
 class Rifle extends Gun {
 	constructor(pos) {
 		super(pos, g_game.tileNumbers.rifle);

@@ -161,7 +161,11 @@ function gameUpdate() {
 	}
 }
 
-//var sound_example = new Sound([0.8, 0, 270, , , 0.12, 3, 1.65, -2, , , , , 4.5, , 0.02]);
+function uiSound() {
+	soundRifle.play(undefined, 2, 1.1);
+	soundRifle.play(undefined, 2, 1.0);
+	soundRifle.play(undefined, 2, 0.5);
+}
 
 function updateStateClickToStart() {
 	drawTile(
@@ -181,8 +185,7 @@ function updateStateClickToStart() {
 	textBottom = "Click to start";
 
 	if (mouseWasReleased(0)) {
-		soundRifle.play();
-
+		uiSound();
 		uiFadeOutAndCall(() => {
 			startNewGame();
 			startNextLevel();
@@ -206,7 +209,7 @@ function updateStateCleared() {
 		textBottom = "Click to continue";
 
 		if (mouseWasPressed(0)) {
-			soundRifle.play();
+			uiSound();
 			uiFadeOutAndCall(() => {
 				startNextLevel();
 				changeState(STATE_PLAYING);

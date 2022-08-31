@@ -20,7 +20,7 @@ class MobPlayer extends Mob {
 
 		this.hp = 1;
 
-		this.soundScream = new Sound([1, 0, 440, 0, 0.1, 1, 3, 1, -0.2, 0, 50, 0, 0, 0.4, 0, 0.05, 0.05, 0.9, 0.5, 0]);
+		this.soundScream = soundPlayerScream;
 	}
 
 	getAmmoForGunType(gunType) {

@@ -22,27 +22,7 @@ class Vampire extends Enemy {
 
 		//this.pos.y -= 0.5; //
 
-		this.soundGroan = new Sound([
-			,
-			0.1,
-			3665.40639,
-			0.12,
-			0.05,
-			0.09,
-			3,
-			0.7,
-			7.4,
-			2.5,
-			,
-			0.19,
-			,
-			0.9,
-			12,
-			,
-			0.04,
-			-0.57,
-			0.13,
-		]);
+		this.soundGroan = soundVampireGroan;
 	}
 
 	update() {
