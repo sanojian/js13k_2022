@@ -33,7 +33,7 @@ function startNextLevel() {
 	console.log("startNextLevel");
 
 	// save gun and ammo
-	let ammoPistol = max(3, 0);
+	let ammoPistol = 0;
 	let ammoShotgun = 0;
 	let ammoRifle = 0;
 	let currentGun = g_game.tileNumbers.pistol; // default
@@ -44,6 +44,9 @@ function startNextLevel() {
 		ammoRifle = g_game.player.ammoRifle;
 		currentGun = g_game.player.gun?.tileIndex;
 		gunAmmo = g_game.player.gun?.ammo;
+	} else {
+		// starting ammo
+		ammoPistol = 12;
 	}
 
 	engineObjectsDestroy(); // destroy all objects handled by the engine

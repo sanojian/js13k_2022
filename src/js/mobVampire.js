@@ -8,7 +8,7 @@ class Vampire extends Enemy {
 
 		// before transform! ... BAT STATS
 
-		this._maxSpeed = mobDefs.Vampire.maxSpeed + mobDefs.Ghost.maxSpeed * 1.1 * g_game.difficulty;
+		this._maxSpeed = mobDefs.Vampire.maxSpeed + mobDefs.Ghost.maxSpeed * 0.1 * g_game.difficulty;
 		this.hp = mobDefs.Vampire.hp + Math.floor(g_game.difficulty * mobDefs.Vampire.hpGainPerlevel);
 
 		this.enemyToTarget = undefined;
