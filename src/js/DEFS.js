@@ -43,7 +43,6 @@ const tileNumbers_boxShells = 22;
 const tileNumbers_boxRifleAmmo = 23;
 const tileNumbers_floorStone = 27;
 const tileNumbers_door = 31;
-const tileNumbers_floorGrass = 33;
 
 let g_player = null;
 
@@ -113,7 +112,6 @@ const levelDefs = [
 	{
 		// start
 		map: 0,
-		floorTile: tileNumbers_floorGrass,
 		enemiesToSpawn: 8,
 		enemiesMaxAlive: 3,
 		spawns: [{ chance: 1 }],
@@ -121,7 +119,6 @@ const levelDefs = [
 	{
 		// graveyard
 		map: 1,
-		floorTile: tileNumbers_floorStone,
 		enemiesToSpawn: 8,
 		enemiesMaxAlive: 3,
 		spawns: [{ chance: 1 }],
@@ -129,7 +126,6 @@ const levelDefs = [
 	{
 		// intro to vampires
 		map: 3,
-		floorTile: tileNumbers_floorStone,
 		enemiesToSpawn: 12,
 		enemiesMaxAlive: 4,
 		spawns: [{ chance: 0.5 }, { type: "v", chance: 0.5 }],
@@ -137,7 +133,6 @@ const levelDefs = [
 	{
 		// intro to ghosts
 		map: 4,
-		floorTile: tileNumbers_floorStone,
 		enemiesToSpawn: 12,
 		enemiesMaxAlive: 4,
 		spawns: [{ chance: 0.5 }, { type: "g", chance: 0.5 }],
@@ -145,7 +140,6 @@ const levelDefs = [
 	{
 		// final boss
 		map: 2,
-		floorTile: tileNumbers_floorStone,
 		enemiesToSpawn: Infinity,
 		enemiesMaxAlive: 5,
 		spawns: [{ chance: 0.4 }, { type: "v", chance: 0.3 }, { type: "g", chance: 0.3 }],

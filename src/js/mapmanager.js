@@ -19,10 +19,10 @@ class MapManager {
 			for (let x = 0; x < w; x++) {
 				// floor
 				let tld = new TileLayerData(
-					g_levelDef.floorTile,
+					tileNumbers_floorStone,
 					Math.floor(rand(0, 3)),
 					false,
-					new Color(1, 1, 1, rand(0.2, 0.4))
+					new Color(1, 1, 1, rand(0.4, 0.6))
 				);
 				g_game.tileLayer.setData(vec2(x, h - 1 - y), tld);
 
