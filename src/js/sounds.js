@@ -1,3 +1,12 @@
+function soundPlayExtra(sound, pos, vol, pitch, rand = 0, delay = 0, repeat = 1) {
+	for (let i = 0; i < repeat; i++) { 
+		setTimeout( () => sound.play(pos, vol, pitch, rand), delay * (i+i) )
+	}
+ }
+
+
+
+
 /// Player
 
 var soundPlayerScream = new Sound([1, 0, 440, 0, 0.1, 1, 3, 1, -0.2, 0, 50, 0, 0, 0.4, 0, 0.05, 0.05, 0.9, 0.5, 0]);

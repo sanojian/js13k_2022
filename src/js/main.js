@@ -163,9 +163,12 @@ function gameUpdate() {
 }
 
 function uiSound(f = 5) {
+	// soundPlayExtra(soundRifle, vec2(10, 0), 1, 1, 0.5, 100, 1);
+	// soundPlayExtra(soundEnemyGroan, vec2(-10, 0), 1, 1, 1, 200, 5);
+
 	for (let i = 0; i < f; i++) {
-		soundRifle.play(null, 1, 0.5 + i / 10);
-		setTimeout(() => soundEnemyGroan.play(null, 0.5, 1 + i / 10, 0.1), 300 + i * 100);
+		soundRifle.play(cameraPos.add(vec2(10, 0)), 1, 0.5 + i / 10);
+		setTimeout(() => soundEnemyGroan.play(cameraPos.add(vec2(-10, 0)), 0.5, 1 + i / 5, 0.1), 300 + i * 100);
 	}
 }
 
@@ -199,7 +202,7 @@ function updateStateClickToStart() {
 function updateStateDead() {
 	textMiddle = "YOU DIED";
 
-	if (getMsSinceStateChange() > 2000) {
+	if (getMsSinceStateChange() > 4000) {
 		changeState(STATE_CLICK_TO_START);
 	}
 }
