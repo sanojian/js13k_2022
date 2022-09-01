@@ -74,9 +74,12 @@ module.exports = function (grunt) {
 			options: {
 				compress: {
 					global_defs: {
-						'DEBUG': false
+						'debug': false,
+						'g_CHEATMODE': false,
 					},
-					dead_code: true
+					dead_code: true,
+					unused: true
+					
 				},
 				mangle: {
 					//properties: true,

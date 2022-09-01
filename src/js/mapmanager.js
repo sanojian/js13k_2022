@@ -62,7 +62,7 @@ class MapManager {
 						g_game.doors[x + "_" + (h - 1 - y)] = { hp: 3 };
 					} else {
 						// pushers on all collision stuff except doors
-						pushers.push(new Pusher(vec2(x + 0.5, h - 1 - y + 0.5), 0.01, 0.5, 1, 0));
+						pushers.push(new Pusher(offsetVec, 0.01, 0.5, 1, 0));
 					}
 
 					setTileCollisionData(vec2(x, h - 1 - y), t);
@@ -87,12 +87,9 @@ class MapManager {
 		let pos = vec2(0);
 		for (let x = 0; x < mapData[g_levelDef.map].w; x++) {
 			for (let y = 0; y < mapData[g_levelDef.map].h; y++) {
-				let dx = g_game.player.pos.x - x - 0.5;
-				let dy = g_game.player.pos.y - y - 0.5;
-				let angle = Math.atan2(dy, dx);
-				let dist = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-				pos.x = x + 0.5 + min(dist, 1.5) * Math.cos(angle);
-				pos.y = y + 0.5 + min(dist, 1.5) * Math.sin(angle);
+				let dVec = vec2(g_game.player.pos.x - x - 0.5, g_game.player.pos.y - y - 0.5);
+				pos.x = x + 0.5 + dVec.clampLength(min(1.5, dVec.length())).x;
+				pos.y = y + 0.5 + dVec.clampLength(min(1.5, dVec.length())).y;
 				let pos2 = tileCollisionRaycast(g_game.player.pos, pos);
 				if (pos2 && !(pos2.x == x + 0.5 && pos2.y == y + 0.5)) {
 					let shadow = g_game.shadows[x + "_" + y] || {
@@ -111,7 +108,7 @@ class MapManager {
 		}
 
 		const shadowSize = vec2(1.05);
-		let color = new Color(0, 0, 0, 1);
+		let color = g_game.colorBlack.copy();
 		for (let key in g_game.shadows) {
 			let shadow = g_game.shadows[key];
 			// fade

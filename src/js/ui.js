@@ -92,14 +92,14 @@ function gameRenderPost() {
 		// total ammo
 		const rectCol = new Color(0.2, 0.2, 0.2);
 		const boxSize = vec2(1.5, 0.5).scale(scaleUI);
-		drawRect(vec2(pos.x - 3 * scaleUI, pos.y + 0.6 * scaleUI), boxSize, rectCol);
-		drawRect(vec2(pos.x - 3 * scaleUI, pos.y), boxSize, rectCol);
-		drawRect(vec2(pos.x - 3 * scaleUI, pos.y - 0.6 * scaleUI), boxSize, rectCol);
+		drawRect(pos.subtract(vec2(3 * scaleUI, -0.6 * scaleUI)), boxSize, rectCol);
+		drawRect(pos.subtract(vec2(3 * scaleUI, 0)), boxSize, rectCol);
+		drawRect(pos.subtract(vec2(3 * scaleUI, 0.6 * scaleUI)), boxSize, rectCol);
 
 		const iconSize = vec2(0.45).scale(scaleUI);
-		drawTile(vec2(pos.x - 3.5 * scaleUI, pos.y + 0.6 * scaleUI), iconSize, g_game.tileNumbers.bulletIcon, TILE_SIZE);
-		drawTile(vec2(pos.x - 3.5 * scaleUI, pos.y), iconSize, g_game.tileNumbers.rifleAmmoIcon, TILE_SIZE);
-		drawTile(vec2(pos.x - 3.5 * scaleUI, pos.y - 0.6 * scaleUI), iconSize, g_game.tileNumbers.shellIcon, TILE_SIZE);
+		drawTile(pos.subtract(vec2(3.5 * scaleUI, -0.6 * scaleUI)), iconSize, g_game.tileNumbers.bulletIcon, TILE_SIZE);
+		drawTile(pos.subtract(vec2(3.5 * scaleUI, 0)), iconSize, g_game.tileNumbers.rifleAmmoIcon, TILE_SIZE);
+		drawTile(pos.subtract(vec2(3.5 * scaleUI, 0.6 * scaleUI)), iconSize, g_game.tileNumbers.shellIcon, TILE_SIZE);
 
 		const txtSize = 0.4 * scaleUI;
 		const txtCol = new Color(0.9, 0.9, 0.9);
@@ -119,7 +119,7 @@ function gameRenderPost() {
 		drawText(g_game.player.ammoShells, vec2(pos.x - txtDx, y - 0.6 * scaleUI), txtSize, txtCol, -1, undefined, "right");
 
 		// ammo
-		const colorHere = new Color(1, 1, 1);
+		const colorHere = g_game.colorWhite;
 		const colorGone = new Color(0.3, 0.3, 0.3);
 		if (g_game.player.gun) {
 			for (let i = 0; i < g_game.player.gun._maxAmmo; i++) {
