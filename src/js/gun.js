@@ -112,7 +112,7 @@ class Gun extends EngineObject {
 
 	fire(color) {
 		if (this.reloading) {
-			// this.soundEmpty.play(this.pos, .5, 1);
+			this.soundEmpty.play(this.pos);
 			return false;
 		}
 

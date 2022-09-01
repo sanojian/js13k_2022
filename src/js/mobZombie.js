@@ -22,7 +22,7 @@ class Zombie extends Enemy {
 
 		this.pointingAngle = rand(2 * PI);
 
-		this.groan(1, rand(0.9, 1.1));
+		this.groan(1, rand(0.9, 1.1), 1);
 	}
 
 	update() {
@@ -32,6 +32,8 @@ class Zombie extends Enemy {
 			this.tileSize = vec2(11, 12 * frac);
 			this.size = vec2(0.8, 0.8 * frac);
 			this.pos.y += 0.5 / RISE_FRAMES;
+
+			if (this.riseFrames == 0) this.groan(1, 1, 1.5);
 			return;
 		}
 
@@ -45,7 +47,7 @@ class Zombie extends Enemy {
 		//this.moveSpeed = rand(0.05, 0.2);
 		this.enemyThinkPause += rand(10, 30);
 		this.enemyToTarget = undefined;
-		this.groan(1, 1.5);
+		this.groan(1, 2, rand(2, 3));
 		return super.hit(velocity, pos);
 	}
 

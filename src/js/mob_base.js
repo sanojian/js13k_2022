@@ -11,7 +11,7 @@ class Mob extends EngineObject {
 		this.setCollision(true, true);
 		this.mass = 1;
 		this.damping = 1;
-		this.elasticity = 0.5;
+		this.elasticity = 0.25;
 
 		this._maxSpeed = 0.4;
 
@@ -42,7 +42,7 @@ class Mob extends EngineObject {
 		this.velocity = this.velocity.subtract(dragForce);
 	}
 
-	groan(chance, strength) {
+	groan(chance, strength, pitch = 1, repeat = 1) {
 		if (rand(1) > chance) return;
 
 		const MAX_VOL = 0.5;
@@ -54,7 +54,9 @@ class Mob extends EngineObject {
 			vol = d < 1 ? MAX_VOL : MAX_VOL / (d * d);
 		}
 
-		this.soundGroan.play(this.pos, strength * vol, strength * rand(1, 2), 0.5);
+		soundPlayExtra(this.soundGroan, this.pos, strength * vol, pitch, 1, 50, repeat);
+
+		//		this.soundGroan.play(this.pos, strength * vol, strength * rand(1, 2), 0.5);
 	}
 
 	update() {

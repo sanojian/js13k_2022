@@ -62,12 +62,13 @@ class Enemy extends Mob {
 			if (toOther.length() < TOO_CLOSE) {
 				let pushForce = toOther.normalize(rand(0, 0.1) / (toOther.length() + 0.001));
 				o.applyForce(pushForce);
-				this.groan(0.1, 0.8);
+				this.groan(0.1, 0.7, 1);
 			}
 		}
 
 		if (o instanceof MobPlayer) {
-			this.groan(0.01, 1);
+			// eating the corpse
+			this.groan(0.1, 0.5, rand(2, 3));
 		}
 
 		return false;
@@ -82,7 +83,9 @@ class Enemy extends Mob {
 
 		this.splatter(pos);
 
-		if (this.hp == 0) {
+		if (this.hp <= 0) {
+			this.groan(1, 3, rand(2, 3), rand(5));
+
 			let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex, this.tileSize);
 			corpse.push(velocity, 1 + g_game.difficulty);
 			g_game.corpses.push(corpse);
