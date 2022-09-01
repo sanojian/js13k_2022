@@ -1,8 +1,6 @@
 /** @format */
 
 function init() {
-	console.log("INIT");
-
 	// generate new maps
 	generateMapFromLevel(0);
 	generateMapFromLevel(1);
@@ -12,7 +10,6 @@ function init() {
 }
 
 function gameInit() {
-	console.log("gameInit");
 	scaleCameraToScreenSize();
 	document.body.style.cursor = "crosshair";
 
@@ -28,15 +25,12 @@ function scaleCameraToScreenSize() {
 }
 
 function startNewGame() {
-	console.log("StartNewGame");
 	g_score = 0;
 	g_level = 0;
 	delete g_game.player;
 }
 
 function startNextLevel() {
-	console.log("startNextLevel");
-
 	// save gun and ammo
 	let ammoPistol = 0;
 	let ammoShotgun = 0;
@@ -124,10 +118,10 @@ function spawnEnemy() {
 	//let enemy = g_level == 1 ? new Vampire(p) : new Zombie(p);
 	let enemy;
 	switch (enemyClass) {
-		case "Vampire":
+		case "v":
 			enemy = new Vampire(p);
 			break;
-		case "Ghost":
+		case "g":
 			enemy = new Ghost(p);
 			break;
 		default:

@@ -116,7 +116,7 @@ const levelDefs = [
 		floorTile: g_game.tileNumbers.floorGrass,
 		enemiesToSpawn: 8,
 		enemiesMaxAlive: 3,
-		spawns: [{ type: "Zombie", chance: 1 }],
+		spawns: [{ chance: 1 }],
 	},
 	{
 		// graveyard
@@ -124,7 +124,7 @@ const levelDefs = [
 		floorTile: g_game.tileNumbers.floorStone,
 		enemiesToSpawn: 8,
 		enemiesMaxAlive: 3,
-		spawns: [{ type: "Zombie", chance: 1 }],
+		spawns: [{ chance: 1 }],
 	},
 	{
 		// intro to vampires
@@ -132,10 +132,7 @@ const levelDefs = [
 		floorTile: g_game.tileNumbers.floorStone,
 		enemiesToSpawn: 12,
 		enemiesMaxAlive: 4,
-		spawns: [
-			{ type: "Zombie", chance: 0.5 },
-			{ type: "Vampire", chance: 0.5 },
-		],
+		spawns: [{ chance: 0.5 }, { type: "v", chance: 0.5 }],
 	},
 	{
 		// intro to ghosts
@@ -143,10 +140,7 @@ const levelDefs = [
 		floorTile: g_game.tileNumbers.floorStone,
 		enemiesToSpawn: 12,
 		enemiesMaxAlive: 4,
-		spawns: [
-			{ type: "Zombie", chance: 0.5 },
-			{ type: "Ghost", chance: 0.5 },
-		],
+		spawns: [{ chance: 0.5 }, { type: "g", chance: 0.5 }],
 	},
 	{
 		// final boss
@@ -154,10 +148,6 @@ const levelDefs = [
 		floorTile: g_game.tileNumbers.floorStone,
 		enemiesToSpawn: Infinity,
 		enemiesMaxAlive: 5,
-		spawns: [
-			{ type: "Zombie", chance: 0.4 },
-			{ type: "Vampire", chance: 0.3 },
-			{ type: "Ghost", chance: 0.3 },
-		],
+		spawns: [{ chance: 0.4 }, { type: "v", chance: 0.3 }, { type: "g", chance: 0.3 }],
 	},
 ];
