@@ -13,9 +13,9 @@ function getNextEnemySpawnClass() {
 	return type;
 }
 
-function generateMapForLevel3() {
+function generateMapFromLevel(level) {
 
-	let mapToCopy = mapData[1];
+	let mapToCopy = mapData[level];
 
 	let newMap = {
 		w: mapToCopy.h,

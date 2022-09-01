@@ -119,11 +119,19 @@ const levelDefs = [
 		spawns: [{ type: "Zombie", chance: 1 }],
 	},
 	{
-		// intro to vampires
+		// graveyard
 		map: 1,
 		floorTile: g_game.tileNumbers.floorStone,
 		enemiesToSpawn: 8,
 		enemiesMaxAlive: 3,
+		spawns: [{ type: "Zombie", chance: 1 }],
+	},
+	{
+		// intro to vampires
+		map: 3,
+		floorTile: g_game.tileNumbers.floorStone,
+		enemiesToSpawn: 12,
+		enemiesMaxAlive: 4,
 		spawns: [
 			{ type: "Zombie", chance: 0.5 },
 			{ type: "Vampire", chance: 0.5 },
@@ -131,7 +139,7 @@ const levelDefs = [
 	},
 	{
 		// intro to ghosts
-		map: 3,
+		map: 4,
 		floorTile: g_game.tileNumbers.floorStone,
 		enemiesToSpawn: 12,
 		enemiesMaxAlive: 4,
