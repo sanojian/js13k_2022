@@ -52,6 +52,7 @@ class Vampire extends Enemy {
 					g_game.transforms.push({ pos: this.pos.copy(), life: 60, tileIndex: g_game.tileNumbers.faceVampire });
 					this.transformTimer = new Timer(2);
 					this.transforming = true;
+					this.enemyMoveSpeed = -this.enemyMoveSpeed; // run from player while transforming !
 				}
 			}
 		}
@@ -69,7 +70,7 @@ class Vampire extends Enemy {
 
 	hit(velocity, pos) {
 		//this.enemyMoveSpeed = rand(0.05, 0.2) * (this.transformed ? this._vampPower : 1);
-		this.enemyThinkPause += rand(10, 30);
+		//this.enemyThinkPause += rand(10, 30);
 		this.enemyToTarget = undefined;
 		this.groan(1, this.transformed ? 1 : 0.3);
 		return super.hit(velocity, pos);
