@@ -2,13 +2,13 @@
 
 class Rifle extends Gun {
 	constructor(pos) {
-		super(pos, g_game.tileNumbers.rifle);
+		super(pos, tileNumbers_rifle);
 		// your object init code here
 		this._distance = 0.3;
 		this._speed = 0.5;
 
 		this._maxAmmo = 1;
-		this._ammoIconTile = g_game.tileNumbers.rifleAmmoIcon;
+		this._ammoIconTile = tileNumbers_rifleAmmoIcon;
 
 		this.ammo = this._maxAmmo;
 		this.reloadTimePerBullet = 2;

@@ -42,7 +42,7 @@ class Bullet extends EngineObject {
 	}
 
 	collideWithTile(tileData, pos) {
-		if (tileData == g_game.tileNumbers.door) {
+		if (tileData == tileNumbers_door) {
 			let idx = pos.x + "_" + pos.y;
 			g_game.doors[idx].hp--;
 			if (g_game.doors[idx].hp <= 0) {

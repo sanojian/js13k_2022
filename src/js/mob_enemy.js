@@ -19,7 +19,7 @@ class Enemy extends Mob {
 	update() {
 		// think and look
 		if (this.enemyThinkPause-- <= 0) {
-			this.enemyToTarget = g_game.player.pos.subtract(this.pos);
+			this.enemyToTarget = g_player.pos.subtract(this.pos);
 			this.enemyThinkPause = rand(this.enemyThinkMin, this.enemyThinkMax);
 			this.groan(0.3, rand(0.8, 1.2));
 		}
@@ -121,7 +121,7 @@ class Enemy extends Mob {
 	drawReachingArms() {
 		const armLenght = 4 / 12;
 
-		let toPlayer = this.enemyToTarget || g_game.player.pos.subtract(this.pos);
+		let toPlayer = this.enemyToTarget || g_player.pos.subtract(this.pos);
 		let toPlayerAngle = toPlayer.angle();
 
 		this.pointingAngle += turnTowards(toPlayerAngle - this.pointingAngle, (2 * PI) / 100); //turnTowards(this.pointingAngle, toPlayerAngle, rand(2 * PI) / 100);

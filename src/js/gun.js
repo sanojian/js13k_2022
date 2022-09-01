@@ -9,7 +9,7 @@ class Gun extends EngineObject {
 		this._speed = 0.4;
 
 		this._maxAmmo = 6;
-		this._ammoIconTile = g_game.tileNumbers.bulletIcon;
+		this._ammoIconTile = tileNumbers_bulletIcon;
 		this._hitbox = vec2(0.4);
 
 		this.ammo = this._maxAmmo;
@@ -52,17 +52,17 @@ class Gun extends EngineObject {
 					this.noExtraAmmo = false;
 
 					switch (this.tileIndex) {
-						case g_game.tileNumbers.pistol:
-							this.noExtraAmmo = g_game.player.ammoBullets <= 0;
-							g_game.player.ammoBullets = max(0, g_game.player.ammoBullets - 1);
+						case tileNumbers_pistol:
+							this.noExtraAmmo = g_player.ammoBullets <= 0;
+							g_player.ammoBullets = max(0, g_player.ammoBullets - 1);
 							break;
-						case g_game.tileNumbers.rifle:
-							this.noExtraAmmo = g_game.player.ammoRifle <= 0;
-							g_game.player.ammoRifle = max(0, g_game.player.ammoRifle - 1);
+						case tileNumbers_rifle:
+							this.noExtraAmmo = g_player.ammoRifle <= 0;
+							g_player.ammoRifle = max(0, g_player.ammoRifle - 1);
 							break;
-						case g_game.tileNumbers.shotgun:
-							this.noExtraAmmo = g_game.player.ammoShells <= 0;
-							g_game.player.ammoShells = max(0, g_game.player.ammoShells - 1);
+						case tileNumbers_shotgun:
+							this.noExtraAmmo = g_player.ammoShells <= 0;
+							g_player.ammoShells = max(0, g_player.ammoShells - 1);
 							break;
 					}
 
@@ -85,10 +85,10 @@ class Gun extends EngineObject {
 		} else if (!this.owner) {
 			// look for owner
 
-			let playerTouch = isOverlapping(this.pos, this._hitbox, g_game.player.pos, g_game.player._hitbox);
+			let playerTouch = isOverlapping(this.pos, this._hitbox, g_player.pos, g_player._hitbox);
 
-			if (g_game.player.hp > 0 && playerTouch && !this.playerTouchLastFrame) {
-				this.setOwner(g_game.player);
+			if (g_player.hp > 0 && playerTouch && !this.playerTouchLastFrame) {
+				this.setOwner(g_player);
 			}
 
 			this.playerTouchLastFrame = playerTouch;

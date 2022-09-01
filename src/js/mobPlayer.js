@@ -1,7 +1,7 @@
 /** @format */
 class MobPlayer extends Mob {
 	constructor(pos) {
-		super(pos, vec2(0.8), g_game.tileNumbers.player);
+		super(pos, vec2(0.8), tileNumbers_player);
 		// your object init code here
 
 		this.miniFace = g_game.miniTileNumbers.miniFacePlayer;
@@ -25,9 +25,9 @@ class MobPlayer extends Mob {
 
 	getAmmoForGunType(gunType) {
 		switch (gunType) {
-			case g_game.tileNumbers.shotgun:
+			case tileNumbers_shotgun:
 				return this.ammoShells;
-			case g_game.tileNumbers.rifle:
+			case tileNumbers_rifle:
 				return this.ammoRifle;
 			default:
 				return this.ammoBullets;

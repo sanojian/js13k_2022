@@ -23,10 +23,33 @@ let g_levelDef = undefined;
 
 let g_screenShake = vec2(0);
 
+const tileNumbers_player = 0;
+const tileNumbers_zombie = 1;
+const tileNumbers_vampire = 2;
+const tileNumbers_bat = 3;
+const tileNumbers_ghost = 4;
+const tileNumbers_beefyZombie = 5;
+const tileNumbers_facePlayer = 6;
+const tileNumbers_faceZombie = 7;
+const tileNumbers_faceVampire = 8;
+const tileNumbers_pistol = 15;
+const tileNumbers_shotgun = 16;
+const tileNumbers_shellIcon = 17;
+const tileNumbers_bulletIcon = 18;
+const tileNumbers_rifleAmmoIcon = 19;
+const tileNumbers_rifle = 20;
+const tileNumbers_boxBullets = 21;
+const tileNumbers_boxShells = 22;
+const tileNumbers_boxRifleAmmo = 23;
+const tileNumbers_floorStone = 27;
+const tileNumbers_door = 31;
+const tileNumbers_floorGrass = 33;
+
+let g_player = null;
+
 let g_game = {
 	difficulty: 0,
 
-	player: null,
 	enemies: [],
 	doors: {},
 	splatter: [],
@@ -53,29 +76,6 @@ let g_game = {
 
 	state: STATE_CLICK_TO_START,
 
-	tileNumbers: {
-		player: 0,
-		zombie: 1,
-		vampire: 2,
-		bat: 3,
-		ghost: 4,
-		beefyZombie: 5,
-		facePlayer: 6,
-		faceZombie: 7,
-		faceVampire: 8,
-		pistol: 15,
-		shotgun: 16,
-		shellIcon: 17,
-		bulletIcon: 18,
-		rifleAmmoIcon: 19,
-		rifle: 20,
-		boxBullets: 21,
-		boxShells: 22,
-		boxRifleAmmo: 23,
-		floorStone: 27,
-		door: 31,
-		floorGrass: 33,
-	},
 	miniTileNumbers: {
 		miniFacePlayer: 15 * 6 + 0,
 		miniFaceZombie: 15 * 6 + 1,
@@ -113,7 +113,7 @@ const levelDefs = [
 	{
 		// start
 		map: 0,
-		floorTile: g_game.tileNumbers.floorGrass,
+		floorTile: tileNumbers_floorGrass,
 		enemiesToSpawn: 8,
 		enemiesMaxAlive: 3,
 		spawns: [{ chance: 1 }],
@@ -121,7 +121,7 @@ const levelDefs = [
 	{
 		// graveyard
 		map: 1,
-		floorTile: g_game.tileNumbers.floorStone,
+		floorTile: tileNumbers_floorStone,
 		enemiesToSpawn: 8,
 		enemiesMaxAlive: 3,
 		spawns: [{ chance: 1 }],
@@ -129,7 +129,7 @@ const levelDefs = [
 	{
 		// intro to vampires
 		map: 3,
-		floorTile: g_game.tileNumbers.floorStone,
+		floorTile: tileNumbers_floorStone,
 		enemiesToSpawn: 12,
 		enemiesMaxAlive: 4,
 		spawns: [{ chance: 0.5 }, { type: "v", chance: 0.5 }],
@@ -137,7 +137,7 @@ const levelDefs = [
 	{
 		// intro to ghosts
 		map: 4,
-		floorTile: g_game.tileNumbers.floorStone,
+		floorTile: tileNumbers_floorStone,
 		enemiesToSpawn: 12,
 		enemiesMaxAlive: 4,
 		spawns: [{ chance: 0.5 }, { type: "g", chance: 0.5 }],
@@ -145,7 +145,7 @@ const levelDefs = [
 	{
 		// final boss
 		map: 2,
-		floorTile: g_game.tileNumbers.floorStone,
+		floorTile: tileNumbers_floorStone,
 		enemiesToSpawn: Infinity,
 		enemiesMaxAlive: 5,
 		spawns: [{ chance: 0.4 }, { type: "v", chance: 0.3 }, { type: "g", chance: 0.3 }],

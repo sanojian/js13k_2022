@@ -4,14 +4,14 @@ class AmmoBox extends EngineObject {
 	constructor(pos, gunType) {
 		let tileIndex = 0;
 		switch (gunType) {
-			case g_game.tileNumbers.rifle:
-				tileIndex = g_game.tileNumbers.boxRifleAmmo;
+			case tileNumbers_rifle:
+				tileIndex = tileNumbers_boxRifleAmmo;
 				break;
-			case g_game.tileNumbers.shotgun:
-				tileIndex = g_game.tileNumbers.boxShells;
+			case tileNumbers_shotgun:
+				tileIndex = tileNumbers_boxShells;
 				break;
 			default:
-				tileIndex = g_game.tileNumbers.boxBullets;
+				tileIndex = tileNumbers_boxBullets;
 		}
 		super(pos, vec2(1), tileIndex, TILE_SIZE);
 
@@ -19,16 +19,16 @@ class AmmoBox extends EngineObject {
 	}
 
 	update() {
-		if (isOverlapping(this.pos, this._hitbox, g_game.player.pos, g_game.player._hitbox)) {
+		if (isOverlapping(this.pos, this._hitbox, g_player.pos, g_player._hitbox)) {
 			switch (this.tileIndex) {
-				case g_game.tileNumbers.boxShells:
-					g_game.player.ammoShells += 12;
+				case tileNumbers_boxShells:
+					g_player.ammoShells += 12;
 					break;
-				case g_game.tileNumbers.boxRifleAmmo:
-					g_game.player.ammoRifle += 6;
+				case tileNumbers_boxRifleAmmo:
+					g_player.ammoRifle += 6;
 					break;
 				default:
-					g_game.player.ammoBullets += 24;
+					g_player.ammoBullets += 24;
 			}
 			soundPickup.play(this.pos);
 			this.destroy();

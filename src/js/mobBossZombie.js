@@ -2,7 +2,7 @@
 
 class BossZombie extends Enemy {
 	constructor(pos) {
-		super(pos, vec2(2), g_game.tileNumbers.beefyZombie);
+		super(pos, vec2(2), tileNumbers_beefyZombie);
 
 		this.mass = 12;
 
@@ -30,7 +30,7 @@ class BossZombie extends Enemy {
 			this.tearing = false;
 			this.throwing = true;
 			this.throwingTimer = new Timer(1);
-			this.boulder.velocity = g_game.player.pos.subtract(this.pos).clampLength(0.3);
+			this.boulder.velocity = g_player.pos.subtract(this.pos).clampLength(0.3);
 			this.boulder.angleVelocity = rand(-0.1, 0.1);
 			this.soundThrow.play();
 		}

@@ -23,7 +23,7 @@ class Pusher {
 	update() {
 		this.tics = this.tics - 1;
 
-		//g_game.enemies.push(g_game.player);
+		//g_game.enemies.push(g_player);
 
 		for (const e of g_game.enemies) {
 			let toMob = e.pos.subtract(this.pos);

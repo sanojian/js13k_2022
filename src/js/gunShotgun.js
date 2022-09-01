@@ -1,11 +1,11 @@
 /** @format */
 class Shotgun extends Gun {
 	constructor(pos) {
-		super(pos, g_game.tileNumbers.shotgun);
+		super(pos, tileNumbers_shotgun);
 		this._distance = 0.3;
 		this._speed = 0.3;
 		this._maxAmmo = 2;
-		this._ammoIconTile = g_game.tileNumbers.shellIcon;
+		this._ammoIconTile = tileNumbers_shellIcon;
 
 		this.ammo = this._maxAmmo;
 		this.reloadTimePerBullet = 0.6;

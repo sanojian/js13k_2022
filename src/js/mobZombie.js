@@ -5,7 +5,7 @@ const RISE_FRAMES = 240;
 
 class Zombie extends Enemy {
 	constructor(pos) {
-		super(pos, vec2(0.8), g_game.tileNumbers.zombie);
+		super(pos, vec2(0.8), tileNumbers_zombie);
 
 		this._maxSpeed = mobDefs.Zombie.maxSpeed + mobDefs.Zombie.maxSpeed * 0.1 * g_game.difficulty;
 		this.hp = mobDefs.Zombie.hp + Math.floor(g_game.difficulty * mobDefs.Zombie.hpGainPerlevel);

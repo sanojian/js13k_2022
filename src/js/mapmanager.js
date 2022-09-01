@@ -32,33 +32,33 @@ class MapManager {
 
 					let offsetVec = vec2(x + 0.5, h - 1 - y + 0.5);
 
-					if (t == g_game.tileNumbers.player) {
+					if (t == tileNumbers_player) {
 						g_game.playerSpawn = offsetVec;
 						continue;
-					} else if (t == g_game.tileNumbers.pistol) {
+					} else if (t == tileNumbers_pistol) {
 						new Pistol(offsetVec);
 						continue;
-					} else if (t == g_game.tileNumbers.shotgun) {
+					} else if (t == tileNumbers_shotgun) {
 						new Shotgun(offsetVec);
 						continue;
-					} else if (t == g_game.tileNumbers.rifle) {
+					} else if (t == tileNumbers_rifle) {
 						new Rifle(offsetVec);
 						continue;
-					} else if (t == g_game.tileNumbers.beefyZombie) {
+					} else if (t == tileNumbers_beefyZombie) {
 						g_game.enemies.push(new BossZombie(offsetVec));
 						continue;
-					} else if (t == g_game.tileNumbers.boxBullets) {
-						new AmmoBox(offsetVec, g_game.tileNumbers.pistol);
+					} else if (t == tileNumbers_boxBullets) {
+						new AmmoBox(offsetVec, tileNumbers_pistol);
 						continue;
-					} else if (t == g_game.tileNumbers.boxShells) {
-						new AmmoBox(offsetVec, g_game.tileNumbers.shotgun);
+					} else if (t == tileNumbers_boxShells) {
+						new AmmoBox(offsetVec, tileNumbers_shotgun);
 						continue;
-					} else if (t == g_game.tileNumbers.boxRifleAmmo) {
-						new AmmoBox(offsetVec, g_game.tileNumbers.rifle);
+					} else if (t == tileNumbers_boxRifleAmmo) {
+						new AmmoBox(offsetVec, tileNumbers_rifle);
 						continue;
 					}
 
-					if (t == g_game.tileNumbers.door) {
+					if (t == tileNumbers_door) {
 						g_game.doors[x + "_" + (h - 1 - y)] = { hp: 3 };
 					} else {
 						// pushers on all collision stuff except doors
@@ -87,10 +87,10 @@ class MapManager {
 		let pos = vec2(0);
 		for (let x = 0; x < mapData[g_levelDef.map].w; x++) {
 			for (let y = 0; y < mapData[g_levelDef.map].h; y++) {
-				let dVec = vec2(g_game.player.pos.x - x - 0.5, g_game.player.pos.y - y - 0.5);
+				let dVec = vec2(g_player.pos.x - x - 0.5, g_player.pos.y - y - 0.5);
 				pos.x = x + 0.5 + dVec.clampLength(min(1.5, dVec.length())).x;
 				pos.y = y + 0.5 + dVec.clampLength(min(1.5, dVec.length())).y;
-				let pos2 = tileCollisionRaycast(g_game.player.pos, pos);
+				let pos2 = tileCollisionRaycast(g_player.pos, pos);
 				if (pos2 && !(pos2.x == x + 0.5 && pos2.y == y + 0.5)) {
 					let shadow = g_game.shadows[x + "_" + y] || {
 						x: x + 0.5,

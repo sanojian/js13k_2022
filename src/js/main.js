@@ -27,7 +27,7 @@ function scaleCameraToScreenSize() {
 function startNewGame() {
 	g_score = 0;
 	g_level = 0;
-	delete g_game.player;
+	g_player = null;
 }
 
 function startNextLevel() {
@@ -35,14 +35,14 @@ function startNextLevel() {
 	let ammoPistol = 0;
 	let ammoShotgun = 0;
 	let ammoRifle = 0;
-	let currentGun = g_game.tileNumbers.pistol; // default
+	let currentGun = tileNumbers_pistol; // default
 	let gunAmmo = 0;
-	if (g_game.player) {
-		ammoPistol = g_game.player.ammoBullets;
-		ammoShotgun = g_game.player.ammoShells;
-		ammoRifle = g_game.player.ammoRifle;
-		currentGun = g_game.player.gun?.tileIndex;
-		gunAmmo = g_game.player.gun?.ammo;
+	if (g_player) {
+		ammoPistol = g_player.ammoBullets;
+		ammoShotgun = g_player.ammoShells;
+		ammoRifle = g_player.ammoRifle;
+		currentGun = g_player.gun?.tileIndex;
+		gunAmmo = g_player.gun?.ammo;
 	} else {
 		// starting ammo
 		ammoPistol = 12;
@@ -55,7 +55,7 @@ function startNextLevel() {
 	g_game.moss = [];
 	g_game.shadows = {};
 
-	g_game.player = new MobPlayer(vec2(1));
+	g_player = new MobPlayer(vec2(1));
 
 	g_game.enemies = [];
 
@@ -73,23 +73,23 @@ function startNextLevel() {
 
 	enemiesSpawned = 0;
 
-	g_game.player.pos = g_game.playerSpawn;
+	g_player.pos = g_game.playerSpawn;
 	cameraPos = g_game.playerSpawn.copy();
 
 	// give player saved equipment
-	g_game.player.ammoBullets = ammoPistol;
-	g_game.player.ammoShells = ammoShotgun;
-	g_game.player.ammoRifle = ammoRifle;
+	g_player.ammoBullets = ammoPistol;
+	g_player.ammoShells = ammoShotgun;
+	g_player.ammoRifle = ammoRifle;
 	let theGun;
 	switch (currentGun) {
-		case g_game.tileNumbers.pistol:
-			theGun = new Pistol(g_game.player.pos);
+		case tileNumbers_pistol:
+			theGun = new Pistol(g_player.pos);
 			break;
-		case g_game.tileNumbers.shotgun:
-			theGun = new Shotgun(g_game.player.pos);
+		case tileNumbers_shotgun:
+			theGun = new Shotgun(g_player.pos);
 			break;
-		case g_game.tileNumbers.rifle:
-			theGun = new Rifle(g_game.player.pos);
+		case tileNumbers_rifle:
+			theGun = new Rifle(g_player.pos);
 			break;
 	}
 	if (theGun) {
@@ -104,7 +104,7 @@ function findFreePos(minDistToPlayer) {
 
 	do {
 		pos = vec2(rand(mapData[g_levelDef.map].w), rand(mapData[g_levelDef.map].h));
-		dist2player = pos.distance(g_game.player.pos);
+		dist2player = pos.distance(g_player.pos);
 		inTileCol = tileCollisionTest(pos, vec2(1));
 	} while (dist2player < minDistToPlayer || inTileCol);
 
@@ -178,7 +178,7 @@ function updateStateClickToStart() {
 	drawTile(
 		cameraPos,
 		vec2(4),
-		g_game.tileNumbers.faceZombie,
+		tileNumbers_faceZombie,
 		TILE_SIZE,
 		new Color(1, 1, 1, Math.max(0, 0.2 * Math.sin((frame * PI) / 1000)))
 	);
@@ -247,7 +247,7 @@ function updateStatePlaying() {
 
 	if (enemiesSpawned == g_levelDef.enemiesToSpawn + g_game.difficulty && g_game.enemies.length == 0) {
 		changeState(STATE_CLEARED);
-		g_game.player.gun.reload();
+		g_player.gun.reload();
 		g_level++;
 		return;
 	}
@@ -264,25 +264,25 @@ function updateStatePlaying() {
 		ticsToSpawn = rand(0, 120);
 	}
 
-	if (g_game.player.hp <= 0) {
+	if (g_player.hp <= 0) {
 		changeState(STATE_DEAD);
 		localStorage.daScore = localStorage.daScore ? Math.max(g_score, localStorage.daScore) : g_score;
 		return;
 	}
 
-	if (g_game.player.gun) {
-		if (!g_game.ammoSpawned && g_game.player.getAmmoForGunType(g_game.player.gun.tileIndex) == 0) {
+	if (g_player.gun) {
+		if (!g_game.ammoSpawned && g_player.getAmmoForGunType(g_player.gun.tileIndex) == 0) {
 			// spawn more ammo
-			new AmmoBox(findFreePos(), g_game.player.gun.tileIndex);
+			new AmmoBox(findFreePos(), g_player.gun.tileIndex);
 			g_game.ammoSpawned = true;
-		} else if (g_game.player.getAmmoForGunType(g_game.player.gun.tileIndex) != 0) {
+		} else if (g_player.getAmmoForGunType(g_player.gun.tileIndex) != 0) {
 			// allow ammo to spawn again when player is empty
 			g_game.ammoSpawned = false;
 		}
 	}
 
 	// camera goes halfway between player and mouse
-	cameraPos = cameraPos.lerp(g_game.player.pos.add(mousePos.subtract(g_game.player.pos).scale(0.5)), 0.03);
+	cameraPos = cameraPos.lerp(g_player.pos.add(mousePos.subtract(g_player.pos).scale(0.5)), 0.03);
 
 	fx.updateScreenShake();
 

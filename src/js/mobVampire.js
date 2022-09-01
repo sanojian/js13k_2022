@@ -2,7 +2,7 @@
 
 class Vampire extends Enemy {
 	constructor(pos) {
-		super(pos, vec2(0.8), g_game.tileNumbers.bat);
+		super(pos, vec2(0.8), tileNumbers_bat);
 
 		this.mass = 2;
 
@@ -37,7 +37,7 @@ class Vampire extends Enemy {
 					this.miniFace = g_game.miniTileNumbers.miniFaceVampire;
 					this._walkCycleFrames = 15;
 					makeParticles(this.pos, rand(1), new Color(155 / 255, 173 / 255, 183 / 255));
-					this.tileIndex = g_game.tileNumbers.vampire;
+					this.tileIndex = tileNumbers_vampire;
 					this.hp += mobDefs.Vampire.addTransformHp + g_game.difficulty;
 					this.mass = 2;
 					this.enemyMoveSpeed = rand(0.3, 0.4);
@@ -47,9 +47,9 @@ class Vampire extends Enemy {
 					this.transformed = true;
 				}
 			} else {
-				if (isOverlapping(this.pos, this._hitbox, g_game.player.pos, g_game.player._hitbox)) {
+				if (isOverlapping(this.pos, this._hitbox, g_player.pos, g_player._hitbox)) {
 					// scary foreboding hint at what is coming
-					g_game.transforms.push({ pos: this.pos.copy(), life: 60, tileIndex: g_game.tileNumbers.faceVampire });
+					g_game.transforms.push({ pos: this.pos.copy(), life: 60, tileIndex: tileNumbers_faceVampire });
 					this.transformTimer = new Timer(2);
 					this.transforming = true;
 					this.enemyMoveSpeed = -this.enemyMoveSpeed; // run from player while transforming !

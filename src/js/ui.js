@@ -47,7 +47,7 @@ function gameRenderPost() {
 	// draw effects or hud that appear above all objects
 	scaleCameraToScreenSize();
 
-	if (g_game.player) {
+	if (g_player) {
 		let pos = vec2(0);
 
 		g_game.mapMan.renderFOW();
@@ -84,7 +84,7 @@ function gameRenderPost() {
 		drawTile(
 			vec2(pos.x - 5 * scaleUI, pos.y),
 			vec2(scaleX, 2).scale(scaleUI),
-			g_game.tileNumbers.facePlayer,
+			tileNumbers_facePlayer,
 			TILE_SIZE,
 			new Color(1, 1, 1, 0.7)
 		);
@@ -97,38 +97,30 @@ function gameRenderPost() {
 		drawRect(pos.subtract(vec2(3 * scaleUI, 0.6 * scaleUI)), boxSize, rectCol);
 
 		const iconSize = vec2(0.45).scale(scaleUI);
-		drawTile(pos.subtract(vec2(3.5 * scaleUI, -0.6 * scaleUI)), iconSize, g_game.tileNumbers.bulletIcon, TILE_SIZE);
-		drawTile(pos.subtract(vec2(3.5 * scaleUI, 0)), iconSize, g_game.tileNumbers.rifleAmmoIcon, TILE_SIZE);
-		drawTile(pos.subtract(vec2(3.5 * scaleUI, 0.6 * scaleUI)), iconSize, g_game.tileNumbers.shellIcon, TILE_SIZE);
+		drawTile(pos.subtract(vec2(3.5 * scaleUI, -0.6 * scaleUI)), iconSize, tileNumbers_bulletIcon, TILE_SIZE);
+		drawTile(pos.subtract(vec2(3.5 * scaleUI, 0)), iconSize, tileNumbers_rifleAmmoIcon, TILE_SIZE);
+		drawTile(pos.subtract(vec2(3.5 * scaleUI, 0.6 * scaleUI)), iconSize, tileNumbers_shellIcon, TILE_SIZE);
 
 		const txtSize = 0.4 * scaleUI;
 		const txtCol = new Color(0.9, 0.9, 0.9);
 		const txtDx = 2.5 * scaleUI;
 		let y = pos.y - 0.025;
 
-		drawText(
-			g_game.player.ammoBullets,
-			vec2(pos.x - txtDx, y + 0.6 * scaleUI),
-			txtSize,
-			txtCol,
-			-1,
-			undefined,
-			"right"
-		);
-		drawText(g_game.player.ammoRifle, vec2(pos.x - txtDx, y), txtSize, txtCol, -1, undefined, "right");
-		drawText(g_game.player.ammoShells, vec2(pos.x - txtDx, y - 0.6 * scaleUI), txtSize, txtCol, -1, undefined, "right");
+		drawText(g_player.ammoBullets, vec2(pos.x - txtDx, y + 0.6 * scaleUI), txtSize, txtCol, -1, undefined, "right");
+		drawText(g_player.ammoRifle, vec2(pos.x - txtDx, y), txtSize, txtCol, -1, undefined, "right");
+		drawText(g_player.ammoShells, vec2(pos.x - txtDx, y - 0.6 * scaleUI), txtSize, txtCol, -1, undefined, "right");
 
 		// ammo
 		const colorHere = g_game.colorWhite;
 		const colorGone = new Color(0.3, 0.3, 0.3);
-		if (g_game.player.gun) {
-			for (let i = 0; i < g_game.player.gun._maxAmmo; i++) {
+		if (g_player.gun) {
+			for (let i = 0; i < g_player.gun._maxAmmo; i++) {
 				drawTile(
 					vec2(pos.x - 1.4 * scaleUI + i * 0.95 * scaleUI, pos.y),
 					vec2(scaleUI),
-					g_game.player.gun._ammoIconTile,
+					g_player.gun._ammoIconTile,
 					TILE_SIZE,
-					i + 1 > g_game.player.gun.ammo ? colorGone : colorHere
+					i + 1 > g_player.gun.ammo ? colorGone : colorHere
 				);
 			}
 		}
