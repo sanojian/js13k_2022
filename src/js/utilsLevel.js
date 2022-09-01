@@ -25,7 +25,7 @@ function generateMapForLevel3() {
 
 	for (let y = 0; y < newMap.h; y++) {
 		for (let x = 0; x < newMap.w; x++) {
-			newMap.data[x + newMap.w * y] = mapToCopy.data[y + mapToCopy.w * x];
+			newMap.data[(newMap.w - 1 - x) + newMap.w * (newMap.h - 1 - y)] = mapToCopy.data[y + mapToCopy.w * x];
 		}
 	}
 
