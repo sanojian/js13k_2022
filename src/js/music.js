@@ -60,14 +60,32 @@ function createMinorIssues() {
 	// let snarePattern = [, , 0, , , , 0, , , , 0, , , , 0, 0];
 	// songData[1][0].push(unfoldPattern(2, 0.1, 7, snarePattern, drumStarts));
 
-	let drumStarts = Array(chordStarts.length).fill(0);
+	let bdStarts = Array(chordStarts.length).fill(0);
+	let snareStarts = Array(chordStarts.length / 2).fill(0);
 	let bdPattern = [0, 0, undefined, undefined, 0, 0, undefined, undefined];
-	let snarePattern = [undefined, undefined, 0, undefined, undefined, undefined, 0, undefined];
+	let snarePattern = [
+		undefined,
+		undefined,
+		0,
+		undefined,
+		undefined,
+		undefined,
+		0,
+		undefined,
+		undefined,
+		undefined,
+		0,
+		undefined,
+		undefined,
+		undefined,
+		0,
+		0,
+	];
 
 	songData[1][0].push(unfoldPattern(1, 0, 7, bdPattern, [0, 0, 0, 0]));
 
-	songData[1][1].push(unfoldPattern(1, 0, 7, bdPattern, drumStarts));
-	songData[1][1].push(unfoldPattern(2, 0.1, 7, snarePattern, drumStarts));
+	songData[1][1].push(unfoldPattern(1, 0, 7, bdPattern, bdStarts));
+	songData[1][1].push(unfoldPattern(2, 0.1, 7, snarePattern, snareStarts));
 }
 
 var vol = 0.4; //0.5; //.7;
