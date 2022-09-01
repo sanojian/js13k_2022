@@ -89,7 +89,7 @@ module.exports = function (grunt) {
 				}
 			}
 		},
-		clean: ['dist/*.html', 'dist/*.png', 'dist/js/'],
+		clean: ['dist/*.html', 'dist/*.zip', 'dist/*.js', 'dist/*.png', 'dist/js/'],
 		concat: {
 			dev: {
 				files: {
