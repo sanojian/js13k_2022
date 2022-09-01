@@ -84,22 +84,28 @@ class MapManager {
 
 	// STUPID FOG OF WAR / LINE OF SIGHT
 	renderFOW() {
-		//const fogSize = 30;
-		var pos = vec2(0);
+		let pos = vec2(0);
 		for (let x = 0; x < mapData[g_levelDef.map].w; x++) {
 			for (let y = 0; y < mapData[g_levelDef.map].h; y++) {
-				pos.x = x + 0.5;
-				pos.y = y + 0.5;
+				let dx = g_game.player.pos.x - x - 0.5;
+				let dy = g_game.player.pos.y - y - 0.5;
+				let angle = Math.atan2(dy, dx);
+				let dist = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+				pos.x = x + 0.5 + min(dist, 1.5) * Math.cos(angle);
+				pos.y = y + 0.5 + min(dist, 1.5) * Math.sin(angle);
 				let pos2 = tileCollisionRaycast(g_game.player.pos, pos);
-				if (pos2 && !(pos2.x == pos.x && pos2.y == pos.y)) {
+				if (pos2 && !(pos2.x == x + 0.5 && pos2.y == y + 0.5)) {
 					let shadow = g_game.shadows[x + "_" + y] || {
-						x: pos.x,
-						y: pos.y,
+						x: x + 0.5,
+						y: y + 0.5,
 						alpha: 0,
 					};
 					shadow.alpha = min(1, shadow.alpha + 0.1);
 
 					g_game.shadows[x + "_" + y] = shadow;
+					//drawRect(pos, vec2(0.1), new Color(1, 0, 0));
+				} else {
+					//drawRect(pos, vec2(0.1), new Color(0, 1, 0));
 				}
 			}
 		}
