@@ -12,3 +12,23 @@ function getNextEnemySpawnClass() {
 	}
 	return type;
 }
+
+function generateMapForLevel3() {
+
+	let mapToCopy = mapData[1];
+
+	let newMap = {
+		w: mapToCopy.h,
+		h: mapToCopy.w,
+		data: []
+	};
+
+	for (let y = 0; y < newMap.h; y++) {
+		for (let x = 0; x < newMap.w; x++) {
+			newMap.data[x + newMap.w * y] = mapToCopy.data[y + mapToCopy.w * x];
+		}
+	}
+
+	mapData.push(newMap);
+
+}

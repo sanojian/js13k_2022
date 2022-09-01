@@ -1,8 +1,12 @@
 /** @format */
 
 function init() {
-	// startup LittleJS with your game functions after the tile image is loaded
 	console.log("INIT");
+
+	// generate new map
+	generateMapForLevel3();
+
+	// startup LittleJS with your game functions after the tile image is loaded
 	engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRenderPost, "t.png");
 }
 

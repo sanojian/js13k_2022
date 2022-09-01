@@ -131,7 +131,7 @@ const levelDefs = [
 	},
 	{
 		// intro to ghosts
-		map: 1,
+		map: 3,
 		floorTile: g_game.tileNumbers.floorStone,
 		enemiesToSpawn: 12,
 		enemiesMaxAlive: 4,
