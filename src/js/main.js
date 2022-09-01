@@ -251,6 +251,13 @@ function updateStatePlaying() {
 
 	ticsToSpawn--;
 
+	if (enemiesSpawned == g_levelDef.enemiesToSpawn + g_game.difficulty && g_game.enemies.length == 0) {
+		changeState(STATE_CLEARED);
+		g_game.player.gun.reload();
+		g_level++;
+		return;
+	}
+
 	// game gets more difficult as you play
 	g_game.difficulty = Math.floor(g_level / levelDefs.length);
 
@@ -278,13 +285,6 @@ function updateStatePlaying() {
 			// allow ammo to spawn again when player is empty
 			g_game.ammoSpawned = false;
 		}
-	}
-
-	if (enemiesSpawned == g_levelDef.enemiesToSpawn + g_game.difficulty && g_game.enemies.length == 0) {
-		changeState(STATE_CLEARED);
-		g_game.player.gun.reload();
-		g_level++;
-		return;
 	}
 
 	// camera goes halfway between player and mouse
