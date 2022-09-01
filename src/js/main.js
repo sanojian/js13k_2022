@@ -51,6 +51,7 @@ function startNextLevel() {
 	g_levelDef = levelDefs[g_level % levelDefs.length];
 
 	g_game.moss = [];
+	g_game.shadows = {};
 
 	g_game.player = new MobPlayer(vec2(1));
 

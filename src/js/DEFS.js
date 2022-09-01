@@ -35,6 +35,7 @@ let g_game = {
 	corpses: [],
 	shells: [],
 	moss: [],
+	shadows: {},
 	transforms: [],
 
 	colorBlack: new Color(0, 0, 0),
