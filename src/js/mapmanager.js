@@ -87,19 +87,17 @@ class MapManager {
 		//const fogSize = 30;
 		var pos = vec2(0);
 		for (let x = 0; x < mapData[g_levelDef.map].w; x++) {
-			for (let y = 0; y < mapData[g_levelDef.map].w; y++) {
+			for (let y = 0; y < mapData[g_levelDef.map].h; y++) {
 				pos.x = x + 0.5;
 				pos.y = y + 0.5;
-				//pos = screenToWorld(pos);
 				let pos2 = tileCollisionRaycast(g_game.player.pos, pos);
 				if (pos2 && !(pos2.x == pos.x && pos2.y == pos.y)) {
-					//drawRect(pos, vec2(1), new Color(0, 0, 0));
 					let shadow = g_game.shadows[x + "_" + y] || {
 						x: pos.x,
 						y: pos.y,
 						alpha: 0,
 					};
-					shadow.alpha = min(1, shadow.alpha + 0.02);
+					shadow.alpha = min(0.9, shadow.alpha + 0.1);
 
 					g_game.shadows[x + "_" + y] = shadow;
 				}
@@ -110,7 +108,7 @@ class MapManager {
 		let color = new Color(0, 0, 0, 1);
 		for (let key in g_game.shadows) {
 			let shadow = g_game.shadows[key];
-			// fade shadow
+			// fade
 			shadow.alpha -= 0.01;
 			if (shadow.alpha <= 0) {
 				delete g_game.shadows[key];
