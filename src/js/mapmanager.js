@@ -82,6 +82,22 @@ class MapManager {
 		//g_game.tileLayer.redraw();
 	}
 
+	// STUPID FOG OF WAR / LINE OF SIGHT
+	renderFOW() {
+		//const fogSize = 30;
+		var pos = vec2(0);
+		for (let x = 0; x < mapData[g_levelDef.map].w; x++) {
+			for (let y = 0; y < mapData[g_levelDef.map].w; y++) {
+				pos.x = x + 0.5;
+				pos.y = y + 0.5;
+				//pos = screenToWorld(pos);
+				if (tileCollisionRaycast(pos, g_game.player.pos)) {
+					drawRect(pos, vec2(1), new Color(0, 0, 0));
+				}
+			}
+		}
+	}
+
 	render() {
 		g_game.tileLayer.redraw();
 	}

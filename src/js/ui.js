@@ -50,18 +50,7 @@ function gameRenderPost() {
 	if (g_game.player) {
 		let pos = vec2(0);
 
-		// STUPID FOG OF WAR / LINE OF SIGHT
-		// const fogSize = 30;
-		// for (let x = 0; x < mainCanvasSize.x; x += fogSize) {
-		// 	for (let y = 0; y < mainCanvasSize.y; y += fogSize) {
-		// 		pos.x = x;
-		// 		pos.y = y;
-		// 		pos = screenToWorld(pos);
-		// 		if (tileCollisionRaycast(pos, g_game.player.pos)) {
-		// 			drawRect(pos, vec2(fogSize / 50), new Color(0, 0, 0));
-		// 		}
-		// 	}
-		// }
+		g_game.mapMan.renderFOW();
 
 		// scary transforms
 		for (let i = 0; i < g_game.transforms.length; i++) {
