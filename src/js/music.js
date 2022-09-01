@@ -3,7 +3,7 @@
 var songData = [
 	[
 		[, 0, 43, 0.01, , 0.3, 2, , , , , , , , , 0.02, 0.01], // 0 bass
-		[10, 0, 170, 0.003, , 0.008, , 0.97, -35, 53, , , , , , 0.1], // 1 base drum
+		[30, 0, 170, 0.003, , 0.008, , 0.97, -35, 53, , , , , , 0.1], // 1 base drum
 		[0.8, 0, 270, , , 0.12, 3, 1.65, -2, , , , , 4.5, , 0.02], // 2 snare
 
 		// [, 0, 86, , , , , 0.7, , , , 0.5, , 6.7, 1, 0.05], // 3 hh
@@ -14,7 +14,7 @@ var songData = [
 	],
 	[[]],
 	[0], // patterns
-	80,
+	50,
 ];
 
 function unfoldPattern(instrument, pan, startnode, pattern, starts) {
@@ -34,6 +34,7 @@ function unfoldPattern(instrument, pan, startnode, pattern, starts) {
 function createMinorIssues() {
 	// prettier-ignore
 	let chordStarts = [
+		undefined, undefined, undefined, undefined,
 		2, 2, 2, 2,
 		0, 0, 0, 0,
 		2, 2, 2, 2,
@@ -42,7 +43,6 @@ function createMinorIssues() {
 		5, 5, 5, 5,
 		9, 9, 11, 11,
 		13, 15, 17, 19,
-		undefined, undefined, undefined, undefined 
 	];
 
 	let bassPattern = [0, 12, 14, 15, 0, 12, 15, 14];
@@ -50,13 +50,22 @@ function createMinorIssues() {
 	let bassNodes = unfoldPattern(0, -0.1, 7, bassPattern, chordStarts);
 	songData[1][0].push(bassNodes);
 
-	let drumStarts = Array(chordStarts.length / 2).fill(0);
+	let bassNodes2 = unfoldPattern(0, 0.1, 7 + 7, bassPattern, chordStarts);
+	songData[1][0].push(bassNodes2);
 
-	let bdPattern = [0, , , , 0, 0, , , 0, , , , 0, 0, , ,];
-	songData[1][0].push(unfoldPattern(1, 0, 8, bdPattern, drumStarts));
+	// let drumStarts = Array(chordStarts.length / 2).fill(0);
+	// let bdPattern = [0, , , , 0, 0, , , 0, , , , 0, 0, , ,];
+	// songData[1][0].push(unfoldPattern(1, 0, 8, bdPattern, drumStarts));
 
-	let snarePattern = [, , 0, , , , 0, , , , 0, , , , 0, 0];
-	songData[1][0].push(unfoldPattern(2, 0.1, 7, snarePattern, drumStarts));
+	// let snarePattern = [, , 0, , , , 0, , , , 0, , , , 0, 0];
+	// songData[1][0].push(unfoldPattern(2, 0.1, 7, snarePattern, drumStarts));
+
+	let drumStarts = Array(chordStarts.length).fill(0);
+	let bdPattern = [0, 0, undefined, undefined, 0, 0, undefined, undefined];
+	songData[1][0].push(unfoldPattern(1, 0, 7, bdPattern, drumStarts));
+
+	// let snarePattern = [undefined, undefined, 0, undefined, undefined, undefined, 0, undefined];
+	// songData[1][0].push(unfoldPattern(2, 0.1, 7, snarePattern, drumStarts));
 }
 
 var vol = 0.4; //0.5; //.7;
