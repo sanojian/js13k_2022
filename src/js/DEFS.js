@@ -89,7 +89,7 @@ const mobDefs = {
 	Zombie: {
 		hp: 1,
 		hpGainPerlevel: 1,
-		maxSpeed: 0.5,
+		maxSpeed: 0.03,
 	},
 	BossZombie: {
 		hp: 22,
@@ -99,13 +99,13 @@ const mobDefs = {
 	Vampire: {
 		hp: 1,
 		hpGainPerlevel: 0.5,
-		maxSpeed: 1,
+		maxSpeed: 0.1,
 		addTransformHp: 5,
 	},
 	Ghost: {
 		hp: 1,
 		hpGainPerlevel: 0.5,
-		maxSpeed: 1,
+		maxSpeed: 0.03,
 	},
 };
 
