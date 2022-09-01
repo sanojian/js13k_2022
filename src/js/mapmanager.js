@@ -97,7 +97,7 @@ class MapManager {
 						y: pos.y,
 						alpha: 0,
 					};
-					shadow.alpha = min(0.9, shadow.alpha + 0.1);
+					shadow.alpha = min(1, shadow.alpha + 0.1);
 
 					g_game.shadows[x + "_" + y] = shadow;
 				}
