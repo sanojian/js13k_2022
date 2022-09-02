@@ -83,20 +83,14 @@ function startNextLevel() {
 	g_player.ammoShells = ammoShotgun;
 	g_player.ammoRifle = ammoRifle;
 	let theGun;
-	switch (currentGun) {
-		case tileNumbers_pistol:
-			theGun = new Pistol(g_player.pos);
-			break;
-		case tileNumbers_shotgun:
-			theGun = new Shotgun(g_player.pos);
-			break;
-		case tileNumbers_rifle:
-			theGun = new Rifle(g_player.pos);
-			break;
+	if (currentGun == tileNumbers_rifle) {
+		theGun = new Rifle(g_player.pos);
+	} else if (currentGun == tileNumbers_shotgun) {
+		theGun = new Shotgun(g_player.pos);
+	} else {
+		theGun = new Pistol(g_player.pos);
 	}
-	if (theGun) {
-		theGun.ammo = gunAmmo;
-	}
+	theGun.ammo = gunAmmo;
 
 	musicStart();
 }
@@ -119,15 +113,12 @@ function spawnEnemy() {
 	let enemyClass = getNextEnemySpawnClass();
 	//let enemy = g_level == 1 ? new Vampire(p) : new Zombie(p);
 	let enemy;
-	switch (enemyClass) {
-		case "v":
-			enemy = new Vampire(p);
-			break;
-		case "g":
-			enemy = new Ghost(p);
-			break;
-		default:
-			enemy = new Zombie(p);
+	if (enemyClass == "v") {
+		enemy = new Vampire(p);
+	} else if (enemyClass == "g") {
+		enemy = new Ghost(p);
+	} else {
+		enemy = new Zombie(p);
 	}
 	g_enemies.push(enemy);
 	enemiesSpawned++;
@@ -146,22 +137,14 @@ function gameUpdate() {
 	//if (uiIsFading()) return;
 	uiFading();
 
-	switch (g_state) {
-		case STATE_CLICK_TO_START:
-			updateStateClickToStart();
-			break;
-		case STATE_PLAYING:
-			updateStatePlaying();
-			break;
-		case STATE_DEAD:
-			updateStateDead();
-			break;
-		case STATE_CLEARED:
-			updateStateCleared();
-			break;
-
-		default:
-			break;
+	if (g_state == STATE_CLICK_TO_START) {
+		updateStateClickToStart();
+	} else if (g_state == STATE_PLAYING) {
+		updateStatePlaying();
+	} else if (g_state == STATE_DEAD) {
+		updateStateDead();
+	} else if (g_state == STATE_CLEARED) {
+		updateStateCleared();
 	}
 }
 
@@ -273,11 +256,11 @@ function updateStatePlaying() {
 	}
 
 	if (g_player.gun) {
-		if (!ammoSpawned && g_player.getAmmoForGunType(g_player.gun.tileIndex) == 0) {
+		if (!ammoSpawned && g_player.getAmmoForCurrentGun() == 0) {
 			// spawn more ammo
 			new AmmoBox(findFreePos(7), g_player.gun.tileIndex);
 			ammoSpawned = true;
-		} else if (g_player.getAmmoForGunType(g_player.gun.tileIndex) != 0) {
+		} else if (g_player.getAmmoForCurrentGun() != 0) {
 			// allow ammo to spawn again when player is empty
 			ammoSpawned = false;
 		}

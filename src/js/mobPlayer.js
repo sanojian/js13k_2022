@@ -23,8 +23,8 @@ class MobPlayer extends Mob {
 		this.soundScream = soundPlayerScream;
 	}
 
-	getAmmoForGunType(gunType) {
-		switch (gunType) {
+	getAmmoForCurrentGun() {
+		switch (this.gun.tileIndex) {
 			case tileNumbers_shotgun:
 				return this.ammoShells;
 			case tileNumbers_rifle:

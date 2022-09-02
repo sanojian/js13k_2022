@@ -32,3 +32,14 @@ function generateMapFromLevel(level) {
 	mapData.push(newMap);
 
 }
+
+function getAmmoForGunType(gunType) {
+	
+	if (gunType == tileNumbers_rifle) {
+		return tileNumbers_boxRifleAmmo;
+	} else if (gunType == tileNumbers_shotgun) {
+		return tileNumbers_boxShells;
+	}
+	
+	return tileNumbers_boxBullets;
+}

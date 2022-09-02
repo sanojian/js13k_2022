@@ -63,7 +63,7 @@ class Mob extends EngineObject {
 		if (this.velocity.length() > 0.01) {
 			this.walkCyclePlace = (this.walkCyclePlace + 1) % this._walkCycleFrames;
 			this.mirror = this.walkCyclePlace > this._walkCycleFrames / 2 ? true : false;
-			this.bumpWalk = this.walkCyclePlace > this._walkCycleFrames / 2 ? 1 / 12 : 0;
+			this.bumpWalk = this.walkCyclePlace > this._walkCycleFrames / 2 ? 0 : 1 / 12;
 		} else {
 			this.walkCyclePlace = 0;
 			this.mirror = false;
@@ -92,7 +92,7 @@ class Mob extends EngineObject {
 		if (this.miniFace && this.enemyToTarget && this.enemyToTarget.y <= 0) {
 			drawTile(
 				this.pos.add(vec2((this.enemyToTarget.x > 0 ? 1 : 0) / 12, 3 / 12 + this.bumpWalk)),
-				vec2(1 / 6),
+				vec2(1 / 4),
 				this.miniFace,
 				MINI_TILE_SIZE
 			);
