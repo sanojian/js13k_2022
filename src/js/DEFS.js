@@ -42,7 +42,7 @@ const tileNumbers_boxBullets = 21;
 const tileNumbers_boxShells = 22;
 const tileNumbers_boxRifleAmmo = 23;
 const tileNumbers_floorStone = 27;
-const tileNumbers_door = 31;
+const tileNumbers_door = 26;
 
 let g_player = null;
 
@@ -71,11 +71,11 @@ var colorSpark = new Color(251 / 255, 242 / 255, 54 / 255);
 
 var g_state = STATE_CLICK_TO_START;
 
-const miniTileNumbers_miniFacePlayer = 15 * 6 + 0;
-const miniTileNumbers_miniFaceZombie = 15 * 6 + 1;
-const miniTileNumbers_miniFaceVampire = 15 * 6 + 2;
-const miniTileNumbers_miniFaceGhost = 15 * 6 + 3;
-const miniTileNumbers_moss = 15 * 7;
+const miniTileNumbers_miniFacePlayer = 15 * 21 + 0;
+const miniTileNumbers_miniFaceZombie = 15 * 21 + 1;
+const miniTileNumbers_miniFaceVampire = 15 * 21 + 2;
+const miniTileNumbers_miniFaceGhost = 15 * 21 + 3;
+const miniTileNumbers_moss = 15 * 21 + 4;
 
 const mobDefs = {
 	Zombie: {

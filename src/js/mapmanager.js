@@ -72,7 +72,6 @@ class MapManager {
 					let tint = new Color(rand(0.8, 1), rand(0.8, 1), rand(0.8, 1));
 					if (g_level == 0 || g_level == 2) {
 						// brown houses
-						console.log("brown houses");
 						tint = tint.add(new Color(217 / 255, 160 / 255, 102 / 255));
 					}
 					let tld = new TileLayerData(t, 0, rand(0, 1) < 0.5, tint);
@@ -81,7 +80,7 @@ class MapManager {
 					// moss
 					g_moss.push({
 						pos: offsetVec.add(randInCircle(5 / 12)),
-						tileIndex: miniTileNumbers_moss + Math.floor(rand(0, 15)),
+						tileIndex: miniTileNumbers_moss + Math.floor(rand(0, 11)),
 						angle: rand(0, PI * 2),
 					});
 				}
