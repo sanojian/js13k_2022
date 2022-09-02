@@ -9,9 +9,9 @@ class MapManager {
 	}
 
 	createMap() {
-		let myMap = mapData[g_levelDef.map].data;
-		let w = mapData[g_levelDef.map].w;
-		let h = mapData[g_levelDef.map].h;
+		let theMap = mapData[g_levelDef.map];
+		let w = theMap.w;
+		let h = theMap.h;
 
 		g_doors = {};
 
@@ -29,7 +29,7 @@ class MapManager {
 				);
 				tileLayer.setData(vec2(x, h - 1 - y), tld);
 
-				let t = myMap[x + y * w];
+				let t = theMap.data[x + y * w];
 				if (t) {
 					t -= 1;
 
@@ -69,7 +69,13 @@ class MapManager {
 					}
 
 					setTileCollisionData(vec2(x, h - 1 - y), t);
-					let tld = new TileLayerData(t, 0, rand(0, 1) < 0.5, new Color(rand(0.8, 1), rand(0.8, 1), rand(0.8, 1)));
+					let tint = new Color(rand(0.8, 1), rand(0.8, 1), rand(0.8, 1));
+					if (g_level == 0 || g_level == 2) {
+						// brown houses
+						console.log("brown houses");
+						tint = tint.add(new Color(217 / 255, 160 / 255, 102 / 255));
+					}
+					let tld = new TileLayerData(t, 0, rand(0, 1) < 0.5, tint);
 					tileLayer.setData(vec2(x, h - 1 - y), tld);
 
 					// moss
@@ -87,9 +93,11 @@ class MapManager {
 
 	// STUPID FOG OF WAR / LINE OF SIGHT
 	renderFOW() {
+		let theMap = mapData[g_levelDef.map];
+
 		let pos = vec2(0);
-		for (let x = 0; x < mapData[g_levelDef.map].w; x++) {
-			for (let y = 0; y < mapData[g_levelDef.map].h; y++) {
+		for (let x = 0; x < theMap.w; x++) {
+			for (let y = 0; y < theMap.h; y++) {
 				let dVec = vec2(g_player.pos.x - x - 0.5, g_player.pos.y - y - 0.5);
 				pos.x = x + 0.5 + dVec.clampLength(min(1.5, dVec.length())).x;
 				pos.y = y + 0.5 + dVec.clampLength(min(1.5, dVec.length())).y;
