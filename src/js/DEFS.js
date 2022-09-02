@@ -16,7 +16,7 @@ fontDefault = "Courier New";
 // "Courier New";
 // "Luminari"
 
-const g_CHEATMODE = 1;
+const g_CHEATMODE = 0;
 let g_score = 0;
 let g_level = 0;
 let g_levelDef = undefined;
@@ -30,9 +30,9 @@ const tileNumbers_bat = 3;
 const tileNumbers_ghost = 4;
 const tileNumbers_beefyZombie = 5;
 const tileNumbers_bossPlaceholder = 4;
-const tileNumbers_facePlayer = 6;
-const tileNumbers_faceZombie = 7;
-const tileNumbers_faceVampire = 8;
+const tileNumbers_facePlayer = 5;
+const tileNumbers_faceZombie = 6;
+const tileNumbers_faceVampire = 7;
 const tileNumbers_pistol = 15;
 const tileNumbers_shotgun = 16;
 const tileNumbers_shellIcon = 17;
@@ -42,8 +42,8 @@ const tileNumbers_rifle = 20;
 const tileNumbers_boxBullets = 21;
 const tileNumbers_boxShells = 22;
 const tileNumbers_boxRifleAmmo = 23;
-const tileNumbers_floorStone = 27;
-const tileNumbers_door = 26;
+const tileNumbers_floorStone = 12;
+const tileNumbers_door = 11;
 
 let g_player = null;
 
@@ -72,11 +72,11 @@ var colorSpark = new Color(251 / 255, 242 / 255, 54 / 255);
 
 var g_state = STATE_CLICK_TO_START;
 
-const miniTileNumbers_miniFacePlayer = 15 * 21 + 0;
-const miniTileNumbers_miniFaceZombie = 15 * 21 + 1;
-const miniTileNumbers_miniFaceVampire = 15 * 21 + 2;
-const miniTileNumbers_miniFaceGhost = 15 * 21 + 3;
-const miniTileNumbers_moss = 15 * 21 + 4;
+const miniTileNumbers_miniFacePlayer = 15 * 15 + 0;
+const miniTileNumbers_miniFaceZombie = 15 * 15 + 1;
+const miniTileNumbers_miniFaceVampire = 15 * 15 + 2;
+const miniTileNumbers_miniFaceGhost = 15 * 15 + 3;
+const miniTileNumbers_moss = 15 * 15 + 4;
 
 const mobDefs = {
 	Zombie: {
