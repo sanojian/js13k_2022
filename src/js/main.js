@@ -275,7 +275,7 @@ function updateStatePlaying() {
 	if (g_player.gun) {
 		if (!ammoSpawned && g_player.getAmmoForGunType(g_player.gun.tileIndex) == 0) {
 			// spawn more ammo
-			new AmmoBox(findFreePos(), g_player.gun.tileIndex);
+			new AmmoBox(findFreePos(7), g_player.gun.tileIndex);
 			ammoSpawned = true;
 		} else if (g_player.getAmmoForGunType(g_player.gun.tileIndex) != 0) {
 			// allow ammo to spawn again when player is empty

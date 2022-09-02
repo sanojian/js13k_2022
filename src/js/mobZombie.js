@@ -18,7 +18,7 @@ class Zombie extends Enemy {
 		this.pos.y -= 0.5; // for the rising to look good-ish
 
 		this.enemyJitterForce = 0.1;
-		this.enemyMoveSpeed = rand(0.05, 0.2);
+		this.enemyMoveSpeed = rand(0.05, 0.1);
 
 		this.pointingAngle = rand(2 * PI);
 
