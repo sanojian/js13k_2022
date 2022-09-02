@@ -61,10 +61,6 @@ class Vampire extends Enemy {
 		super.render();
 	}
 
-	postRender() {
-		super.postRender();
-	}
-
 	hit(velocity, pos) {
 		//this.enemyMoveSpeed = rand(0.05, 0.2) * (this.transformed ? this._vampPower : 1);
 		//this.enemyThinkPause += rand(10, 30);

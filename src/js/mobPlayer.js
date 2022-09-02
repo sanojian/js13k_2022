@@ -1,7 +1,7 @@
 /** @format */
 class MobPlayer extends Mob {
 	constructor(pos) {
-		super(pos, vec2(0.6, 0.8), tileNumbers_player);
+		super(pos, MOB_SIZE, tileNumbers_player);
 		// your object init code here
 
 		this.miniFace = miniTileNumbers_miniFacePlayer;
@@ -70,7 +70,7 @@ class MobPlayer extends Mob {
 				this.gun.owner = null;
 				this.gun = null;
 			}
-			this.applyDrag(1.7);
+			this.applyDrag(5);
 		}
 	}
 
@@ -129,19 +129,16 @@ class MobPlayer extends Mob {
 				new Color(172 / 255, 50 / 255, 50 / 255),
 				!!glEnable
 			);
-		}
-	}
-
-	postRender() {
-		// draw face
-		let toCursor = mousePos.subtract(this.pos);
-		if (toCursor.y <= 0) {
-			drawTile(
-				this.pos.add(vec2((toCursor.x > 0 ? 1 : 0) / 12, 3 / 12 + this.bumpWalk)),
-				vec2(1 / 3),
-				this.miniFace,
-				MINI_TILE_SIZE
-			);
+			// draw face
+			let toCursor = mousePos.subtract(this.pos);
+			if (toCursor.y <= 0) {
+				drawTile(
+					this.pos.add(vec2((toCursor.x > 0 ? 1 : 0) / 12, 3 / 12 + this.bumpWalk)),
+					vec2(1 / 3),
+					this.miniFace,
+					MINI_TILE_SIZE
+				);
+			}
 		}
 	}
 }
