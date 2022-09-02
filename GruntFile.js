@@ -129,33 +129,6 @@ module.exports = function (grunt) {
 	// These plugins provide necessary tasks.
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
-	grunt.registerTask('roadroller', 'compress the js file', function () {
-		// NOT WORKING! :-(
-		//require("child_process").spawn('npx' ['roadroller', 'dist/i.min.js', '-o', 'dist/i.min.js'], { cwd: './' });
-
-		const { spawn } = require('node:child_process');
-		const ls = spawn('npx' ['roadroller', 'dist/i.min.js', '-o', 'dist/i.min.js']);
-
-		ls.stdout.on('data', (data) => {
-			console.log(`stdout: ${data}`);
-		});
-
-		ls.stderr.on('data', (data) => {
-			console.error(`stderr: ${data}`);
-		});
-
-		ls.on('close', (code) => {
-			console.log(`child process exited with code ${code}`);
-		});
-
-		ls();
-
-	});
-	grunt.registerTask('zip', 'compress the files and create archive', function () {
-		// NOT WORKING! :-(
-		require("child_process").spawn('zip -X9 a.zip index.html t.png', null, { cwd: './dist' });
-
-	});
 	grunt.registerTask('rollup', 'combine html and js', function () {
 
 		let src = grunt.file.read('dist/i.min.js');
@@ -195,7 +168,7 @@ module.exports = function (grunt) {
 	]);
 	grunt.registerTask('build', ['clean', 'processMap', 'concat:dev', 'concat:shared', 'image:dev']);
 	grunt.registerTask('default', ['build', 'http-server', 'dev']);
-	grunt.registerTask('prod', ['clean', 'image:prod', 'concat:shared', 'concat:prod', 'closureCompiler', 'uglify']);
+	grunt.registerTask('prod', ['clean', 'processMap', 'image:prod', 'concat:shared', 'concat:prod', 'closureCompiler', 'uglify']);
 	grunt.registerTask('web', ['http-server', 'dev']);
 
 };

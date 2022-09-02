@@ -97,14 +97,18 @@ class MapManager {
 		let pos = vec2(0);
 		for (let x = 0; x < theMap.w; x++) {
 			for (let y = 0; y < theMap.h; y++) {
-				let dVec = vec2(g_player.pos.x - x - 0.5, g_player.pos.y - y - 0.5);
-				pos.x = x + 0.5 + dVec.clampLength(min(1.5, dVec.length())).x;
-				pos.y = y + 0.5 + dVec.clampLength(min(1.5, dVec.length())).y;
+				let cx = x + 0.5;
+				let cy = y + 0.5;
+				let dVec = vec2(g_player.pos.x - cx, g_player.pos.y - cy);
+				dVec = dVec.clampLength(min(1.5, dVec.length()));
+				pos.x = cx + dVec.x;
+				pos.y = cy + dVec.y;
 				let pos2 = tileCollisionRaycast(g_player.pos, pos);
-				if (pos2 && !(pos2.x == x + 0.5 && pos2.y == y + 0.5)) {
+				// if collision and the collision is not this tile
+				if (pos2 && !(pos2.x == cx && pos2.y == cy)) {
 					let shadow = g_shadows[x + "_" + y] || {
-						x: x + 0.5,
-						y: y + 0.5,
+						x: cx,
+						y: cy,
 						alpha: 0,
 					};
 					shadow.alpha = min(1, shadow.alpha + 0.1);
