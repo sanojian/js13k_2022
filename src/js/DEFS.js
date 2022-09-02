@@ -81,7 +81,7 @@ const mobDefs = {
 	Zombie: {
 		hp: 1,
 		hpGainPerlevel: 1,
-		maxSpeed: 0.03,
+		maxSpeed: 0.06,
 	},
 	BossZombie: {
 		hp: 22,
@@ -91,13 +91,13 @@ const mobDefs = {
 	Vampire: {
 		hp: 1,
 		hpGainPerlevel: 0.5,
-		maxSpeed: 0.1,
+		maxSpeed: 0.2,
 		addTransformHp: 5,
 	},
 	Ghost: {
 		hp: 1,
 		hpGainPerlevel: 0.5,
-		maxSpeed: 0.03,
+		maxSpeed: 0.1,
 	},
 };
 
@@ -105,29 +105,29 @@ const levelDefs = [
 	{
 		// start
 		map: 0,
-		enemiesToSpawn: 8,
+		enemiesToSpawn: 10,
 		enemiesMaxAlive: 3,
 		spawns: [{ chance: 1 }],
 	},
 	{
 		// graveyard
 		map: 1,
-		enemiesToSpawn: 10,
+		enemiesToSpawn: 15,
 		enemiesMaxAlive: 4,
 		spawns: [{ chance: 1 }],
 	},
 	{
 		// intro to vampires
 		map: 3,
-		enemiesToSpawn: 12,
-		enemiesMaxAlive: 4,
+		enemiesToSpawn: 20,
+		enemiesMaxAlive: 5,
 		spawns: [{ chance: 0.5 }, { type: "v", chance: 0.5 }],
 	},
 	{
 		// intro to ghosts
 		map: 4,
-		enemiesToSpawn: 12,
-		enemiesMaxAlive: 4,
+		enemiesToSpawn: 20,
+		enemiesMaxAlive: 5,
 		spawns: [{ chance: 0.5 }, { type: "g", chance: 0.5 }],
 	},
 	{
