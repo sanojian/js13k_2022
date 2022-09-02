@@ -23,9 +23,9 @@ class Pusher {
 	update() {
 		this.tics = this.tics - 1;
 
-		//g_game.enemies.push(g_player);
+		//enemies.push(g_player);
 
-		for (const e of g_game.enemies) {
+		for (const e of g_enemies) {
 			let toMob = e.pos.subtract(this.pos);
 
 			let dist = toMob.length();
@@ -48,7 +48,7 @@ class Pusher {
 			// debugLine(e.pos, e.pos + force.scale(100), "#ff00ff", 10, 1000);
 		}
 
-		//g_game.enemies.pop();
+		//enemies.pop();
 	}
 
 	draw() {

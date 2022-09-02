@@ -1,5 +1,7 @@
 /** @format */
 
+var mapMan;
+
 function init() {
 	// generate new maps
 	generateMapFromLevel(0);
@@ -52,29 +54,29 @@ function startNextLevel() {
 
 	g_levelDef = levelDefs[g_level % levelDefs.length];
 
-	g_game.moss = [];
-	g_game.shadows = {};
+	g_moss = [];
+	g_shadows = {};
 
 	g_player = new MobPlayer(vec2(1));
 
-	g_game.enemies = [];
+	g_enemies = [];
 
 	clearPushers();
 
-	g_game.mapMan = new MapManager();
+	mapMan = new MapManager();
 
-	g_game.mapMan.render();
+	mapMan.render();
 
-	g_game.splatter = [];
-	g_game.holes = [];
-	g_game.sparks = [];
-	g_game.corpses = [];
-	g_game.shells = [];
+	g_splatter = [];
+	g_holes = [];
+	g_sparks = [];
+	g_corpses = [];
+	g_shells = [];
 
 	enemiesSpawned = 0;
 
-	g_player.pos = g_game.playerSpawn;
-	cameraPos = g_game.playerSpawn.copy();
+	g_player.pos = playerSpawn;
+	cameraPos = playerSpawn.copy();
 
 	// give player saved equipment
 	g_player.ammoBullets = ammoPistol;
@@ -127,7 +129,7 @@ function spawnEnemy() {
 		default:
 			enemy = new Zombie(p);
 	}
-	g_game.enemies.push(enemy);
+	g_enemies.push(enemy);
 	enemiesSpawned++;
 }
 
@@ -145,7 +147,7 @@ function gameUpdate() {
 	//if (uiIsFading()) return;
 	uiFading();
 
-	switch (g_game.state) {
+	switch (g_state) {
 		case STATE_CLICK_TO_START:
 			updateStateClickToStart();
 			break;
@@ -229,7 +231,7 @@ var stateChangedTime = new Date().getTime();
 function changeState(newState) {
 	textsClear();
 	stateChangedTime = new Date().getTime();
-	g_game.state = newState;
+	g_state = newState;
 }
 
 function getMsSinceStateChange() {
@@ -237,6 +239,7 @@ function getMsSinceStateChange() {
 }
 
 var ticsToSpawn = 0;
+var ammoSpawned;
 
 function updateStatePlaying() {
 	updatePushers();
@@ -245,7 +248,7 @@ function updateStatePlaying() {
 
 	ticsToSpawn--;
 
-	if (enemiesSpawned == g_levelDef.enemiesToSpawn + g_game.difficulty && g_game.enemies.length == 0) {
+	if (enemiesSpawned == g_levelDef.enemiesToSpawn + g_difficulty && g_enemies.length == 0) {
 		changeState(STATE_CLEARED);
 		g_player.gun.reload();
 		g_level++;
@@ -253,11 +256,11 @@ function updateStatePlaying() {
 	}
 
 	// game gets more difficult as you play
-	g_game.difficulty = Math.floor(g_level / levelDefs.length);
+	g_difficulty = Math.floor(g_level / levelDefs.length);
 
 	if (
-		g_game.enemies.length < g_levelDef.enemiesMaxAlive + g_game.difficulty &&
-		enemiesSpawned < g_levelDef.enemiesToSpawn + g_game.difficulty &&
+		g_enemies.length < g_levelDef.enemiesMaxAlive + g_difficulty &&
+		enemiesSpawned < g_levelDef.enemiesToSpawn + g_difficulty &&
 		ticsToSpawn <= 0
 	) {
 		spawnEnemy();
@@ -271,13 +274,13 @@ function updateStatePlaying() {
 	}
 
 	if (g_player.gun) {
-		if (!g_game.ammoSpawned && g_player.getAmmoForGunType(g_player.gun.tileIndex) == 0) {
+		if (!ammoSpawned && g_player.getAmmoForGunType(g_player.gun.tileIndex) == 0) {
 			// spawn more ammo
 			new AmmoBox(findFreePos(), g_player.gun.tileIndex);
-			g_game.ammoSpawned = true;
+			ammoSpawned = true;
 		} else if (g_player.getAmmoForGunType(g_player.gun.tileIndex) != 0) {
 			// allow ammo to spawn again when player is empty
-			g_game.ammoSpawned = false;
+			ammoSpawned = false;
 		}
 	}
 
@@ -309,14 +312,14 @@ function textsClear() {
 	textBottom = undefined;
 }
 
-function drawTextWithOutline(text, pos, size, textColor, outlineColor = g_game.colorBlack) {
+function drawTextWithOutline(text, pos, size, textColor, outlineColor = colorBlack) {
 	drawTextScreen(text, pos, size, textColor, size / 15, outlineColor);
 }
 
 function textsDraw() {
 	if (g_CHEATMODE) {
 		drawTextScreen("CHEAT MODE ON ", vec2(100, 25), 20, new Color(1, 1, 1), 0, undefined, "left");
-		drawTextScreen("enemies: " + g_game.enemies.length, vec2(100, 50), 20, new Color(1, 1, 1), 0, undefined, "left");
+		drawTextScreen("enemies: " + g_enemies.length, vec2(100, 50), 20, new Color(1, 1, 1), 0, undefined, "left");
 	}
 
 	if (textTitle) {
@@ -330,7 +333,7 @@ function textsDraw() {
 					(rand(1 - flicker, 1 + flicker) * mainCanvas.height) / 3
 				),
 				mainCanvas.width / 10,
-				g_game.colorBlack.lerp(g_game.colorBlood, i / 10)
+				colorBlack.lerp(colorBlood, i / 10)
 			);
 		}
 	}
@@ -340,7 +343,7 @@ function textsDraw() {
 			textMiddle,
 			vec2(mainCanvas.width / 2, mainCanvas.height / 2),
 			mainCanvas.width / 20,
-			g_game.colorBlood
+			colorBlood
 		);
 	}
 
@@ -361,16 +364,16 @@ function gameRender() {
 	// called before objects are rendered
 	// draw any background effects that appear behind objects
 
-	for (let i = 0; i < g_game.corpses.length; i++) {
-		g_game.corpses[i].renderNow();
+	for (let i = 0; i < g_corpses.length; i++) {
+		g_corpses[i].renderNow();
 	}
 
-	if (g_game.shells.length > 32) {
+	if (g_shells.length > 32) {
 		// clean up old casings
-		g_game.shells.splice(0, 1);
+		g_shells.splice(0, 1);
 	}
-	for (let i = 0; i < g_game.shells.length; i++) {
-		let shell = g_game.shells[i];
+	for (let i = 0; i < g_shells.length; i++) {
+		let shell = g_shells[i];
 		drawRect(shell.pos, vec2(1 / 12, 2 / 12), shell.color, shell.angle);
 		if (shell.life > 0) {
 			shell.pos = shell.pos.add(shell.velocity);
@@ -380,40 +383,40 @@ function gameRender() {
 		}
 	}
 
-	if (g_game.splatter.length > 1024) {
+	if (g_splatter.length > 1024) {
 		// clean up old splatter
-		g_game.splatter.splice(0, 1);
+		g_splatter.splice(0, 1);
 	}
-	for (let i = 0; i < g_game.splatter.length; i++) {
-		for (let j = 0; j < g_game.splatter[i].pattern.length; j++) {
-			if (g_game.splatter[i].pattern[j]) {
-				let x = g_game.splatter[i].pos.x - (2 + (j % 4)) / 12;
-				let y = g_game.splatter[i].pos.y - (2 + Math.floor(j / 4)) / 12;
-				drawRect(vec2(x, y), vec2(1 / 12), g_game.splatter[i].color);
+	for (let i = 0; i < g_splatter.length; i++) {
+		for (let j = 0; j < g_splatter[i].pattern.length; j++) {
+			if (g_splatter[i].pattern[j]) {
+				let x = g_splatter[i].pos.x - (2 + (j % 4)) / 12;
+				let y = g_splatter[i].pos.y - (2 + Math.floor(j / 4)) / 12;
+				drawRect(vec2(x, y), vec2(1 / 12), g_splatter[i].color);
 			}
 		}
 	}
 
 	// moss
-	for (let i = 0; i < g_game.moss.length; i++) {
-		let moss = g_game.moss[i];
-		drawTile(moss.pos, vec2(1 / 3), moss.tileIndex, vec2(4), g_game.colorWhite, moss.angle);
+	for (let i = 0; i < g_moss.length; i++) {
+		let moss = g_moss[i];
+		drawTile(moss.pos, vec2(1 / 3), moss.tileIndex, vec2(4), colorWhite, moss.angle);
 	}
 
 	// bullet holes
-	for (let i = 0; i < g_game.holes.length; i++) {
-		let hole = g_game.holes[i];
+	for (let i = 0; i < g_holes.length; i++) {
+		let hole = g_holes[i];
 		drawRect(hole.pos, vec2(1 / 12), hole.color);
 	}
 
 	// sparks
-	for (let i = 0; i < g_game.sparks.length; i++) {
-		let spark = g_game.sparks[i];
+	for (let i = 0; i < g_sparks.length; i++) {
+		let spark = g_sparks[i];
 		spark.pos.x += Math.cos(spark.angle) / 32;
 		spark.pos.y += Math.sin(spark.angle) / 32;
-		drawRect(spark.pos, vec2(1 / 24), g_game.colorSpark);
+		drawRect(spark.pos, vec2(1 / 24), colorSpark);
 		if (--spark.life <= 0) {
-			g_game.sparks.splice(i, 1);
+			g_sparks.splice(i, 1);
 		}
 	}
 

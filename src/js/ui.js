@@ -50,22 +50,22 @@ function gameRenderPost() {
 	if (g_player) {
 		let pos = vec2(0);
 
-		g_game.mapMan.renderFOW();
+		mapMan.renderFOW();
 
 		// scary transforms
-		for (let i = 0; i < g_game.transforms.length; i++) {
-			let trans = g_game.transforms[i];
+		for (let i = 0; i < g_transforms.length; i++) {
+			let trans = g_transforms[i];
 			drawTile(trans.pos, vec2((60 - trans.life) / 6), trans.tileIndex, TILE_SIZE, new Color(0.8, 0.8, 0.8, 0.15));
 			trans.life--;
 			if (trans.life <= 0) {
-				g_game.transforms.splice(i, 1);
+				g_transforms.splice(i, 1);
 				i--;
 			}
 		}
 
 		// score texts
-		for (let i = 0; i < g_game.corpses.length; i++) {
-			g_game.corpses[i].postRender();
+		for (let i = 0; i < g_corpses.length; i++) {
+			g_corpses[i].postRender();
 		}
 
 		// make sure UI can fit onto screen
@@ -111,7 +111,7 @@ function gameRenderPost() {
 		drawText(g_player.ammoShells, vec2(pos.x - txtDx, y - 0.6 * scaleUI), txtSize, txtCol, -1, undefined, "right");
 
 		// ammo
-		const colorHere = g_game.colorWhite;
+		const colorHere = colorWhite;
 		const colorGone = new Color(0.3, 0.3, 0.3);
 		if (g_player.gun) {
 			for (let i = 0; i < g_player.gun._maxAmmo; i++) {
@@ -130,7 +130,7 @@ function gameRenderPost() {
 			g_score.toString(),
 			vec2(overlayCanvas.width - 2 * cameraScale * scaleUI, overlayCanvas.height - 1 * cameraScale * scaleUI),
 			100 * scaleUI,
-			g_game.colorBlood
+			colorBlood
 		);
 	}
 

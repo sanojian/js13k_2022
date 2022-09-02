@@ -3,7 +3,7 @@ const fx = {
 
 	addSpark: function (pos) {
 		for (let i = 0; i < 4; i++) {
-			g_game.sparks.push({
+			g_sparks.push({
 				pos: pos.copy(),
 				angle: rand(0, PI * 2),
 				life: 6,

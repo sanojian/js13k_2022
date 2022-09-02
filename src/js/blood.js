@@ -10,8 +10,8 @@ function makeParticles(pos, time, color) {
 		PI, // emiteConeAngle
 		-1, // tileIndex
 		undefined, // tileSize
-		color || g_game.colorBlood, // colorStartA
-		color || g_game.colorBlood, // colorStartB
+		color || colorBlood, // colorStartA
+		color || colorBlood, // colorStartB
 		new Color(0, 0, 0, 0), // colorEndA
 		new Color(0, 0, 0, 0), // colorEndB
 		1, // particleTime

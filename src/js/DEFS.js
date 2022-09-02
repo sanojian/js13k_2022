@@ -46,42 +46,40 @@ const tileNumbers_door = 31;
 
 let g_player = null;
 
-let g_game = {
-	difficulty: 0,
+var g_difficulty = 0;
 
-	enemies: [],
-	doors: {},
-	splatter: [],
-	holes: [],
-	sparks: [],
-	corpses: [],
-	shells: [],
-	moss: [],
-	shadows: {},
-	transforms: [],
+var g_enemies = [];
+var g_doors = {};
+var g_splatter = [];
+var g_holes = [];
+var g_sparks = [];
+var g_corpses = [];
+var g_shells = [];
+var g_moss = [];
+var g_shadows = {};
+var g_transforms = [];
 
-	colorBlack: new Color(0, 0, 0),
-	colorWhite: new Color(1, 1, 1),
-	colorBlood: new Color(172 / 255, 50 / 255, 50 / 255),
-	colorBullet: new Color(251 / 255, 242 / 255, 54 / 255),
-	colorScoreText: new Color(106 / 255, 190 / 255, 48 / 255),
-	colorBulletCasing: new Color(138 / 255, 111 / 255, 48 / 255, 0.8),
-	colorShell: new Color(217 / 255, 87 / 255, 99 / 255),
-	colorShellCasing: new Color(172 / 255, 50 / 255, 50 / 255, 0.8),
-	colorRifleRound: new Color(0 / 255, 255 / 255, 255 / 255),
-	colorRifleRoundCasing: new Color(0 / 255, 255 / 255, 255 / 255),
+var colorBlack = new Color(0, 0, 0);
+var colorWhite = new Color(1, 1, 1);
+var colorBlood = new Color(172 / 255, 50 / 255, 50 / 255);
+var colorBullet = new Color(251 / 255, 242 / 255, 54 / 255);
+var colorScoreText = new Color(106 / 255, 190 / 255, 48 / 255);
+var colorBulletCasing = new Color(138 / 255, 111 / 255, 48 / 255, 0.8);
+var colorShell = new Color(217 / 255, 87 / 255, 99 / 255);
+var colorShellCasing = new Color(172 / 255, 50 / 255, 50 / 255, 0.8);
+var colorRifleRound = new Color(0 / 255, 255 / 255, 255 / 255);
+var colorRifleRoundCasing = new Color(0 / 255, 255 / 255, 255 / 255);
 
-	colorSpark: new Color(251 / 255, 242 / 255, 54 / 255),
+var colorSpark = new Color(251 / 255, 242 / 255, 54 / 255);
 
-	state: STATE_CLICK_TO_START,
+var g_state = STATE_CLICK_TO_START;
 
-	miniTileNumbers: {
-		miniFacePlayer: 15 * 6 + 0,
-		miniFaceZombie: 15 * 6 + 1,
-		miniFaceVampire: 15 * 6 + 2,
-		miniFaceGhost: 15 * 6 + 3,
-		moss: 15 * 7 + 0,
-	},
+var g_miniTileNumbers = {
+	miniFacePlayer: 15 * 6 + 0,
+	miniFaceZombie: 15 * 6 + 1,
+	miniFaceVampire: 15 * 6 + 2,
+	miniFaceGhost: 15 * 6 + 3,
+	moss: 15 * 7 + 0,
 };
 
 const mobDefs = {
@@ -119,8 +117,8 @@ const levelDefs = [
 	{
 		// graveyard
 		map: 1,
-		enemiesToSpawn: 8,
-		enemiesMaxAlive: 3,
+		enemiesToSpawn: 10,
+		enemiesMaxAlive: 4,
 		spawns: [{ chance: 1 }],
 	},
 	{

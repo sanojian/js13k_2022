@@ -40,7 +40,7 @@ class Corpse extends EngineObject {
 				"+" + this.scoreObj.score,
 				this.pos.add(vec2(0, this.scoreObj.y)),
 				0.5,
-				g_game.colorScoreText,
+				colorScoreText,
 				1 / 6,
 				undefined,
 				"center"

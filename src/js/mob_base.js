@@ -108,7 +108,7 @@ class Mob extends EngineObject {
 				if (blood.pattern[j]) {
 					let x = this.pos.x + blood.pos.x - (j % 2) / 12;
 					let y = this.pos.y + blood.pos.y - Math.floor(j / 2) / 12;
-					drawRect(vec2(x, y), vec2(1 / 12), g_game.colorBlood);
+					drawRect(vec2(x, y), vec2(1 / 12), colorBlood);
 				}
 			}
 		}
@@ -125,6 +125,6 @@ class Mob extends EngineObject {
 		for (let i = 0; i < 16; i++) {
 			splatterPattern.pattern.push(Math.random() > 0.5 ? 1 : 0);
 		}
-		g_game.splatter.push(splatterPattern);
+		g_splatter.push(splatterPattern);
 	}
 }

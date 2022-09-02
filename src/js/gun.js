@@ -42,7 +42,7 @@ class Gun extends EngineObject {
 			this.angle = -angle;
 			this.size.y = abs(this.angle) > PI / 2 ? -this._mysize : this._mysize;
 
-			if (mouseWasPressed(0) && g_game.state == STATE_PLAYING) {
+			if (mouseWasPressed(0) && g_state == STATE_PLAYING) {
 				musicResume();
 				this.fire();
 			}
@@ -136,7 +136,7 @@ class Gun extends EngineObject {
 		this._soundFire.play(this.pos, shotVol, 1.02);
 
 		// eject shell
-		g_game.shells.push({
+		g_shells.push({
 			pos: this.pos.copy(),
 			velocity: vec2(rand(-1 / 30, 1 / 30), 1.1 / 12),
 			angularVelocity: 0.3,

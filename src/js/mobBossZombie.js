@@ -6,8 +6,8 @@ class BossZombie extends Enemy {
 
 		this.mass = 12;
 
-		this._maxSpeed = mobDefs.BossZombie.maxSpeed + mobDefs.BossZombie.maxSpeed * 0.1 * g_game.difficulty;
-		this.hp = mobDefs.BossZombie.hp + Math.floor(g_game.difficulty * mobDefs.BossZombie.hpGainPerlevel);
+		this._maxSpeed = mobDefs.BossZombie.maxSpeed + mobDefs.BossZombie.maxSpeed * 0.1 * g_difficulty;
+		this.hp = mobDefs.BossZombie.hp + Math.floor(g_difficulty * mobDefs.BossZombie.hpGainPerlevel);
 
 		this.oldMirror = false;
 		this.throwing = false;
@@ -20,7 +20,7 @@ class BossZombie extends Enemy {
 	}
 
 	update() {
-		if (g_game.state == STATE_DEAD) return;
+		if (g_state == STATE_DEAD) return;
 
 		if (this.tearing) {
 			this.boulder.pos = this.pos.copy();
@@ -52,7 +52,7 @@ class BossZombie extends Enemy {
 	collideWithTile(tileData, pos) {
 		if (this.tearing) return;
 
-		g_game.tileLayer.setData(pos, 0, true);
+		tileLayer.setData(pos, 0, true);
 		setTileCollisionData(pos, 0);
 
 		this.tearing = true;

@@ -1,5 +1,8 @@
 /** @format */
 
+var tileLayer;
+var playerSpawn;
+
 class MapManager {
 	constructor() {
 		this.createMap();
@@ -10,9 +13,9 @@ class MapManager {
 		let w = mapData[g_levelDef.map].w;
 		let h = mapData[g_levelDef.map].h;
 
-		g_game.doors = {};
+		g_doors = {};
 
-		g_game.tileLayer = new TileLayer(vec2(0, 0), vec2(w, h), TILE_SIZE, vec2(1));
+		tileLayer = new TileLayer(vec2(0, 0), vec2(w, h), TILE_SIZE, vec2(1));
 		initTileCollision(vec2(w, h));
 
 		for (let y = 0; y < h; y++) {
@@ -24,7 +27,7 @@ class MapManager {
 					false,
 					new Color(1, 1, 1, rand(0.4, 0.6))
 				);
-				g_game.tileLayer.setData(vec2(x, h - 1 - y), tld);
+				tileLayer.setData(vec2(x, h - 1 - y), tld);
 
 				let t = myMap[x + y * w];
 				if (t) {
@@ -33,7 +36,7 @@ class MapManager {
 					let offsetVec = vec2(x + 0.5, h - 1 - y + 0.5);
 
 					if (t == tileNumbers_player) {
-						g_game.playerSpawn = offsetVec;
+						playerSpawn = offsetVec;
 						continue;
 					} else if (t == tileNumbers_pistol) {
 						new Pistol(offsetVec);
@@ -45,7 +48,7 @@ class MapManager {
 						new Rifle(offsetVec);
 						continue;
 					} else if (t == tileNumbers_beefyZombie) {
-						g_game.enemies.push(new BossZombie(offsetVec));
+						g_enemies.push(new BossZombie(offsetVec));
 						continue;
 					} else if (t == tileNumbers_boxBullets) {
 						new AmmoBox(offsetVec, tileNumbers_pistol);
@@ -59,7 +62,7 @@ class MapManager {
 					}
 
 					if (t == tileNumbers_door) {
-						g_game.doors[x + "_" + (h - 1 - y)] = { hp: 3 };
+						g_doors[x + "_" + (h - 1 - y)] = { hp: 3 };
 					} else {
 						// pushers on all collision stuff except doors
 						pushers.push(new Pusher(offsetVec, 0.01, 0.5, 1, 0));
@@ -67,19 +70,19 @@ class MapManager {
 
 					setTileCollisionData(vec2(x, h - 1 - y), t);
 					let tld = new TileLayerData(t, 0, rand(0, 1) < 0.5, new Color(rand(0.8, 1), rand(0.8, 1), rand(0.8, 1)));
-					g_game.tileLayer.setData(vec2(x, h - 1 - y), tld);
+					tileLayer.setData(vec2(x, h - 1 - y), tld);
 
 					// moss
-					g_game.moss.push({
+					g_moss.push({
 						pos: offsetVec.add(randInCircle(5 / 12)),
-						tileIndex: g_game.miniTileNumbers.moss + Math.floor(rand(0, 15)),
+						tileIndex: g_miniTileNumbers.moss + Math.floor(rand(0, 15)),
 						angle: rand(0, PI * 2),
 					});
 				}
 			}
 		}
 
-		//g_game.tileLayer.redraw();
+		//tileLayer.redraw();
 	}
 
 	// STUPID FOG OF WAR / LINE OF SIGHT
@@ -92,14 +95,14 @@ class MapManager {
 				pos.y = y + 0.5 + dVec.clampLength(min(1.5, dVec.length())).y;
 				let pos2 = tileCollisionRaycast(g_player.pos, pos);
 				if (pos2 && !(pos2.x == x + 0.5 && pos2.y == y + 0.5)) {
-					let shadow = g_game.shadows[x + "_" + y] || {
+					let shadow = g_shadows[x + "_" + y] || {
 						x: x + 0.5,
 						y: y + 0.5,
 						alpha: 0,
 					};
 					shadow.alpha = min(1, shadow.alpha + 0.1);
 
-					g_game.shadows[x + "_" + y] = shadow;
+					g_shadows[x + "_" + y] = shadow;
 					//drawRect(pos, vec2(0.1), new Color(1, 0, 0));
 				} else {
 					//drawRect(pos, vec2(0.1), new Color(0, 1, 0));
@@ -108,13 +111,13 @@ class MapManager {
 		}
 
 		const shadowSize = vec2(1.05);
-		let color = g_game.colorBlack.copy();
-		for (let key in g_game.shadows) {
-			let shadow = g_game.shadows[key];
+		let color = colorBlack.copy();
+		for (let key in g_shadows) {
+			let shadow = g_shadows[key];
 			// fade
 			shadow.alpha -= 0.01;
 			if (shadow.alpha <= 0) {
-				delete g_game.shadows[key];
+				delete g_shadows[key];
 			} else {
 				pos.x = shadow.x;
 				pos.y = shadow.y;
@@ -125,6 +128,6 @@ class MapManager {
 	}
 
 	render() {
-		g_game.tileLayer.redraw();
+		tileLayer.redraw();
 	}
 }

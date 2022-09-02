@@ -17,10 +17,10 @@ class Rifle extends Gun {
 	}
 
 	fire() {
-		if (super.fire(g_game.colorBulletCasing)) {
+		if (super.fire(colorBulletCasing)) {
 			const penetration = 12;
 
-			let bullet = new Bullet(this.pos.copy(), 0, g_game.colorRifleRound, 40, penetration);
+			let bullet = new Bullet(this.pos.copy(), 0, colorRifleRound, 40, penetration);
 			bullet.velocity.x = Math.cos(-this.angle) * this._speed;
 			bullet.velocity.y = Math.sin(-this.angle) * this._speed;
 		}

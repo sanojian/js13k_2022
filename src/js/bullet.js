@@ -30,9 +30,9 @@ class Bullet extends EngineObject {
 	hitWall() {
 		// bullet holes
 		let pos = this.pos.add(this.velocity.normalize(rand(0.2, 0.6)));
-		g_game.holes.push({ pos: pos, color: g_game.colorBlack });
+		g_holes.push({ pos: pos, color: colorBlack });
 		for (let i = 0; i < 4; i++) {
-			g_game.holes.push({
+			g_holes.push({
 				pos: pos.add(randInCircle(1 / 12)),
 				color: new Color(0, 0, 0, rand(0.1, 0.5)),
 			});
@@ -44,9 +44,9 @@ class Bullet extends EngineObject {
 	collideWithTile(tileData, pos) {
 		if (tileData == tileNumbers_door) {
 			let idx = pos.x + "_" + pos.y;
-			g_game.doors[idx].hp--;
-			if (g_game.doors[idx].hp <= 0) {
-				g_game.tileLayer.setData(pos, 0, true);
+			g_doors[idx].hp--;
+			if (g_doors[idx].hp <= 0) {
+				tileLayer.setData(pos, 0, true);
 				setTileCollisionData(pos, 0);
 			}
 		}

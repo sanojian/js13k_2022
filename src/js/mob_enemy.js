@@ -87,16 +87,16 @@ class Enemy extends Mob {
 			this.groan(1, 3, rand(2, 3), rand(5));
 
 			let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex, this.tileSize);
-			corpse.push(velocity, 1 + g_game.difficulty);
-			g_game.corpses.push(corpse);
+			corpse.push(velocity, 1 + g_difficulty);
+			g_corpses.push(corpse);
 
-			let i = g_game.enemies.indexOf(this);
-			g_game.enemies.splice(i, 1);
+			let i = g_enemies.indexOf(this);
+			g_enemies.splice(i, 1);
 
 			if (this instanceof BossZombie) {
 				// level complete
-				for (let i = 0; i < g_game.enemies.length; i++) {
-					g_game.enemies[i].destroy();
+				for (let i = 0; i < g_enemies.length; i++) {
+					g_enemies[i].destroy();
 				}
 				changeState(STATE_CLEARED);
 				g_level++;
