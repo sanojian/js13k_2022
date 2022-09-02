@@ -2,7 +2,7 @@
 
 class BossZombie extends Enemy {
 	constructor(pos) {
-		super(pos, vec2(2), tileNumbers_beefyZombie, mobDefs.BossZombie);
+		super(pos, vec2(1.5, 2), tileNumbers_beefyZombie, mobDefs.BossZombie);
 
 		this.mass = 12;
 

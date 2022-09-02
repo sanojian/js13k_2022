@@ -64,10 +64,10 @@ var g_transforms = [];
 var colorBlack = new Color(0, 0, 0);
 var colorWhite = new Color(1, 1, 1);
 var colorBlood = new Color(172 / 255, 50 / 255, 50 / 255);
-var colorBullet = new Color(251 / 255, 242 / 255, 54 / 255);
+var colorBullet = new Color(217 / 255, 160 / 255, 102 / 255);
 var colorScoreText = new Color(106 / 255, 190 / 255, 48 / 255);
 var colorShell = new Color(217 / 255, 87 / 255, 99 / 255);
-var colorRifleRound = new Color(0 / 255, 255 / 255, 255 / 255);
+var colorRifleRound = new Color(99 / 255, 155 / 255, 255 / 255);
 
 var colorSpark = new Color(251 / 255, 242 / 255, 54 / 255);
 
