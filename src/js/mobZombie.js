@@ -36,9 +36,6 @@ class Zombie extends Enemy {
 		}
 
 		super.update();
-
-		// zombie limp
-		this.bumpWalk = (0.2 * this.walkCyclePlace) / (this._walkCycleFrames * 2);
 	}
 
 	hit(velocity, pos) {
