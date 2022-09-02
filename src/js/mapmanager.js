@@ -121,7 +121,7 @@ class MapManager {
 			}
 		}
 
-		const shadowSize = vec2(1.05);
+		const shadowSize = vec2(1.01);
 		let color = colorBlack.copy();
 		for (let key in g_shadows) {
 			let shadow = g_shadows[key];

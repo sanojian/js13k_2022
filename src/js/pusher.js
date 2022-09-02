@@ -1,5 +1,7 @@
 /** @format */
 
+const enableDrawPushers = false;
+
 class Pusher {
 	/**
 	 * At minDist the strenght of the push is pushStrength at maxDist it is zero.
@@ -23,8 +25,6 @@ class Pusher {
 	update() {
 		this.tics = this.tics - 1;
 
-		//enemies.push(g_player);
-
 		for (const e of g_enemies) {
 			let toMob = e.pos.subtract(this.pos);
 
@@ -45,15 +45,12 @@ class Pusher {
 			let force = toMob.normalize(rand(strenght));
 
 			e.applyForce(force);
-			// debugLine(e.pos, e.pos + force.scale(100), "#ff00ff", 10, 1000);
 		}
-
-		//enemies.pop();
 	}
 
 	draw() {
-		debugCircle(this.pos, this.minDist, "#f00", 1 / 60000, false);
-		debugCircle(this.pos, this.maxDist, "#0f0", 1 / 60000, false);
+		enableDrawPushers && debugCircle(this.pos, this.minDist, "#f00", 1 / 60000, false);
+		enableDrawPushers && debugCircle(this.pos, this.maxDist, "#0f0", 1 / 60000, false);
 	}
 }
 
@@ -73,6 +70,7 @@ function updatePushers() {
 }
 
 function drawPushers() {
+	if (!enableDrawPushers) return;
 	if (!pushersDoDraw) return;
 
 	for (const p of pushers) {

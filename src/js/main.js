@@ -50,22 +50,15 @@ function startNextLevel() {
 		ammoPistol = 12;
 	}
 
-	engineObjectsDestroy(); // destroy all objects handled by the engine
+	// Clean up
 
-	g_levelDef = levelDefs[g_level % levelDefs.length];
-
-	g_moss = [];
-	g_shadows = {};
-
-	g_player = new MobPlayer(vec2(1));
-
-	g_enemies = [];
+	g_player = undefined;
 
 	clearPushers();
 
-	mapMan = new MapManager();
-
-	mapMan.render();
+	g_moss = [];
+	g_shadows = {};
+	g_enemies = [];
 
 	g_splatter = [];
 	g_holes = [];
@@ -74,6 +67,17 @@ function startNextLevel() {
 	g_shells = [];
 
 	enemiesSpawned = 0;
+
+	engineObjectsDestroy(); // destroy all objects handled by the engine
+
+	// Setup new level
+
+	g_player = new MobPlayer(vec2(1));
+
+	g_levelDef = levelDefs[g_level % levelDefs.length];
+
+	mapMan = new MapManager();
+	mapMan.render();
 
 	g_player.pos = playerSpawn;
 	cameraPos = playerSpawn.copy();

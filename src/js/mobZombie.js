@@ -28,7 +28,7 @@ class Zombie extends Enemy {
 			this.riseFrames--;
 			let frac = 1 - this.riseFrames / RISE_FRAMES;
 			this.tileSize = vec2(9, 12 * frac);
-			this.size.y = 0.8 * frac;
+			this.size = vec2(this.size.x, 0.8 * frac);
 			this.pos.y += 0.5 / RISE_FRAMES;
 
 			if (this.riseFrames == 0) this.groan(1, 1, 1.5);
