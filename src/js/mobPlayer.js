@@ -1,7 +1,7 @@
 /** @format */
 class MobPlayer extends Mob {
 	constructor(pos) {
-		super(pos, vec2(0.8), tileNumbers_player);
+		super(pos, vec2(0.6, 0.8), tileNumbers_player);
 		// your object init code here
 
 		this.miniFace = miniTileNumbers_miniFacePlayer;

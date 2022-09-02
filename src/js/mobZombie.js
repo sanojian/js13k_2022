@@ -5,7 +5,7 @@ const RISE_FRAMES = 240;
 
 class Zombie extends Enemy {
 	constructor(pos) {
-		super(pos, vec2(0.8), tileNumbers_zombie);
+		super(pos, vec2(0.6, 0.8), tileNumbers_zombie);
 
 		this._maxSpeed = mobDefs.Zombie.maxSpeed + mobDefs.Zombie.maxSpeed * 0.1 * g_difficulty;
 		this.hp = mobDefs.Zombie.hp + Math.floor(g_difficulty * mobDefs.Zombie.hpGainPerlevel);
@@ -29,7 +29,7 @@ class Zombie extends Enemy {
 		if (this.riseFrames > 0) {
 			this.riseFrames--;
 			let frac = 1 - this.riseFrames / RISE_FRAMES;
-			this.tileSize = vec2(11, 12 * frac);
+			this.tileSize = vec2(9, 12 * frac);
 			this.size = vec2(0.8, 0.8 * frac);
 			this.pos.y += 0.5 / RISE_FRAMES;
 

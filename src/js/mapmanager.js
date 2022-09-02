@@ -47,7 +47,7 @@ class MapManager {
 					} else if (t == tileNumbers_rifle) {
 						new Rifle(offsetVec);
 						continue;
-					} else if (t == tileNumbers_beefyZombie) {
+					} else if (t == tileNumbers_bossPlaceholder) {
 						g_enemies.push(new BossZombie(offsetVec));
 						continue;
 					} else if (t == tileNumbers_boxBullets) {

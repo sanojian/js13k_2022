@@ -16,7 +16,7 @@ fontDefault = "Courier New";
 // "Courier New";
 // "Luminari"
 
-const g_CHEATMODE = 0;
+const g_CHEATMODE = 1;
 let g_score = 0;
 let g_level = 0;
 let g_levelDef = undefined;
@@ -29,6 +29,7 @@ const tileNumbers_vampire = 2;
 const tileNumbers_bat = 3;
 const tileNumbers_ghost = 4;
 const tileNumbers_beefyZombie = 5;
+const tileNumbers_bossPlaceholder = 4;
 const tileNumbers_facePlayer = 6;
 const tileNumbers_faceZombie = 7;
 const tileNumbers_faceVampire = 8;
