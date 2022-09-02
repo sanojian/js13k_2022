@@ -135,8 +135,7 @@ function spawnEnemy() {
 
 function handleDebugKeys() {
 	if (keyIsDown(18)) {
-		if (keyWasReleased(67)) g_CHEATMODE = 1 - g_CHEATMODE; // c
-
+		// if (keyWasReleased(67)) g_CHEATMODE = 1 - g_CHEATMODE; // c
 		if (keyWasReleased(80)) pushersDoDraw = !pushersDoDraw; // p
 	}
 }
@@ -172,7 +171,7 @@ function uiSound(f = 5) {
 
 	for (let i = 0; i < f; i++) {
 		soundRifle.play(cameraPos.add(vec2(10, 0)), 1, 0.5 + i / 10);
-		setTimeout(() => soundEnemyGroan.play(cameraPos.add(vec2(-10, 0)), 0.5, 1 + i / 5, 0.1), 300 + i * 100);
+		setTimeout(() => soundEnemyGroan.play(cameraPos.add(vec2(-10, 0)), 0.5, 2 + i / 5, 0.5), 300 + i * 50);
 	}
 }
 
