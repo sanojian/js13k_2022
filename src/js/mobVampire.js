@@ -2,14 +2,11 @@
 
 class Vampire extends Enemy {
 	constructor(pos) {
-		super(pos, vec2(0.8), tileNumbers_bat);
+		super(pos, MOB_SIZE, tileNumbers_bat, mobDefs.Vampire);
 
 		this.mass = 2;
 
 		// before transform! ... BAT STATS
-
-		this._maxSpeed = mobDefs.Vampire.maxSpeed + mobDefs.Ghost.maxSpeed * 0.1 * g_difficulty;
-		this.hp = mobDefs.Vampire.hp + Math.floor(g_difficulty * mobDefs.Vampire.hpGainPerlevel);
 
 		this.enemyToTarget = undefined;
 		this.enemyMoveSpeed = rand(0.3, 0.5);
