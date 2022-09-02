@@ -1,8 +1,11 @@
 /** @format */
 
 class Enemy extends Mob {
-	constructor(pos, size, tileIndex) {
+	constructor(pos, size, tileIndex, mobDef) {
 		super(pos, size, tileIndex);
+
+		this._maxSpeed = mobDef.maxSpeed + mobDef.maxSpeed * 0.1 * g_difficulty;
+		this.hp = mobDef.hp + Math.floor(g_difficulty * mobDef.hpGainPerlevel);
 
 		this.enemyThinkPause = 0;
 		this.enemyThinkMin = 20;

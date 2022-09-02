@@ -2,12 +2,9 @@
 
 class BossZombie extends Enemy {
 	constructor(pos) {
-		super(pos, vec2(2), tileNumbers_beefyZombie);
+		super(pos, vec2(2), tileNumbers_beefyZombie, mobDefs.BossZombie);
 
 		this.mass = 12;
-
-		this._maxSpeed = mobDefs.BossZombie.maxSpeed + mobDefs.BossZombie.maxSpeed * 0.1 * g_difficulty;
-		this.hp = mobDefs.BossZombie.hp + Math.floor(g_difficulty * mobDefs.BossZombie.hpGainPerlevel);
 
 		this.oldMirror = false;
 		this.throwing = false;
