@@ -6,7 +6,7 @@ class Ghost extends Enemy {
 
 		this._maxSpeed = mobDefs.Ghost.maxSpeed + mobDefs.Ghost.maxSpeed * 0.1 * g_difficulty;
 		this.hp = mobDefs.Ghost.hp + Math.floor(g_difficulty * mobDefs.Ghost.hpGainPerlevel);
-		this.miniFace = g_miniTileNumbers.miniFaceGhost;
+		this.miniFace = miniTileNumbers_miniFaceGhost;
 		this.mass = 2;
 
 		this.color = new Color(1, 1, 1, 0.3);

@@ -17,7 +17,7 @@ class Rifle extends Gun {
 	}
 
 	fire() {
-		if (super.fire(colorBulletCasing)) {
+		if (super.fire(colorRifleRound)) {
 			const penetration = 12;
 
 			let bullet = new Bullet(this.pos.copy(), 0, colorRifleRound, 40, penetration);

@@ -75,7 +75,7 @@ class MapManager {
 					// moss
 					g_moss.push({
 						pos: offsetVec.add(randInCircle(5 / 12)),
-						tileIndex: g_miniTileNumbers.moss + Math.floor(rand(0, 15)),
+						tileIndex: miniTileNumbers_moss + Math.floor(rand(0, 15)),
 						angle: rand(0, PI * 2),
 					});
 				}

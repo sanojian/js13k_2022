@@ -14,7 +14,7 @@ class Shotgun extends Gun {
 	}
 
 	fire() {
-		if (super.fire(colorShellCasing)) {
+		if (super.fire(colorShell)) {
 			var bulletColor = new Color(217 / 255, 87 / 255, 99 / 255);
 			var bulletLife = 22;
 

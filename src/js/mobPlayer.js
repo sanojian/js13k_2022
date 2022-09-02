@@ -4,7 +4,7 @@ class MobPlayer extends Mob {
 		super(pos, vec2(0.8), tileNumbers_player);
 		// your object init code here
 
-		this.miniFace = g_miniTileNumbers.miniFacePlayer;
+		this.miniFace = miniTileNumbers_miniFacePlayer;
 
 		this._walkCycleFrames = 20;
 

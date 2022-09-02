@@ -64,23 +64,18 @@ var colorWhite = new Color(1, 1, 1);
 var colorBlood = new Color(172 / 255, 50 / 255, 50 / 255);
 var colorBullet = new Color(251 / 255, 242 / 255, 54 / 255);
 var colorScoreText = new Color(106 / 255, 190 / 255, 48 / 255);
-var colorBulletCasing = new Color(138 / 255, 111 / 255, 48 / 255, 0.8);
 var colorShell = new Color(217 / 255, 87 / 255, 99 / 255);
-var colorShellCasing = new Color(172 / 255, 50 / 255, 50 / 255, 0.8);
 var colorRifleRound = new Color(0 / 255, 255 / 255, 255 / 255);
-var colorRifleRoundCasing = new Color(0 / 255, 255 / 255, 255 / 255);
 
 var colorSpark = new Color(251 / 255, 242 / 255, 54 / 255);
 
 var g_state = STATE_CLICK_TO_START;
 
-var g_miniTileNumbers = {
-	miniFacePlayer: 15 * 6 + 0,
-	miniFaceZombie: 15 * 6 + 1,
-	miniFaceVampire: 15 * 6 + 2,
-	miniFaceGhost: 15 * 6 + 3,
-	moss: 15 * 7 + 0,
-};
+const miniTileNumbers_miniFacePlayer = 15 * 6 + 0;
+const miniTileNumbers_miniFaceZombie = 15 * 6 + 1;
+const miniTileNumbers_miniFaceVampire = 15 * 6 + 2;
+const miniTileNumbers_miniFaceGhost = 15 * 6 + 3;
+const miniTileNumbers_moss = 15 * 7;
 
 const mobDefs = {
 	Zombie: {

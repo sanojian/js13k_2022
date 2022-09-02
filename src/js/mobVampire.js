@@ -34,7 +34,7 @@ class Vampire extends Enemy {
 				if (this.transformTimer.elapsed()) {
 					// transform! ... VAMPIRE STATS
 					this.angle = 0;
-					this.miniFace = g_miniTileNumbers.miniFaceVampire;
+					this.miniFace = miniTileNumbers_miniFaceVampire;
 					this._walkCycleFrames = 15;
 					makeParticles(this.pos, rand(1), new Color(155 / 255, 173 / 255, 183 / 255));
 					this.tileIndex = tileNumbers_vampire;
