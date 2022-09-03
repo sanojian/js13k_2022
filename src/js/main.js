@@ -64,14 +64,12 @@ function startNextLevel() {
 	/////////////////////
 	// Setup new level
 
-	g_player = new MobPlayer(vec2(1));
-
 	g_levelDef = levelDefs[g_level % levelDefs.length];
 
 	mapMan = new MapManager();
 	mapMan.render();
 
-	g_player.pos = playerSpawn;
+	g_player = new MobPlayer(playerSpawn);
 	cameraPos = playerSpawn.copy();
 
 	// give player saved equipment
