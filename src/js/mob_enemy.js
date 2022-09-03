@@ -86,7 +86,7 @@ class Enemy extends Mob {
 
 		this.splatter(pos);
 
-		if (this.hp <= 0) {
+		if (this.hp == 0) { // Needs be equal or else we get enemy miscounts !
 			this.groan(1, 3, rand(2, 3), rand(5));
 
 			let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex, this.tileSize);

@@ -50,11 +50,12 @@ function startNextLevel() {
 		ammoPistol = 12;
 	}
 
+	///////////////////
 	// Clean up
 
-	g_player = undefined;
-
 	clearPushers();
+
+	g_player = undefined;
 
 	g_moss = [];
 	g_shadows = {};
@@ -70,6 +71,7 @@ function startNextLevel() {
 
 	engineObjectsDestroy(); // destroy all objects handled by the engine
 
+	/////////////////////
 	// Setup new level
 
 	g_player = new MobPlayer(vec2(1));
@@ -302,7 +304,20 @@ function drawTextWithOutline(text, pos, size, textColor, outlineColor = colorBla
 	drawTextScreen(text, pos, size, textColor, size / 15, outlineColor);
 }
 
+function testForMiscount() {
+	let e = 0;
+	for (const o of engineObjects) {
+		if (o instanceof Enemy) e++;
+	}
+
+	if (e != g_enemies.length) {
+		debugger;
+	}
+}
+
 function textsDraw() {
+	debug && testForMiscount();
+
 	if (g_CHEATMODE) {
 		drawTextScreen("CHEAT MODE ON ", vec2(100, 25), 20, new Color(1, 1, 1), 0, undefined, "left");
 		drawTextScreen("enemies: " + g_enemies.length, vec2(100, 50), 20, new Color(1, 1, 1), 0, undefined, "left");
