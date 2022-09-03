@@ -23,7 +23,7 @@ class MapManager {
 				// floor
 				let tld = new TileLayerData(
 					tileNumbers_floorStone,
-					Math.floor(rand(0, 3)),
+					Math.floor(rand(3)),
 					false,
 					new Color(1, 1, 1, rand(0.2, 0.5))
 				);
@@ -81,14 +81,14 @@ class MapManager {
 						else if (t == 14) t = 24;
 						else if (t == 24) t = 14;
 					}
-					let tld = new TileLayerData(t, 0, rand(0, 1) < 0.5, tint);
+					let tld = new TileLayerData(t, 0, rand(1) < 0.5, tint);
 					tileLayer.setData(vec2(x, h - 1 - y), tld);
 
 					// moss
 					g_moss.push({
 						pos: offsetVec.add(randInCircle(5 / 12)),
-						tileIndex: miniTileNumbers_moss + Math.floor(rand(0, 11)),
-						angle: rand(0, PI * 2),
+						tileIndex: miniTileNumbers_moss + Math.floor(rand(11)),
+						angle: rand(PI * 2),
 					});
 				}
 			}

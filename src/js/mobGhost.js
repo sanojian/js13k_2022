@@ -10,8 +10,6 @@ class Ghost extends Enemy {
 		this.color = new Color(1, 1, 1, 0.3);
 		this._myColor = new Color(155 / 255, 173 / 255, 183 / 255, 0.3);
 
-		this.counter = rand(0, Math.PI * 2);
-
 		this.transformCount = rand(30, 120);
 		this.solid = false;
 	}
@@ -27,10 +25,6 @@ class Ghost extends Enemy {
 		}
 
 		this.setCollision(this.solid, this.solid, this.solid);
-
-		// float
-		this.counter += PI / 64;
-		//this.bumpWalk = (Math.sin(this.counter) * 5) / 12;
 
 		super.update();
 	}

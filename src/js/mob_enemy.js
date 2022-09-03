@@ -28,7 +28,7 @@ class Enemy extends Mob {
 		}
 
 		// take a step
-		if (rand(0, 100) < 10) {
+		if (rand(100) < 10) {
 			let force = vec2(0);
 			if (this.enemyToTarget) force = this.enemyToTarget.normalize(this.enemyMoveSpeed);
 
@@ -46,7 +46,7 @@ class Enemy extends Mob {
 
 	collideWithTile(tileData, tilePos) {
 		if (this.lastTilePos && tilePos.distanceSquared(this.lastTilePos) < 0.01) {
-			if (rand(0, 100) < 10) {
+			if (rand(100) < 10) {
 				let colPos = tilePos.add(vec2(0.5));
 				colPos = colPos.lerp(this.pos, 0.5);
 				pushers.push(new Pusher(colPos, 0.01, 0, 1, rand(1, 2)));
@@ -63,7 +63,7 @@ class Enemy extends Mob {
 
 			let toOther = o.pos.subtract(this.pos);
 			if (toOther.length() < TOO_CLOSE) {
-				let pushForce = toOther.normalize(rand(0, 0.1) / (toOther.length() + 0.001));
+				let pushForce = toOther.normalize(rand(0.1) / (toOther.length() + 0.001));
 				o.applyForce(pushForce);
 				this.groan(0.1, 0.9, 1);
 			}

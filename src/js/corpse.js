@@ -54,7 +54,7 @@ class Corpse extends EngineObject {
 		this.velocity.x = velocity.x / 3;
 		this.velocity.y = velocity.y / 3;
 		this.fallDirection = velocity.x > 0 ? 1 : -1;
-		this.finalAngle = -PI / 2 + rand(0, PI) + PI;
+		this.finalAngle = -PI / 2 + rand(PI) + PI;
 
 		// if (score) {
 		// 	this.scoreObj = {

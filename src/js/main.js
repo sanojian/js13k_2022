@@ -240,7 +240,7 @@ function updateStatePlaying() {
 		ticsToSpawn <= 0
 	) {
 		spawnEnemy();
-		ticsToSpawn = rand(0, 120);
+		ticsToSpawn = rand(120);
 	}
 
 	if (g_player.hp <= 0) {

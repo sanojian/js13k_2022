@@ -2,12 +2,12 @@
 const fx = {
 
 	addSpark: function (pos) {
-		makeParticles(pos, .1, colorSpark)
+		makeParticles(pos, .1, colorSpark, 0.06)
 
 		// for (let i = 0; i < 4; i++) {
 		// 	g_sparks.push({
 		// 		pos: pos.copy(),
-		// 		angle: rand(0, PI * 2),
+		// 		angle: rand(PI * 2),
 		// 		life: 6,
 		// 	});
 		// }
