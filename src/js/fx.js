@@ -2,7 +2,7 @@
 const fx = {
 
 	addSpark: function (pos) {
-		makeParticles(pos, .1, colorSpark, 0.06);
+		makeParticles(pos, .1, colorSpark, 0.06)
 
 		// for (let i = 0; i < 4; i++) {
 		// 	g_sparks.push({
