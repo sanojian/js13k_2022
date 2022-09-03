@@ -9,8 +9,8 @@
 
 'use strict';
 
-let showWatermark = 0;
-let godMode = 0;
+const showWatermark = 0;
+const godMode = 0;
 const debug = 0;
 const debugOverlay = 0;
 const debugPhysics = 0;
@@ -599,7 +599,7 @@ let canvasFixedSize = vec2();
 /** Disables anti aliasing for pixel art if true
  *  @default
  *  @memberof Settings */
-let cavasPixelated = 1;
+const cavasPixelated = 1;
 
 /** Default font used for text rendering
  *  @default
@@ -707,44 +707,44 @@ let glOverlay = 1;
 /** Should gamepads be allowed
  *  @default
  *  @memberof Settings */
-let gamepadsEnable = 1;
+const gamepadsEnable = 0;
 
 /** If true, the dpad input is also routed to the left analog stick (for better accessability)
  *  @default
  *  @memberof Settings */
-let gamepadDirectionEmulateStick = 1;
+const gamepadDirectionEmulateStick = 0;
 
 /** If true the WASD keys are also routed to the direction keys (for better accessability)
  *  @default
  *  @memberof Settings */
-let inputWASDEmulateDirection = 1;
+const inputWASDEmulateDirection = 1;
 
 /** True if touch gamepad should appear on mobile devices
  *  <br> - Supports left analog stick, 4 face buttons and start button (button 9)
  *  <br> - Must be set by end of gameInit to be activated
  *  @default
  *  @memberof Settings */
-let touchGamepadEnable = 0;
+const touchGamepadEnable = 0;
 
 /** True if touch gamepad should be analog stick or false to use if 8 way dpad
  *  @default
  *  @memberof Settings */
-let touchGamepadAnalog = 1;
+const touchGamepadAnalog = 0;
 
 /** Size of virutal gamepad for touch devices in pixels
  *  @default
  *  @memberof Settings */
-let touchGamepadSize = 80;
+const touchGamepadSize = 80;
 
 /** Transparency of touch gamepad overlay
  *  @default
  *  @memberof Settings */
-let touchGamepadAlpha = .3;
+const touchGamepadAlpha = .3;
 
 /** Allow vibration hardware if it exists
  *  @default
  *  @memberof Settings */
-let vibrateEnable = 1;
+const vibrateEnable = 0;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Audio settings
@@ -757,12 +757,12 @@ let soundVolume = .5;
 /** All audio code can be disabled and removed from build
  *  @default
  *  @memberof Settings */
-let soundEnable = 1;
+const soundEnable = 1;
 
 /** Default range where sound no longer plays
  *  @default
  *  @memberof Settings */
-let soundDefaultRange = 30;
+const soundDefaultRange = 30;
 
 /** Default range percent to start tapering off sound (0-1)
  *  @default
@@ -772,30 +772,30 @@ let soundDefaultTaper = .7;
 ///////////////////////////////////////////////////////////////////////////////
 // Medals settings
 
-/** How long to show medals for in seconds
- *  @default
- *  @memberof Settings */
-let medalDisplayTime = 5;
+// /** How long to show medals for in seconds
+//  *  @default
+//  *  @memberof Settings */
+// let medalDisplayTime = 5;
 
-/** How quickly to slide on/off medals in seconds
- *  @default
- *  @memberof Settings */
-let medalDisplaySlideTime = .5;
+// /** How quickly to slide on/off medals in seconds
+//  *  @default
+//  *  @memberof Settings */
+// let medalDisplaySlideTime = .5;
 
-/** Width of medal display
- *  @default
- *  @memberof Settings */
-let medalDisplayWidth = 640;
+// /** Width of medal display
+//  *  @default
+//  *  @memberof Settings */
+// let medalDisplayWidth = 640;
 
-/** Height of medal display
- *  @default
- *  @memberof Settings */
-let medalDisplayHeight = 80;
+// /** Height of medal display
+//  *  @default
+//  *  @memberof Settings */
+// let medalDisplayHeight = 80;
 
-/** Size of icon in medal display
- *  @default
- *  @memberof Settings */
-let medalDisplayIconSize = 50;
+// /** Size of icon in medal display
+//  *  @default
+//  *  @memberof Settings */
+// let medalDisplayIconSize = 50;
 /*
     LittleJS - The Tiny JavaScript Game Engine That Can!
     MIT License - Copyright 2021 Frank Force
@@ -982,7 +982,7 @@ function engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRender
         for (const o of engineObjects)
             o.destroyed || o.render();
         gameRenderPost();
-        medalsRender();
+        //medalsRender();
         touchGamepadRender();
         debugRender();
         glCopyToContext(mainContext);
@@ -3361,165 +3361,165 @@ class Particle extends EngineObject
  * @namespace Medals
  */
 
-'use strict';
+// 'use strict';
 
-/** List of all medals
- *  @memberof Medals */
-const medals = [];
+// /** List of all medals
+//  *  @memberof Medals */
+// const medals = [];
 
-/** Set to stop medals from being unlockable (like if cheats are enabled)
- *  @memberof Medals */
-let medalsPreventUnlock;
+// /** Set to stop medals from being unlockable (like if cheats are enabled)
+//  *  @memberof Medals */
+// let medalsPreventUnlock;
 
-/** This can used to enable Newgrounds functionality
- *  @type {Newgrounds}
- *  @memberof Medals */
-let newgrounds;
+// /** This can used to enable Newgrounds functionality
+//  *  @type {Newgrounds}
+//  *  @memberof Medals */
+// let newgrounds;
 
-// Engine internal variables not exposed to documentation
-let medalsDisplayQueue = [], medalsSaveName, medalsDisplayTimeLast;
+// // Engine internal variables not exposed to documentation
+// let medalsDisplayQueue = [], medalsSaveName, medalsDisplayTimeLast;
 
-///////////////////////////////////////////////////////////////////////////////
+// ///////////////////////////////////////////////////////////////////////////////
 
-/** Initialize medals with a save name used for storage
- *  <br> - Call this after creating all medals
- *  <br> - Checks if medals are unlocked
- *  @param {String} saveName
- *  @memberof Medals */
-function medalsInit(saveName)
-{
-    // check if medals are unlocked
-    medalsSaveName = saveName;
-    debugMedals || medals.forEach(medal=> localStorage[medal.storageKey()]);
-}
+// /** Initialize medals with a save name used for storage
+//  *  <br> - Call this after creating all medals
+//  *  <br> - Checks if medals are unlocked
+//  *  @param {String} saveName
+//  *  @memberof Medals */
+// function medalsInit(saveName)
+// {
+//     // check if medals are unlocked
+//     medalsSaveName = saveName;
+//     debugMedals || medals.forEach(medal=> localStorage[medal.storageKey()]);
+// }
 
-/** 
- * Medal Object - Tracks an unlockable medal 
- * @example
- * // create a medal
- * const medal_example = new Medal(0, 'Example Medal', 'More info about the medal goes here.', '🎖️');
- * 
- * // initialize medals
- * medalsInit('Example Game');
- * 
- * // unlock the medal
- * medal_example.unlock();
- */
-class Medal
-{
-    /** Create an medal object and adds it to the list of medals
-     *  @param {Number} id            - The unique identifier of the medal
-     *  @param {String} name          - Name of the medal
-     *  @param {String} [description] - Description of the medal
-     *  @param {String} [icon='🏆']  - Icon for the medal
-     *  @param {String} [src]         - Image location for the medal
-     */
-    constructor(id, name, description='', icon='🏆', src)
-    {
-        ASSERT(id >= 0 && !medals[id]);
+// /** 
+//  * Medal Object - Tracks an unlockable medal 
+//  * @example
+//  * // create a medal
+//  * const medal_example = new Medal(0, 'Example Medal', 'More info about the medal goes here.', '🎖️');
+//  * 
+//  * // initialize medals
+//  * medalsInit('Example Game');
+//  * 
+//  * // unlock the medal
+//  * medal_example.unlock();
+//  */
+// class Medal
+// {
+//     /** Create an medal object and adds it to the list of medals
+//      *  @param {Number} id            - The unique identifier of the medal
+//      *  @param {String} name          - Name of the medal
+//      *  @param {String} [description] - Description of the medal
+//      *  @param {String} [icon='🏆']  - Icon for the medal
+//      *  @param {String} [src]         - Image location for the medal
+//      */
+//     constructor(id, name, description='', icon='🏆', src)
+//     {
+//         ASSERT(id >= 0 && !medals[id]);
 
-        // save attributes and add to list of medals
-        medals[this.id = id] = this;
-        this.name = name;
-        this.description = description;
-        this.icon = icon;
-        this.image = new Image();
-        if (src)
-            this.image.src = src;
-    }
+//         // save attributes and add to list of medals
+//         medals[this.id = id] = this;
+//         this.name = name;
+//         this.description = description;
+//         this.icon = icon;
+//         this.image = new Image();
+//         if (src)
+//             this.image.src = src;
+//     }
 
-    /** Unlocks a medal if not already unlocked */
-    unlock()
-    {
-        if (medalsPreventUnlock || this.unlocked)
-            return;
+//     /** Unlocks a medal if not already unlocked */
+//     unlock()
+//     {
+//         if (medalsPreventUnlock || this.unlocked)
+//             return;
 
-        // save the medal
-        ASSERT(medalsSaveName); // save name must be set
-        localStorage[this.storageKey()] = this.unlocked = 1;
-        medalsDisplayQueue.push(this);
+//         // save the medal
+//         ASSERT(medalsSaveName); // save name must be set
+//         localStorage[this.storageKey()] = this.unlocked = 1;
+//         medalsDisplayQueue.push(this);
 
-        // save for newgrounds and OS13K
-        newgrounds && newgrounds.unlockMedal(this.id);
-        localStorage['OS13kTrophy,' + this.icon + ',' + medalsSaveName + ',' + this.name] = this.description;
-    }
+//         // save for newgrounds and OS13K
+//         newgrounds && newgrounds.unlockMedal(this.id);
+//         localStorage['OS13kTrophy,' + this.icon + ',' + medalsSaveName + ',' + this.name] = this.description;
+//     }
 
-    /** Render a medal
-     *  @param {Number} [hidePercent=0] - How much to slide the medal off screen
-     */
-    render(hidePercent=0)
-    {
-        const context = overlayContext;
-        const width = min(medalDisplayWidth, mainCanvas.width);
-        const x = overlayCanvas.width - width;
-        const y = -medalDisplayHeight*hidePercent;
+//     /** Render a medal
+//      *  @param {Number} [hidePercent=0] - How much to slide the medal off screen
+//      */
+//     render(hidePercent=0)
+//     {
+//         const context = overlayContext;
+//         const width = min(medalDisplayWidth, mainCanvas.width);
+//         const x = overlayCanvas.width - width;
+//         const y = -medalDisplayHeight*hidePercent;
 
-        // draw containing rect and clip to that region
-        context.save();
-        context.beginPath();
-        context.fillStyle = '#ddd'
-        context.fill(context.rect(x, y, width, medalDisplayHeight));
-        context.strokeStyle = '#000';
-        context.lineWidth = 3;
-        context.stroke();
-        context.clip();
+//         // draw containing rect and clip to that region
+//         context.save();
+//         context.beginPath();
+//         context.fillStyle = '#ddd'
+//         context.fill(context.rect(x, y, width, medalDisplayHeight));
+//         context.strokeStyle = '#000';
+//         context.lineWidth = 3;
+//         context.stroke();
+//         context.clip();
 
-        // draw the icon and text
-        this.renderIcon(x+15+medalDisplayIconSize/2, y+medalDisplayHeight/2);
-        context.textAlign = 'left';
-        context.font = '38px '+ fontDefault;
-        context.fillText(this.name, x+medalDisplayIconSize+30, y+28);
-        context.font = '24px '+ fontDefault;
-        context.fillText(this.description, x+medalDisplayIconSize+30, y+60);
-        context.restore();
-    }
+//         // draw the icon and text
+//         this.renderIcon(x+15+medalDisplayIconSize/2, y+medalDisplayHeight/2);
+//         context.textAlign = 'left';
+//         context.font = '38px '+ fontDefault;
+//         context.fillText(this.name, x+medalDisplayIconSize+30, y+28);
+//         context.font = '24px '+ fontDefault;
+//         context.fillText(this.description, x+medalDisplayIconSize+30, y+60);
+//         context.restore();
+//     }
 
-    /** Render the icon for a medal
-     *  @param {Number} x - Screen space X position
-     *  @param {Number} y - Screen space Y position
-     *  @param {Number} [size=medalDisplayIconSize] - Screen space size
-     */
-    renderIcon(x, y, size=medalDisplayIconSize)
-    {
-        // draw the image or icon
-        const context = overlayContext;
-        context.fillStyle = '#000';
-        context.textAlign = 'center';
-        context.textBaseline = 'middle';
-        context.font = size*.7 + 'px '+ fontDefault;
-        if (this.image.src)
-            context.drawImage(this.image, x-size/2, y-size/2, size, size);
-        else
-            context.fillText(this.icon, x, y); // show icon if there is no image
-    }
+//     /** Render the icon for a medal
+//      *  @param {Number} x - Screen space X position
+//      *  @param {Number} y - Screen space Y position
+//      *  @param {Number} [size=medalDisplayIconSize] - Screen space size
+//      */
+//     renderIcon(x, y, size=medalDisplayIconSize)
+//     {
+//         // draw the image or icon
+//         const context = overlayContext;
+//         context.fillStyle = '#000';
+//         context.textAlign = 'center';
+//         context.textBaseline = 'middle';
+//         context.font = size*.7 + 'px '+ fontDefault;
+//         if (this.image.src)
+//             context.drawImage(this.image, x-size/2, y-size/2, size, size);
+//         else
+//             context.fillText(this.icon, x, y); // show icon if there is no image
+//     }
  
-    // Get local storage key used by the medal
-    storageKey() { return medalsSaveName + '_' + this.id; }
-}
+//     // Get local storage key used by the medal
+//     storageKey() { return medalsSaveName + '_' + this.id; }
+// }
 
-// engine automatically renders medals
-function medalsRender()
-{
-    if (!medalsDisplayQueue.length)
-        return;
+// // engine automatically renders medals
+// function medalsRender()
+// {
+//     if (!medalsDisplayQueue.length)
+//         return;
     
-    // update first medal in queue
-    const medal = medalsDisplayQueue[0];
-    const time = timeReal - medalsDisplayTimeLast;
-    if (!medalsDisplayTimeLast)
-        medalsDisplayTimeLast = timeReal;
-    else if (time > medalDisplayTime)
-        medalsDisplayQueue.shift(medalsDisplayTimeLast = 0);
-    else
-    {
-        // slide on/off medals
-        const slideOffTime = medalDisplayTime - medalDisplaySlideTime;
-        const hidePercent = 
-            time < medalDisplaySlideTime ? 1 - time / medalDisplaySlideTime :
-            time > slideOffTime ? (time - slideOffTime) / medalDisplaySlideTime : 0;
-        medal.render(hidePercent);
-    }
-}
+//     // update first medal in queue
+//     const medal = medalsDisplayQueue[0];
+//     const time = timeReal - medalsDisplayTimeLast;
+//     if (!medalsDisplayTimeLast)
+//         medalsDisplayTimeLast = timeReal;
+//     else if (time > medalDisplayTime)
+//         medalsDisplayQueue.shift(medalsDisplayTimeLast = 0);
+//     else
+//     {
+//         // slide on/off medals
+//         const slideOffTime = medalDisplayTime - medalDisplaySlideTime;
+//         const hidePercent = 
+//             time < medalDisplaySlideTime ? 1 - time / medalDisplaySlideTime :
+//             time > slideOffTime ? (time - slideOffTime) / medalDisplaySlideTime : 0;
+//         medal.render(hidePercent);
+//     }
+// }
 
 ///////////////////////////////////////////////////////////////////////////////
 
