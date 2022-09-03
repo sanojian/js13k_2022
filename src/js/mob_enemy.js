@@ -91,7 +91,7 @@ class Enemy extends Mob {
 			this.groan(1, 3, rand(2, 2.5), rand(5));
 
 			let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex, this.tileSize);
-			corpse.push(velocity, 1 + g_difficulty);
+			corpse.pushCorpse(velocity /* 1 + g_difficulty */);
 			g_corpses.push(corpse);
 
 			let i = g_enemies.indexOf(this);
