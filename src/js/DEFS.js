@@ -99,7 +99,7 @@ const mobDefs = {
 	Ghost: {
 		hp: 1,
 		hpGainPerlevel: 0.5,
-		maxSpeed: 0.1,
+		maxSpeed: 0.08,
 	},
 };
 
@@ -114,22 +114,22 @@ const levelDefs = [
 	{
 		// graveyard
 		map: 1,
-		enemiesToSpawn: 15,
-		enemiesMaxAlive: 4,
+		enemiesToSpawn: 12,
+		enemiesMaxAlive: 3,
 		spawns: [{ chance: 1 }],
 	},
 	{
 		// intro to vampires
 		map: 3,
-		enemiesToSpawn: 20,
-		enemiesMaxAlive: 5,
+		enemiesToSpawn: 15,
+		enemiesMaxAlive: 4,
 		spawns: [{ chance: 0.5 }, { type: "v", chance: 0.5 }],
 	},
 	{
 		// intro to ghosts
 		map: 4,
-		enemiesToSpawn: 20,
-		enemiesMaxAlive: 5,
+		enemiesToSpawn: 15,
+		enemiesMaxAlive: 4,
 		spawns: [{ chance: 0.5 }, { type: "g", chance: 0.5 }],
 	},
 	{
