@@ -3,5 +3,5 @@
 mkdir ../ziptest
 cp dist/a.zip ../ziptest/
 cd ../ziptest
-unzip a.zip
+unzip -o a.zip
 http-server
