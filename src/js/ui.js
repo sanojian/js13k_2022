@@ -3,8 +3,11 @@
 // this draws the ui on top of everything (in theory)
 
 var ui_fadeTarget = 0;
-var ui_fadeBlacness = 1;
+var ui_fadeBlacness = 0;
 var ui_onFaded = undefined;
+
+const ui_clearCol = new Color(0.5, 1, 1, 0.25);
+const ui_fadeCol = new Color(0, 0, 0, 1);
 
 function uiFadeOutAndCall(fadeFunc) {
 	if (!ui_onFaded) {
@@ -138,8 +141,10 @@ function gameRenderPost() {
 
 	// FADE THE SCREEN
 
-	let color = "#000";
-	let alpha = ui_fadeBlacness;
+	let col = ui_clearCol.lerp(ui_fadeCol, ui_fadeBlacness);
+
+	let color = col.getHex();
+	let alpha = col.a;
 
 	if (ui_flashFrames > 0) {
 		ui_flashFrames--;
