@@ -82,7 +82,7 @@ class Enemy extends Mob {
 
 		this.applyForce(velocity.scale(2));
 
-		this.bloodEmitter = makeParticles(this.pos, rand(1));
+		this.bloodEmitter = makeParticles(this.pos, rand());
 
 		this.splatter(pos);
 

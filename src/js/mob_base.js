@@ -43,7 +43,7 @@ class Mob extends EngineObject {
 	}
 
 	groan(chance, strength, pitch = 1, repeat = 1) {
-		if (rand(1) > chance) return;
+		if (rand() > chance) return;
 
 		const MAX_VOL = 0.5;
 

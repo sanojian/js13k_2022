@@ -81,7 +81,7 @@ class MapManager {
 						else if (t == 14) t = 24;
 						else if (t == 24) t = 14;
 					}
-					let tld = new TileLayerData(t, 0, rand(1) < 0.5, tint);
+					let tld = new TileLayerData(t, 0, rand() < 0.5, tint);
 					tileLayer.setData(vec2(x, h - 1 - y), tld);
 
 					// moss

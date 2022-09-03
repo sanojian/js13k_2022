@@ -1,7 +1,7 @@
 
 function getNextEnemySpawnClass() {
 	let chance = 0;
-	let rando = rand(1);
+	let rando = rand();
 	let type;
 	for (let i = 0; i < g_levelDef.spawns.length; i++) {
 		chance += g_levelDef.spawns[i].chance;

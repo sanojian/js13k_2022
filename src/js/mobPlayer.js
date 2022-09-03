@@ -96,7 +96,7 @@ class MobPlayer extends Mob {
 				if (this.hp == 0) {
 					for (let i = 0; i < 10; i++) {
 						this.splatter(this.pos);
-						makeParticles(this.pos, rand(1));
+						makeParticles(this.pos, rand());
 					}
 
 					this.angle = PI / 2;
