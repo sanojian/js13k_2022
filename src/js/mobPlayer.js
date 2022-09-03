@@ -2,7 +2,6 @@
 class MobPlayer extends Mob {
 	constructor(pos) {
 		super(pos, MOB_SIZE, tileNumbers_player);
-		// your object init code here
 
 		this.miniFace = miniTileNumbers_miniFacePlayer;
 
@@ -70,7 +69,7 @@ class MobPlayer extends Mob {
 				this.gun.owner = null;
 				this.gun = null;
 			}
-			this.applyDrag(5);
+			this.damping = 0.1;
 		}
 	}
 
@@ -86,7 +85,7 @@ class MobPlayer extends Mob {
 			let d = v.length();
 			if (d < 0.5) {
 				if (!g_CHEATMODE) this.hp--;
-				v.normalize(0.01);
+				v.normalize(0.001);
 				this.applyForce(v);
 
 				makeParticles(this.pos, 0.05);
