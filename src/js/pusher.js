@@ -26,6 +26,8 @@ class Pusher {
 		this.tics = this.tics - 1;
 
 		for (const e of g_enemies) {
+			if (!e.collideWithTile) continue;
+
 			let toMob = e.pos.subtract(this.pos);
 
 			let dist = toMob.length();
