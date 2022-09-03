@@ -25,7 +25,7 @@ class MapManager {
 					tileNumbers_floorStone,
 					Math.floor(rand(0, 3)),
 					false,
-					new Color(1, 1, 1, rand(0.4, 0.6))
+					new Color(1, 1, 1, rand(0.2, 0.5))
 				);
 				tileLayer.setData(vec2(x, h - 1 - y), tld);
 
