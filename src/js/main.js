@@ -34,21 +34,11 @@ function startNewGame() {
 
 function startNextLevel() {
 	// save gun and ammo
-	let ammoPistol = 0;
-	let ammoShotgun = 0;
-	let ammoRifle = 0;
-	let currentGun = tileNumbers_pistol; // default
-	let gunAmmo = 0;
-	if (g_player) {
-		ammoPistol = g_player.ammoBullets;
-		ammoShotgun = g_player.ammoShells;
-		ammoRifle = g_player.ammoRifle;
-		currentGun = g_player.gun?.tileIndex;
-		gunAmmo = g_player.gun?.ammo;
-	} else {
-		// starting ammo
-		ammoPistol = 12;
-	}
+	let ammoPistol = g_player ? g_player.ammoBullets : 12;
+	let ammoShotgun = g_player ? g_player.ammoShells : 0;
+	let ammoRifle = g_player ? g_player.ammoRifle : 0;
+	let currentGun = g_player ? g_player.gun.tileIndex : tileNumbers_pistol; // default
+	let gunAmmo = g_player ? g_player.gun.ammo : 6;
 
 	///////////////////
 	// Clean up
