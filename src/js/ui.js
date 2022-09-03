@@ -67,9 +67,9 @@ function gameRenderPost() {
 		}
 
 		// score texts
-		for (let i = 0; i < g_corpses.length; i++) {
-			g_corpses[i].postRender();
-		}
+		// for (let i = 0; i < g_corpses.length; i++) {
+		// 	g_corpses[i].postRender();
+		// }
 
 		// make sure UI can fit onto screen
 		let scaleUI = min(1, overlayCanvas.width / (12 * cameraScale));

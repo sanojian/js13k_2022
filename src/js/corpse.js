@@ -33,35 +33,35 @@ class Corpse extends EngineObject {
 		super.render(); // draw object as a sprite
 	}
 
-	postRender() {
-		// draw score
-		if (this.scoreObj && this.scoreObj.life) {
-			drawText(
-				"+" + this.scoreObj.score,
-				this.pos.add(vec2(0, this.scoreObj.y)),
-				0.5,
-				colorScoreText,
-				1 / 6,
-				undefined,
-				"center"
-			);
-			this.scoreObj.y += (1 - (3 * this.scoreObj.y) / 4) / 12;
-			this.scoreObj.life--;
-		}
-	}
+	// postRender() {
+	// 	// draw score
+	// 	if (this.scoreObj && this.scoreObj.life) {
+	// 		drawText(
+	// 			"+" + this.scoreObj.score,
+	// 			this.pos.add(vec2(0, this.scoreObj.y)),
+	// 			0.5,
+	// 			colorScoreText,
+	// 			1 / 6,
+	// 			undefined,
+	// 			"center"
+	// 		);
+	// 		this.scoreObj.y += (1 - (3 * this.scoreObj.y) / 4) / 12;
+	// 		this.scoreObj.life--;
+	// 	}
+	// }
 
-	push(velocity, score) {
+	pushCorpse(velocity /*, score*/) {
 		this.velocity.x = velocity.x / 3;
 		this.velocity.y = velocity.y / 3;
 		this.fallDirection = velocity.x > 0 ? 1 : -1;
 		this.finalAngle = -PI / 2 + rand(0, PI) + PI;
 
-		if (score) {
-			this.scoreObj = {
-				score: score,
-				y: 0,
-				life: 60,
-			};
-		}
+		// if (score) {
+		// 	this.scoreObj = {
+		// 		score: score,
+		// 		y: 0,
+		// 		life: 60,
+		// 	};
+		// }
 	}
 }
