@@ -23,14 +23,12 @@ class MobPlayer extends Mob {
 	}
 
 	getAmmoForCurrentGun() {
-		switch (this.gun.tileIndex) {
-			case tileNumbers_shotgun:
-				return this.ammoShells;
-			case tileNumbers_rifle:
-				return this.ammoRifle;
-			default:
-				return this.ammoBullets;
+		if (this.gun.tileIndex == tileNumbers_shotgun) {
+			return this.ammoShells;
+		} else if (this.gun.tileIndex == tileNumbers_rifle) {
+			return this.ammoRifle;
 		}
+		return this.ammoBullets;
 	}
 
 	update() {
