@@ -3,11 +3,11 @@
 // this draws the ui on top of everything (in theory)
 
 var ui_fadeTarget = 0;
-var ui_fadeBlacness = 0;
+var ui_fade = 0;
 var ui_onFaded = undefined;
 
-const ui_clearCol = new Color(0.5, 1, 1, 0.25);
-const ui_fadeCol = new Color(0, 0, 0, 1);
+const ui_clearCol = new Color(0, 0, 0, 0);
+const ui_fadeCol = new Color(0.2, 0, 0, 1);
 
 function uiFadeOutAndCall(fadeFunc) {
 	if (!ui_onFaded) {
@@ -17,18 +17,18 @@ function uiFadeOutAndCall(fadeFunc) {
 }
 
 function uiIsFading() {
-	return ui_fadeBlacness > 0.01;
+	return ui_fade > 0.01;
 }
 
 function uiFading() {
 	// fade
-	const FADE_TIME = 1;
+	const FADE_TIME = 0.5;
 	const fadeSpeed = 1 / (FADE_TIME * 60);
 	let dFade = ui_fadeTarget == 0 ? -fadeSpeed / 1.5 : fadeSpeed; // fading in looks slower somehow ... strange but true
 
-	ui_fadeBlacness = clamp(ui_fadeBlacness + dFade, 0, 1);
+	ui_fade = clamp(ui_fade + dFade, 0, 1);
 
-	if (ui_fadeBlacness == 1) {
+	if (ui_fade == 1) {
 		ui_fadeTarget = 0;
 		if (ui_onFaded) {
 			ui_onFaded();
@@ -141,7 +141,7 @@ function gameRenderPost() {
 
 	// FADE THE SCREEN
 
-	let col = ui_clearCol.lerp(ui_fadeCol, ui_fadeBlacness);
+	let col = ui_clearCol.lerp(ui_fadeCol, ui_fade);
 
 	let color = col.getHex();
 	let alpha = col.a;
