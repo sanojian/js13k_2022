@@ -408,7 +408,7 @@ function gameRender() {
 	// bullet holes
 	for (let i = 0; i < g_holes.length; i++) {
 		let hole = g_holes[i];
-		drawRect(hole.pos, vec2(1 / 12), hole.color);
+		drawRect(hole.pos, vec2(hole.size / 12), hole.color);
 	}
 
 	// // sparks
