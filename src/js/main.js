@@ -280,8 +280,9 @@ function updateStatePlaying() {
 	cameraPos = cameraPos.add(g_screenShake);
 
 	if (g_CHEATMODE && mouseWasPressed(1)) {
-		changeState(STATE_CLEARED);
 		g_level++;
+		startNextLevel();
+		changeState(STATE_PLAYING);
 	}
 }
 
