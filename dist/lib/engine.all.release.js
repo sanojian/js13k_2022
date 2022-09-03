@@ -846,7 +846,7 @@ let time = 0;
 let timeReal = 0;
 
 /** Is the game paused? Causes time and objects to not be updated. */
-let paused = 0;
+const paused = 0;
 
 // Engine internal variables not exposed to documentation
 let frameTimeLastMS = 0, frameTimeBufferMS = 0, tileImageSize, tileImageFixBleed;
@@ -894,7 +894,7 @@ function engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRender
         overlayCanvas.style = styleCanvas;
         
         gameInit();
-        touchGamepadCreate();
+        //touchGamepadCreate();
         engineUpdate();
     };
 
@@ -983,8 +983,8 @@ function engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRender
             o.destroyed || o.render();
         gameRenderPost();
         //medalsRender();
-        touchGamepadRender();
-        debugRender();
+        //touchGamepadRender();
+        //debugRender();
         glCopyToContext(mainContext);
 
         if (showWatermark)
@@ -1741,82 +1741,82 @@ function drawText(text, pos, size=1, color, lineWidth, lineColor, textAlign, fon
  * font.drawTextScreen("LittleJS\nHello World!", vec2(200, 50));
  */
 
-let engineFontImage;
+// let engineFontImage;
 
-class FontImage
-{
-    /** Create an image font
-     *  @param {Image}   [image] - The image the font is stored in, if undefined the default font is used
-     *  @param {Vector2} [tileSize=vec2(8)] - The size of the font source tiles
-     *  @param {Vector2} [paddingSize=vec2(0,1)] - How much extra space to add between characters
-     *  @param {Number}  [startTileIndex=0] - Tile index in image where font starts
-     *  @param {CanvasRenderingContext2D} [context=overlayContext] - context to draw to
-     */
-    constructor(image, tileSize=vec2(8), paddingSize=vec2(0,1), startTileIndex=0, context=overlayContext)
-    {
-        if (!image && !engineFontImage)
-        {
-            // load default font image
-            engineFontImage = new Image();
-            engineFontImage.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAAYAQAAAAA9+x6JAAAAAnRSTlMAAHaTzTgAAAGiSURBVHjaZZABhxxBEIUf6ECLBdFY+Q0PMNgf0yCgsSAGZcT9sgIPtBWwIA5wgAPEoHUyJeeSlW+gjK+fegWwtROWpVQEyWh2npdpBmTUFVhb29RINgLIukoXr5LIAvYQ5ve+1FqWEMqNKTX3FAJHyQDRZvmKWubAACcv5z5Gtg2oyCWE+Yk/8JZQX1jTTCpKAFGIgza+dJCNBF2UskRlsgwitHbSV0QLgt9sTPtsRlvJjEr8C/FARWA2bJ/TtJ7lko34dNDn6usJUMzuErP89UUBJbWeozrwLLncXczd508deAjLWipLO4Q5XGPcJvPu92cNDaN0P5G1FL0nSOzddZOrJ6rNhbXGmeDvO3TF7DeJWl4bvaYQTNHCTeuqKZmbjHaSOFes+IX/+IhHrnAkXOAsfn24EM68XieIECoccD4KZLk/odiwzeo2rovYdhvb2HYFgyznJyDpYJdYOmfXgVdJTaUi4xA2uWYNYec9BLeqdl9EsoTw582mSFDX2DxVLbNt9U3YYoeatBad1c2Tj8t2akrjaIGJNywKB/7h75/gN3vCMSaadIUTAAAAAElFTkSuQmCC';
-        }
+// class FontImage
+// {
+//     /** Create an image font
+//      *  @param {Image}   [image] - The image the font is stored in, if undefined the default font is used
+//      *  @param {Vector2} [tileSize=vec2(8)] - The size of the font source tiles
+//      *  @param {Vector2} [paddingSize=vec2(0,1)] - How much extra space to add between characters
+//      *  @param {Number}  [startTileIndex=0] - Tile index in image where font starts
+//      *  @param {CanvasRenderingContext2D} [context=overlayContext] - context to draw to
+//      */
+//     constructor(image, tileSize=vec2(8), paddingSize=vec2(0,1), startTileIndex=0, context=overlayContext)
+//     {
+//         if (!image && !engineFontImage)
+//         {
+//             // load default font image
+//             engineFontImage = new Image();
+//             engineFontImage.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAAYAQAAAAA9+x6JAAAAAnRSTlMAAHaTzTgAAAGiSURBVHjaZZABhxxBEIUf6ECLBdFY+Q0PMNgf0yCgsSAGZcT9sgIPtBWwIA5wgAPEoHUyJeeSlW+gjK+fegWwtROWpVQEyWh2npdpBmTUFVhb29RINgLIukoXr5LIAvYQ5ve+1FqWEMqNKTX3FAJHyQDRZvmKWubAACcv5z5Gtg2oyCWE+Yk/8JZQX1jTTCpKAFGIgza+dJCNBF2UskRlsgwitHbSV0QLgt9sTPtsRlvJjEr8C/FARWA2bJ/TtJ7lko34dNDn6usJUMzuErP89UUBJbWeozrwLLncXczd508deAjLWipLO4Q5XGPcJvPu92cNDaN0P5G1FL0nSOzddZOrJ6rNhbXGmeDvO3TF7DeJWl4bvaYQTNHCTeuqKZmbjHaSOFes+IX/+IhHrnAkXOAsfn24EM68XieIECoccD4KZLk/odiwzeo2rovYdhvb2HYFgyznJyDpYJdYOmfXgVdJTaUi4xA2uWYNYec9BLeqdl9EsoTw582mSFDX2DxVLbNt9U3YYoeatBad1c2Tj8t2akrjaIGJNywKB/7h75/gN3vCMSaadIUTAAAAAElFTkSuQmCC';
+//         }
 
-        this.image = image || engineFontImage;
-        this.tileSize = tileSize;
-        this.paddingSize = paddingSize;
-        this.startTileIndex = startTileIndex;
-        this.context = context;
-    }
+//         this.image = image || engineFontImage;
+//         this.tileSize = tileSize;
+//         this.paddingSize = paddingSize;
+//         this.startTileIndex = startTileIndex;
+//         this.context = context;
+//     }
 
-    /** Draw text in screen space using the image font
-     *  @param {String}  text
-     *  @param {Vector2} pos
-     *  @param {Number}  [scale=4]
-     *  @param {Boolean} [center]
-     */
-    drawTextScreen(text, pos, scale=4, center)
-    {
-        const context = this.context;
-        context.save();
-        context.imageSmoothingEnabled = !cavasPixelated;
+//     /** Draw text in screen space using the image font
+//      *  @param {String}  text
+//      *  @param {Vector2} pos
+//      *  @param {Number}  [scale=4]
+//      *  @param {Boolean} [center]
+//      */
+//     drawTextScreen(text, pos, scale=4, center)
+//     {
+//         const context = this.context;
+//         context.save();
+//         context.imageSmoothingEnabled = !cavasPixelated;
 
-        const size = this.tileSize;
-        const drawSize = size.add(this.paddingSize).scale(scale);
-        const cols = this.image.width / this.tileSize.x |0;
-        text.split('\n').forEach((line, i)=>
-        {
-            const centerOffset = center ? line.length * size.x * scale / 2 |0 : 0;
-            for(let j=line.length; j--;)
-            {
-                // draw each character
-                let charCode = line[j].charCodeAt();
-                if (charCode < 32 || charCode > 127)
-                    charCode = 127; // unknown character
+//         const size = this.tileSize;
+//         const drawSize = size.add(this.paddingSize).scale(scale);
+//         const cols = this.image.width / this.tileSize.x |0;
+//         text.split('\n').forEach((line, i)=>
+//         {
+//             const centerOffset = center ? line.length * size.x * scale / 2 |0 : 0;
+//             for(let j=line.length; j--;)
+//             {
+//                 // draw each character
+//                 let charCode = line[j].charCodeAt();
+//                 if (charCode < 32 || charCode > 127)
+//                     charCode = 127; // unknown character
 
-                // get the character source location and draw it
-                const tile = this.startTileIndex + charCode - 32;
-                const x = tile % cols;
-                const y = tile / cols |0;
-                const drawPos = pos.add(vec2(j,i).multiply(drawSize));
-                context.drawImage(this.image, x * size.x, y * size.y, size.x, size.y, 
-                    drawPos.x - centerOffset, drawPos.y, size.x * scale, size.y * scale);
-            }
-        });
+//                 // get the character source location and draw it
+//                 const tile = this.startTileIndex + charCode - 32;
+//                 const x = tile % cols;
+//                 const y = tile / cols |0;
+//                 const drawPos = pos.add(vec2(j,i).multiply(drawSize));
+//                 context.drawImage(this.image, x * size.x, y * size.y, size.x, size.y, 
+//                     drawPos.x - centerOffset, drawPos.y, size.x * scale, size.y * scale);
+//             }
+//         });
 
-        context.restore();
-    }
+//         context.restore();
+//     }
 
-    /** Draw text in world space using the image font
-     *  @param {String}  text
-     *  @param {Vector2} pos
-     *  @param {Number}  [scale=.25]
-     *  @param {Boolean} [center]
-     */
-    drawText(text, pos, scale=1, center)
-    {
-        this.drawTextScreen(text, worldToScreen(pos).floor(), scale*cameraScale|0, center);
-    }
-}
+//     /** Draw text in world space using the image font
+//      *  @param {String}  text
+//      *  @param {Vector2} pos
+//      *  @param {Number}  [scale=.25]
+//      *  @param {Boolean} [center]
+//      */
+//     drawText(text, pos, scale=1, center)
+//     {
+//         this.drawTextScreen(text, worldToScreen(pos).floor(), scale*cameraScale|0, center);
+//     }
+// }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Fullscreen mode
@@ -1926,28 +1926,28 @@ let preventDefaultInput = 0;
  *  @param {Number} [gamepad=0]
  *  @return {Boolean}
  *  @memberof Input */
-const gamepadIsDown = (button, gamepad=0)=> keyIsDown(button, gamepad+1);
+// const gamepadIsDown = (button, gamepad=0)=> keyIsDown(button, gamepad+1);
 
 /** Returns true if gamepad button was pressed
  *  @param {Number} button
  *  @param {Number} [gamepad=0]
  *  @return {Boolean}
  *  @memberof Input */
-const gamepadWasPressed = (button, gamepad=0)=> keyWasPressed(button, gamepad+1);
+// const gamepadWasPressed = (button, gamepad=0)=> keyWasPressed(button, gamepad+1);
 
 /** Returns true if gamepad button was released
  *  @param {Number} button
  *  @param {Number} [gamepad=0]
  *  @return {Boolean}
  *  @memberof Input */
-const gamepadWasReleased = (button, gamepad=0)=> keyWasReleased(button, gamepad+1);
+// const gamepadWasReleased = (button, gamepad=0)=> keyWasReleased(button, gamepad+1);
 
 /** Returns gamepad stick value
  *  @param {Number} stick
  *  @param {Number} [gamepad=0]
  *  @return {Vector2}
  *  @memberof Input */
-const gamepadStick = (stick,  gamepad=0)=> stickData[gamepad] ? stickData[gamepad][stick] || vec2() : vec2();
+//const gamepadStick = (stick,  gamepad=0)=> stickData[gamepad] ? stickData[gamepad][stick] || vec2() : vec2();
 
 ///////////////////////////////////////////////////////////////////////////////
 // Input update called by engine
@@ -1965,7 +1965,7 @@ function inputUpdate()
     mousePos = screenToWorld(mousePosScreen);
 
     // update gamepads if enabled
-    gamepadsUpdate();
+    //gamepadsUpdate();
 }
 
 function inputUpdatePost()
@@ -2016,78 +2016,78 @@ const mouseToScreen = (mousePos)=>
 ///////////////////////////////////////////////////////////////////////////////
 // Gamepad input
 
-const stickData = [];
-function gamepadsUpdate()
-{
-    if (touchGamepadEnable && touchGamepadTimer.isSet())
-    {
-        // read virtual analog stick
-        const sticks = stickData[0] || (stickData[0] = []);
-        sticks[0] = vec2(touchGamepadStick.x, -touchGamepadStick.y); // flip vertical
+// const stickData = [];
+// function gamepadsUpdate()
+// {
+//     if (touchGamepadEnable && touchGamepadTimer.isSet())
+//     {
+//         // read virtual analog stick
+//         const sticks = stickData[0] || (stickData[0] = []);
+//         sticks[0] = vec2(touchGamepadStick.x, -touchGamepadStick.y); // flip vertical
 
-        // read virtual gamepad buttons
-        const data = inputData[1] || (inputData[1] = []);
-        for (let i=10; i--;)
-        {
-            const j = i == 3 ? 2 : i == 2 ? 3 : i; // fix button locations
-            data[j] = touchGamepadButtons[i] ? 1 + 2*!gamepadIsDown(j,0) : 4*gamepadIsDown(j,0);
-        }
-    }
+//         // read virtual gamepad buttons
+//         const data = inputData[1] || (inputData[1] = []);
+//         for (let i=10; i--;)
+//         {
+//             const j = i == 3 ? 2 : i == 2 ? 3 : i; // fix button locations
+//             data[j] = touchGamepadButtons[i] ? 1 + 2*!gamepadIsDown(j,0) : 4*gamepadIsDown(j,0);
+//         }
+//     }
 
-    if (!gamepadsEnable || !navigator.getGamepads || !document.hasFocus() && !debug)
-        return;
+//     if (!gamepadsEnable || !navigator.getGamepads || !document.hasFocus() && !debug)
+//         return;
 
-    // poll gamepads
-    const gamepads = navigator.getGamepads();
-    for (let i = gamepads.length; i--;)
-    {
-        // get or create gamepad data
-        const gamepad = gamepads[i];
-        const data = inputData[i+1] || (inputData[i+1] = []);
-        const sticks = stickData[i] || (stickData[i] = []);
+//     // poll gamepads
+//     const gamepads = navigator.getGamepads();
+//     for (let i = gamepads.length; i--;)
+//     {
+//         // get or create gamepad data
+//         const gamepad = gamepads[i];
+//         const data = inputData[i+1] || (inputData[i+1] = []);
+//         const sticks = stickData[i] || (stickData[i] = []);
 
-        if (gamepad)
-        {
-            // read clamp dead zone of analog sticks
-            const deadZone = .3, deadZoneMax = .8;
-            const applyDeadZone = (v)=> 
-                v >  deadZone ?  percent( v, deadZone, deadZoneMax) : 
-                v < -deadZone ? -percent(-v, deadZone, deadZoneMax) : 0;
+//         if (gamepad)
+//         {
+//             // read clamp dead zone of analog sticks
+//             const deadZone = .3, deadZoneMax = .8;
+//             const applyDeadZone = (v)=> 
+//                 v >  deadZone ?  percent( v, deadZone, deadZoneMax) : 
+//                 v < -deadZone ? -percent(-v, deadZone, deadZoneMax) : 0;
 
-            // read analog sticks
-            for (let j = 0; j < gamepad.axes.length-1; j+=2)
-                sticks[j>>1] = vec2(applyDeadZone(gamepad.axes[j]), applyDeadZone(-gamepad.axes[j+1])).clampLength();
+//             // read analog sticks
+//             for (let j = 0; j < gamepad.axes.length-1; j+=2)
+//                 sticks[j>>1] = vec2(applyDeadZone(gamepad.axes[j]), applyDeadZone(-gamepad.axes[j+1])).clampLength();
             
-            // read buttons
-            for (let j = gamepad.buttons.length; j--;)
-            {
-                const button = gamepad.buttons[j];
-                data[j] = button.pressed ? 1 + 2*!gamepadIsDown(j,i) : 4*gamepadIsDown(j,i);
-                isUsingGamepad |= !i && button.pressed;
-                touchGamepadEnable && touchGamepadTimer.unset(); // disable touch gamepad if using real gamepad
-            }
+//             // read buttons
+//             for (let j = gamepad.buttons.length; j--;)
+//             {
+//                 const button = gamepad.buttons[j];
+//                 data[j] = button.pressed ? 1 + 2*!gamepadIsDown(j,i) : 4*gamepadIsDown(j,i);
+//                 isUsingGamepad |= !i && button.pressed;
+//                 touchGamepadEnable && touchGamepadTimer.unset(); // disable touch gamepad if using real gamepad
+//             }
 
-            if (gamepadDirectionEmulateStick)
-            {
-                // copy dpad to left analog stick when pressed
-                const dpad = vec2(gamepadIsDown(15,i) - gamepadIsDown(14,i), gamepadIsDown(12,i) - gamepadIsDown(13,i));
-                if (dpad.lengthSquared())
-                    sticks[0] = dpad.clampLength();
-            }
-        }
-    }
-}
+//             if (gamepadDirectionEmulateStick)
+//             {
+//                 // copy dpad to left analog stick when pressed
+//                 const dpad = vec2(gamepadIsDown(15,i) - gamepadIsDown(14,i), gamepadIsDown(12,i) - gamepadIsDown(13,i));
+//                 if (dpad.lengthSquared())
+//                     sticks[0] = dpad.clampLength();
+//             }
+//         }
+//     }
+// }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Pulse the vibration hardware if it exists
  *  @param {Number} [pattern=100] - a single value in miliseconds or vibration interval array
  *  @memberof Input */
-const vibrate = (pattern)=> vibrateEnable && Navigator.vibrate && Navigator.vibrate(pattern);
+// const vibrate = (pattern)=> vibrateEnable && Navigator.vibrate && Navigator.vibrate(pattern);
 
-/** Cancel any ongoing vibration
- *  @memberof Input */
-const vibrateStop = ()=> vibrate(0);
+// /** Cancel any ongoing vibration
+//  *  @memberof Input */
+// const vibrateStop = ()=> vibrate(0);
 
 ///////////////////////////////////////////////////////////////////////////////
 // Touch input
@@ -2095,168 +2095,168 @@ const vibrateStop = ()=> vibrate(0);
 /** True if a touch device has been detected
  *  @const {boolean}
  *  @memberof Input */
-const isTouchDevice = window.ontouchstart !== undefined;
+// const isTouchDevice = window.ontouchstart !== undefined;
 
-// try to enable touch mouse
-if (isTouchDevice)
-{
-    // handle all touch events the same way
-    let wasTouching, hadTouchInput;
-    ontouchstart = ontouchmove = ontouchend = (e)=>
-    {
-        e.button = 0; // all touches are left click
+// // try to enable touch mouse
+// if (isTouchDevice)
+// {
+//     // handle all touch events the same way
+//     let wasTouching, hadTouchInput;
+//     ontouchstart = ontouchmove = ontouchend = (e)=>
+//     {
+//         e.button = 0; // all touches are left click
 
-        // check if touching and pass to mouse events
-        const touching = e.touches.length;
-        if (touching)
-        {
-            hadTouchInput || zzfx(0, hadTouchInput=1) ; // fix mobile audio, force it to play a sound the first time
+//         // check if touching and pass to mouse events
+//         const touching = e.touches.length;
+//         if (touching)
+//         {
+//             hadTouchInput || zzfx(0, hadTouchInput=1) ; // fix mobile audio, force it to play a sound the first time
 
-            // set event pos and pass it along
-            e.x = e.touches[0].clientX;
-            e.y = e.touches[0].clientY;
-            wasTouching ? onmousemove(e) : onmousedown(e);
-        }
-        else if (wasTouching)
-            onmouseup(e);
+//             // set event pos and pass it along
+//             e.x = e.touches[0].clientX;
+//             e.y = e.touches[0].clientY;
+//             wasTouching ? onmousemove(e) : onmousedown(e);
+//         }
+//         else if (wasTouching)
+//             onmouseup(e);
 
-        // set was touching
-        wasTouching = touching;
+//         // set was touching
+//         wasTouching = touching;
 
-        // prevent normal mouse events from being called
-        return !e.cancelable;
-    }
-}
+//         // prevent normal mouse events from being called
+//         return !e.cancelable;
+//     }
+// }
 
 ///////////////////////////////////////////////////////////////////////////////
 // touch gamepad, virtual on screen gamepad emulator for touch devices
 
-// touch input internal variables
-let touchGamepadTimer = new Timer, touchGamepadButtons = [], touchGamepadStick = vec2();
+// // touch input internal variables
+// let touchGamepadTimer = new Timer, touchGamepadButtons = [], touchGamepadStick = vec2();
 
-// create the touch gamepad, called automatically by the engine
-function touchGamepadCreate()
-{
-    if (!touchGamepadEnable || !isTouchDevice)
-        return;
+// // create the touch gamepad, called automatically by the engine
+// function touchGamepadCreate()
+// {
+//     if (!touchGamepadEnable || !isTouchDevice)
+//         return;
 
-    ontouchstart = ontouchmove = ontouchend = (e)=> 
-    {
-        if (!touchGamepadEnable)
-            return;
+//     ontouchstart = ontouchmove = ontouchend = (e)=> 
+//     {
+//         if (!touchGamepadEnable)
+//             return;
 
-        // clear touch gamepad input
-        touchGamepadStick = vec2();
-        touchGamepadButtons = [];
+//         // clear touch gamepad input
+//         touchGamepadStick = vec2();
+//         touchGamepadButtons = [];
             
-        const touching = e.touches.length;
-        if (touching)
-        {
-            touchGamepadTimer.isSet() || zzfx(0) ; // fix mobile audio, force it to play a sound the first time
+//         const touching = e.touches.length;
+//         if (touching)
+//         {
+//             touchGamepadTimer.isSet() || zzfx(0) ; // fix mobile audio, force it to play a sound the first time
 
-            // set that gamepad is active
-            isUsingGamepad = 1;
-            touchGamepadTimer.set();
+//             // set that gamepad is active
+//             isUsingGamepad = 1;
+//             touchGamepadTimer.set();
 
-            if (paused)
-            {
-                // touch anywhere to press start when paused
-                touchGamepadButtons[9] = 1;
-                return;
-            }
-        }
+//             if (paused)
+//             {
+//                 // touch anywhere to press start when paused
+//                 touchGamepadButtons[9] = 1;
+//                 return;
+//             }
+//         }
 
-        // get center of left and right sides
-        const stickCenter = vec2(touchGamepadSize, mainCanvasSize.y-touchGamepadSize);
-        const buttonCenter = mainCanvasSize.subtract(vec2(touchGamepadSize, touchGamepadSize));
-        const startCenter = mainCanvasSize.scale(.5);
+//         // get center of left and right sides
+//         const stickCenter = vec2(touchGamepadSize, mainCanvasSize.y-touchGamepadSize);
+//         const buttonCenter = mainCanvasSize.subtract(vec2(touchGamepadSize, touchGamepadSize));
+//         const startCenter = mainCanvasSize.scale(.5);
 
-        // check each touch point
-        for (const touch of e.touches)
-        {
-            const touchPos = mouseToScreen(vec2(touch.clientX, touch.clientY));
-            if (touchPos.distance(stickCenter) < touchGamepadSize)
-            {
-                // virtual analog stick
-                if (touchGamepadAnalog)
-                    touchGamepadStick = touchPos.subtract(stickCenter).scale(2/touchGamepadSize).clampLength();
-                else
-                {
-                    // 8 way dpad
-                    const angle = touchPos.subtract(stickCenter).angle();
-                    touchGamepadStick.setAngle((angle * 4 / PI + 8.5 | 0) * PI / 4);
-                }
-            }
-            else if (touchPos.distance(buttonCenter) < touchGamepadSize)
-            {
-                // virtual face buttons
-                const button = touchPos.subtract(buttonCenter).direction();
-                touchGamepadButtons[button] = 1;
-            }
-            else if (touchPos.distance(startCenter) < touchGamepadSize)
-            {
-                // virtual start button in center
-                touchGamepadButtons[9] = 1;
-            }
-        }
-    }
-}
+//         // check each touch point
+//         for (const touch of e.touches)
+//         {
+//             const touchPos = mouseToScreen(vec2(touch.clientX, touch.clientY));
+//             if (touchPos.distance(stickCenter) < touchGamepadSize)
+//             {
+//                 // virtual analog stick
+//                 if (touchGamepadAnalog)
+//                     touchGamepadStick = touchPos.subtract(stickCenter).scale(2/touchGamepadSize).clampLength();
+//                 else
+//                 {
+//                     // 8 way dpad
+//                     const angle = touchPos.subtract(stickCenter).angle();
+//                     touchGamepadStick.setAngle((angle * 4 / PI + 8.5 | 0) * PI / 4);
+//                 }
+//             }
+//             else if (touchPos.distance(buttonCenter) < touchGamepadSize)
+//             {
+//                 // virtual face buttons
+//                 const button = touchPos.subtract(buttonCenter).direction();
+//                 touchGamepadButtons[button] = 1;
+//             }
+//             else if (touchPos.distance(startCenter) < touchGamepadSize)
+//             {
+//                 // virtual start button in center
+//                 touchGamepadButtons[9] = 1;
+//             }
+//         }
+//     }
+// }
 
-// render the touch gamepad, called automatically by the engine
-function touchGamepadRender()
-{
-    if (!touchGamepadEnable || !touchGamepadTimer.isSet())
-        return;
+// // render the touch gamepad, called automatically by the engine
+// function touchGamepadRender()
+// {
+//     if (!touchGamepadEnable || !touchGamepadTimer.isSet())
+//         return;
     
-    // fade off when not touching or paused
-    const alpha = percent(touchGamepadTimer.get(), 4, 3);
-    if (!alpha || paused)
-        return;
+//     // fade off when not touching or paused
+//     const alpha = percent(touchGamepadTimer.get(), 4, 3);
+//     if (!alpha || paused)
+//         return;
 
-    // setup the canvas
-    overlayContext.save();
-    overlayContext.globalAlpha = alpha*touchGamepadAlpha;
-    overlayContext.strokeStyle = '#fff';
-    overlayContext.lineWidth = 3;
+//     // setup the canvas
+//     overlayContext.save();
+//     overlayContext.globalAlpha = alpha*touchGamepadAlpha;
+//     overlayContext.strokeStyle = '#fff';
+//     overlayContext.lineWidth = 3;
 
-    // draw left analog stick
-    overlayContext.fillStyle = touchGamepadStick.lengthSquared() > 0 ? '#fff' : '#000';
-    overlayContext.beginPath();
+//     // draw left analog stick
+//     overlayContext.fillStyle = touchGamepadStick.lengthSquared() > 0 ? '#fff' : '#000';
+//     overlayContext.beginPath();
 
-    const leftCenter = vec2(touchGamepadSize, mainCanvasSize.y-touchGamepadSize);
-    if (touchGamepadAnalog)
-    {
-        overlayContext.arc(leftCenter.x, leftCenter.y, touchGamepadSize/2, 0, 9);
-        overlayContext.fill();
-        overlayContext.stroke();
-    }
-    else // draw cross shaped gamepad
-    {
-        for(let i=10; i--;)
-        {
-            const angle = i*PI/4;
-            overlayContext.arc(leftCenter.x, leftCenter.y,touchGamepadSize*.6, angle + PI/8, angle + PI/8);
-            i%2 && overlayContext.arc(leftCenter.x, leftCenter.y, touchGamepadSize*.33, angle, angle);
-            i==1 && overlayContext.fill();
-        }
-        overlayContext.stroke();
-    }
+//     const leftCenter = vec2(touchGamepadSize, mainCanvasSize.y-touchGamepadSize);
+//     if (touchGamepadAnalog)
+//     {
+//         overlayContext.arc(leftCenter.x, leftCenter.y, touchGamepadSize/2, 0, 9);
+//         overlayContext.fill();
+//         overlayContext.stroke();
+//     }
+//     else // draw cross shaped gamepad
+//     {
+//         for(let i=10; i--;)
+//         {
+//             const angle = i*PI/4;
+//             overlayContext.arc(leftCenter.x, leftCenter.y,touchGamepadSize*.6, angle + PI/8, angle + PI/8);
+//             i%2 && overlayContext.arc(leftCenter.x, leftCenter.y, touchGamepadSize*.33, angle, angle);
+//             i==1 && overlayContext.fill();
+//         }
+//         overlayContext.stroke();
+//     }
     
-    // draw right face buttons
-    const rightCenter = vec2(mainCanvasSize.x-touchGamepadSize, mainCanvasSize.y-touchGamepadSize);
-    for (let i=4; i--;)
-    {
-        const pos = rightCenter.add((new Vector2).setAngle(i*PI/2, touchGamepadSize/2));
-        overlayContext.fillStyle = touchGamepadButtons[i] ? '#fff' : '#000';
-        overlayContext.beginPath();
-        overlayContext.arc(pos.x, pos.y, touchGamepadSize/4, 0,9);
-        overlayContext.fill();
-        overlayContext.stroke();
-    }
+//     // draw right face buttons
+//     const rightCenter = vec2(mainCanvasSize.x-touchGamepadSize, mainCanvasSize.y-touchGamepadSize);
+//     for (let i=4; i--;)
+//     {
+//         const pos = rightCenter.add((new Vector2).setAngle(i*PI/2, touchGamepadSize/2));
+//         overlayContext.fillStyle = touchGamepadButtons[i] ? '#fff' : '#000';
+//         overlayContext.beginPath();
+//         overlayContext.arc(pos.x, pos.y, touchGamepadSize/4, 0,9);
+//         overlayContext.fill();
+//         overlayContext.stroke();
+//     }
 
-    // set canvas back to normal
-    overlayContext.restore();
-}
+//     // set canvas back to normal
+//     overlayContext.restore();
+// }
 /** 
  * LittleJS Audio System
  * <br> - <a href=https://killedbyapixel.github.io/ZzFX/>ZzFX Sound Effects</a>
@@ -2415,16 +2415,16 @@ class Music
  *  @param {Boolean} [loop=1] - True if the music should loop when it reaches the end
  *  @return {HTMLAudioElement} - The audio element for this sound
  *  @memberof Audio */
-function playAudioFile(url, volume=1, loop=1)
-{
-    if (!soundEnable) return;
+// function playAudioFile(url, volume=1, loop=1)
+// {
+//     if (!soundEnable) return;
 
-    const audio = new Audio(url);
-    audio.volume = soundVolume * volume;
-    audio.loop = loop;
-    audio.play();
-    return audio;
-}
+//     const audio = new Audio(url);
+//     audio.volume = soundVolume * volume;
+//     audio.loop = loop;
+//     audio.play();
+//     return audio;
+// }
 
 /** Speak text with passed in settings
  *  @param {String} text - The text to speak
@@ -2434,27 +2434,27 @@ function playAudioFile(url, volume=1, loop=1)
  *  @param {Number} [pitch=1] - How much to change the pitch by
  *  @return {SpeechSynthesisUtterance} - The utterance that was spoken
  *  @memberof Audio */
-function speak(text, language='', volume=1, rate=1, pitch=1)
-{
-    if (!soundEnable || !speechSynthesis) return;
+// function speak(text, language='', volume=1, rate=1, pitch=1)
+// {
+//     if (!soundEnable || !speechSynthesis) return;
 
-    // common languages (not supported by all browsers)
-    // en - english,  it - italian, fr - french,  de - german, es - spanish
-    // ja - japanese, ru - russian, zh - chinese, hi - hindi,  ko - korean
+//     // common languages (not supported by all browsers)
+//     // en - english,  it - italian, fr - french,  de - german, es - spanish
+//     // ja - japanese, ru - russian, zh - chinese, hi - hindi,  ko - korean
 
-    // build utterance and speak
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = language;
-    utterance.volume = 2*volume*soundVolume;
-    utterance.rate = rate;
-    utterance.pitch = pitch;
-    speechSynthesis.speak(utterance);
-    return utterance;
-}
+//     // build utterance and speak
+//     const utterance = new SpeechSynthesisUtterance(text);
+//     utterance.lang = language;
+//     utterance.volume = 2*volume*soundVolume;
+//     utterance.rate = rate;
+//     utterance.pitch = pitch;
+//     speechSynthesis.speak(utterance);
+//     return utterance;
+// }
 
 /** Stop all queued speech
  *  @memberof Audio */
-const speakStop = ()=> speechSynthesis && speechSynthesis.cancel();
+//const speakStop = ()=> speechSynthesis && speechSynthesis.cancel();
 
 /** Get frequency of a note on a musical scale
  *  @param {Number} semitoneOffset - How many semitones away from the root note
@@ -3531,129 +3531,129 @@ class Particle extends EngineObject
  * const cipher = 'enF0vGH@Mj/FRASKL23Q==';
  * newgrounds = new Newgrounds(app_id, cipher);
  */
-class Newgrounds
-{
-    /** Create a newgrounds object
-     *  @param {Number} app_id   - The newgrounds App ID
-     *  @param {String} [cipher] - The encryption Key (AES-128/Base64) */
-    constructor(app_id, cipher)
-    {
-        ASSERT(!newgrounds && app_id);
-        this.app_id = app_id;
-        this.cipher = cipher;
-        this.host = location ? location.hostname : '';
+//class Newgrounds
+// {
+//     /** Create a newgrounds object
+//      *  @param {Number} app_id   - The newgrounds App ID
+//      *  @param {String} [cipher] - The encryption Key (AES-128/Base64) */
+//     constructor(app_id, cipher)
+//     {
+//         ASSERT(!newgrounds && app_id);
+//         this.app_id = app_id;
+//         this.cipher = cipher;
+//         this.host = location ? location.hostname : '';
 
-        // create an instance of CryptoJS for encrypted calls
-        cipher && (this.cryptoJS = CryptoJS());
+//         // create an instance of CryptoJS for encrypted calls
+//         cipher && (this.cryptoJS = CryptoJS());
 
-        // get session id from url search params
-        const url = new URL(location.href);
-        this.session_id = url.searchParams.get('ngio_session_id') || 0;
+//         // get session id from url search params
+//         const url = new URL(location.href);
+//         this.session_id = url.searchParams.get('ngio_session_id') || 0;
 
-        if (this.session_id == 0)
-            return; // only use newgrounds when logged in
+//         if (this.session_id == 0)
+//             return; // only use newgrounds when logged in
 
-        // get medals
-        const medalsResult = this.call('Medal.getList');
-        this.medals = medalsResult ? medalsResult.result.data['medals'] : [];
-        debugMedals && console.log(this.medals);
-        for (const newgroundsMedal of this.medals)
-        {
-            const medal = medals[newgroundsMedal['id']];
-            if (medal)
-            {
-                // copy newgrounds medal data
-                medal.image.src =   newgroundsMedal['icon'];
-                medal.name =        newgroundsMedal['name'];
-                medal.description = newgroundsMedal['description'];
-                medal.unlocked =    newgroundsMedal['unlocked'];
-                medal.difficulty =  newgroundsMedal['difficulty'];
-                medal.value =       newgroundsMedal['value'];
+//         // get medals
+//         const medalsResult = this.call('Medal.getList');
+//         this.medals = medalsResult ? medalsResult.result.data['medals'] : [];
+//         debugMedals && console.log(this.medals);
+//         for (const newgroundsMedal of this.medals)
+//         {
+//             const medal = medals[newgroundsMedal['id']];
+//             if (medal)
+//             {
+//                 // copy newgrounds medal data
+//                 medal.image.src =   newgroundsMedal['icon'];
+//                 medal.name =        newgroundsMedal['name'];
+//                 medal.description = newgroundsMedal['description'];
+//                 medal.unlocked =    newgroundsMedal['unlocked'];
+//                 medal.difficulty =  newgroundsMedal['difficulty'];
+//                 medal.value =       newgroundsMedal['value'];
 
-                if (medal.value)
-                    medal.description = medal.description + ' (' + medal.value + ')';
-            }
-        }
+//                 if (medal.value)
+//                     medal.description = medal.description + ' (' + medal.value + ')';
+//             }
+//         }
     
-        // get scoreboards
-        const scoreboardResult = this.call('ScoreBoard.getBoards');
-        this.scoreboards = scoreboardResult ? scoreboardResult.result.data.scoreboards : [];
-        debugMedals && console.log(this.scoreboards);
+//         // get scoreboards
+//         const scoreboardResult = this.call('ScoreBoard.getBoards');
+//         this.scoreboards = scoreboardResult ? scoreboardResult.result.data.scoreboards : [];
+//         debugMedals && console.log(this.scoreboards);
 
-        const keepAliveMS = 5 * 60 * 1e3;
-        setInterval(()=>this.call('Gateway.ping', 0, 1), keepAliveMS);
-    }
+//         const keepAliveMS = 5 * 60 * 1e3;
+//         setInterval(()=>this.call('Gateway.ping', 0, 1), keepAliveMS);
+//     }
 
-    /** Send message to unlock a medal by id
-     * @param {Number} id - The medal id */
-    unlockMedal(id) { return this.call('Medal.unlock', {'id':id}, 1); }
+//     /** Send message to unlock a medal by id
+//      * @param {Number} id - The medal id */
+//     unlockMedal(id) { return this.call('Medal.unlock', {'id':id}, 1); }
 
-    /** Send message to post score
-     * @param {Number} id    - The scoreboard id
-     * @param {Number} value - The score value */
-    postScore(id, value) { return this.call('ScoreBoard.postScore', {'id':id, 'value':value}, 1); }
+//     /** Send message to post score
+//      * @param {Number} id    - The scoreboard id
+//      * @param {Number} value - The score value */
+//     postScore(id, value) { return this.call('ScoreBoard.postScore', {'id':id, 'value':value}, 1); }
 
-    /** Get scores from a scoreboard
-     * @param {Number} id         - The scoreboard id
-     * @param {String} [user=0]   - A user's id or name
-     * @param {Number} [social=0] - If true, only social scores will be loaded
-     * @param {Number} [skip=0]   - Number of scores to skip before start
-     * @param {Number} [limit=10] - Number of scores to include in the list
-     * @return {Object}           - The response JSON object
-     */
-    getScores(id, user=0, social=0, skip=0, limit=10)
-    { return this.call('ScoreBoard.getScores', {'id':id, 'user':user, 'social':social, 'skip':skip, 'limit':limit}); }
+//     /** Get scores from a scoreboard
+//      * @param {Number} id         - The scoreboard id
+//      * @param {String} [user=0]   - A user's id or name
+//      * @param {Number} [social=0] - If true, only social scores will be loaded
+//      * @param {Number} [skip=0]   - Number of scores to skip before start
+//      * @param {Number} [limit=10] - Number of scores to include in the list
+//      * @return {Object}           - The response JSON object
+//      */
+//     getScores(id, user=0, social=0, skip=0, limit=10)
+//     { return this.call('ScoreBoard.getScores', {'id':id, 'user':user, 'social':social, 'skip':skip, 'limit':limit}); }
 
-    /** Send message to log a view */
-    logView() { return this.call('App.logView', {'host':this.host}, 1); }
+//     /** Send message to log a view */
+//     logView() { return this.call('App.logView', {'host':this.host}, 1); }
 
-    /** Send a message to call a component of the Newgrounds API
-     * @param {String}  component      - Name of the component
-     * @param {Object}  [parameters=0] - Parameters to use for call
-     * @param {Boolean} [async=0]      - If true, don't wait for response before continuing (avoid stall)
-     * @return {Object}                - The response JSON object
-     */
-    call(component, parameters=0, async=0)
-    {
-        const call = {'component':component, 'parameters':parameters};
-        if (this.cipher)
-        {
-            // encrypt using AES-128 Base64 with cryptoJS
-            const cryptoJS = this.cryptoJS;
-            const aesKey = cryptoJS['enc']['Base64']['parse'](this.cipher);
-            const iv = cryptoJS['lib']['WordArray']['random'](16);
-            const encrypted = cryptoJS['AES']['encrypt'](JSON.stringify(call), aesKey, {'iv':iv});
-            call['secure'] = cryptoJS['enc']['Base64']['stringify'](iv.concat(encrypted['ciphertext']));
-            call['parameters'] = 0;
-        }
+//     /** Send a message to call a component of the Newgrounds API
+//      * @param {String}  component      - Name of the component
+//      * @param {Object}  [parameters=0] - Parameters to use for call
+//      * @param {Boolean} [async=0]      - If true, don't wait for response before continuing (avoid stall)
+//      * @return {Object}                - The response JSON object
+//      */
+//     call(component, parameters=0, async=0)
+//     {
+//         const call = {'component':component, 'parameters':parameters};
+//         if (this.cipher)
+//         {
+//             // encrypt using AES-128 Base64 with cryptoJS
+//             const cryptoJS = this.cryptoJS;
+//             const aesKey = cryptoJS['enc']['Base64']['parse'](this.cipher);
+//             const iv = cryptoJS['lib']['WordArray']['random'](16);
+//             const encrypted = cryptoJS['AES']['encrypt'](JSON.stringify(call), aesKey, {'iv':iv});
+//             call['secure'] = cryptoJS['enc']['Base64']['stringify'](iv.concat(encrypted['ciphertext']));
+//             call['parameters'] = 0;
+//         }
 
-        // build the input object
-        const input = 
-        {
-            'app_id':     this.app_id,
-            'session_id': this.session_id,
-            'call':       call
-        };
+//         // build the input object
+//         const input = 
+//         {
+//             'app_id':     this.app_id,
+//             'session_id': this.session_id,
+//             'call':       call
+//         };
 
-        // build post data
-        const formData = new FormData();
-        formData.append('input', JSON.stringify(input));
+//         // build post data
+//         const formData = new FormData();
+//         formData.append('input', JSON.stringify(input));
         
-        // send post data
-        const xmlHttp = new XMLHttpRequest();
-        const url = 'https://newgrounds.io/gateway_v3.php';
-        xmlHttp.open('POST', url, !debugMedals && async);
-        xmlHttp.send(formData);
-        debugMedals && console.log(xmlHttp.responseText);
-        return xmlHttp.responseText && JSON.parse(xmlHttp.responseText);
-    }
-}
+//         // send post data
+//         const xmlHttp = new XMLHttpRequest();
+//         const url = 'https://newgrounds.io/gateway_v3.php';
+//         xmlHttp.open('POST', url, !debugMedals && async);
+//         xmlHttp.send(formData);
+//         debugMedals && console.log(xmlHttp.responseText);
+//         return xmlHttp.responseText && JSON.parse(xmlHttp.responseText);
+//     }
+// }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Crypto-JS - https://github.com/brix/crypto-js [The MIT License (MIT)]
 // Copyright (c) 2009-2013 Jeff Mott  Copyright (c) 2013-2016 Evan Vosberg
 
-const CryptoJS=()=>eval(Function("[M='GBMGXz^oVYPPKKbB`agTXU|LxPc_ZBcMrZvCr~wyGfWrwk@ATqlqeTp^N?p{we}jIpEnB_sEr`l?YDkDhWhprc|Er|XETG?pTl`e}dIc[_N~}fzRycIfpW{HTolvoPB_FMe_eH~BTMx]yyOhv?biWPCGc]kABencBhgERHGf{OL`Dj`c^sh@canhy[secghiyotcdOWgO{tJIE^JtdGQRNSCrwKYciZOa]Y@tcRATYKzv|sXpboHcbCBf`}SKeXPFM|RiJsSNaIb]QPc[D]Jy_O^XkOVTZep`ONmntLL`Qz~UupHBX_Ia~WX]yTRJIxG`ioZ{fefLJFhdyYoyLPvqgH?b`[TMnTwwfzDXhfM?rKs^aFr|nyBdPmVHTtAjXoYUloEziWDCw_suyYT~lSMksI~ZNCS[Bex~j]Vz?kx`gdYSEMCsHpjbyxQvw|XxX_^nQYue{sBzVWQKYndtYQMWRef{bOHSfQhiNdtR{o?cUAHQAABThwHPT}F{VvFmgN`E@FiFYS`UJmpQNM`X|tPKHlccT}z}k{sACHL?Rt@MkWplxO`ASgh?hBsuuP|xD~LSH~KBlRs]t|l|_tQAroDRqWS^SEr[sYdPB}TAROtW{mIkE|dWOuLgLmJrucGLpebrAFKWjikTUzS|j}M}szasKOmrjy[?hpwnEfX[jGpLt@^v_eNwSQHNwtOtDgWD{rk|UgASs@mziIXrsHN_|hZuxXlPJOsA^^?QY^yGoCBx{ekLuZzRqQZdsNSx@ezDAn{XNj@fRXIwrDX?{ZQHwTEfu@GhxDOykqts|n{jOeZ@c`dvTY?e^]ATvWpb?SVyg]GC?SlzteilZJAL]mlhLjYZazY__qcVFYvt@|bIQnSno@OXyt]OulzkWqH`rYFWrwGs`v|~XeTsIssLrbmHZCYHiJrX}eEzSssH}]l]IhPQhPoQ}rCXLyhFIT[clhzYOvyHqigxmjz`phKUU^TPf[GRAIhNqSOdayFP@FmKmuIzMOeoqdpxyCOwCthcLq?n`L`tLIBboNn~uXeFcPE{C~mC`h]jUUUQe^`UqvzCutYCgct|SBrAeiYQW?X~KzCz}guXbsUw?pLsg@hDArw?KeJD[BN?GD@wgFWCiHq@Ypp_QKFixEKWqRp]oJFuVIEvjDcTFu~Zz]a{IcXhWuIdMQjJ]lwmGQ|]g~c]Hl]pl`Pd^?loIcsoNir_kikBYyg?NarXZEGYspt_vLBIoj}LI[uBFvm}tbqvC|xyR~a{kob|HlctZslTGtPDhBKsNsoZPuH`U`Fqg{gKnGSHVLJ^O`zmNgMn~{rsQuoymw^JY?iUBvw_~mMr|GrPHTERS[MiNpY[Mm{ggHpzRaJaoFomtdaQ_?xuTRm}@KjU~RtPsAdxa|uHmy}n^i||FVL[eQAPrWfLm^ndczgF~Nk~aplQvTUpHvnTya]kOenZlLAQIm{lPl@CCTchvCF[fI{^zPkeYZTiamoEcKmBMfZhk_j_~Fjp|wPVZlkh_nHu]@tP|hS@^G^PdsQ~f[RqgTDqezxNFcaO}HZhb|MMiNSYSAnQWCDJukT~e|OTgc}sf[cnr?fyzTa|EwEtRG|I~|IO}O]S|rp]CQ}}DWhSjC_|z|oY|FYl@WkCOoPuWuqr{fJu?Brs^_EBI[@_OCKs}?]O`jnDiXBvaIWhhMAQDNb{U`bqVR}oqVAvR@AZHEBY@depD]OLh`kf^UsHhzKT}CS}HQKy}Q~AeMydXPQztWSSzDnghULQgMAmbWIZ|lWWeEXrE^EeNoZApooEmrXe{NAnoDf`m}UNlRdqQ@jOc~HLOMWs]IDqJHYoMziEedGBPOxOb?[X`KxkFRg@`mgFYnP{hSaxwZfBQqTm}_?RSEaQga]w[vxc]hMne}VfSlqUeMo_iqmd`ilnJXnhdj^EEFifvZyxYFRf^VaqBhLyrGlk~qowqzHOBlOwtx?i{m~`n^G?Yxzxux}b{LSlx]dS~thO^lYE}bzKmUEzwW^{rPGhbEov[Plv??xtyKJshbG`KuO?hjBdS@Ru}iGpvFXJRrvOlrKN?`I_n_tplk}kgwSXuKylXbRQ]]?a|{xiT[li?k]CJpwy^o@ebyGQrPfF`aszGKp]baIx~H?ElETtFh]dz[OjGl@C?]VDhr}OE@V]wLTc[WErXacM{We`F|utKKjgllAxvsVYBZ@HcuMgLboFHVZmi}eIXAIFhS@A@FGRbjeoJWZ_NKd^oEH`qgy`q[Tq{x?LRP|GfBFFJV|fgZs`MLbpPYUdIV^]mD@FG]pYAT^A^RNCcXVrPsgk{jTrAIQPs_`mD}rOqAZA[}RETFz]WkXFTz_m{N@{W@_fPKZLT`@aIqf|L^Mb|crNqZ{BVsijzpGPEKQQZGlApDn`ruH}cvF|iXcNqK}cxe_U~HRnKV}sCYb`D~oGvwG[Ca|UaybXea~DdD~LiIbGRxJ_VGheI{ika}KC[OZJLn^IBkPrQj_EuoFwZ}DpoBRcK]Q}?EmTv~i_Tul{bky?Iit~tgS|o}JL_VYcCQdjeJ_MfaA`FgCgc[Ii|CBHwq~nbJeYTK{e`CNstKfTKPzw{jdhp|qsZyP_FcugxCFNpKitlR~vUrx^NrSVsSTaEgnxZTmKc`R|lGJeX}ccKLsQZQhsFkeFd|ckHIVTlGMg`~uPwuHRJS_CPuN_ogXe{Ba}dO_UBhuNXby|h?JlgBIqMKx^_u{molgL[W_iavNQuOq?ap]PGB`clAicnl@k~pA?MWHEZ{HuTLsCpOxxrKlBh]FyMjLdFl|nMIvTHyGAlPogqfZ?PlvlFJvYnDQd}R@uAhtJmDfe|iJqdkYr}r@mEjjIetDl_I`TELfoR|qTBu@Tic[BaXjP?dCS~MUK[HPRI}OUOwAaf|_}HZzrwXvbnNgltjTwkBE~MztTQhtRSWoQHajMoVyBBA`kdgK~h`o[J`dm~pm]tk@i`[F~F]DBlJKklrkR]SNw@{aG~Vhl`KINsQkOy?WhcqUMTGDOM_]bUjVd|Yh_KUCCgIJ|LDIGZCPls{RzbVWVLEhHvWBzKq|^N?DyJB|__aCUjoEgsARki}j@DQXS`RNU|DJ^a~d{sh_Iu{ONcUtSrGWW@cvUjefHHi}eSSGrNtO?cTPBShLqzwMVjWQQCCFB^culBjZHEK_{dO~Q`YhJYFn]jq~XSnG@[lQr]eKrjXpG~L^h~tDgEma^AUFThlaR{xyuP@[^VFwXSeUbVetufa@dX]CLyAnDV@Bs[DnpeghJw^?UIana}r_CKGDySoRudklbgio}kIDpA@McDoPK?iYcG?_zOmnWfJp}a[JLR[stXMo?_^Ng[whQlrDbrawZeSZ~SJstIObdDSfAA{MV}?gNunLOnbMv_~KFQUAjIMj^GkoGxuYtYbGDImEYiwEMyTpMxN_LSnSMdl{bg@dtAnAMvhDTBR_FxoQgANniRqxd`pWv@rFJ|mWNWmh[GMJz_Nq`BIN@KsjMPASXORcdHjf~rJfgZYe_uulzqM_KdPlMsuvU^YJuLtofPhGonVOQxCMuXliNvJIaoC?hSxcxKVVxWlNs^ENDvCtSmO~WxI[itnjs^RDvI@KqG}YekaSbTaB]ki]XM@[ZnDAP~@|BzLRgOzmjmPkRE@_sobkT|SszXK[rZN?F]Z_u}Yue^[BZgLtR}FHzWyxWEX^wXC]MJmiVbQuBzkgRcKGUhOvUc_bga|Tx`KEM`JWEgTpFYVeXLCm|mctZR@uKTDeUONPozBeIkrY`cz]]~WPGMUf`MNUGHDbxZuO{gmsKYkAGRPqjc|_FtblEOwy}dnwCHo]PJhN~JoteaJ?dmYZeB^Xd?X^pOKDbOMF@Ugg^hETLdhwlA}PL@_ur|o{VZosP?ntJ_kG][g{Zq`Tu]dzQlSWiKfnxDnk}KOzp~tdFstMobmy[oPYjyOtUzMWdjcNSUAjRuqhLS@AwB^{BFnqjCmmlk?jpn}TksS{KcKkDboXiwK]qMVjm~V`LgWhjS^nLGwfhAYrjDSBL_{cRus~{?xar_xqPlArrYFd?pHKdMEZzzjJpfC?Hv}mAuIDkyBxFpxhstTx`IO{rp}XGuQ]VtbHerlRc_LFGWK[XluFcNGUtDYMZny[M^nVKVeMllQI[xtvwQnXFlWYqxZZFp_|]^oWX[{pOMpxXxvkbyJA[DrPzwD|LW|QcV{Nw~U^dgguSpG]ClmO@j_TENIGjPWwgdVbHganhM?ema|dBaqla|WBd`poj~klxaasKxGG^xbWquAl~_lKWxUkDFagMnE{zHug{b`A~IYcQYBF_E}wiA}K@yxWHrZ{[d~|ARsYsjeNWzkMs~IOqqp[yzDE|WFrivsidTcnbHFRoW@XpAV`lv_zj?B~tPCppRjgbbDTALeFaOf?VcjnKTQMLyp{NwdylHCqmo?oelhjWuXj~}{fpuX`fra?GNkDiChYgVSh{R[BgF~eQa^WVz}ATI_CpY?g_diae]|ijH`TyNIF}|D_xpmBq_JpKih{Ba|sWzhnAoyraiDvk`h{qbBfsylBGmRH}DRPdryEsSaKS~tIaeF[s]I~xxHVrcNe@Jjxa@jlhZueLQqHh_]twVMqG_EGuwyab{nxOF?`HCle}nBZzlTQjkLmoXbXhOtBglFoMz?eqre`HiE@vNwBulglmQjj]DB@pPkPUgA^sjOAUNdSu_`oAzar?n?eMnw{{hYmslYi[TnlJD'",...']charCodeAtUinyxpf',"for(;e<10359;c[e++]=p-=128,A=A?p-A&&A:p==34&&p)for(p=1;p<128;y=f.map((n,x)=>(U=r[n]*2+1,U=Math.log(U/(h-U)),t-=a[x]*U,U/500)),t=~-h/(1+Math.exp(t))|1,i=o%h<t,o=o%h+(i?t:h-t)*(o>>17)-!i*t,f.map((n,x)=>(U=r[n]+=(i*h/2-r[n]<<13)/((C[n]+=C[n]<5)+1/20)>>13,a[x]+=y[x]*(i-t/h))),p=p*2+i)for(f='010202103203210431053105410642065206541'.split(t=0).map((n,x)=>(U=0,[...n].map((n,x)=>(U=U*997+(c[e-n]|0)|0)),h*32-1&U*997+p+!!A*129)*12+x);o<h*32;o=o*64|M.charCodeAt(d++)&63);for(C=String.fromCharCode(...c);r=/[\0-#?@\\\\~]/.exec(C);)with(C.split(r))C=join(shift());return C")([],[],1<<17,[0,0,0,0,0,0,0,0,0,0,0,0],new Uint16Array(51e6).fill(1<<15),new Uint8Array(51e6),0,0,0,0));
+//const CryptoJS=()=>eval(Function("[M='GBMGXz^oVYPPKKbB`agTXU|LxPc_ZBcMrZvCr~wyGfWrwk@ATqlqeTp^N?p{we}jIpEnB_sEr`l?YDkDhWhprc|Er|XETG?pTl`e}dIc[_N~}fzRycIfpW{HTolvoPB_FMe_eH~BTMx]yyOhv?biWPCGc]kABencBhgERHGf{OL`Dj`c^sh@canhy[secghiyotcdOWgO{tJIE^JtdGQRNSCrwKYciZOa]Y@tcRATYKzv|sXpboHcbCBf`}SKeXPFM|RiJsSNaIb]QPc[D]Jy_O^XkOVTZep`ONmntLL`Qz~UupHBX_Ia~WX]yTRJIxG`ioZ{fefLJFhdyYoyLPvqgH?b`[TMnTwwfzDXhfM?rKs^aFr|nyBdPmVHTtAjXoYUloEziWDCw_suyYT~lSMksI~ZNCS[Bex~j]Vz?kx`gdYSEMCsHpjbyxQvw|XxX_^nQYue{sBzVWQKYndtYQMWRef{bOHSfQhiNdtR{o?cUAHQAABThwHPT}F{VvFmgN`E@FiFYS`UJmpQNM`X|tPKHlccT}z}k{sACHL?Rt@MkWplxO`ASgh?hBsuuP|xD~LSH~KBlRs]t|l|_tQAroDRqWS^SEr[sYdPB}TAROtW{mIkE|dWOuLgLmJrucGLpebrAFKWjikTUzS|j}M}szasKOmrjy[?hpwnEfX[jGpLt@^v_eNwSQHNwtOtDgWD{rk|UgASs@mziIXrsHN_|hZuxXlPJOsA^^?QY^yGoCBx{ekLuZzRqQZdsNSx@ezDAn{XNj@fRXIwrDX?{ZQHwTEfu@GhxDOykqts|n{jOeZ@c`dvTY?e^]ATvWpb?SVyg]GC?SlzteilZJAL]mlhLjYZazY__qcVFYvt@|bIQnSno@OXyt]OulzkWqH`rYFWrwGs`v|~XeTsIssLrbmHZCYHiJrX}eEzSssH}]l]IhPQhPoQ}rCXLyhFIT[clhzYOvyHqigxmjz`phKUU^TPf[GRAIhNqSOdayFP@FmKmuIzMOeoqdpxyCOwCthcLq?n`L`tLIBboNn~uXeFcPE{C~mC`h]jUUUQe^`UqvzCutYCgct|SBrAeiYQW?X~KzCz}guXbsUw?pLsg@hDArw?KeJD[BN?GD@wgFWCiHq@Ypp_QKFixEKWqRp]oJFuVIEvjDcTFu~Zz]a{IcXhWuIdMQjJ]lwmGQ|]g~c]Hl]pl`Pd^?loIcsoNir_kikBYyg?NarXZEGYspt_vLBIoj}LI[uBFvm}tbqvC|xyR~a{kob|HlctZslTGtPDhBKsNsoZPuH`U`Fqg{gKnGSHVLJ^O`zmNgMn~{rsQuoymw^JY?iUBvw_~mMr|GrPHTERS[MiNpY[Mm{ggHpzRaJaoFomtdaQ_?xuTRm}@KjU~RtPsAdxa|uHmy}n^i||FVL[eQAPrWfLm^ndczgF~Nk~aplQvTUpHvnTya]kOenZlLAQIm{lPl@CCTchvCF[fI{^zPkeYZTiamoEcKmBMfZhk_j_~Fjp|wPVZlkh_nHu]@tP|hS@^G^PdsQ~f[RqgTDqezxNFcaO}HZhb|MMiNSYSAnQWCDJukT~e|OTgc}sf[cnr?fyzTa|EwEtRG|I~|IO}O]S|rp]CQ}}DWhSjC_|z|oY|FYl@WkCOoPuWuqr{fJu?Brs^_EBI[@_OCKs}?]O`jnDiXBvaIWhhMAQDNb{U`bqVR}oqVAvR@AZHEBY@depD]OLh`kf^UsHhzKT}CS}HQKy}Q~AeMydXPQztWSSzDnghULQgMAmbWIZ|lWWeEXrE^EeNoZApooEmrXe{NAnoDf`m}UNlRdqQ@jOc~HLOMWs]IDqJHYoMziEedGBPOxOb?[X`KxkFRg@`mgFYnP{hSaxwZfBQqTm}_?RSEaQga]w[vxc]hMne}VfSlqUeMo_iqmd`ilnJXnhdj^EEFifvZyxYFRf^VaqBhLyrGlk~qowqzHOBlOwtx?i{m~`n^G?Yxzxux}b{LSlx]dS~thO^lYE}bzKmUEzwW^{rPGhbEov[Plv??xtyKJshbG`KuO?hjBdS@Ru}iGpvFXJRrvOlrKN?`I_n_tplk}kgwSXuKylXbRQ]]?a|{xiT[li?k]CJpwy^o@ebyGQrPfF`aszGKp]baIx~H?ElETtFh]dz[OjGl@C?]VDhr}OE@V]wLTc[WErXacM{We`F|utKKjgllAxvsVYBZ@HcuMgLboFHVZmi}eIXAIFhS@A@FGRbjeoJWZ_NKd^oEH`qgy`q[Tq{x?LRP|GfBFFJV|fgZs`MLbpPYUdIV^]mD@FG]pYAT^A^RNCcXVrPsgk{jTrAIQPs_`mD}rOqAZA[}RETFz]WkXFTz_m{N@{W@_fPKZLT`@aIqf|L^Mb|crNqZ{BVsijzpGPEKQQZGlApDn`ruH}cvF|iXcNqK}cxe_U~HRnKV}sCYb`D~oGvwG[Ca|UaybXea~DdD~LiIbGRxJ_VGheI{ika}KC[OZJLn^IBkPrQj_EuoFwZ}DpoBRcK]Q}?EmTv~i_Tul{bky?Iit~tgS|o}JL_VYcCQdjeJ_MfaA`FgCgc[Ii|CBHwq~nbJeYTK{e`CNstKfTKPzw{jdhp|qsZyP_FcugxCFNpKitlR~vUrx^NrSVsSTaEgnxZTmKc`R|lGJeX}ccKLsQZQhsFkeFd|ckHIVTlGMg`~uPwuHRJS_CPuN_ogXe{Ba}dO_UBhuNXby|h?JlgBIqMKx^_u{molgL[W_iavNQuOq?ap]PGB`clAicnl@k~pA?MWHEZ{HuTLsCpOxxrKlBh]FyMjLdFl|nMIvTHyGAlPogqfZ?PlvlFJvYnDQd}R@uAhtJmDfe|iJqdkYr}r@mEjjIetDl_I`TELfoR|qTBu@Tic[BaXjP?dCS~MUK[HPRI}OUOwAaf|_}HZzrwXvbnNgltjTwkBE~MztTQhtRSWoQHajMoVyBBA`kdgK~h`o[J`dm~pm]tk@i`[F~F]DBlJKklrkR]SNw@{aG~Vhl`KINsQkOy?WhcqUMTGDOM_]bUjVd|Yh_KUCCgIJ|LDIGZCPls{RzbVWVLEhHvWBzKq|^N?DyJB|__aCUjoEgsARki}j@DQXS`RNU|DJ^a~d{sh_Iu{ONcUtSrGWW@cvUjefHHi}eSSGrNtO?cTPBShLqzwMVjWQQCCFB^culBjZHEK_{dO~Q`YhJYFn]jq~XSnG@[lQr]eKrjXpG~L^h~tDgEma^AUFThlaR{xyuP@[^VFwXSeUbVetufa@dX]CLyAnDV@Bs[DnpeghJw^?UIana}r_CKGDySoRudklbgio}kIDpA@McDoPK?iYcG?_zOmnWfJp}a[JLR[stXMo?_^Ng[whQlrDbrawZeSZ~SJstIObdDSfAA{MV}?gNunLOnbMv_~KFQUAjIMj^GkoGxuYtYbGDImEYiwEMyTpMxN_LSnSMdl{bg@dtAnAMvhDTBR_FxoQgANniRqxd`pWv@rFJ|mWNWmh[GMJz_Nq`BIN@KsjMPASXORcdHjf~rJfgZYe_uulzqM_KdPlMsuvU^YJuLtofPhGonVOQxCMuXliNvJIaoC?hSxcxKVVxWlNs^ENDvCtSmO~WxI[itnjs^RDvI@KqG}YekaSbTaB]ki]XM@[ZnDAP~@|BzLRgOzmjmPkRE@_sobkT|SszXK[rZN?F]Z_u}Yue^[BZgLtR}FHzWyxWEX^wXC]MJmiVbQuBzkgRcKGUhOvUc_bga|Tx`KEM`JWEgTpFYVeXLCm|mctZR@uKTDeUONPozBeIkrY`cz]]~WPGMUf`MNUGHDbxZuO{gmsKYkAGRPqjc|_FtblEOwy}dnwCHo]PJhN~JoteaJ?dmYZeB^Xd?X^pOKDbOMF@Ugg^hETLdhwlA}PL@_ur|o{VZosP?ntJ_kG][g{Zq`Tu]dzQlSWiKfnxDnk}KOzp~tdFstMobmy[oPYjyOtUzMWdjcNSUAjRuqhLS@AwB^{BFnqjCmmlk?jpn}TksS{KcKkDboXiwK]qMVjm~V`LgWhjS^nLGwfhAYrjDSBL_{cRus~{?xar_xqPlArrYFd?pHKdMEZzzjJpfC?Hv}mAuIDkyBxFpxhstTx`IO{rp}XGuQ]VtbHerlRc_LFGWK[XluFcNGUtDYMZny[M^nVKVeMllQI[xtvwQnXFlWYqxZZFp_|]^oWX[{pOMpxXxvkbyJA[DrPzwD|LW|QcV{Nw~U^dgguSpG]ClmO@j_TENIGjPWwgdVbHganhM?ema|dBaqla|WBd`poj~klxaasKxGG^xbWquAl~_lKWxUkDFagMnE{zHug{b`A~IYcQYBF_E}wiA}K@yxWHrZ{[d~|ARsYsjeNWzkMs~IOqqp[yzDE|WFrivsidTcnbHFRoW@XpAV`lv_zj?B~tPCppRjgbbDTALeFaOf?VcjnKTQMLyp{NwdylHCqmo?oelhjWuXj~}{fpuX`fra?GNkDiChYgVSh{R[BgF~eQa^WVz}ATI_CpY?g_diae]|ijH`TyNIF}|D_xpmBq_JpKih{Ba|sWzhnAoyraiDvk`h{qbBfsylBGmRH}DRPdryEsSaKS~tIaeF[s]I~xxHVrcNe@Jjxa@jlhZueLQqHh_]twVMqG_EGuwyab{nxOF?`HCle}nBZzlTQjkLmoXbXhOtBglFoMz?eqre`HiE@vNwBulglmQjj]DB@pPkPUgA^sjOAUNdSu_`oAzar?n?eMnw{{hYmslYi[TnlJD'",...']charCodeAtUinyxpf',"for(;e<10359;c[e++]=p-=128,A=A?p-A&&A:p==34&&p)for(p=1;p<128;y=f.map((n,x)=>(U=r[n]*2+1,U=Math.log(U/(h-U)),t-=a[x]*U,U/500)),t=~-h/(1+Math.exp(t))|1,i=o%h<t,o=o%h+(i?t:h-t)*(o>>17)-!i*t,f.map((n,x)=>(U=r[n]+=(i*h/2-r[n]<<13)/((C[n]+=C[n]<5)+1/20)>>13,a[x]+=y[x]*(i-t/h))),p=p*2+i)for(f='010202103203210431053105410642065206541'.split(t=0).map((n,x)=>(U=0,[...n].map((n,x)=>(U=U*997+(c[e-n]|0)|0)),h*32-1&U*997+p+!!A*129)*12+x);o<h*32;o=o*64|M.charCodeAt(d++)&63);for(C=String.fromCharCode(...c);r=/[\0-#?@\\\\~]/.exec(C);)with(C.split(r))C=join(shift());return C")([],[],1<<17,[0,0,0,0,0,0,0,0,0,0,0,0],new Uint16Array(51e6).fill(1<<15),new Uint8Array(51e6),0,0,0,0));
 /** 
  * LittleJS WebGL Interface
  * <br> - All webgl used by the engine is wrapped up here
