@@ -42,6 +42,7 @@ class Vampire extends Enemy {
 					this.enemyThinkMax = 50;
 					this.enemyJitterForce = 0;
 					this.transformed = true;
+					this.soundGroan = soundEnemyGroan;
 				}
 			} else {
 				if (isOverlapping(this.pos, this._hitbox, g_player.pos, g_player._hitbox)) {

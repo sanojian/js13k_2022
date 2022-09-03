@@ -24,7 +24,7 @@ class Enemy extends Mob {
 		if (this.enemyThinkPause-- <= 0) {
 			this.enemyToTarget = g_player.pos.subtract(this.pos);
 			this.enemyThinkPause = rand(this.enemyThinkMin, this.enemyThinkMax);
-			this.groan(0.3, rand(0.8, 1.2));
+			this.groan(0.3, rand(0.9, 1.2));
 		}
 
 		// take a step
@@ -65,13 +65,13 @@ class Enemy extends Mob {
 			if (toOther.length() < TOO_CLOSE) {
 				let pushForce = toOther.normalize(rand(0, 0.1) / (toOther.length() + 0.001));
 				o.applyForce(pushForce);
-				this.groan(0.1, 0.7, 1);
+				this.groan(0.1, 0.9, 1);
 			}
 		}
 
 		if (o instanceof MobPlayer) {
 			// eating the corpse
-			this.groan(0.1, 0.5, rand(2, 3));
+			this.groan(0.1, 0.3, rand(2, 3));
 		}
 
 		return false;
@@ -88,7 +88,7 @@ class Enemy extends Mob {
 
 		if (this.hp == 0) {
 			// Needs be equal or else we get enemy miscounts !
-			this.groan(1, 3, rand(2, 3), rand(5));
+			this.groan(1, 3, rand(2, 2.5), rand(5));
 
 			let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex, this.tileSize);
 			corpse.push(velocity, 1 + g_difficulty);
