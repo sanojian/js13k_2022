@@ -74,6 +74,13 @@ class MapManager {
 						// brown houses
 						tint = tint.add(new Color(217 / 255, 160 / 255, 102 / 255));
 					}
+					if (g_level == 2 || g_level == 3) {
+						// swap wall and roof tiles
+						if (t == 9) t = 13;
+						else if (t == 13) t = 9;
+						else if (t == 14) t = 24;
+						else if (t == 24) t = 14;
+					}
 					let tld = new TileLayerData(t, 0, rand(0, 1) < 0.5, tint);
 					tileLayer.setData(vec2(x, h - 1 - y), tld);
 
