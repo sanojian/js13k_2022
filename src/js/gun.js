@@ -101,10 +101,10 @@ class Gun extends EngineObject {
 			player.gun.angle = 0;
 			player.gun.owner = null;
 			player.gun.pos = this.pos.copy();
+			soundPickup.play(this.pos);
 		}
 		this.owner = player;
 		player.gun = this;
-		soundPickup.play(this.pos);
 	}
 
 	fire(color) {
