@@ -14,7 +14,7 @@ function makeParticles(pos, time, color) {
 		color || colorBlood, // colorStartB
 		new Color(0, 0, 0, 0), // colorEndA
 		new Color(0, 0, 0, 0), // colorEndB
-		1, // particleTime
+		time * 2, // particleTime
 		0.12, // sizeStart
 		0.1, // sizeEnd
 		rand(0.2, 0.8), // particleSpeed
