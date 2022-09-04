@@ -70,11 +70,11 @@ class MapManager {
 
 					setTileCollisionData(vec2(x, h - 1 - y), t);
 					let tint = new Color(rand(0.8, 1), rand(0.8, 1), rand(0.8, 1));
-					if (g_level == 0 || g_level == 2) {
+					if (g_level % 2 == 0) {
 						// brown houses
 						tint = tint.add(new Color(217 / 255, 160 / 255, 102 / 255));
 					}
-					if (g_level == 2 || g_level == 3) {
+					if (g_level % mapData.length == 2 || g_level % mapData.length == 3) {
 						// swap wall and roof tiles
 						if (t == 9) t = 13;
 						else if (t == 13) t = 9;
