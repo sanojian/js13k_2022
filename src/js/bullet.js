@@ -49,7 +49,8 @@ class Bullet extends EngineObject {
 			this.hitWall(true);
 			if (g_doors[idx].hp <= 0) {
 				tileLayer.setData(pos, 0, true);
-				soundBoulderDestroy.play();
+				soundBoulderDestroy.play(pos, 3);
+				makeParticles(pos.add(vec2(0.5)), 0.3, colorWhite, 0.5);
 				setTileCollisionData(pos, 0);
 			}
 		}
