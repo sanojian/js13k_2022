@@ -12,8 +12,8 @@ function makeParticles(pos, time, color, size) {
 		undefined, // tileSize
 		color || colorBlood, // colorStartA
 		color || colorBlood, // colorStartB
-		new Color(0, 0, 0, 0), // colorEndA
-		new Color(0, 0, 0, 0), // colorEndB
+		colorBlack, // colorEndA
+		colorBlack, // colorEndB
 		time * 2, // particleTime
 		size || 0.12, // sizeStart
 		size || 0.1, // sizeEnd

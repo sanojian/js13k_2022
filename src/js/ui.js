@@ -129,7 +129,7 @@ function gameRenderPost() {
 		}
 
 		// score
-		drawTextScreen(
+		drawTextWithOutline(
 			g_score.toString(),
 			vec2(overlayCanvas.width - 2 * cameraScale * scaleUI, overlayCanvas.height - 1 * cameraScale * scaleUI),
 			100 * scaleUI,

@@ -213,7 +213,7 @@ var ammoSpawned;
 function updateStatePlaying() {
 	updatePushers();
 
-	textMiddle = getMsSinceStateChange() > 2000 ? "" : "Level " + (g_level + 1);
+	textMiddle = getMsSinceStateChange() > 3000 ? "" : "Level " + (g_level + 1);
 
 	ticsToSpawn--;
 
@@ -351,10 +351,10 @@ function gameRender() {
 		g_corpses[i].renderNow();
 	}
 
-	if (g_shells.length > 32) {
-		// clean up old casings
-		g_shells.splice(0, 1);
-	}
+	// if (g_shells.length > 32) {
+	// 	// clean up old casings
+	// 	g_shells.splice(0, 1);
+	// }
 	for (let i = 0; i < g_shells.length; i++) {
 		let shell = g_shells[i];
 		drawRect(shell.pos, vec2(1 / 12, 2 / 12), shell.color, shell.angle);
@@ -366,10 +366,10 @@ function gameRender() {
 		}
 	}
 
-	if (g_splatter.length > 1024) {
-		// clean up old splatter
-		g_splatter.splice(0, 1);
-	}
+	// if (g_splatter.length > 1024) {
+	// 	// clean up old splatter
+	// 	g_splatter.splice(0, 1);
+	// }
 	for (let i = 0; i < g_splatter.length; i++) {
 		for (let j = 0; j < g_splatter[i].pattern.length; j++) {
 			if (g_splatter[i].pattern[j]) {

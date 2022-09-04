@@ -16,15 +16,12 @@ class Bullet extends EngineObject {
 	}
 
 	update() {
-		// your object update code here
-
 		this.timeAlive++;
 		if (this.timeAlive > this._lifetime) {
 			this.destroy();
 			return;
 		}
-
-		super.update(); // update object physics and position
+		super.update();
 	}
 
 	hitWall(big) {
