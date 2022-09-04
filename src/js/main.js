@@ -140,6 +140,8 @@ function gameUpdate() {
 	} else if (g_state == STATE_CLEARED) {
 		updateStateCleared();
 	}
+
+	//mouseWasPressed(2) && toggleFullscreen();
 }
 
 function uiSound(f = 5) {
@@ -313,7 +315,7 @@ function textsDraw() {
 	}
 
 	if (textTitle) {
-		let flicker = (1.5 + Math.sin(frame / 50)) * 0.01;
+		let flicker = (1.5 + Math.sin(frame / 50)) * 0.007;
 
 		for (let i = 0; i < 10; i++) {
 			drawTextScreen(
