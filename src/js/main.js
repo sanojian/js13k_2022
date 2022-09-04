@@ -118,17 +118,7 @@ function spawnEnemy() {
 	enemiesSpawned++;
 }
 
-function handleDebugKeys() {
-	if (keyIsDown(18)) {
-		// if (keyWasReleased(67)) g_CHEATMODE = 1 - g_CHEATMODE; // c
-		if (keyWasReleased(80)) pushersDoDraw = !pushersDoDraw; // p
-	}
-}
-
 function gameUpdate() {
-	debug && handleDebugKeys();
-
-	//if (uiIsFading()) return;
 	uiFading();
 
 	if (g_state == STATE_CLICK_TO_START) {
