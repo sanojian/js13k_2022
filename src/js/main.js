@@ -413,6 +413,4 @@ function gameRender() {
 	// }
 
 	//textsDraw();
-
-	drawPushers();
 }

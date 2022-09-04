@@ -157,5 +157,7 @@ function gameRenderPost() {
 	overlayContext.fillStyle = color;
 	overlayContext.fill();
 
-	overlayContext.globalAlpha = 0;
+	overlayContext.globalAlpha = 0.5;
+
+	drawPushers();
 }
