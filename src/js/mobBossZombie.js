@@ -29,7 +29,7 @@ class BossZombie extends Enemy {
 			this.throwingTimer = new Timer(1);
 			this.boulder.velocity = g_player.pos.subtract(this.pos).clampLength(0.3);
 			this.boulder.angleVelocity = rand(-0.1, 0.1);
-			this.soundThrow.play();
+			this.soundThrow.play(this.pos);
 		}
 
 		if (this.throwing) {
@@ -41,7 +41,7 @@ class BossZombie extends Enemy {
 
 		if (this.mirror != this.oldMirror) {
 			fx.shakeScreen(0.5);
-			this.soundStep.play();
+			this.soundStep.play(this.pos);
 			this.oldMirror = this.mirror;
 		}
 	}
@@ -49,17 +49,19 @@ class BossZombie extends Enemy {
 	collideWithTile(tileData, pos) {
 		if (this.tearing) return;
 
-		tileLayer.setData(pos, 0, true);
-		setTileCollisionData(pos, 0);
+		if (pos.x > 0 && pos.y > 0 && pos.x < tileLayer.size.x && pos.y < tileLayer.size.y) {
+			tileLayer.setData(pos, 0, true);
+			setTileCollisionData(pos, 0);
+		}
 
 		this.tearing = true;
-		this.soundTearing.play();
+		this.soundTearing.play(this.pos);
 
 		// tear out chunk
 		this.boulder = new Boulder(this.pos.copy(), tileData);
 
 		this.tearingTimer = new Timer(1);
 
-		return false; // no more col resolve
+		return true;
 	}
 }
