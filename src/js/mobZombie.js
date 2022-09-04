@@ -25,6 +25,11 @@ class Zombie extends Enemy {
 
 	update() {
 		if (this.riseFrames > 0) {
+			// CAN BE REMOVED
+			// dirt particles when rising
+			if (this.riseFrames % 20 == 0)
+				makeParticles(this.pos.subtract(vec2(0, this.size.y / 2)), 0.4, new Color(143 / 255, 86 / 255, 59 / 255));
+
 			this.riseFrames--;
 			let frac = 1 - this.riseFrames / RISE_FRAMES;
 			this.tileSize = vec2(9, 12 * frac);
