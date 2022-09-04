@@ -51,14 +51,12 @@ class Pusher {
 	}
 
 	draw() {
-		enableDrawPushers && debugCircle(this.pos, this.minDist, "#f00", 1 / 60000, false);
-		enableDrawPushers && debugCircle(this.pos, this.maxDist, "#0f0", 1 / 60000, false);
+		debugCircle(this.pos, this.minDist, "#f00", 1 / 60, false);
+		debugCircle(this.pos, this.maxDist, "#0f0", 1 / 60, false);
 	}
 }
 
 var pushers = [];
-
-var pushersDoDraw = false;
 
 function updatePushers() {
 	for (let i = 0; i < pushers.length; i++) {
@@ -73,8 +71,6 @@ function updatePushers() {
 
 function drawPushers() {
 	if (!enableDrawPushers) return;
-	if (!pushersDoDraw) return;
-
 	for (const p of pushers) {
 		p.draw();
 	}
