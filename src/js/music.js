@@ -88,7 +88,7 @@ function createMinorIssues() {
 	songData[1][1].push(unfoldPattern(2, 0.1, 7, snarePattern, snareStarts));
 }
 
-var vol = 0.4; //0.5; //.7;
+var vol = 0.6; //0.5; //.7;
 
 var music;
 var source;
