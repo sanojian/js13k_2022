@@ -74,6 +74,10 @@ class Enemy extends Mob {
 			this.groan(0.1, 0.3, rand(2, 3));
 		}
 
+		if (o instanceof Boulder) {
+			this.hit(o.velocity, o.pos);
+		}
+
 		return false;
 	}
 

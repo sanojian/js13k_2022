@@ -46,6 +46,10 @@ class BossZombie extends Enemy {
 		}
 	}
 
+	collideWithObject(o) {
+		return true;
+	}
+
 	collideWithTile(tileData, pos) {
 		if (this.tearing) return;
 
