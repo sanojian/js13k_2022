@@ -140,6 +140,8 @@ function gameUpdate() {
 	} else if (g_state == STATE_CLEARED) {
 		updateStateCleared();
 	}
+
+	//mouseWasPressed(2) && toggleFullscreen();
 }
 
 function uiSound(f = 5) {
