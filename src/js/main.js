@@ -131,6 +131,7 @@ function gameUpdate() {
 		updateStateCleared();
 	}
 
+	// CAN BE REMOVED
 	//mouseWasPressed(2) && toggleFullscreen();
 }
 
