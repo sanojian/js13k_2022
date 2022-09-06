@@ -166,6 +166,7 @@ function updateStateClickToStart() {
 
 	if (mouseWasReleased(0)) {
 		uiSound();
+		if (isTouchDevice && !isFullscreen()) toggleFullscreen();
 		uiFadeOutAndCall(() => {
 			startNewGame();
 			startNextLevel();
