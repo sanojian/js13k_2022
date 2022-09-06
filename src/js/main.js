@@ -40,7 +40,7 @@ function startNextLevel() {
 	let ammoPistol = g_player ? g_player.ammoBullets : 12;
 	let ammoShotgun = g_player ? g_player.ammoShells : 0;
 	let ammoRifle = g_player ? g_player.ammoRifle : 0;
-	let currentGun = g_player ? g_player.gun.tileIndex : tileNumbers_pistol; // default
+	let currentGun = g_player?.gun?.tileIndex ?? tileNumbers_pistol; // default
 	let gunAmmo = g_player ? g_player.gun.ammo : 6;
 
 	///////////////////
