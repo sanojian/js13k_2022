@@ -69,6 +69,8 @@ function startNextLevel() {
 	mapMan = new MapManager();
 	mapMan.render();
 
+	effectsLayerCreate();
+
 	g_player = new MobPlayer(playerSpawn);
 	cameraPos = playerSpawn.copy();
 
@@ -260,6 +262,8 @@ function updateStatePlaying() {
 
 	cameraPos = cameraPos.add(g_screenShake);
 
+	effectsLayerUpdate();
+
 	if (g_CHEATMODE && mouseWasPressed(1)) {
 		g_level++;
 		startNextLevel();
@@ -404,4 +408,45 @@ function gameRender() {
 	// }
 
 	//textsDraw();
+}
+
+var effectsCanvas;
+var effectsContext;
+
+function effectsLayerCreate() {
+	effectsCanvas = document.createElement("canvas");
+
+	effectsCanvas.id = "effectsCanvas";
+	effectsCanvas.width = tileLayer.size.x * tileLayer.tileSize.x;
+	effectsCanvas.height = tileLayer.size.y * tileLayer.tileSize.y;
+
+	//effectsCanvas.style.zIndex = "-8";
+	effectsCanvas.style.position = "absolute";
+	//effectsCanvas.style.border = "1px solid";
+
+	//document.body.appendChild(effectsCanvas);
+	effectsContext = effectsCanvas.getContext("2d");
+
+	effectsContext.fillStyle = "rgba(255, 0, 0, 0.2)";
+	effectsContext.fillRect(100, 100, 200, 200);
+	effectsContext.fillStyle = "rgba(0, 255, 0, 0.2)";
+	effectsContext.fillRect(150, 150, 200, 200);
+	effectsContext.fillStyle = "rgba(0, 0, 255, 0.2)";
+	effectsContext.fillRect(200, 50, 200, 200);
+}
+
+function effectsLayerUpdate() {
+	// console.log("xxxxxx");
+
+	let pos = cameraPos;
+	//pos = pos.subtract(vec2(25, 20));
+	//pos = pos.add(vec2(-25, 0));
+	//pos = pos.scale(cameraScale);
+
+	// effectsCanvas.style.left = -pos.x + "px";
+	// effectsCanvas.style.top = pos.y + "px";
+
+	// drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
+
+	mainContext.drawImage(effectsCanvas, pos.x, pos.y, 100, 100, 0, 0, mainCanvasSize.x, mainCanvasSize.y);
 }

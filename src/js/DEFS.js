@@ -8,7 +8,7 @@ const STATE_CLEARED = 3;
 const TILE_SIZE = vec2(12);
 const MINI_TILE_SIZE = vec2(4);
 const MOB_SIZE = vec2(0.6, 0.8);
-const TILES_PER_SCREEN = 13;
+const TILES_PER_SCREEN = 23;
 
 fontDefault = "Courier New";
 
@@ -17,7 +17,7 @@ fontDefault = "Courier New";
 // "Courier New";
 // "Luminari"
 
-const g_CHEATMODE = false;
+const g_CHEATMODE = true;
 let g_score = 0;
 let g_level = 0;
 let g_levelDef = undefined;
