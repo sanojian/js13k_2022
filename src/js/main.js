@@ -15,15 +15,18 @@ function gameInit() {
 	scaleCameraToScreenSize();
 	document.body.style.cursor = "crosshair";
 
-	//touchGamepadEnable = 1;
-	//touchGamepadSize = 160;
-	//touchGamepadAnalog = 0;
+	touchGamepadEnable = 1;
+	touchGamepadAnalog = 0;
 	startNewGame();
 }
 
 function scaleCameraToScreenSize() {
 	// try to fit same tiles on a screen
-	cameraScale = Math.min(window.innerWidth, window.innerHeight) / TILES_PER_SCREEN;
+	let tiles = TILES_PER_SCREEN;
+	if (isTouchDevice) tiles = tiles - 3;
+	cameraScale = Math.min(window.innerWidth, window.innerHeight) / tiles;
+
+	touchGamepadSize = (80 * cameraScale) / 32;
 }
 
 function startNewGame() {
@@ -164,6 +167,7 @@ function updateStateClickToStart() {
 
 	if (mouseWasReleased(0)) {
 		uiSound();
+		if (isTouchDevice && !isFullscreen()) toggleFullscreen();
 		uiFadeOutAndCall(() => {
 			startNewGame();
 			startNextLevel();
@@ -258,8 +262,17 @@ function updateStatePlaying() {
 		}
 	}
 
+	let newPoint = mousePos;
+	if (isTouchDevice && g_player.gun) {
+		// halfway from player to screen
+		newPoint = g_player.pos.add(
+			vec2(0)
+				.setAngle(g_player.gun.angle + PI / 2)
+				.normalize(TILES_PER_SCREEN - 7)
+		);
+	}
 	// camera goes halfway between player and mouse
-	cameraPos = cameraPos.lerp(g_player.pos.add(mousePos.subtract(g_player.pos).scale(0.5)), 0.03);
+	cameraPos = cameraPos.lerp(g_player.pos.add(newPoint.subtract(g_player.pos).scale(0.5)), 0.03);
 
 	fx.updateScreenShake();
 

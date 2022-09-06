@@ -34,7 +34,23 @@ class Gun extends EngineObject {
 				return;
 			}
 
-			let angle = Math.atan2(mousePos.y - this.owner.pos.y, mousePos.x - this.owner.pos.x);
+			let angle = -this.angle;
+
+			if (isUsingGamepad) {
+				if (touchGamepadButtons[0]) {
+					angle = -PI / 2;
+				} else if (touchGamepadButtons[1]) {
+					angle = 0;
+				} else if (touchGamepadButtons[2]) {
+					angle = PI / 2;
+				} else if (touchGamepadButtons[3]) {
+					angle = PI;
+				}
+				inputData[0][0] = 0;
+			} else {
+				// use mouse position
+				angle = Math.atan2(mousePos.y - this.owner.pos.y, mousePos.x - this.owner.pos.x);
+			}
 
 			this.pos.x = this.owner.pos.x + this._distance * Math.cos(angle);
 			this.pos.y = this.owner.pos.y + this._distance * Math.sin(angle);
