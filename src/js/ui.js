@@ -115,7 +115,8 @@ function gameRenderPost() {
 
 		// ammo
 		const colorHere = colorWhite;
-		const colorGone = new Color(0.3, 0.3, 0.3);
+
+		const colorGone = new Color(1, 1, 1, 0.2);
 		if (g_player.gun) {
 			for (let i = 0; i < g_player.gun._maxAmmo; i++) {
 				drawTile(
