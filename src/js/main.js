@@ -37,9 +37,9 @@ function startNewGame() {
 
 function startNextLevel() {
 	// save gun and ammo
-	let ammoPistol = g_player ? g_player.ammoBullets : 12;
-	let ammoShotgun = g_player ? g_player.ammoShells : 0;
-	let ammoRifle = g_player ? g_player.ammoRifle : 0;
+	let ammoPistol = g_player?.ammoBullets ?? 12;
+	let ammoShotgun = g_player?.ammoShells ?? 0;
+	let ammoRifle = g_player?.ammoRifle ?? 0;
 	let currentGun = g_player?.gun?.tileIndex ?? tileNumbers_pistol; // default
 	let gunAmmo = g_player?.gun?.ammo ?? 6;
 
