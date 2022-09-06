@@ -1,7 +1,7 @@
 
 function soundPlayExtra(sound, pos, vol, pitch, rand = 0, delay = 0, repeat = 1) {
 	for (let i = 0; i < repeat; i++) { 
-		setTimeout( () => sound.play(pos, vol, pitch, rand), delay * (i+i) )
+		setTimeout( () => sound.play(pos, vol, pitch, rand), delay * (i+1) )
 	}
  }
 
@@ -14,6 +14,12 @@ var soundPlayerScream = new Sound([1,,440,,.1,1,3,1,-.2,,50,,,.4,,.05,.05,.9,.5,
 
 
 var soundPickup = new Sound([1,.1,200,,,,4,,,1.2,50,.57,,,,.2,.19,,.14,]);
+
+
+
+var soundLevelCleared = new Sound([1.29, .05, 685, .04, .13, .23, 2, 1.91, .6, 0, 174, .08, .04, 0, 0, 0, .06, .98, .28, .14]);
+
+/// zzfx(1,.05,278,.07,.17,.44,0,.79,0,0,63,.06,.02,0,0,0,0,.94,.25,.21); 
 
 /// Weapons
 

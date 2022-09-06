@@ -230,6 +230,7 @@ function updateStatePlaying() {
 		changeState(STATE_CLEARED);
 		g_player.gun.reload();
 		g_level++;
+		soundPlayExtra(soundLevelCleared, cameraPos, 2, 0.8, 0, 1000);
 		return;
 	}
 
@@ -282,6 +283,7 @@ function updateStatePlaying() {
 		g_level++;
 		startNextLevel();
 		changeState(STATE_PLAYING);
+		soundPlayExtra(soundLevelCleared, cameraPos, 2, 0.8, 0, 1000);
 	}
 }
 
