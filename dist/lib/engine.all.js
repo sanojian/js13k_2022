@@ -2962,7 +2962,7 @@ class TileLayer extends EngineObject
     *  @param {Vector2} [scale=new Vector2(1,1)]   - How much to scale this layer when rendered
     *  @param {Number}  [renderOrder=0]            - Objects sorted by renderOrder before being rendered
     */
-constructor(pos, size=tileCollisionSize, tileSize=tileSizeDefault, scale=vec2(1), renderOrder=0)
+	constructor(pos, size=tileCollisionSize, tileSize=tileSizeDefault, scale=vec2(1), renderOrder=0)
     {
         super(pos, size, -1, tileSize, 0, undefined, renderOrder);
 
