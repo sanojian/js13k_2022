@@ -717,29 +717,29 @@ const gamepadDirectionEmulateStick = 0;
 /** If true the WASD keys are also routed to the direction keys (for better accessability)
  *  @default
  *  @memberof Settings */
-const inputWASDEmulateDirection = 1;
+let inputWASDEmulateDirection = 1;
 
 /** True if touch gamepad should appear on mobile devices
  *  <br> - Supports left analog stick, 4 face buttons and start button (button 9)
  *  <br> - Must be set by end of gameInit to be activated
  *  @default
  *  @memberof Settings */
-const touchGamepadEnable = 0;
+let touchGamepadEnable = 0;
 
 /** True if touch gamepad should be analog stick or false to use if 8 way dpad
  *  @default
  *  @memberof Settings */
-const touchGamepadAnalog = 0;
+let touchGamepadAnalog = 0;
 
 /** Size of virutal gamepad for touch devices in pixels
  *  @default
  *  @memberof Settings */
-const touchGamepadSize = 80;
+let touchGamepadSize = 80;
 
 /** Transparency of touch gamepad overlay
  *  @default
  *  @memberof Settings */
-const touchGamepadAlpha = .3;
+let touchGamepadAlpha = .3;
 
 /** Allow vibration hardware if it exists
  *  @default
@@ -894,7 +894,7 @@ function engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRender
         overlayCanvas.style = styleCanvas;
         
         gameInit();
-        //touchGamepadCreate();
+        touchGamepadCreate();
         engineUpdate();
     };
 
@@ -983,7 +983,7 @@ function engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRender
             o.destroyed || o.render();
         gameRenderPost();
         //medalsRender();
-        //touchGamepadRender();
+        touchGamepadRender();
         //debugRender();
         //glCopyToContext(mainContext);
 
@@ -1926,28 +1926,28 @@ let preventDefaultInput = 0;
  *  @param {Number} [gamepad=0]
  *  @return {Boolean}
  *  @memberof Input */
-// const gamepadIsDown = (button, gamepad=0)=> keyIsDown(button, gamepad+1);
+let gamepadIsDown = (button, gamepad=0)=> keyIsDown(button, gamepad+1);
 
 /** Returns true if gamepad button was pressed
  *  @param {Number} button
  *  @param {Number} [gamepad=0]
  *  @return {Boolean}
  *  @memberof Input */
-// const gamepadWasPressed = (button, gamepad=0)=> keyWasPressed(button, gamepad+1);
+let gamepadWasPressed = (button, gamepad=0)=> keyWasPressed(button, gamepad+1);
 
 /** Returns true if gamepad button was released
  *  @param {Number} button
  *  @param {Number} [gamepad=0]
  *  @return {Boolean}
  *  @memberof Input */
-// const gamepadWasReleased = (button, gamepad=0)=> keyWasReleased(button, gamepad+1);
+let gamepadWasReleased = (button, gamepad=0)=> keyWasReleased(button, gamepad+1);
 
 /** Returns gamepad stick value
  *  @param {Number} stick
  *  @param {Number} [gamepad=0]
  *  @return {Vector2}
  *  @memberof Input */
-//const gamepadStick = (stick,  gamepad=0)=> stickData[gamepad] ? stickData[gamepad][stick] || vec2() : vec2();
+const gamepadStick = (stick,  gamepad=0)=> stickData[gamepad] ? stickData[gamepad][stick] || vec2() : vec2();
 
 ///////////////////////////////////////////////////////////////////////////////
 // Input update called by engine
@@ -1965,7 +1965,7 @@ function inputUpdate()
     mousePos = screenToWorld(mousePosScreen);
 
     // update gamepads if enabled
-    //gamepadsUpdate();
+    gamepadsUpdate();
 }
 
 function inputUpdatePost()
@@ -2016,67 +2016,67 @@ const mouseToScreen = (mousePos)=>
 ///////////////////////////////////////////////////////////////////////////////
 // Gamepad input
 
-// const stickData = [];
-// function gamepadsUpdate()
-// {
-//     if (touchGamepadEnable && touchGamepadTimer.isSet())
-//     {
-//         // read virtual analog stick
-//         const sticks = stickData[0] || (stickData[0] = []);
-//         sticks[0] = vec2(touchGamepadStick.x, -touchGamepadStick.y); // flip vertical
+const stickData = [];
+function gamepadsUpdate()
+{
+    if (touchGamepadEnable && touchGamepadTimer.isSet())
+    {
+        // read virtual analog stick
+        const sticks = stickData[0] || (stickData[0] = []);
+        sticks[0] = vec2(touchGamepadStick.x, -touchGamepadStick.y); // flip vertical
 
-//         // read virtual gamepad buttons
-//         const data = inputData[1] || (inputData[1] = []);
-//         for (let i=10; i--;)
-//         {
-//             const j = i == 3 ? 2 : i == 2 ? 3 : i; // fix button locations
-//             data[j] = touchGamepadButtons[i] ? 1 + 2*!gamepadIsDown(j,0) : 4*gamepadIsDown(j,0);
-//         }
-//     }
+        // read virtual gamepad buttons
+        const data = inputData[1] || (inputData[1] = []);
+        for (let i=10; i--;)
+        {
+            const j = i == 3 ? 2 : i == 2 ? 3 : i; // fix button locations
+            data[j] = touchGamepadButtons[i] ? 1 + 2*!gamepadIsDown(j,0) : 4*gamepadIsDown(j,0);
+        }
+    }
 
-//     if (!gamepadsEnable || !navigator.getGamepads || !document.hasFocus() && !debug)
-//         return;
+    if (!gamepadsEnable || !navigator.getGamepads || !document.hasFocus() && !debug)
+        return;
 
-//     // poll gamepads
-//     const gamepads = navigator.getGamepads();
-//     for (let i = gamepads.length; i--;)
-//     {
-//         // get or create gamepad data
-//         const gamepad = gamepads[i];
-//         const data = inputData[i+1] || (inputData[i+1] = []);
-//         const sticks = stickData[i] || (stickData[i] = []);
+    // poll gamepads
+    const gamepads = navigator.getGamepads();
+    for (let i = gamepads.length; i--;)
+    {
+        // get or create gamepad data
+        const gamepad = gamepads[i];
+        const data = inputData[i+1] || (inputData[i+1] = []);
+        const sticks = stickData[i] || (stickData[i] = []);
 
-//         if (gamepad)
-//         {
-//             // read clamp dead zone of analog sticks
-//             const deadZone = .3, deadZoneMax = .8;
-//             const applyDeadZone = (v)=> 
-//                 v >  deadZone ?  percent( v, deadZone, deadZoneMax) : 
-//                 v < -deadZone ? -percent(-v, deadZone, deadZoneMax) : 0;
+        if (gamepad)
+        {
+            // read clamp dead zone of analog sticks
+            const deadZone = .3, deadZoneMax = .8;
+            const applyDeadZone = (v)=> 
+                v >  deadZone ?  percent( v, deadZone, deadZoneMax) : 
+                v < -deadZone ? -percent(-v, deadZone, deadZoneMax) : 0;
 
-//             // read analog sticks
-//             for (let j = 0; j < gamepad.axes.length-1; j+=2)
-//                 sticks[j>>1] = vec2(applyDeadZone(gamepad.axes[j]), applyDeadZone(-gamepad.axes[j+1])).clampLength();
+            // read analog sticks
+            for (let j = 0; j < gamepad.axes.length-1; j+=2)
+                sticks[j>>1] = vec2(applyDeadZone(gamepad.axes[j]), applyDeadZone(-gamepad.axes[j+1])).clampLength();
             
-//             // read buttons
-//             for (let j = gamepad.buttons.length; j--;)
-//             {
-//                 const button = gamepad.buttons[j];
-//                 data[j] = button.pressed ? 1 + 2*!gamepadIsDown(j,i) : 4*gamepadIsDown(j,i);
-//                 isUsingGamepad |= !i && button.pressed;
-//                 touchGamepadEnable && touchGamepadTimer.unset(); // disable touch gamepad if using real gamepad
-//             }
+            // read buttons
+            for (let j = gamepad.buttons.length; j--;)
+            {
+                const button = gamepad.buttons[j];
+                data[j] = button.pressed ? 1 + 2*!gamepadIsDown(j,i) : 4*gamepadIsDown(j,i);
+                isUsingGamepad |= !i && button.pressed;
+                touchGamepadEnable && touchGamepadTimer.unset(); // disable touch gamepad if using real gamepad
+            }
 
-//             if (gamepadDirectionEmulateStick)
-//             {
-//                 // copy dpad to left analog stick when pressed
-//                 const dpad = vec2(gamepadIsDown(15,i) - gamepadIsDown(14,i), gamepadIsDown(12,i) - gamepadIsDown(13,i));
-//                 if (dpad.lengthSquared())
-//                     sticks[0] = dpad.clampLength();
-//             }
-//         }
-//     }
-// }
+            if (gamepadDirectionEmulateStick)
+            {
+                // copy dpad to left analog stick when pressed
+                const dpad = vec2(gamepadIsDown(15,i) - gamepadIsDown(14,i), gamepadIsDown(12,i) - gamepadIsDown(13,i));
+                if (dpad.lengthSquared())
+                    sticks[0] = dpad.clampLength();
+            }
+        }
+    }
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -2095,168 +2095,168 @@ const mouseToScreen = (mousePos)=>
 /** True if a touch device has been detected
  *  @const {boolean}
  *  @memberof Input */
-// const isTouchDevice = window.ontouchstart !== undefined;
+const isTouchDevice = window.ontouchstart !== undefined;
 
-// // try to enable touch mouse
-// if (isTouchDevice)
-// {
-//     // handle all touch events the same way
-//     let wasTouching, hadTouchInput;
-//     ontouchstart = ontouchmove = ontouchend = (e)=>
-//     {
-//         e.button = 0; // all touches are left click
+// try to enable touch mouse
+if (isTouchDevice)
+{
+    // handle all touch events the same way
+    let wasTouching, hadTouchInput;
+    ontouchstart = ontouchmove = ontouchend = (e)=>
+    {
+        e.button = 0; // all touches are left click
 
-//         // check if touching and pass to mouse events
-//         const touching = e.touches.length;
-//         if (touching)
-//         {
-//             hadTouchInput || zzfx(0, hadTouchInput=1) ; // fix mobile audio, force it to play a sound the first time
+        // check if touching and pass to mouse events
+        const touching = e.touches.length;
+        if (touching)
+        {
+            hadTouchInput || zzfx(0, hadTouchInput=1) ; // fix mobile audio, force it to play a sound the first time
 
-//             // set event pos and pass it along
-//             e.x = e.touches[0].clientX;
-//             e.y = e.touches[0].clientY;
-//             wasTouching ? onmousemove(e) : onmousedown(e);
-//         }
-//         else if (wasTouching)
-//             onmouseup(e);
+            // set event pos and pass it along
+            e.x = e.touches[0].clientX;
+            e.y = e.touches[0].clientY;
+            wasTouching ? onmousemove(e) : onmousedown(e);
+        }
+        else if (wasTouching)
+            onmouseup(e);
 
-//         // set was touching
-//         wasTouching = touching;
+        // set was touching
+        wasTouching = touching;
 
-//         // prevent normal mouse events from being called
-//         return !e.cancelable;
-//     }
-// }
+        // prevent normal mouse events from being called
+        return !e.cancelable;
+    }
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // touch gamepad, virtual on screen gamepad emulator for touch devices
 
-// // touch input internal variables
-// let touchGamepadTimer = new Timer, touchGamepadButtons = [], touchGamepadStick = vec2();
+// touch input internal variables
+let touchGamepadTimer = new Timer, touchGamepadButtons = [], touchGamepadStick = vec2();
 
-// // create the touch gamepad, called automatically by the engine
-// function touchGamepadCreate()
-// {
-//     if (!touchGamepadEnable || !isTouchDevice)
-//         return;
+// create the touch gamepad, called automatically by the engine
+function touchGamepadCreate()
+{
+    if (!touchGamepadEnable || !isTouchDevice)
+        return;
 
-//     ontouchstart = ontouchmove = ontouchend = (e)=> 
-//     {
-//         if (!touchGamepadEnable)
-//             return;
+    ontouchstart = ontouchmove = ontouchend = (e)=> 
+    {
+        if (!touchGamepadEnable)
+            return;
 
-//         // clear touch gamepad input
-//         touchGamepadStick = vec2();
-//         touchGamepadButtons = [];
+        // clear touch gamepad input
+        touchGamepadStick = vec2();
+        touchGamepadButtons = [];
             
-//         const touching = e.touches.length;
-//         if (touching)
-//         {
-//             touchGamepadTimer.isSet() || zzfx(0) ; // fix mobile audio, force it to play a sound the first time
+        const touching = e.touches.length;
+        if (touching)
+        {
+            touchGamepadTimer.isSet() || zzfx(0) ; // fix mobile audio, force it to play a sound the first time
 
-//             // set that gamepad is active
-//             isUsingGamepad = 1;
-//             touchGamepadTimer.set();
+            // set that gamepad is active
+            isUsingGamepad = 1;
+            touchGamepadTimer.set();
 
-//             if (paused)
-//             {
-//                 // touch anywhere to press start when paused
-//                 touchGamepadButtons[9] = 1;
-//                 return;
-//             }
-//         }
+            if (paused)
+            {
+                // touch anywhere to press start when paused
+                touchGamepadButtons[9] = 1;
+                return;
+            }
+        }
 
-//         // get center of left and right sides
-//         const stickCenter = vec2(touchGamepadSize, mainCanvasSize.y-touchGamepadSize);
-//         const buttonCenter = mainCanvasSize.subtract(vec2(touchGamepadSize, touchGamepadSize));
-//         const startCenter = mainCanvasSize.scale(.5);
+        // get center of left and right sides
+        const stickCenter = vec2(touchGamepadSize, mainCanvasSize.y-touchGamepadSize);
+        const buttonCenter = mainCanvasSize.subtract(vec2(touchGamepadSize, touchGamepadSize));
+        const startCenter = mainCanvasSize.scale(.5);
 
-//         // check each touch point
-//         for (const touch of e.touches)
-//         {
-//             const touchPos = mouseToScreen(vec2(touch.clientX, touch.clientY));
-//             if (touchPos.distance(stickCenter) < touchGamepadSize)
-//             {
-//                 // virtual analog stick
-//                 if (touchGamepadAnalog)
-//                     touchGamepadStick = touchPos.subtract(stickCenter).scale(2/touchGamepadSize).clampLength();
-//                 else
-//                 {
-//                     // 8 way dpad
-//                     const angle = touchPos.subtract(stickCenter).angle();
-//                     touchGamepadStick.setAngle((angle * 4 / PI + 8.5 | 0) * PI / 4);
-//                 }
-//             }
-//             else if (touchPos.distance(buttonCenter) < touchGamepadSize)
-//             {
-//                 // virtual face buttons
-//                 const button = touchPos.subtract(buttonCenter).direction();
-//                 touchGamepadButtons[button] = 1;
-//             }
-//             else if (touchPos.distance(startCenter) < touchGamepadSize)
-//             {
-//                 // virtual start button in center
-//                 touchGamepadButtons[9] = 1;
-//             }
-//         }
-//     }
-// }
+        // check each touch point
+        for (const touch of e.touches)
+        {
+            const touchPos = mouseToScreen(vec2(touch.clientX, touch.clientY));
+            if (touchPos.distance(stickCenter) < touchGamepadSize)
+            {
+                // virtual analog stick
+                if (touchGamepadAnalog)
+                    touchGamepadStick = touchPos.subtract(stickCenter).scale(2/touchGamepadSize).clampLength();
+                else
+                {
+                    // 8 way dpad
+                    const angle = touchPos.subtract(stickCenter).angle();
+                    touchGamepadStick.setAngle((angle * 4 / PI + 8.5 | 0) * PI / 4);
+                }
+            }
+            else if (touchPos.distance(buttonCenter) < touchGamepadSize)
+            {
+                // virtual face buttons
+                const button = touchPos.subtract(buttonCenter).direction();
+                touchGamepadButtons[button] = 1;
+            }
+            else if (touchPos.distance(startCenter) < touchGamepadSize)
+            {
+                // virtual start button in center
+                touchGamepadButtons[9] = 1;
+            }
+        }
+    }
+}
 
-// // render the touch gamepad, called automatically by the engine
-// function touchGamepadRender()
-// {
-//     if (!touchGamepadEnable || !touchGamepadTimer.isSet())
-//         return;
+// render the touch gamepad, called automatically by the engine
+function touchGamepadRender()
+{
+    if (!touchGamepadEnable || !touchGamepadTimer.isSet())
+        return;
     
-//     // fade off when not touching or paused
-//     const alpha = percent(touchGamepadTimer.get(), 4, 3);
-//     if (!alpha || paused)
-//         return;
+    // fade off when not touching or paused
+    const alpha = percent(touchGamepadTimer.get(), 4, 3);
+    if (!alpha || paused)
+        return;
 
-//     // setup the canvas
-//     overlayContext.save();
-//     overlayContext.globalAlpha = alpha*touchGamepadAlpha;
-//     overlayContext.strokeStyle = '#fff';
-//     overlayContext.lineWidth = 3;
+    // setup the canvas
+    overlayContext.save();
+    overlayContext.globalAlpha = alpha*touchGamepadAlpha;
+    overlayContext.strokeStyle = '#fff';
+    overlayContext.lineWidth = 3;
 
-//     // draw left analog stick
-//     overlayContext.fillStyle = touchGamepadStick.lengthSquared() > 0 ? '#fff' : '#000';
-//     overlayContext.beginPath();
+    // draw left analog stick
+    overlayContext.fillStyle = touchGamepadStick.lengthSquared() > 0 ? '#fff' : '#000';
+    overlayContext.beginPath();
 
-//     const leftCenter = vec2(touchGamepadSize, mainCanvasSize.y-touchGamepadSize);
-//     if (touchGamepadAnalog)
-//     {
-//         overlayContext.arc(leftCenter.x, leftCenter.y, touchGamepadSize/2, 0, 9);
-//         overlayContext.fill();
-//         overlayContext.stroke();
-//     }
-//     else // draw cross shaped gamepad
-//     {
-//         for(let i=10; i--;)
-//         {
-//             const angle = i*PI/4;
-//             overlayContext.arc(leftCenter.x, leftCenter.y,touchGamepadSize*.6, angle + PI/8, angle + PI/8);
-//             i%2 && overlayContext.arc(leftCenter.x, leftCenter.y, touchGamepadSize*.33, angle, angle);
-//             i==1 && overlayContext.fill();
-//         }
-//         overlayContext.stroke();
-//     }
+    const leftCenter = vec2(touchGamepadSize, mainCanvasSize.y-touchGamepadSize);
+    if (touchGamepadAnalog)
+    {
+        overlayContext.arc(leftCenter.x, leftCenter.y, touchGamepadSize/2, 0, 9);
+        overlayContext.fill();
+        overlayContext.stroke();
+    }
+    else // draw cross shaped gamepad
+    {
+        for(let i=10; i--;)
+        {
+            const angle = i*PI/4;
+            overlayContext.arc(leftCenter.x, leftCenter.y,touchGamepadSize*.6, angle + PI/8, angle + PI/8);
+            i%2 && overlayContext.arc(leftCenter.x, leftCenter.y, touchGamepadSize*.33, angle, angle);
+            i==1 && overlayContext.fill();
+        }
+        overlayContext.stroke();
+    }
     
-//     // draw right face buttons
-//     const rightCenter = vec2(mainCanvasSize.x-touchGamepadSize, mainCanvasSize.y-touchGamepadSize);
-//     for (let i=4; i--;)
-//     {
-//         const pos = rightCenter.add((new Vector2).setAngle(i*PI/2, touchGamepadSize/2));
-//         overlayContext.fillStyle = touchGamepadButtons[i] ? '#fff' : '#000';
-//         overlayContext.beginPath();
-//         overlayContext.arc(pos.x, pos.y, touchGamepadSize/4, 0,9);
-//         overlayContext.fill();
-//         overlayContext.stroke();
-//     }
+    // draw right face buttons
+    const rightCenter = vec2(mainCanvasSize.x-touchGamepadSize, mainCanvasSize.y-touchGamepadSize);
+    for (let i=4; i--;)
+    {
+        const pos = rightCenter.add((new Vector2).setAngle(i*PI/2, touchGamepadSize/2));
+        overlayContext.fillStyle = touchGamepadButtons[i] ? '#fff' : '#000';
+        overlayContext.beginPath();
+        overlayContext.arc(pos.x, pos.y, touchGamepadSize/4, 0,9);
+        overlayContext.fill();
+        overlayContext.stroke();
+    }
 
-//     // set canvas back to normal
-//     overlayContext.restore();
-// }
+    // set canvas back to normal
+    overlayContext.restore();
+}
 /** 
  * LittleJS Audio System
  * <br> - <a href=https://killedbyapixel.github.io/ZzFX/>ZzFX Sound Effects</a>

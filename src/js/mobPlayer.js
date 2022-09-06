@@ -41,21 +41,26 @@ class MobPlayer extends Mob {
 			let dy = 0;
 
 			if (g_state == STATE_PLAYING) {
-				if (keyIsDown(38)) {
-					// key w
-					dy = speed;
-				}
-				if (keyIsDown(37)) {
-					// key a
-					dx = -speed;
-				}
-				if (keyIsDown(40)) {
-					// key s
-					dy = -speed;
-				}
-				if (keyIsDown(39)) {
-					// key d
-					dx = speed;
+				if (isUsingGamepad) {
+					dx = gamepadStick(0).x * speed;
+					dy = gamepadStick(0).y * speed;
+				} else {
+					if (keyIsDown(38)) {
+						// key w
+						dy = speed;
+					}
+					if (keyIsDown(37)) {
+						// key a
+						dx = -speed;
+					}
+					if (keyIsDown(40)) {
+						// key s
+						dy = -speed;
+					}
+					if (keyIsDown(39)) {
+						// key d
+						dx = speed;
+					}
 				}
 			}
 
