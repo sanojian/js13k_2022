@@ -16,7 +16,6 @@ function gameInit() {
 	document.body.style.cursor = "crosshair";
 
 	touchGamepadEnable = 1;
-	touchGamepadSize = 160;
 	touchGamepadAnalog = 0;
 	startNewGame();
 }
@@ -26,6 +25,8 @@ function scaleCameraToScreenSize() {
 	let tiles = TILES_PER_SCREEN;
 	if (isTouchDevice) tiles = tiles - 3;
 	cameraScale = Math.min(window.innerWidth, window.innerHeight) / tiles;
+
+	touchGamepadSize = (80 * cameraScale) / 32;
 }
 
 function startNewGame() {
