@@ -169,8 +169,6 @@ function updateStateClickToStart() {
 		uiSound();
 		if (isTouchDevice && !isFullscreen()) toggleFullscreen();
 		uiFadeOutAndCall(() => {
-			startNewGame();
-			startNextLevel();
 			changeState(STATE_PLAYING);
 		});
 	}
@@ -193,7 +191,6 @@ function updateStateCleared() {
 		if (mouseWasPressed(0)) {
 			uiSound(3);
 			uiFadeOutAndCall(() => {
-				startNextLevel();
 				changeState(STATE_PLAYING);
 			});
 		}
@@ -205,6 +202,18 @@ function changeState(newState) {
 	textsClear();
 	stateChangedTime = new Date().getTime();
 	g_state = newState;
+	if (g_state == STATE_CLICK_TO_START) {
+		// nop
+	} else if (g_state == STATE_PLAYING) {
+		startNextLevel();
+	} else if (g_state == STATE_DEAD) {
+		localStorage.daScore = localStorage.daScore ? Math.max(g_score, localStorage.daScore) : g_score;
+	} else if (g_state == STATE_CLEARED) {
+		g_player.gun.reload();
+		g_level++;
+		g_score += 10;
+		soundPlayExtra(soundLevelCleared, cameraPos, 2, 0.8, 0, 1000);
+	}
 }
 
 function getMsSinceStateChange() {
@@ -228,9 +237,6 @@ function updateStatePlaying() {
 
 	if (enemiesSpawned == g_levelDef.enemiesToSpawn + g_difficulty && g_enemies.length == 0) {
 		changeState(STATE_CLEARED);
-		g_player.gun.reload();
-		g_level++;
-		soundPlayExtra(soundLevelCleared, cameraPos, 2, 0.8, 0, 1000);
 		return;
 	}
 
@@ -248,7 +254,6 @@ function updateStatePlaying() {
 
 	if (g_player.hp <= 0) {
 		changeState(STATE_DEAD);
-		localStorage.daScore = localStorage.daScore ? Math.max(g_score, localStorage.daScore) : g_score;
 		return;
 	}
 
@@ -280,10 +285,8 @@ function updateStatePlaying() {
 	cameraPos = cameraPos.add(g_screenShake);
 
 	if (g_CHEATMODE && mouseWasPressed(1)) {
-		g_level++;
-		startNextLevel();
+		changeState(STATE_CLEARED);
 		changeState(STATE_PLAYING);
-		soundPlayExtra(soundLevelCleared, cameraPos, 2, 0.8, 0, 1000);
 	}
 }
 

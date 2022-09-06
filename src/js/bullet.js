@@ -44,7 +44,7 @@ class Bullet extends EngineObject {
 			let idx = pos.x + "_" + pos.y;
 			g_doors[idx].hp--;
 			this.hitWall(true);
-			soundBoulderDestroy.play(pos, 1);
+			soundBoulderDestroy.play(pos, 1.5);
 			makeParticles(pos.add(vec2(0.5)), 0.1, colorWhite, 0.25);
 			if (g_doors[idx].hp <= 0) {
 				tileLayer.setData(pos, 0, true);
