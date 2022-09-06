@@ -133,7 +133,7 @@ class MapManager {
 		for (let key in g_shadows) {
 			let shadow = g_shadows[key];
 			// fade
-			shadow.alpha -= 0.01;
+			shadow.alpha -= (0.01 * 60) / frameRate;
 			if (shadow.alpha <= 0) {
 				delete g_shadows[key];
 			} else {
