@@ -109,6 +109,9 @@ class Enemy extends Mob {
 				}
 				g_score += 10;
 				changeState(STATE_CLEARED);
+				g_player.gun.reload();
+				g_level++;
+				soundPlayExtra(soundLevelCleared, cameraPos, 2, 0.8, 0, 1000);
 			}
 
 			this.destroy();
