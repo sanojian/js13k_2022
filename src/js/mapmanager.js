@@ -64,7 +64,7 @@ class MapManager {
 					}
 
 					setTileCollisionData(vec2(x, h - 1 - y), t);
-					let tint = new Color(rand(0.8, 1), rand(0.8, 1), rand(0.8, 1));
+					/*let tint = new Color(rand(0.8, 1), rand(0.8, 1), rand(0.8, 1));
 					if (g_level % 2 == 0) {
 						// brown houses
 						tint = tint.add(new Color(217 / 255, 160 / 255, 102 / 255));
@@ -75,8 +75,8 @@ class MapManager {
 						else if (t == 13) t = 9;
 						else if (t == 14) t = 24;
 						else if (t == 24) t = 14;
-					}
-					let tld = new TileLayerData(t, 0, rand() < 0.5, tint);
+					}*/
+					let tld = new TileLayerData(t, 0, rand() < 0.5);
 					tileLayer.setData(vec2(x, h - 1 - y), tld);
 
 					// moss
