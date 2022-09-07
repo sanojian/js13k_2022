@@ -16,7 +16,7 @@ function gameInit() {
 	document.body.style.cursor = "crosshair";
 
 	touchGamepadEnable = 1;
-	touchGamepadAnalog = 0;
+	touchGamepadAnalog = 1;
 	startNewGame();
 }
 
