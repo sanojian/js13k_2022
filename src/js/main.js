@@ -401,18 +401,6 @@ function gameRender() {
 		}
 	}
 
-	// moss
-	for (let i = 0; i < g_moss.length; i++) {
-		let moss = g_moss[i];
-		drawTile(moss.pos, vec2(1 / 3), moss.tileIndex, vec2(4), colorWhite, moss.angle);
-	}
-
-	// bullet holes
-	for (let i = 0; i < g_holes.length; i++) {
-		let hole = g_holes[i];
-		drawRect(hole.pos, vec2(hole.size / 12), hole.color);
-	}
-
 	// // sparks
 	// for (let i = 0; i < g_sparks.length; i++) {
 	// 	let spark = g_sparks[i];
