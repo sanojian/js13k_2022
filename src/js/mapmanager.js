@@ -21,12 +21,7 @@ class MapManager {
 		for (let y = 0; y < h; y++) {
 			for (let x = 0; x < w; x++) {
 				// floor
-				let tld = new TileLayerData(
-					tileNumbers_floorStone,
-					randInt(4),
-					false,
-					new Color(1, 1, 1, rand(0.2, 0.5))
-				);
+				let tld = new TileLayerData(tileNumbers_floorStone, randInt(4), false, new Color(1, 1, 1, rand(0.2, 0.5)));
 				tileLayer.setData(vec2(x, h - 1 - y), tld);
 
 				let t = theMap.data[x + y * w];
@@ -106,6 +101,12 @@ class MapManager {
 			for (let y = 0; y < theMap.h; y++) {
 				let cx = x + 0.5;
 				let cy = y + 0.5;
+				// check if this tile is onscreen
+				if (
+					abs(cx - cameraPos.x) - 1 > overlayCanvas.width / (cameraScale * 2) ||
+					abs(cy - cameraPos.y) - 1 > overlayCanvas.height / (cameraScale * 2)
+				)
+					continue;
 				let dVec = vec2(g_player.pos.x - cx, g_player.pos.y - cy);
 				dVec = dVec.clampLength(min(1.5, dVec.length()));
 				pos.x = cx + dVec.x;

@@ -23,6 +23,7 @@ function gameInit() {
 function scaleCameraToScreenSize() {
 	// try to fit same tiles on a screen
 	let tiles = TILES_PER_SCREEN;
+	// smaller on mobile
 	if (isTouchDevice) tiles = tiles - 3;
 	cameraScale = Math.min(window.innerWidth, window.innerHeight) / tiles;
 
