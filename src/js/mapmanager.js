@@ -89,7 +89,7 @@ class MapManager {
 			}
 		}
 
-		//tileLayer.redraw();
+		tileLayer.redraw();
 	}
 
 	// STUPID FOG OF WAR / LINE OF SIGHT
@@ -147,6 +147,6 @@ class MapManager {
 	}
 
 	render() {
-		tileLayer.redraw();
+		// tileLayer.render();
 	}
 }
