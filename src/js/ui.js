@@ -3,7 +3,7 @@
 // this draws the ui on top of everything (in theory)
 
 var ui_fadeTarget = 0;
-var ui_fade = 0;
+var ui_fade = 1;
 var ui_onFaded = undefined;
 
 const ui_clearCol = new Color(0, 0, 0, 0);
