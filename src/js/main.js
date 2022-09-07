@@ -169,6 +169,7 @@ function updateStateClickToStart() {
 		uiSound();
 		if (isTouchDevice && !isFullscreen()) toggleFullscreen();
 		uiFadeOutAndCall(() => {
+			startNewGame();
 			changeState(STATE_PLAYING);
 		});
 	}

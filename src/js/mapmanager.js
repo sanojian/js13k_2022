@@ -23,7 +23,7 @@ class MapManager {
 				// floor
 				let tld = new TileLayerData(
 					tileNumbers_floorStone,
-					Math.floor(rand(3)),
+					randInt(4),
 					false,
 					new Color(1, 1, 1, rand(0.2, 0.5))
 				);
