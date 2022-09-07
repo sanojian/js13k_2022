@@ -12,6 +12,8 @@ class Ghost extends Enemy {
 
 		this.transformCount = rand(30, 120);
 		this.solid = false;
+
+		this.soundGroan = soundGhostGroan;
 	}
 
 	update() {
