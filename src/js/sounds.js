@@ -13,7 +13,7 @@ function soundPlayExtra(sound, pos, vol, pitch, rand = 0, delay = 0, repeat = 1)
 var soundPlayerScream = new Sound([1,,440,,.1,1,3,1,-.2,,50,,,.4,,.05,.05,.9,.5,]);
 
 
-var soundPickup = new Sound([1,.1,200,,,,4,,,1.2,50,.57,,,,.2,.19,,.14,]);
+var soundPickup = new Sound([1,.1,200,,,,4,,,1.2,50,.57,,,,.2,.2,,.2,]);
 
 
 
@@ -27,11 +27,11 @@ var soundLevelCleared = new Sound([2,0,685,0,.57,.3,0,3,.6,0,174,.08,.04,0,0,0,.
 
 var soundRifle = new Sound([3,,164.8138,,,,4,,,,,,,,,-.3]);
 var soundPistol = new Sound([1,,164.8138,,,,4,,,,,,,,,-.3]);
-var soundShotgun = new Sound([3,,352,.07,.01,.2,4,3.04,,.4,,,.15,1.5,,.7,.12,.2]);
+var soundShotgun = new Sound([3,,352,.07,.01,.2,4,3,,.4,,,.15,1.5,,.7,.12,.2]);
 
-var soundBulletHit =new Sound([1,.3,440,.01,0,0,0,1.1,19.9,6.7,600,.09,.32,3.6,11,.2,0,.9,0,.12]);
+var soundBulletHit =new Sound([1,.3,440,.01,0,0,0,1,19.9,6.7,600,.09,.3,3.6,11,.2,0,.9,0,.1]);
 
-var soundGunReload = new Sound([,.3,,.01,,.01,4,,20,6.6,600,.07,.32,3.6,12,,,,,.12]);
+var soundGunReload = new Sound([,.3,,.01,,.01,4,,20,6,600,.07,.3,3.6,12,,,,,.12]);
 var soundGunEmpty = new Sound([1,,65,,,.02,4,,,,,,,2,,,,1,,0]);
 
 
