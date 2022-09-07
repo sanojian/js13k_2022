@@ -3209,7 +3209,7 @@ class ParticleEmitter extends EngineObject
         /** @property {Number} - Should particles use addtive blend */
         this.additive          = additive;
         /** @property {Number} - If set the partile is drawn as a trail, stretched in the drection of velocity */
-        this.trailScale        = 0;
+        // this.trailScale        = 0;
 
         // internal variables
         this.emitTimeBuffer    = 0;
@@ -3280,7 +3280,7 @@ class ParticleEmitter extends EngineObject
         particle.collideTiles  = this.collideTiles;
         particle.additive      = this.additive;
         particle.renderOrder   = this.renderOrder;
-        particle.trailScale    = this.trailScale;
+        // particle.trailScale    = this.trailScale;
         particle.mirror        = rand()<.5;
 
         // setup callbacks for particles
@@ -3328,17 +3328,17 @@ class Particle extends EngineObject
 
         // draw the particle
         this.additive && setBlendMode(1);
-        if (this.trailScale)
-        {
-            // trail style particles
-            const speed = this.velocity.length();
-            const direction = this.velocity.scale(1/speed);
-            const trailLength = speed * this.trailScale;
-            size.y = max(size.x, trailLength);
-            this.angle = direction.angle();
-            drawTile(this.pos.add(direction.multiply(vec2(0,-trailLength/2))), size, this.tileIndex, this.tileSize, color, this.angle, this.mirror);
-        }
-        else
+        // if (this.trailScale)
+        // {
+        //     // trail style particles
+        //     const speed = this.velocity.length();
+        //     const direction = this.velocity.scale(1/speed);
+        //     const trailLength = speed * this.trailScale;
+        //     size.y = max(size.x, trailLength);
+        //     this.angle = direction.angle();
+        //     drawTile(this.pos.add(direction.multiply(vec2(0,-trailLength/2))), size, this.tileIndex, this.tileSize, color, this.angle, this.mirror);
+        // }
+        // else
             drawTile(this.pos, size, this.tileIndex, this.tileSize, color, this.angle, this.mirror);
         this.additive && setBlendMode();
         debugParticles && debugRect(this.pos, size, '#f005', 0, this.angle);
