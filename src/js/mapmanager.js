@@ -15,6 +15,7 @@ class MapManager {
 
 		g_doors = {};
 
+		// TileLayer is an EngineObject and will render with the other engineObjects (and respect renderOrder if given)
 		tileLayer = new TileLayer(vec2(0, 0), vec2(w, h), TILE_SIZE, vec2(1));
 		initTileCollision(vec2(w, h));
 
@@ -89,6 +90,7 @@ class MapManager {
 			}
 		}
 
+		// Draw the whole tilemap to the offscreen buffer
 		tileLayer.redraw();
 	}
 
