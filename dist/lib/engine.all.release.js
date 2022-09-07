@@ -3055,7 +3055,7 @@ class TileLayer extends EngineObject
                 const cols = tileImage.width/tileSize.x;
                 context.globalAlpha = color.a; // only alpha, no color, is supported in this mode
                 context.drawImage(tileImage, 
-                    (tileIndex%cols)*tileSize.x, (tileIndex/cols|0)*tileSize.x, 
+					(tileIndex % cols) * tileSize.x, (tileIndex / cols | 0) * tileSize.y, 
                     tileSize.x, tileSize.y, -.5, -.5, 1, 1);
             }
         });
