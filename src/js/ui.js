@@ -6,7 +6,16 @@ var ui_fadeTarget = 0;
 var ui_fade = 1;
 var ui_onFaded = undefined;
 
-const ui_clearCol = new Color(0, 0, 0, 0);
+const ui_clearColors = [
+	[0, 0, 0, 0],
+	[0.5, 0, 0, 0.5],
+	[0.5, 0.5, 0, 0.5],
+	[0, 0, 0.5, 0.5],
+	[0.5, 0, 0.5, 0.5],
+];
+
+//const ui_clearCol = new Color(0, 0.5, 0.5, 0.5);
+
 const ui_fadeCol = new Color(0.2, 0, 0, 1);
 
 function uiFadeOutAndCall(fadeFunc) {
@@ -153,6 +162,8 @@ function gameRenderPost() {
 	textsDraw();
 
 	// FADE THE SCREEN
+
+	let ui_clearCol = new Color(...ui_clearColors[g_level % levelDefs.length]);
 
 	let col = ui_clearCol.lerp(ui_fadeCol, ui_fade);
 
