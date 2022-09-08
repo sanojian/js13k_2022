@@ -19,7 +19,7 @@ class Zombie extends Enemy {
 		this.enemyAccel = rand(0.2, 0.3);
 
 		//this.pointingAngle = rand(2 * PI);
-		this.damping = 0.95;
+		this.damping = 0; // stand still until first move
 
 		this.groan(1, rand(0.9, 1.1), 1);
 	}
@@ -42,6 +42,8 @@ class Zombie extends Enemy {
 			}
 			return;
 		}
+
+		if (this.enemyToTarget) this.damping = 0.95; // now you can move
 
 		super.update();
 	}
