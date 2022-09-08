@@ -77,7 +77,7 @@ class Mob extends EngineObject {
 	renderShadow() {
 		drawTile(
 			vec2(this.pos.x, this.pos.y - this.size.y / 2),
-			vec2(this.size.y / 2, this.size.y / 4),
+			vec2(this.size.y / 1.5, this.size.y / 3),
 			9,
 			vec2(6, 12),
 			new Color(1, 1, 1, 1),
