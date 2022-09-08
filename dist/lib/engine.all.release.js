@@ -2880,14 +2880,14 @@ class TileLayerData
  */
 class TileLayer extends EngineObject
 {
-/** Create a tile layer object
+	/** Create a tile layer object
     *  @param {Vector2} [position=new Vector2()]   - World space position
     *  @param {Vector2} [size=tileCollisionSize]   - World space size
     *  @param {Vector2} [tileSize=tileSizeDefault] - Size of tiles in source pixels
     *  @param {Vector2} [scale=new Vector2(1,1)]   - How much to scale this layer when rendered
     *  @param {Number}  [renderOrder=0]            - Objects sorted by renderOrder before being rendered
     */
-constructor(pos, size=tileCollisionSize, tileSize=tileSizeDefault, scale=vec2(1), renderOrder=0)
+	constructor(pos, size=tileCollisionSize, tileSize=tileSizeDefault, scale=vec2(1), renderOrder=0)
     {
         super(pos, size, -1, tileSize, 0, undefined, renderOrder);
 
@@ -3055,7 +3055,7 @@ constructor(pos, size=tileCollisionSize, tileSize=tileSizeDefault, scale=vec2(1)
                 const cols = tileImage.width/tileSize.x;
                 context.globalAlpha = color.a; // only alpha, no color, is supported in this mode
                 context.drawImage(tileImage, 
-                    (tileIndex%cols)*tileSize.x, (tileIndex/cols|0)*tileSize.x, 
+					(tileIndex % cols) * tileSize.x, (tileIndex / cols | 0) * tileSize.y, 
                     tileSize.x, tileSize.y, -.5, -.5, 1, 1);
             }
         });

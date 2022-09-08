@@ -15,6 +15,7 @@ class MapManager {
 
 		g_doors = {};
 
+		// TileLayer is an EngineObject and will render with the other engineObjects (and respect renderOrder if given)
 		tileLayer = new TileLayer(vec2(0), vec2(w, h), TILE_SIZE);
 		initTileCollision(vec2(w, h));
 
@@ -89,7 +90,8 @@ class MapManager {
 			}
 		}
 
-		//tileLayer.redraw();
+		// Draw the whole tilemap to the offscreen buffer
+		tileLayer.redraw();
 	}
 
 	// STUPID FOG OF WAR / LINE OF SIGHT
@@ -147,6 +149,6 @@ class MapManager {
 	}
 
 	render() {
-		tileLayer.redraw();
+		// tileLayer.render();
 	}
 }

@@ -186,7 +186,7 @@ function updateStateDead() {
 }
 
 function updateStateCleared() {
-	textMiddle = "Level " + g_level + " cleared";
+	textMiddle = "Level " + (g_level + 1) + " cleared";
 
 	if (getMsSinceStateChange() > 2000) {
 		textBottom = "Click to continue";
@@ -194,6 +194,7 @@ function updateStateCleared() {
 		if (mouseWasPressed(0)) {
 			uiSound(3);
 			uiFadeOutAndCall(() => {
+				g_level++;
 				startNextLevel();
 				changeState(STATE_PLAYING);
 			});
@@ -230,7 +231,7 @@ function updateStatePlaying() {
 	if (enemiesSpawned == g_levelDef.enemiesToSpawn + g_difficulty && g_enemies.length == 0) {
 		changeState(STATE_CLEARED);
 		g_player.gun.reload();
-		g_level++;
+		//g_level++;
 		soundPlayExtra(soundLevelCleared, cameraPos, 2, 0.8, 0, 1000);
 		return;
 	}
