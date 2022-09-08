@@ -47,7 +47,13 @@ class Bullet extends EngineObject {
 			soundBoulderDestroy.play(pos, 1.5);
 			makeParticles(pos.add(vec2(0.5)), 0.1, colorWhite, 0.25);
 			if (g_doors[idx].hp <= 0) {
-				tileLayer.setData(pos, 0, true);
+				let floorTile = new TileLayerData(
+					tileNumbers_floorStone,
+					randInt(4),
+					false,
+					new Color(1, 1, 1, rand(0.2, 0.5))
+				);
+				tileLayer.setData(pos, floorTile, true);
 				soundBoulderDestroy.play(pos, 3);
 				makeParticles(pos.add(vec2(0.5)), 0.3, colorWhite, 0.5);
 				setTileCollisionData(pos, 0);
