@@ -15,7 +15,7 @@ class Mob extends EngineObject {
 
 		// this._maxSpeed = 0.4;
 
-		this.bumpWalk = 0;
+		// this.bumpWalk = 0;
 		this.mirror = false;
 		this.hp = 3;
 
@@ -63,7 +63,7 @@ class Mob extends EngineObject {
 		if (this.velocity.length() > 0.01) {
 			this.walkCyclePlace = (this.walkCyclePlace + 1) % this._walkCycleFrames;
 			this.mirror = this.walkCyclePlace > this._walkCycleFrames / 2 ? true : false;
-			this.bumpWalk = this.walkCyclePlace > this._walkCycleFrames / 2 ? 0 : 1 / 12;
+			// this.bumpWalk = this.walkCyclePlace > this._walkCycleFrames / 2 ? 0 : 1 / 12;
 		} else {
 			this.walkCyclePlace = 0;
 			this.mirror = false;
@@ -74,9 +74,23 @@ class Mob extends EngineObject {
 		super.update(); // update object physics and position
 	}
 
-	render() {
+	renderShadow() {
 		drawTile(
-			vec2(this.pos.x, this.pos.y + this.bumpWalk),
+			vec2(this.pos.x, this.pos.y - this.size.y / 2),
+			vec2(this.size.y / 2, this.size.y / 4),
+			9,
+			vec2(6, 12),
+			new Color(1, 1, 1, 1),
+			0,
+			false
+		);
+	}
+
+	render() {
+		this.renderShadow();
+
+		drawTile(
+			vec2(this.pos.x, this.pos.y),
 			this.size,
 			this.tileIndex,
 			this.tileSize,
@@ -91,7 +105,7 @@ class Mob extends EngineObject {
 		// draw face
 		if (this.miniFace && this.enemyToTarget && this.enemyToTarget.y <= 0) {
 			drawTile(
-				this.pos.add(vec2((this.enemyToTarget.x > 0 ? 1 : 0) / 12, 3 / 12 + this.bumpWalk)),
+				this.pos.add(vec2((this.enemyToTarget.x > 0 ? 1 : 0) / 12, 3 / 12)),
 				vec2(1 / 4),
 				this.miniFace,
 				MINI_TILE_SIZE

@@ -117,17 +117,12 @@ class MobPlayer extends Mob {
 
 		if (this.hp > 0) {
 			// arms
-			drawLine(this.pos.add(vec2(3 / 12, 2 / 16 + this.bumpWalk)), this.gun.pos, 1 / 12, colorBlood, !!glEnable);
-			drawLine(this.pos.add(vec2(-3 / 12, 2 / 16 + this.bumpWalk)), this.gun.pos, 1 / 12, colorBlood, !!glEnable);
+			drawLine(this.pos.add(vec2(3 / 12, 2 / 16)), this.gun.pos, 1 / 12, colorBlood, !!glEnable);
+			drawLine(this.pos.add(vec2(-3 / 12, 2 / 16)), this.gun.pos, 1 / 12, colorBlood, !!glEnable);
 			// draw face
 			let toCursor = mousePos.subtract(this.pos);
 			if (toCursor.y <= 0) {
-				drawTile(
-					this.pos.add(vec2((toCursor.x > 0 ? 1 : 0) / 12, 3 / 12 + this.bumpWalk)),
-					vec2(1 / 3),
-					this.miniFace,
-					MINI_TILE_SIZE
-				);
+				drawTile(this.pos.add(vec2((toCursor.x > 0 ? 1 : 0) / 12, 3 / 12)), vec2(1 / 3), this.miniFace, MINI_TILE_SIZE);
 			}
 		}
 	}
