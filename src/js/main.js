@@ -266,18 +266,10 @@ function updateStatePlaying() {
 
 	let newPoint = mousePos;
 	if (isTouchDevice && g_player.gun) {
-		// TODO: camera could be a little behind ... but, on point is ok, i think ...
-
 		newPoint = g_player.pos;
-
-		// halfway from player to screen
-		// newPoint = g_player.pos.add(
-		// 	vec2(0)
-		// 		.setAngle(g_player.gun.angle + PI / 2)
-		// 		.normalize(TILES_PER_SCREEN - 7)
-		// );
 	}
-	// camera goes halfway between player and mouse
+
+	// camera goes halfway between player and newPoint
 	cameraPos = cameraPos.lerp(g_player.pos.add(newPoint.subtract(g_player.pos).scale(0.5)), 0.03);
 
 	fx.updateScreenShake();
