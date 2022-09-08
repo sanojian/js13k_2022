@@ -89,6 +89,13 @@ class MapManager {
 						else if (t == 14) t = 24;
 						else if (t == 24) t = 14;
 					}*/
+					// roofs and hedgdetops
+					try {
+						if ((t == 14 || t == 9) && t == theMap.data[x + (y + 1) * w] - 1) {
+							t = t == 14 ? 24 : 13;
+						}
+					} catch (ex) {} // off edge of map
+
 					let tld = new TileLayerData(t, 0, rand() < 0.5);
 					tileLayer.setData(vec2(x, h - 1 - y), tld);
 				}
