@@ -54,6 +54,7 @@ class Bullet extends EngineObject {
 					new Color(1, 1, 1, rand(0.2, 0.5))
 				);
 				tileLayer.setData(pos, floorTile, true);
+				tileLayer.redraw(); // TODO: Could be SLOW ... find better solution !
 				soundBoulderDestroy.play(pos, 3);
 				makeParticles(pos.add(vec2(0.5)), 0.3, colorWhite, 0.5);
 				setTileCollisionData(pos, 0);

@@ -22,7 +22,12 @@ class MapManager {
 		for (let y = 0; y < h; y++) {
 			for (let x = 0; x < w; x++) {
 				// floor
-				let floorTile = new TileLayerData(tileNumbers_floorStone, randInt(4), false, new Color(1, 1, 1, rand(0.2, 0.5)));
+				let floorTile = new TileLayerData(
+					tileNumbers_floorStone,
+					randInt(4),
+					false,
+					new Color(1, 1, 1, rand(0.2, 0.5))
+				);
 				tileLayer.setData(vec2(x, h - 1 - y), floorTile);
 
 				let t = theMap.data[x + y * w];
@@ -62,6 +67,13 @@ class MapManager {
 					} else {
 						// pushers on all collision stuff except doors
 						pushers.push(new Pusher(offsetVec, 0.01, 0.5, 1, 0));
+
+						// moss (not on doors)
+						g_moss.push({
+							pos: offsetVec.add(randInCircle(5 / 12)),
+							tileIndex: miniTileNumbers_moss + randInt(11),
+							angle: rand(PI * 2),
+						});
 					}
 
 					setTileCollisionData(vec2(x, h - 1 - y), t);
@@ -79,13 +91,6 @@ class MapManager {
 					}*/
 					let tld = new TileLayerData(t, 0, rand() < 0.5);
 					tileLayer.setData(vec2(x, h - 1 - y), tld);
-
-					// moss
-					g_moss.push({
-						pos: offsetVec.add(randInCircle(5 / 12)),
-						tileIndex: miniTileNumbers_moss + randInt(11),
-						angle: rand(PI * 2),
-					});
 				}
 			}
 		}
