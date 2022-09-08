@@ -40,7 +40,7 @@ module.exports = function (grunt) {
 					zopflipng: false,
 				},
 				files: {
-					'dist/t.png': 'src/gfx/tiles2.png',
+					'dist/t.png': 'src/gfx/tiles.png',
 				}
 			},
 			prod: {
@@ -51,7 +51,7 @@ module.exports = function (grunt) {
 					zopflipng: ['-m']
 				},
 				files: {
-					'dist/t.png': 'src/gfx/tiles2.png',
+					'dist/t.png': 'src/gfx/tiles.png',
 				}
 			},
 		},
