@@ -10,7 +10,7 @@ class Enemy extends Mob {
 		//this.enemyThinkPause = 0;
 		this.enemyThinkMin = 20;
 		this.enemyThinkMax = 100;
-		this.enemyThinkPause = this.enemyThinkMax; // rand(this.enemyThinkMin, this.enemyThinkMax);
+		this.enemyThinkPause = rand(this.enemyThinkMin, this.enemyThinkMax);
 		this.enemyAccel = 0.1;
 		this.enemyJitterForce = 0.01;
 		this.enemyDrag = 1.5;
