@@ -136,7 +136,7 @@ class Enemy extends Mob {
 		let toPlayer = this.enemyToTarget || g_player.pos.subtract(this.pos);
 		let toPlayerAngle = toPlayer.angle();
 
-		this.pointingAngle += turnTowards(toPlayerAngle - this.pointingAngle, (2 * PI) / 100); //turnTowards(this.pointingAngle, toPlayerAngle, rand(2 * PI) / 100);
+		this.pointingAngle += turnTowards(toPlayerAngle - this.pointingAngle, (2 * PI) / 100);
 		let pointing = vec2(1).setAngle(this.pointingAngle, armLenght);
 
 		// draw arms

@@ -25,8 +25,6 @@ class Gun extends EngineObject {
 	}
 
 	update() {
-		// your object update code here
-
 		if (this.owner && this.owner.hp > 0) {
 			// key r or space
 			if (isTouchDevice && gamepadWasPressed(2)) {
@@ -40,7 +38,10 @@ class Gun extends EngineObject {
 			let angle = -this.angle;
 
 			if (isUsingGamepad) {
-				angle = Math.atan2(gamepadStick(0).y, gamepadStick(0).x);
+				if (gamepadStick(0).length() > 0.1) {
+					let targetAngle = Math.atan2(gamepadStick(0).y, gamepadStick(0).x);
+					angle -= turnTowards(targetAngle - angle, (2 * PI) / 100);
+				}
 			} else if (!isTouchDevice) {
 				// use mouse position
 				angle = Math.atan2(mousePos.y - this.owner.pos.y, mousePos.x - this.owner.pos.x);
@@ -54,11 +55,9 @@ class Gun extends EngineObject {
 
 			if (isTouchDevice) {
 				if (gamepadWasPressed(1)) {
-					musicResume();
 					this.fire();
 				}
 			} else if (mouseWasPressed(0) && g_state == STATE_PLAYING) {
-				musicResume();
 				this.fire();
 			}
 
@@ -123,6 +122,8 @@ class Gun extends EngineObject {
 	}
 
 	fire(color) {
+		musicResume();
+
 		if (this.reloading || this.ammo <= 0) {
 			this.soundEmpty.play(this.pos);
 			return false;
