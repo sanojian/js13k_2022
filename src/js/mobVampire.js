@@ -9,7 +9,7 @@ class Vampire extends Enemy {
 		// before transform! ... BAT STATS
 
 		this.enemyToTarget = undefined;
-		this.enemyMoveSpeed = rand(0.3, 0.5);
+		this.enemyAccel = rand(0.3, 0.5);
 		this.enemyJitterForce = 0.5;
 		this._walkCycleFrames = 20;
 
@@ -37,12 +37,13 @@ class Vampire extends Enemy {
 					this.tileIndex = tileNumbers_vampire;
 					this.hp += mobDefs.Vampire.addTransformHp + g_difficulty;
 					this.mass = 2;
-					this.enemyMoveSpeed = rand(0.3, 0.4);
+					this.enemyAccel = rand(0.4, 0.5);
 					this.enemyThinkMin = 20;
 					this.enemyThinkMax = 50;
 					this.enemyJitterForce = 0;
 					this.transformed = true;
 					this.soundGroan = soundEnemyGroan;
+					this.damping = 0.95; // on ground
 				}
 			} else {
 				if (isOverlapping(this.pos, this._hitbox, g_player.pos, g_player._hitbox)) {
@@ -50,7 +51,7 @@ class Vampire extends Enemy {
 					g_transforms.push({ pos: this.pos.copy(), life: 60, tileIndex: tileNumbers_faceVampire });
 					this.transformTimer = new Timer(2);
 					this.transforming = true;
-					this.enemyMoveSpeed = -this.enemyMoveSpeed; // run from player while transforming !
+					this.enemyAccel = -this.enemyAccel; // run from player while transforming !
 				}
 			}
 		}
@@ -63,8 +64,6 @@ class Vampire extends Enemy {
 	}
 
 	hit(velocity, pos) {
-		//this.enemyMoveSpeed = rand(0.05, 0.2) * (this.transformed ? this._vampPower : 1);
-		//this.enemyThinkPause += rand(10, 30);
 		this.enemyToTarget = undefined;
 		this.groan(1, this.transformed ? 1 : 0.3);
 		return super.hit(velocity, pos);

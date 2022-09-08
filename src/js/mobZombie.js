@@ -15,17 +15,17 @@ class Zombie extends Enemy {
 		this.riseFrames = RISE_FRAMES;
 		this.pos.y -= 0.5; // for the rising to look good-ish
 
-		this.enemyJitterForce = 0.1;
-		this.enemyMoveSpeed = rand(0.05, 0.1);
+		this.enemyJitterForce = 0.01;
+		this.enemyAccel = rand(0.2, 0.3);
 
-		this.pointingAngle = rand(2 * PI);
+		//this.pointingAngle = rand(2 * PI);
+		this.damping = 0.95;
 
 		this.groan(1, rand(0.9, 1.1), 1);
 	}
 
 	update() {
 		if (this.riseFrames > 0) {
-			// CAN BE REMOVED
 			// dirt particles when rising
 			if (this.riseFrames % 20 == 0)
 				makeParticles(this.pos.subtract(vec2(0, this.size.y / 2)), 0.4, new Color(143 / 255, 86 / 255, 59 / 255));
@@ -36,7 +36,10 @@ class Zombie extends Enemy {
 			this.size = vec2(this.size.x, 0.8 * frac);
 			this.pos.y += 0.5 / RISE_FRAMES;
 
-			if (this.riseFrames == 0) this.groan(1, 1, 1.5);
+			if (this.riseFrames == 0) {
+				this.groan(1, 1, 1.5);
+				this.velocity = vec2(0);
+			}
 			return;
 		}
 
@@ -52,12 +55,11 @@ class Zombie extends Enemy {
 	}
 
 	postRender() {
-		if (this.riseFrames > 0) {
-			this.enemyToTarget = vec2(0, 1);
-			this.pointingAngle = PI;
-		} else {
-			super.postRender();
+		if (this.riseFrames <= 0) {
+			super.postRender(); // render face (and blood)
 		}
+
+		if (!this.enemyToTarget) this.pointingAngle = PI;
 
 		this.drawReachingArms();
 	}

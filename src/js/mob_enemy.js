@@ -7,10 +7,11 @@ class Enemy extends Mob {
 		this._maxSpeed = mobDef.maxSpeed + mobDef.maxSpeed * 0.1 * g_difficulty;
 		this.hp = mobDef.hp + Math.floor(g_difficulty * mobDef.hpGainPerlevel);
 
-		this.enemyThinkPause = 0;
+		//this.enemyThinkPause = 0;
 		this.enemyThinkMin = 20;
 		this.enemyThinkMax = 100;
-		this.enemyMoveSpeed = 0.1;
+		this.enemyThinkPause = this.enemyThinkMax; // rand(this.enemyThinkMin, this.enemyThinkMax);
+		this.enemyAccel = 0.1;
 		this.enemyJitterForce = 0.01;
 		this.enemyDrag = 1.5;
 		this.enemyToTarget = undefined;
@@ -28,9 +29,9 @@ class Enemy extends Mob {
 		}
 
 		// take a step
-		if (rand(100) < 10) {
+		if (rand() < 0.1) {
 			let force = vec2(0);
-			if (this.enemyToTarget) force = this.enemyToTarget.normalize(this.enemyMoveSpeed);
+			if (this.enemyToTarget) force = this.enemyToTarget.normalize(this.enemyAccel);
 
 			let jitter = randInCircle(this.enemyJitterForce);
 			force = force.add(jitter);
@@ -46,7 +47,7 @@ class Enemy extends Mob {
 
 	collideWithTile(tileData, tilePos) {
 		if (this.lastTilePos && tilePos.distanceSquared(this.lastTilePos) < 0.01) {
-			if (rand(100) < 10) {
+			if (rand() < 0.1) {
 				let colPos = tilePos.add(vec2(0.5));
 				colPos = colPos.lerp(this.pos, 0.5);
 				pushers.push(new Pusher(colPos, 0.01, 0, 1, rand(1, 2)));
