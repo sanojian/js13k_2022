@@ -16,7 +16,7 @@ class MapManager {
 		g_doors = {};
 
 		// TileLayer is an EngineObject and will render with the other engineObjects (and respect renderOrder if given)
-		tileLayer = new TileLayer(vec2(0, 0), vec2(w, h), TILE_SIZE, vec2(1));
+		tileLayer = new TileLayer(vec2(0), vec2(w, h), TILE_SIZE);
 		initTileCollision(vec2(w, h));
 
 		for (let y = 0; y < h; y++) {
@@ -83,7 +83,7 @@ class MapManager {
 					// moss
 					g_moss.push({
 						pos: offsetVec.add(randInCircle(5 / 12)),
-						tileIndex: miniTileNumbers_moss + Math.floor(rand(11)),
+						tileIndex: miniTileNumbers_moss + randInt(11),
 						angle: rand(PI * 2),
 					});
 				}

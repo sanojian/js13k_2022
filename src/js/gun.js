@@ -53,7 +53,7 @@ class Gun extends EngineObject {
 			this.size.y = abs(this.angle) > PI / 2 ? -this._mysize : this._mysize;
 
 			if (isTouchDevice) {
-				if (gamepadWasPressed(0) || gamepadWasPressed(1) || gamepadWasPressed(3)) {
+				if (gamepadWasPressed(1)) {
 					musicResume();
 					this.fire();
 				}
