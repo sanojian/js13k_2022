@@ -96,7 +96,7 @@ class MapManager {
 						}
 					} catch (ex) {} // off edge of map
 
-					let tld = new TileLayerData(t, 0, rand() < 0.5);
+					let tld = new TileLayerData(t, 0, t == 24 ? false : rand() < 0.5);
 					tileLayer.setData(vec2(x, h - 1 - y), tld);
 				}
 			}
