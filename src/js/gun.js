@@ -26,11 +26,8 @@ class Gun extends EngineObject {
 
 	update() {
 		if (this.owner && this.owner.hp > 0) {
-			// key r or space
-			if (isTouchDevice && gamepadWasPressed(2)) {
-				this.reload();
-				return;
-			} else if (keyWasReleased(82) || keyWasReleased(32)) {
+			// gp2 oe key r or space
+			if (gamepadWasPressed(2) || keyWasReleased(82) || keyWasReleased(32)) {
 				this.reload();
 				return;
 			}
@@ -42,7 +39,9 @@ class Gun extends EngineObject {
 					let targetAngle = Math.atan2(gamepadStick(0).y, gamepadStick(0).x);
 					angle -= turnTowards(targetAngle - angle, (2 * PI) / 100);
 				}
-			} else if (!isTouchDevice) {
+			}
+
+			if (!isTouchDevice) {
 				// use mouse position
 				angle = Math.atan2(mousePos.y - this.owner.pos.y, mousePos.x - this.owner.pos.x);
 			}
@@ -53,12 +52,8 @@ class Gun extends EngineObject {
 			this.angle = -angle;
 			this.size.y = abs(this.angle) > PI / 2 ? -this._mysize : this._mysize;
 
-			if (isTouchDevice) {
-				if (gamepadWasPressed(1)) {
-					this.fire();
-				}
-			} else if (mouseWasPressed(0) && g_state == STATE_PLAYING) {
-				this.fire();
+			if (gamepadWasPressed(1) || mouseWasPressed(0) || keyWasPressed(13)) {
+				if (g_state == STATE_PLAYING) this.fire();
 			}
 
 			if (this.reloading) {
