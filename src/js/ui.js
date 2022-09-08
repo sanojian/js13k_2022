@@ -59,17 +59,6 @@ function gameRenderPost() {
 	// draw effects or hud that appear above all objects
 	scaleCameraToScreenSize();
 
-	// moss
-	for (let i = 0; i < g_moss.length; i++) {
-		let moss = g_moss[i];
-		drawTile(moss.pos, vec2(1 / 3), moss.tileIndex, MINI_TILE_SIZE, colorWhite, moss.angle);
-	}
-
-	// bullet holes
-	for (let i = 0; i < g_holes.length; i++) {
-		let hole = g_holes[i];
-		drawRect(hole.pos, vec2(hole.size / 12), hole.color);
-	}
 
 	if (g_player) {
 		let pos = vec2(0);

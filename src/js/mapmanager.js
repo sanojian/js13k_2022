@@ -99,6 +99,10 @@ class MapManager {
 		tileLayer.redraw();
 	}
 
+	render() {
+		tileLayer.renderNow();
+	}
+
 	// STUPID FOG OF WAR / LINE OF SIGHT
 	renderFOW() {
 		let theMap = mapData[g_levelDef.map];

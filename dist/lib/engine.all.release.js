@@ -2928,8 +2928,11 @@ class TileLayer extends EngineObject
     // Tile layers are not updated
     update() {}
 
+	// do nothing
+	render() { }
+
     // Render the tile layer, called automatically by the engine
-    render()
+    renderNow()
     {
         ASSERT(mainContext != this.context); // must call redrawEnd() after drawing tiles
 
