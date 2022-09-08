@@ -71,7 +71,6 @@ function startNextLevel() {
 	g_levelDef = levelDefs[g_level % levelDefs.length];
 
 	mapMan = new MapManager();
-	mapMan.render();
 
 	g_player = new MobPlayer(playerSpawn);
 	cameraPos = playerSpawn.copy();

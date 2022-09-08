@@ -147,8 +147,4 @@ class MapManager {
 			}
 		}
 	}
-
-	render() {
-		// tileLayer.render();
-	}
 }
