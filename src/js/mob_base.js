@@ -10,10 +10,10 @@ class Mob extends EngineObject {
 		this.miniFace = undefined;
 		this.setCollision(true, true);
 		this.mass = 1;
-		this.damping = 1;
 		this.elasticity = 0.25;
+		this.damping = 1;
 
-		this._maxSpeed = 0.4;
+		// this._maxSpeed = 0.4;
 
 		this.bumpWalk = 0;
 		this.mirror = false;
