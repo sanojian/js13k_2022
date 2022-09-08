@@ -62,7 +62,7 @@ var g_shadows = {};
 var g_transforms = [];
 
 var colorBlack = new Color(0, 0, 0);
-var colorWhite = new Color(1, 1, 1);
+var colorWhite = new Color();
 var colorBlood = new Color(172 / 255, 50 / 255, 50 / 255);
 var colorBullet = new Color(217 / 255, 160 / 255, 102 / 255);
 var colorScoreText = new Color(106 / 255, 190 / 255, 48 / 255);

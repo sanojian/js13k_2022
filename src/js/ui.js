@@ -59,7 +59,6 @@ function gameRenderPost() {
 	// draw effects or hud that appear above all objects
 	scaleCameraToScreenSize();
 
-
 	if (g_player) {
 		let pos = vec2(0);
 
@@ -124,8 +123,6 @@ function gameRenderPost() {
 		drawText(g_player.ammoShells, vec2(pos.x - txtDx, y - 0.6 * scaleUI), txtSize, txtCol, -1, undefined, "right");
 
 		// ammo
-		const colorHere = colorWhite;
-
 		const colorGone = new Color(1, 1, 1, 0.2);
 		if (g_player.gun) {
 			for (let i = 0; i < g_player.gun._maxAmmo; i++) {
@@ -134,7 +131,7 @@ function gameRenderPost() {
 					vec2(scaleUI),
 					g_player.gun._ammoIconTile,
 					TILE_SIZE,
-					i + 1 > g_player.gun.ammo ? colorGone : colorHere
+					i + 1 > g_player.gun.ammo ? colorGone : colorWhite
 				);
 			}
 		}
