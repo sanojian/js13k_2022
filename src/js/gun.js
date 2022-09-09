@@ -114,7 +114,7 @@ class Gun extends EngineObject {
 
 	render() {
 		// draw laser
-		if (this.owner && rand() > 0.4) {
+		if (this.owner && !this.reloading && rand() > 0.4) {
 			const laserLength = 100;
 			var laserEndPoint = vec2();
 
