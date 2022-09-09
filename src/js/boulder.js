@@ -5,6 +5,7 @@ class Boulder extends EngineObject {
 		super(pos, vec2(1), tileIndex, TILE_SIZE, rand(-PI / 8, PI / 8), new Color(0.7, 0.7, 0.7));
 
 		this.setCollision(true, true);
+		this.isThrown = false;
 	}
 
 	collideWithTile() {

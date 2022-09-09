@@ -76,23 +76,24 @@ class Enemy extends Mob {
 		}
 
 		if (o instanceof Boulder) {
-			this.hit(o.velocity, o.pos);
+			if (o.isThrown) this.hit(o.velocity, o.pos, 1);
 		}
 
 		return false;
 	}
 
-	hit(velocity, pos) {
-		this.hp--;
+	hit(velocity, pos, dam) {
+		if (this.hp <= 0) return;
 
-		this.applyForce(velocity.scale(2));
+		this.hp -= dam;
 
-		this.bloodEmitter = makeParticles(this.pos, rand());
+		this.applyForce(velocity.scale(1 + dam));
 
-		this.splatter(pos);
+		this.bloodEmitter = makeParticles(this.pos, rand(dam));
 
-		if (this.hp == 0) {
-			// Needs be equal or else we get enemy miscounts !
+		for (let i = dam; i--; ) this.splatter(pos);
+
+		if (this.hp <= 0) {
 			this.groan(1, 3, rand(2, 2.5), rand(5));
 
 			let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex, this.tileSize);
@@ -106,7 +107,7 @@ class Enemy extends Mob {
 				// kill all enemies and level complete
 				while (g_enemies.length > 0) {
 					g_enemies[0].hp = 1;
-					g_enemies[0].hit(velocity, g_enemies[0].pos);
+					g_enemies[0].hit(velocity, g_enemies[0].pos, 1);
 				}
 				g_score += 10;
 				changeState(STATE_CLEARED);

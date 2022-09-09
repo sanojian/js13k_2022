@@ -48,12 +48,12 @@ class Zombie extends Enemy {
 		super.update();
 	}
 
-	hit(velocity, pos) {
+	hit(velocity, pos, dam) {
 		//this.moveSpeed = rand(0.05, 0.2);
 		this.enemyThinkPause += rand(10, 30);
 		this.enemyToTarget = undefined;
 		this.groan(1, 2, rand(2, 3));
-		return super.hit(velocity, pos);
+		return super.hit(velocity, pos, dam);
 	}
 
 	postRender() {

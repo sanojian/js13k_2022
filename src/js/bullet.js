@@ -68,17 +68,20 @@ class Bullet extends EngineObject {
 
 	collideWithObject(o) {
 		//console.log("bullet hit : ", o);
-		if (this.penetration <= 0) return;
+		if (this.penetration <= 0) return false;
 
 		if (o instanceof Enemy) {
-			//console.log("bullet hit zombie:", o);
-			o.hit(this.velocity.copy(), this.pos.copy());
-			this.penetration--;
-			if (this.penetration == 0) {
+			if (o.hp <= 0) return false;
+
+			var damage = min(o.hp, this.penetration);
+
+			o.hit(this.velocity.copy(), this.pos.copy(), damage);
+			this.penetration -= damage;
+			if (this.penetration <= 0) {
 				this.destroy();
 				return;
 			}
-			this.hitSound.play();
+			this.hitSound.play(this.pos, 2);
 		}
 
 		return false; // no auto resolve of collision
