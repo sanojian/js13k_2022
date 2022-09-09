@@ -40,8 +40,8 @@ class Gun extends EngineObject {
 			let angle = -this.angle;
 
 			if (isUsingGamepad) {
-				if (gamepadStick(0).length() > 0.1) {
-					angle = Math.atan2(gamepadStick(0).y, gamepadStick(0).x);
+				if (gamepadStick(1).length() > 0.1) {
+					angle = Math.atan2(gamepadStick(1).y, gamepadStick(1).x);
 				}
 			} else if (!isTouchDevice) {
 				// use mouse position
@@ -55,7 +55,8 @@ class Gun extends EngineObject {
 			this.size.y = abs(this.angle) > PI / 2 ? -this._mysize : this._mysize;
 
 			if (isTouchDevice) {
-				if (gamepadWasPressed(1) || keyWasPressed(13)) {
+				// enter key for debugging
+				if (gamepadWasPressed(0) || keyWasPressed(13)) {
 					musicResume();
 					this.fire();
 				}
