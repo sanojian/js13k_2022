@@ -112,6 +112,27 @@ class Gun extends EngineObject {
 		super.update(); // update object physics and position
 	}
 
+	render() {
+		// draw laser
+		if (this.owner && rand() > 0.4) {
+			const laserLength = 100;
+			var laserEndPoint = vec2();
+
+			laserEndPoint.x = g_player.pos.x + laserLength * Math.cos(-this.angle);
+			laserEndPoint.y = g_player.pos.y + laserLength * Math.sin(-this.angle);
+
+			let hitPoint = tileCollisionRaycast(g_player.pos, laserEndPoint);
+			let distToHit = hitPoint.subtract(g_player.pos).length() - rand(1, 1.2);
+
+			laserEndPoint.x = this.pos.x + distToHit * Math.cos(-this.angle);
+			laserEndPoint.y = this.pos.y + distToHit * Math.sin(-this.angle);
+
+			drawLine(this.pos, laserEndPoint, 0.02, colorBlood);
+		}
+
+		super.render();
+	}
+
 	setOwner(player) {
 		if (player.gun) {
 			// throw current gun
