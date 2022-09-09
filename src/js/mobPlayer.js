@@ -90,6 +90,7 @@ class MobPlayer extends Mob {
 				if (!g_CHEATMODE) this.hp--;
 				v.normalize(0.001);
 				this.applyForce(v);
+				vibrate(200);
 
 				makeParticles(this.pos, 0.05);
 				if (Math.random() < 0.3) {

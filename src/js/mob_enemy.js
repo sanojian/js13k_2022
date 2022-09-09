@@ -73,6 +73,7 @@ class Enemy extends Mob {
 		if (o instanceof MobPlayer) {
 			// eating the corpse
 			this.groan(0.1, 0.3, rand(2, 3));
+			vibrate(200);
 		}
 
 		if (o instanceof Boulder) {
