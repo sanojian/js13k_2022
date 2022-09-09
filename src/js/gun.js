@@ -157,7 +157,7 @@ class Gun extends EngineObject {
 		//fx.shakeScreen(0.1);
 		fx.addSpark(this.pos.add(this.pos.subtract(this.owner.pos).normalize(1 - this._distance)));
 
-		if (!g_CHEATMODE) this.ammo--;
+		this.ammo--;
 
 		const shotVol = 3;
 
@@ -180,7 +180,7 @@ class Gun extends EngineObject {
 	}
 
 	reload() {
-		if (g_CHEATMODE) this.reloadTimePerBullet = 0.1;
+		// if (g_CHEATMODE) this.reloadTimePerBullet = 0.1;
 
 		if (this.reloading || this.ammo == this._maxAmmo) {
 			return;
