@@ -2024,11 +2024,11 @@ function gamepadsUpdate()
         // read virtual analog stick
         const sticks = stickData[0] || (stickData[0] = []);
         sticks[0] = vec2(touchGamepadStickLeft.x, -touchGamepadStickLeft.y); // flip vertical
-        // WRONG?!
+        // right stick
         sticks[1] = vec2(touchGamepadStickRight.x, -touchGamepadStickRight.y); // flip vertical
 
         // read virtual gamepad buttons
-        // const data = inputData[1] || (inputData[1] = []);
+        const data = inputData[1] || (inputData[1] = []);
         // for (let i=10; i--;)
         // {
         //     const j = i == 3 ? 2 : i == 2 ? 3 : i; // fix button locations

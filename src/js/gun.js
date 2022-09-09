@@ -60,7 +60,8 @@ class Gun extends EngineObject {
 					musicResume();
 					this.fire();
 				}
-			} else if (mouseWasPressed(0) && g_state == STATE_PLAYING) {
+			}
+			if (mouseWasPressed(0) && g_state == STATE_PLAYING) {
 				musicResume();
 				this.fire();
 			}
