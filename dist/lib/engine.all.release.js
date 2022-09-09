@@ -2029,11 +2029,11 @@ function gamepadsUpdate()
 
         // read virtual gamepad buttons
         const data = inputData[1] || (inputData[1] = []);
-        // for (let i=10; i--;)
-        // {
-        //     const j = i == 3 ? 2 : i == 2 ? 3 : i; // fix button locations
-        //     data[j] = touchGamepadButtons[i] ? 1 + 2*!gamepadIsDown(j,0) : 4*gamepadIsDown(j,0);
-        // }
+        for (let i=10; i--;)
+        {
+            const j = i == 3 ? 2 : i == 2 ? 3 : i; // fix button locations
+            data[j] = touchGamepadButtons[i] ? 1 + 2*!gamepadIsDown(j,0) : 4*gamepadIsDown(j,0);
+        }
     }
 
     if (!gamepadsEnable || !navigator.getGamepads || !document.hasFocus() && !debug)
@@ -2135,7 +2135,7 @@ if (isTouchDevice)
 
 // touch input internal variables
 let touchGamepadTimer = new Timer,
-    // touchGamepadButtons = [],
+    touchGamepadButtons = [],
     touchGamepadStickLeft = vec2(),
     touchGamepadStickRight = vec2();
 
@@ -2153,7 +2153,7 @@ function touchGamepadCreate()
         // clear touch gamepad input
         touchGamepadStickLeft = vec2();
         touchGamepadStickRight = vec2();
-        //touchGamepadButtons = [];
+        touchGamepadButtons = [];
             
         const touching = e.touches.length;
         if (touching)
@@ -2186,7 +2186,8 @@ function touchGamepadCreate()
             {
                 // virtual analog stick
                 // if (touchGamepadAnalog)
-                    touchGamepadStickLeft = touchPos.subtract(stickCenterLeft).scale(2/touchGamepadSize).clampLength();
+                touchGamepadStickLeft = touchPos.subtract(stickCenterLeft).scale(2 / touchGamepadSize).clampLength();
+                touchGamepadButtons[0] = 1;
                 // else
                 // {
                 //     // 8 way dpad
@@ -2196,6 +2197,7 @@ function touchGamepadCreate()
             }
             if (touchPos.distance(stickCenterRight) < touchGamepadSize) {
                 touchGamepadStickRight = touchPos.subtract(stickCenterRight).scale(2 / touchGamepadSize).clampLength();
+                touchGamepadButtons[1] = 1;
             }
             // else if (touchPos.distance(buttonCenter) < touchGamepadSize)
             // {

@@ -29,7 +29,7 @@ class Gun extends EngineObject {
 
 		if (this.owner && this.owner.hp > 0) {
 			// key r or space
-			if (isTouchDevice && gamepadWasPressed(2)) {
+			if (isTouchDevice && gamepadWasPressed(0)) {
 				this.reload();
 				return;
 			} else if (keyWasReleased(82) || keyWasReleased(32)) {
@@ -56,12 +56,11 @@ class Gun extends EngineObject {
 
 			if (isTouchDevice) {
 				// enter key for debugging
-				if (gamepadWasPressed(0) || keyWasPressed(13)) {
+				if (gamepadWasReleased(1) || keyWasPressed(13)) {
 					musicResume();
 					this.fire();
 				}
-			}
-			if (mouseWasPressed(0) && g_state == STATE_PLAYING) {
+			} else if (mouseWasPressed(0) && g_state == STATE_PLAYING) {
 				musicResume();
 				this.fire();
 			}
