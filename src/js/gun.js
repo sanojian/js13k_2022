@@ -113,6 +113,27 @@ class Gun extends EngineObject {
 		super.update(); // update object physics and position
 	}
 
+	render() {
+		// draw laser
+		if (this.owner && !this.reloading && rand() > 0.4) {
+			const laserLength = 100;
+			var laserEndPoint = vec2();
+
+			laserEndPoint.x = g_player.pos.x + laserLength * Math.cos(-this.angle);
+			laserEndPoint.y = g_player.pos.y + laserLength * Math.sin(-this.angle);
+
+			let hitPoint = tileCollisionRaycast(g_player.pos, laserEndPoint);
+			let distToHit = hitPoint.subtract(g_player.pos).length() - rand(1, 1.2);
+
+			laserEndPoint.x = this.pos.x + distToHit * Math.cos(-this.angle);
+			laserEndPoint.y = this.pos.y + distToHit * Math.sin(-this.angle);
+
+			drawLine(this.pos, laserEndPoint, 0.02, colorBlood);
+		}
+
+		super.render();
+	}
+
 	setOwner(player) {
 		if (player.gun) {
 			// throw current gun
@@ -137,7 +158,7 @@ class Gun extends EngineObject {
 		//fx.shakeScreen(0.1);
 		fx.addSpark(this.pos.add(this.pos.subtract(this.owner.pos).normalize(1 - this._distance)));
 
-		if (!g_CHEATMODE) this.ammo--;
+		this.ammo--;
 
 		const shotVol = 3;
 
@@ -160,7 +181,7 @@ class Gun extends EngineObject {
 	}
 
 	reload() {
-		if (g_CHEATMODE) this.reloadTimePerBullet = 0.1;
+		// if (g_CHEATMODE) this.reloadTimePerBullet = 0.1;
 
 		if (this.reloading || this.ammo == this._maxAmmo) {
 			return;

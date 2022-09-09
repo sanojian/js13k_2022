@@ -63,9 +63,9 @@ class Vampire extends Enemy {
 		super.render();
 	}
 
-	hit(velocity, pos) {
+	hit(velocity, pos, dam) {
 		this.enemyToTarget = undefined;
 		this.groan(1, this.transformed ? 1 : 0.3);
-		return super.hit(velocity, pos);
+		return super.hit(velocity, pos, dam);
 	}
 }

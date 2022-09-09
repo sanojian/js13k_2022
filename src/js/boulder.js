@@ -6,6 +6,7 @@ class Boulder extends EngineObject {
 
 		vibrate(100);
 		this.setCollision(true, true);
+		this.isThrown = false;
 	}
 
 	collideWithTile() {

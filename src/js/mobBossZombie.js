@@ -29,6 +29,7 @@ class BossZombie extends Enemy {
 			this.throwingTimer = new Timer(1);
 			this.boulder.velocity = g_player.pos.subtract(this.pos).clampLength(0.3);
 			this.boulder.angleVelocity = rand(-0.1, 0.1);
+			this.boulder.isThrown = true;
 			this.soundThrow.play(this.pos);
 		}
 
