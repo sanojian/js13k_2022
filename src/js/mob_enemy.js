@@ -90,7 +90,9 @@ class Enemy extends Mob {
 
 		this.applyForce(velocity.scale(1 + dam));
 
-		this.bloodEmitter = makeParticles(this.pos, rand(dam));
+		this.bloodEmitter = makeParticles(this.pos, rand(dam / 4, dam / 2));
+
+
 
 		for (let i = dam; i--; ) fx.splatter(pos);
 
@@ -123,12 +125,15 @@ class Enemy extends Mob {
 		}
 
 		// splatter on mob
-		let wound = { pos: vec2((pos.x - this.pos.x) / 3, (pos.y - this.pos.y) / 3), pattern: [] };
-		for (let i = 0; i < 4; i++) {
-			wound.pattern.push(Math.random() > 0.5 ? 1 : 0);
-		}
-		this.blood.push(wound);
+		for (let d = dam; d--; ) {
+			let wound = { pos: vec2((pos.x - this.pos.x) / 3, (pos.y - this.pos.y) / 3), pattern: [] };
+			wound.pos = wound.pos.add(randInCircle(0.5));
 
+			for (let i = 0; i < 4; i++) {
+				wound.pattern.push(Math.random() > 0.5 ? 1 : 0);
+			}
+			this.blood.push(wound);
+		}
 		return false;
 	}
 
