@@ -1,7 +1,7 @@
 /** @format */
 class Corpse extends EngineObject {
 	constructor(pos, size, tileIndex, tileSize) {
-		super(pos, size, tileIndex, tileSize, 0, new Color(0.7, 0.5, 0.5));
+		super(pos, size, tileIndex, tileSize, 0, new Color(1, 1, 1, 0.7));
 		// your object init code here
 
 		this._animLifetime = 10;
@@ -12,6 +12,7 @@ class Corpse extends EngineObject {
 		this.setCollision(false, false, true);
 
 		this.bloodEmitter = makeParticles(this.pos, rand(0.5, 1));
+		this.splatterTime = 90;
 	}
 
 	update() {
@@ -23,6 +24,10 @@ class Corpse extends EngineObject {
 		this.velocity.y = this.velocity.y * 0.9;
 
 		this.bloodEmitter.pos = this.pos;
+		if (this.splatterTime) {
+			if (rand() < 0.1) fx.splatter(this.pos);
+			this.splatterTime--;
+		}
 		super.update(); // update object physics and position
 	}
 

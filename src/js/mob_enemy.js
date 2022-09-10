@@ -92,7 +92,7 @@ class Enemy extends Mob {
 
 		this.bloodEmitter = makeParticles(this.pos, rand(dam));
 
-		for (let i = dam; i--; ) this.splatter(pos);
+		for (let i = dam; i--; ) fx.splatter(pos);
 
 		if (this.hp <= 0) {
 			this.groan(1, 3, rand(2, 2.5), rand(5));

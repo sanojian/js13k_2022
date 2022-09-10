@@ -24,7 +24,22 @@ const fx = {
 			g_screenShake = g_screenShake.multiply(vec2(-0.7));
 		}
 
+	},
+
+	splatter(pos) {
+		// splatter on floor
+		let rando = Math.random();
+		let splatterPattern = {
+			pos: pos.add(randInCircle(0.2)),
+			color: new Color(rando / 2, rando / 10, rando / 10),
+			pattern: [],
+		};
+		for (let i = 0; i < 16; i++) {
+			splatterPattern.pattern.push(Math.random() > 0.5 ? 1 : 0);
+		}
+		g_splatter.push(splatterPattern);
 	}
+
 
 };
 

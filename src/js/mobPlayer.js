@@ -94,12 +94,12 @@ class MobPlayer extends Mob {
 
 				makeParticles(this.pos, 0.05);
 				if (Math.random() < 0.3) {
-					this.splatter(this.pos.copy());
+					fx.splatter(this.pos.copy());
 				}
 
-				if (this.hp == 0) {
+				if (this.hp <= 0) {
 					for (let i = 0; i < 10; i++) {
-						this.splatter(this.pos);
+						fx.splatter(this.pos);
 						makeParticles(this.pos, rand());
 					}
 
