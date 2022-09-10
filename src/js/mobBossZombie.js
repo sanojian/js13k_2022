@@ -42,7 +42,7 @@ class BossZombie extends Enemy {
 
 		if (this.mirror != this.oldMirror) {
 			fx.shakeScreen(0.5);
-			vibrate(200);
+			//vibrate(200);
 			this.soundStep.play(this.pos);
 			this.oldMirror = this.mirror;
 		}

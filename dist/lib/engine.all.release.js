@@ -744,7 +744,7 @@ let touchGamepadAlpha = .3;
 /** Allow vibration hardware if it exists
  *  @default
  *  @memberof Settings */
-let vibrateEnable = 0;
+const vibrateEnable = 0;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Audio settings
@@ -2085,11 +2085,11 @@ function gamepadsUpdate()
 /** Pulse the vibration hardware if it exists
  *  @param {Number} [pattern=100] - a single value in miliseconds or vibration interval array
  *  @memberof Input */
-const vibrate = (pattern)=> vibrateEnable && Navigator.vibrate && Navigator.vibrate(pattern);
+// const vibrate = (pattern)=> vibrateEnable && Navigator.vibrate && Navigator.vibrate(pattern);
 
 // /** Cancel any ongoing vibration
 //  *  @memberof Input */
-const vibrateStop = ()=> vibrate(0);
+// const vibrateStop = ()=> vibrate(0);
 
 ///////////////////////////////////////////////////////////////////////////////
 // Touch input

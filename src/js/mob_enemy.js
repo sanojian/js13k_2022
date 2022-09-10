@@ -73,7 +73,7 @@ class Enemy extends Mob {
 		if (o instanceof MobPlayer) {
 			// eating the corpse
 			this.groan(0.1, 0.3, rand(2, 3));
-			vibrate(200);
+			//vibrate(200);
 		}
 
 		if (o instanceof Boulder) {
@@ -91,8 +91,6 @@ class Enemy extends Mob {
 		this.applyForce(velocity.scale(1 + dam));
 
 		this.bloodEmitter = makeParticles(this.pos, rand(dam / 4, dam / 2));
-
-
 
 		for (let i = dam; i--; ) fx.splatter(pos);
 

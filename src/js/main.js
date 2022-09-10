@@ -17,7 +17,7 @@ function gameInit() {
 
 	touchGamepadEnable = 1;
 	touchGamepadAnalog = 1;
-	vibrateEnable = 1;
+	//vibrateEnable = 1;
 	startNewGame();
 }
 

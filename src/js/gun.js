@@ -63,7 +63,7 @@ class Gun extends EngineObject {
 			} else if (mouseWasPressed(0) && g_state == STATE_PLAYING) {
 				musicResume();
 				this.fire();
-				vibrate(100);
+				//vibrate(100);
 			}
 
 			if (this.reloading) {
