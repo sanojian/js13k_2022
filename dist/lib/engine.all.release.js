@@ -12,26 +12,26 @@
 const showWatermark = 0;
 const godMode = 0;
 const debug = 0;
-const debugOverlay = 0;
-const debugPhysics = 0;
-const debugParticles = 0;
-const debugRaycast = 0;
-const debugGamepads = 0;
-const debugMedals = 0;
+// const debugOverlay = 0;
+// const debugPhysics = 0;
+// const debugParticles = 0;
+// const debugRaycast = 0;
+// const debugGamepads = 0;
+// const debugMedals = 0;
 
 // debug commands are automatically removed from the final build
-const ASSERT          = ()=> {}
-const debugInit       = ()=> {}
-const debugUpdate     = ()=> {}
-const debugRender     = ()=> {}
-const debugRect       = ()=> {}
-const debugCircle     = ()=> {}
-const debugPoint      = ()=> {}
-const debugLine       = ()=> {}
-const debugAABB       = ()=> {}
-const debugText       = ()=> {}
-const debugClear      = ()=> {}
-const debugSaveCanvas = ()=> {}
+// const ASSERT          = ()=> {}
+// const debugInit       = ()=> {}
+// const debugUpdate     = ()=> {}
+// const debugRender     = ()=> {}
+// const debugRect       = ()=> {}
+// const debugCircle     = ()=> {}
+// const debugPoint      = ()=> {}
+// const debugLine       = ()=> {}
+// const debugAABB       = ()=> {}
+// const debugText       = ()=> {}
+// const debugClear      = ()=> {}
+// const debugSaveCanvas = ()=> {}
 /**
  * LittleJS Utility Classes and Functions
  * <br> - General purpose math library
@@ -138,7 +138,7 @@ const wave = (frequency=1, amplitude=1, t=time)=> amplitude/2 * (1 - Math.cos(t*
  *  @param {Number} t - time in seconds
  *  @return {String}
  *  @memberof Utilities */
-const formatTime = (t)=> (t/60|0)+':'+(t%60<10?'0':'')+(t%60|0);
+// const formatTime = (t)=> (t/60|0)+':'+(t%60<10?'0':'')+(t%60|0);
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -399,12 +399,12 @@ class Color
     /** Returns a copy of this color times the color passed in
      * @param {Color} color
      * @return {Color} */
-    multiply(c) { return new Color(this.r*c.r, this.g*c.g, this.b*c.b, this.a*c.a); }
+    // multiply(c) { return new Color(this.r*c.r, this.g*c.g, this.b*c.b, this.a*c.a); }
 
     /** Returns a copy of this color divided by the color passed in
      * @param {Color} color
      * @return {Color} */
-    divide(c) { return new Color(this.r/c.r, this.g/c.g, this.b/c.b, this.a/c.a); }
+    // divide(c) { return new Color(this.r/c.r, this.g/c.g, this.b/c.b, this.a/c.a); }
 
     /** Returns a copy of this color scaled by the value passed in, alpha can be scaled separately
      * @param {Number} scale
@@ -414,7 +414,7 @@ class Color
 
     /** Returns a copy of this color clamped to the valid range between 0 and 1
      * @return {Color} */
-    clamp() { return new Color(clamp(this.r), clamp(this.g), clamp(this.b), clamp(this.a)); }
+    // clamp() { return new Color(clamp(this.r), clamp(this.g), clamp(this.b), clamp(this.a)); }
 
     /** Returns a new color that is p percent between this and the color passed in
      * @param {Color}  color
@@ -428,63 +428,63 @@ class Color
      * @param {Number} [lightness=1]
      * @param {Number} [alpha=1]
      * @return {Color} */
-    setHSLA(h=0, s=0, l=1, a=1)
-    {
-        const q = l < .5 ? l*(1+s) : l+s-l*s, p = 2*l-q,
-            f = (p, q, t)=>
-                (t = ((t%1)+1)%1) < 1/6 ? p+(q-p)*6*t :
-                t < 1/2 ? q :
-                t < 2/3 ? p+(q-p)*(2/3-t)*6 : p;
+    // setHSLA(h=0, s=0, l=1, a=1)
+    // {
+    //     const q = l < .5 ? l*(1+s) : l+s-l*s, p = 2*l-q,
+    //         f = (p, q, t)=>
+    //             (t = ((t%1)+1)%1) < 1/6 ? p+(q-p)*6*t :
+    //             t < 1/2 ? q :
+    //             t < 2/3 ? p+(q-p)*(2/3-t)*6 : p;
                 
-        this.r = f(p, q, h + 1/3);
-        this.g = f(p, q, h);
-        this.b = f(p, q, h - 1/3);
-        this.a = a;
-        return this;
-    }
+    //     this.r = f(p, q, h + 1/3);
+    //     this.g = f(p, q, h);
+    //     this.b = f(p, q, h - 1/3);
+    //     this.a = a;
+    //     return this;
+    // }
 
     /** Returns this color expressed in hsla format
      * @return {Array} */
-    getHSLA()
-    {
-        const r = this.r;
-        const g = this.g;
-        const b = this.b;
-        const a = this.a;
-        const max = Math.max(r, g, b);
-        const min = Math.min(r, g, b);
-        const l = (max + min) / 2;
+    // getHSLA()
+    // {
+    //     const r = this.r;
+    //     const g = this.g;
+    //     const b = this.b;
+    //     const a = this.a;
+    //     const max = Math.max(r, g, b);
+    //     const min = Math.min(r, g, b);
+    //     const l = (max + min) / 2;
         
-        let h = 0, s = 0;
-        if (max != min)
-        {
-            let d = max - min;
-            s = l > .5 ? d / (2 - max - min) : d / (max + min);
-            if (r == max)
-                h = (g - b) / d + (g < b ? 6 : 0);
-            else if (g == max)
-                h = (b - r) / d + 2;
-            else if (b == max)
-                h =  (r - g) / d + 4;
-        }
+    //     let h = 0, s = 0;
+    //     if (max != min)
+    //     {
+    //         let d = max - min;
+    //         s = l > .5 ? d / (2 - max - min) : d / (max + min);
+    //         if (r == max)
+    //             h = (g - b) / d + (g < b ? 6 : 0);
+    //         else if (g == max)
+    //             h = (b - r) / d + 2;
+    //         else if (b == max)
+    //             h =  (r - g) / d + 4;
+    //     }
 
-        return [h / 6, s, l, a];
-    }
+    //     return [h / 6, s, l, a];
+    // }
 
     /** Returns a new color that has each component randomly adjusted
      * @param {Number} [amount=.05]
      * @param {Number} [alphaAmount=0]
      * @return {Color} */
-    mutate(amount=.05, alphaAmount=0) 
-    {
-        return new Color
-        (
-            this.r + rand(amount, -amount),
-            this.g + rand(amount, -amount),
-            this.b + rand(amount, -amount),
-            this.a + rand(alphaAmount, -alphaAmount)
-        ).clamp();
-    }
+    // mutate(amount=.05, alphaAmount=0) 
+    // {
+    //     return new Color
+    //     (
+    //         this.r + rand(amount, -amount),
+    //         this.g + rand(amount, -amount),
+    //         this.b + rand(amount, -amount),
+    //         this.a + rand(alphaAmount, -alphaAmount)
+    //     ).clamp();
+    // }
 
     /** Returns this color expressed as an CSS color value
      * @return {String} */
@@ -503,15 +503,15 @@ class Color
     /** Set this color from a hex code
      * @param {String} hex - html hex code
      * @return {Color} */
-    setHex(hex)
-    {
-        const fromHex = (a)=> parseInt(hex.slice(a,a+2), 16)/255;
-        this.r = fromHex(1);
-        this.g = fromHex(3),
-        this.b = fromHex(5);
-        this.a = 1;
-        return this;
-    }
+    // setHex(hex)
+    // {
+    //     const fromHex = (a)=> parseInt(hex.slice(a,a+2), 16)/255;
+    //     this.r = fromHex(1);
+    //     this.g = fromHex(3),
+    //     this.b = fromHex(5);
+    //     this.a = 1;
+    //     return this;
+    // }
 
     /** Returns this color expressed as a hex code
      * @return {String} */
@@ -564,11 +564,11 @@ class Timer
 
     /** Get percentage elapsed based on time it was set to, returns 0 if not set
      * @return {Number} */
-    getPercent() { return this.isSet()? percent(this.time - time, this.setTime, 0) : 0; }
+    // getPercent() { return this.isSet()? percent(this.time - time, this.setTime, 0) : 0; }
     
     /** Returns this timer expressed as a string
      * @return {String} */
-    toString() { if (debug) { return this.unset() ? 'unset' : Math.abs(this.get()) + ' seconds ' + (this.get()<0 ? 'before' : 'after' ); } }
+    // toString() { if (debug) { return this.unset() ? 'unset' : Math.abs(this.get()) + ' seconds ' + (this.get()<0 ? 'before' : 'after' ); } }
 }
 /**
  * LittleJS Engine Settings
@@ -873,7 +873,7 @@ function engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRender
     {
         // save tile image info
         tileImageFixBleed = vec2(tileFixBleedScale).divide(tileImageSize = vec2(tileImage.width, tileImage.height));
-        debug && (tileImage.onload=()=>ASSERT(1)); // tile sheet can not reloaded
+        // debug && (tileImage.onload=()=>ASSERT(1)); // tile sheet can not reloaded
 
         // setup html
         document.body.style = styleBody;
@@ -882,7 +882,7 @@ function engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRender
         mainCanvas.style = styleCanvas;
 
         // init stuff and start engine
-        debugInit();
+        //debugInit();
         //glInit();
 
         // create overlay canvas for hud to appear above gl canvas
@@ -901,11 +901,11 @@ function engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRender
         // update time keeping
         let frameTimeDeltaMS = frameTimeMS - frameTimeLastMS;
         frameTimeLastMS = frameTimeMS;
-        if (debug || showWatermark)
-            averageFPS = lerp(.05, averageFPS || 0, 1e3/(frameTimeDeltaMS||1));
-        if (debug)
-            frameTimeDeltaMS *= keyIsDown(107) ? 5 : keyIsDown(109) ? .2 : 1; // +/- to speed/slow time
-        timeReal += frameTimeDeltaMS / 1e3;
+        // if (debug || showWatermark)
+        //     averageFPS = lerp(.05, averageFPS || 0, 1e3/(frameTimeDeltaMS||1));
+        // if (debug)
+        //     frameTimeDeltaMS *= keyIsDown(107) ? 5 : keyIsDown(109) ? .2 : 1; // +/- to speed/slow time
+        // timeReal += frameTimeDeltaMS / 1e3;
         frameTimeBufferMS = min(frameTimeBufferMS + !paused * frameTimeDeltaMS, 50); // clamp incase of slow framerate
 
         // if (canvasFixedSize.x)
@@ -935,17 +935,17 @@ function engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRender
         // save canvas size
         mainCanvasSize = vec2(mainCanvas.width, mainCanvas.height);
 
-        if (paused)
-        {
-            // do post update even when paused
-            inputUpdate();
-            debugUpdate();
-            gameUpdatePost();
-            inputUpdatePost();
-        }
-        else
-        {
-            // apply time delta smoothing, improves smoothness of framerate in some browsers
+        // if (paused)
+        // {
+        //     // do post update even when paused
+        //     inputUpdate();
+        //     debugUpdate();
+        //     gameUpdatePost();
+        //     inputUpdatePost();
+        // }
+        // else
+        // {
+        //     // apply time delta smoothing, improves smoothness of framerate in some browsers
             let deltaSmooth = 0;
             if (frameTimeBufferMS < 0 && frameTimeBufferMS > -9)
             {
@@ -963,14 +963,14 @@ function engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRender
                 engineObjectsUpdate();
 
                 // do post update
-                debugUpdate();
+                // debugUpdate();
                 gameUpdatePost();
                 inputUpdatePost();
             }
 
             // add the time smoothing back in
             frameTimeBufferMS += deltaSmooth;
-        }
+        // }
         
         // render sort then render while removing destroyed objects
         enginePreRender();
@@ -1241,7 +1241,7 @@ class EngineObject
                     if (o.mass) // push away if not fixed
                         o.velocity = o.velocity.subtract(velocity);
                         
-                    debugOverlay && debugPhysics && debugAABB(this.pos, this.size, o.pos, o.size, '#f00');
+                    // debugOverlay && debugPhysics && debugAABB(this.pos, this.size, o.pos, o.size, '#f00');
                     continue;
                 }
 
@@ -1304,7 +1304,7 @@ class EngineObject
                     else // bounce if other object is fixed
                         this.velocity.x *= -this.elasticity;
                 }
-                debugOverlay && debugPhysics && debugAABB(this.pos, this.size, o.pos, o.size, '#f0f');
+                // debugOverlay && debugPhysics && debugAABB(this.pos, this.size, o.pos, o.size, '#f0f');
             }
         }
         if (this.collideTiles)
@@ -1404,23 +1404,23 @@ class EngineObject
      *  @param {EngineObject} child
      *  @param {Vector2}      [localPos=new Vector2]
      *  @param {Number}       [localAngle=0] */
-    addChild(child, localPos=vec2(), localAngle=0)
-    {
-        //ASSERT(!child.parent && !this.children.includes(child));
-        this.children.push(child);
-        child.parent = this;
-        child.localPos = localPos.copy();
-        child.localAngle = localAngle;
-    }
+    // addChild(child, localPos=vec2(), localAngle=0)
+    // {
+    //     //ASSERT(!child.parent && !this.children.includes(child));
+    //     this.children.push(child);
+    //     child.parent = this;
+    //     child.localPos = localPos.copy();
+    //     child.localAngle = localAngle;
+    // }
 
-    /** Removes a child from this one
-     *  @param {EngineObject} child */
-    removeChild(child)
-    {
-        //ASSERT(child.parent == this && this.children.includes(child));
-        this.children.splice(this.children.indexOf(child), 1);
-        child.parent = 0;
-    }
+    // /** Removes a child from this one
+    //  *  @param {EngineObject} child */
+    // removeChild(child)
+    // {
+    //     //ASSERT(child.parent == this && this.children.includes(child));
+    //     this.children.splice(this.children.indexOf(child), 1);
+    //     child.parent = 0;
+    // }
 
     /** Set how this object collides
      *  @param {boolean} [collideSolidObjects=0] - Does it collide with solid objects
@@ -1615,22 +1615,22 @@ function drawRect(pos, size, color, angle, useWebGL)
  *  @param {Color}   [additiveColor=new Color(0,0,0,0)]
  *  @param {Boolean} [useWebGL=glEnable]
  *  @memberof Draw */
-function drawTileScreenSpace(pos, size=vec2(1), tileIndex, tileSize, color, angle, mirror, additiveColor, useWebGL)
-{
-    drawTile(screenToWorld(pos), size.scale(1/cameraScale), tileIndex, tileSize, color, angle, mirror, additiveColor, useWebGL);
-}
+// function drawTileScreenSpace(pos, size=vec2(1), tileIndex, tileSize, color, angle, mirror, additiveColor, useWebGL)
+// {
+//     drawTile(screenToWorld(pos), size.scale(1/cameraScale), tileIndex, tileSize, color, angle, mirror, additiveColor, useWebGL);
+// }
 
-/** Draw colored rectangle in screen space
- *  @param {Vector2} pos
- *  @param {Vector2} [size=new Vector2(1,1)]
- *  @param {Color}   [color=new Color(1,1,1)]
- *  @param {Number}  [angle=0]
- *  @param {Boolean} [useWebGL=glEnable]
- *  @memberof Draw */
-function drawRectScreenSpace(pos, size, color, angle, useWebGL)
-{
-    drawTileScreenSpace(pos, size, -1, tileSizeDefault, color, angle, 0, 0, useWebGL);
-}
+// /** Draw colored rectangle in screen space
+//  *  @param {Vector2} pos
+//  *  @param {Vector2} [size=new Vector2(1,1)]
+//  *  @param {Color}   [color=new Color(1,1,1)]
+//  *  @param {Number}  [angle=0]
+//  *  @param {Boolean} [useWebGL=glEnable]
+//  *  @memberof Draw */
+// function drawRectScreenSpace(pos, size, color, angle, useWebGL)
+// {
+//     drawTileScreenSpace(pos, size, -1, tileSizeDefault, color, angle, 0, 0, useWebGL);
+// }
 
 /** Draw colored line between two points
  *  @param {Vector2} posA
@@ -1979,13 +1979,13 @@ function inputUpdatePost()
 
 onkeydown = (e)=>
 {
-    if (debug && e.target != document.body) return;
+    // if (debug && e.target != document.body) return;
     e.repeat || (inputData[isUsingGamepad = 0][remapKeyCode(e.keyCode)] = 3);
     preventDefaultInput && e.preventDefault();
 }
 onkeyup = (e)=>
 {
-    if (debug && e.target != document.body) return;
+    // if (debug && e.target != document.body) return;
     inputData[0][remapKeyCode(e.keyCode)] = 4;
 }
 const remapKeyCode = (c)=> inputWASDEmulateDirection ? c==87?38 : c==83?40 : c==65?37 : c==68?39 : c : c;
@@ -2161,12 +2161,12 @@ function touchGamepadCreate()
             isUsingGamepad = 1;
             touchGamepadTimer.set();
 
-            if (paused)
-            {
-                // touch anywhere to press start when paused
-                touchGamepadButtons[9] = 1;
-                return;
-            }
+            // if (paused)
+            // {
+            //     // touch anywhere to press start when paused
+            //     touchGamepadButtons[9] = 1;
+            //     return;
+            // }
         }
 
         // get center of left and right sides
@@ -2830,8 +2830,8 @@ function tileCollisionRaycast(posStart, posEnd, object)
         const tileData = getTileCollisionData(vec2(x,y));
         if (tileData && (object ? object.collideWithTileRaycast(tileData, new Vector2(x, y)) : tileData > 0))
         {
-            debugRaycast && debugLine(posStart, posEnd, '#f00',.02, 1);
-            debugRaycast && debugPoint(new Vector2(x+.5, y+.5), '#ff0', 1);
+            // debugRaycast && debugLine(posStart, posEnd, '#f00',.02, 1);
+            // debugRaycast && debugPoint(new Vector2(x+.5, y+.5), '#ff0', 1);
             return new Vector2(x+.5, y+.5);
         }
 
@@ -2841,7 +2841,7 @@ function tileCollisionRaycast(posStart, posEnd, object)
         if (e2 >= dy) e += dy, x += sx;
         if (e2 <= dx) e += dx, y += sy;
     }
-    debugRaycast && debugLine(posStart, posEnd, '#00f',.02, 1);
+    // debugRaycast && debugLine(posStart, posEnd, '#00f',.02, 1);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -3252,7 +3252,7 @@ class ParticleEmitter extends EngineObject
         else
             this.destroy();
 
-        debugParticles && debugRect(this.pos, vec2(this.emitSize), '#0f0', 0, this.angle);
+        // debugParticles && debugRect(this.pos, vec2(this.emitSize), '#0f0', 0, this.angle);
     }
 
     /** Spawn one particle
@@ -3358,7 +3358,7 @@ class Particle extends EngineObject
         // else
             drawTile(this.pos, size, this.tileIndex, this.tileSize, color, this.angle, this.mirror);
         this.additive && setBlendMode();
-        debugParticles && debugRect(this.pos, size, '#f005', 0, this.angle);
+        // debugParticles && debugRect(this.pos, size, '#f005', 0, this.angle);
 
         if (p == 1)
         {

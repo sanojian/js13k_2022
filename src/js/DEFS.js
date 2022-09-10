@@ -77,6 +77,8 @@ const miniTileNumbers_miniFacePlayer = 15 * 15 + 0;
 const miniTileNumbers_miniFaceZombie = 15 * 15 + 1;
 const miniTileNumbers_miniFaceVampire = 15 * 15 + 2;
 const miniTileNumbers_miniFaceGhost = 15 * 15 + 3;
+const miniTileNumbers_miniFaceBoss = 9;
+const miniTileNumbers_miniFaceBossAngry = 19;
 const miniTileNumbers_moss = 15 * 15 + 4;
 
 const mobDefs = {
