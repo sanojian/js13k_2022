@@ -166,7 +166,7 @@ function updateStateClickToStart() {
 
 	textBottom = "Click to start";
 
-	if (mouseWasReleased(0)) {
+	if (mouseWasReleased(0) || gamepadWasPressed(0) || gamepadWasPressed(1)) {
 		uiSound();
 		if (isTouchDevice && !isFullscreen()) toggleFullscreen();
 		uiFadeOutAndCall(() => {
