@@ -254,7 +254,7 @@ function updateStatePlaying() {
 		return;
 	}
 
-	if (g_player.gun && frame % 60 == 0) {
+	if (g_player.gun && frame % 150 == 0) {
 		if (!ammoSpawned && g_player.getAmmoForCurrentGun() == 0) {
 			// spawn more ammo
 			if (AmmoBox.getCount() < 4) {
