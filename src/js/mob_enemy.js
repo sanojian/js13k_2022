@@ -50,7 +50,7 @@ class Enemy extends Mob {
 			if (rand() < 0.1) {
 				let colPos = tilePos.add(vec2(0.5));
 				colPos = colPos.lerp(this.pos, 0.5);
-				pushers.push(new Pusher(colPos, 0.01, 0, 1, rand(1, 2)));
+				pushers.push(new Pusher(colPos, 0.02, 0, rand(1, 2), rand(1, 2)));
 			}
 		}
 

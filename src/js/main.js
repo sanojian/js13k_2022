@@ -219,7 +219,7 @@ var ammoSpawned;
 function updateStatePlaying() {
 	// enemies are a tiny bit repulsed by each other ... and thus try to spread out
 	for (const e of g_enemies) {
-		pushers.push(new Pusher(e.pos, 0.001, 1, 3, 2 / 60));
+		pushers.push(new Pusher(e.pos, 0.002, 1, 3, 2 / 60));
 	}
 
 	updatePushers();
