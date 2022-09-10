@@ -618,7 +618,7 @@ let tileSizeDefault = vec2(16);
 /** Prevent tile bleeding from neighbors in pixels
  *  @default
  *  @memberof Settings */
-let tileFixBleedScale = .2;
+let tileFixBleedScale = .3;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Object settings
