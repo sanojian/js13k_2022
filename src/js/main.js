@@ -254,11 +254,14 @@ function updateStatePlaying() {
 		return;
 	}
 
-	if (g_player.gun) {
+	if (g_player.gun && frame % 60 == 0) {
 		if (!ammoSpawned && g_player.getAmmoForCurrentGun() == 0) {
 			// spawn more ammo
-			new AmmoBox(findFreePos(7), g_player.gun.tileIndex);
-			ammoSpawned = true;
+			if (AmmoBox.getCount() < 4) {
+				let newAmmo = new AmmoBox(findFreePos(7), g_player.gun.tileIndex);
+				soundLevelCleared.play(newAmmo.pos, 0.5, 3);
+				ammoSpawned = true;
+			}
 		} else if (g_player.getAmmoForCurrentGun() != 0) {
 			// allow ammo to spawn again when player is empty
 			ammoSpawned = false;

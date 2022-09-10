@@ -1,6 +1,15 @@
 /** @format */
 
 class AmmoBox extends EngineObject {
+	static getCount() {
+		var c = 0;
+		for (const o of engineObjects) {
+			if (o instanceof AmmoBox) c++;
+		}
+
+		return c;
+	}
+
 	constructor(pos, gunType) {
 		super(pos, vec2(1), getAmmoForGunType(gunType), TILE_SIZE);
 

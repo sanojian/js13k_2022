@@ -24,11 +24,11 @@ class MobPlayer extends Mob {
 
 	getAmmoForCurrentGun() {
 		if (this.gun.tileIndex == tileNumbers_shotgun) {
-			return this.ammoShells;
+			return this.gun.ammo + this.ammoShells;
 		} else if (this.gun.tileIndex == tileNumbers_rifle) {
-			return this.ammoRifle;
+			return this.gun.ammo + this.ammoRifle;
 		}
-		return this.ammoBullets;
+		return this.gun.ammo + this.ammoBullets;
 	}
 
 	update() {
