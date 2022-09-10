@@ -195,11 +195,11 @@ let randSeed = 1;
  *  @param {Number} [valueB=0]
  *  @return {Number}
  *  @memberof Random */
-const randSeeded = (a=1, b=0)=>
-{
-    randSeed ^= randSeed << 13; randSeed ^= randSeed >>> 17; randSeed ^= randSeed << 5; // xorshift
-    return b + (a-b) * abs(randSeed % 1e9) / 1e9;
-}
+// const randSeeded = (a=1, b=0)=>
+// {
+//     randSeed ^= randSeed << 13; randSeed ^= randSeed >>> 17; randSeed ^= randSeed << 5; // xorshift
+//     return b + (a-b) * abs(randSeed % 1e9) / 1e9;
+// }
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -246,27 +246,27 @@ class Vector2
     /** Returns a copy of this vector plus the vector passed in
      *  @param {Vector2} vector
      *  @return {Vector2} */
-    add(v) { ASSERT(v.x!=undefined); return new Vector2(this.x + v.x, this.y + v.y); }
+    add(v) { return new Vector2(this.x + v.x, this.y + v.y); }
 
     /** Returns a copy of this vector minus the vector passed in
      *  @param {Vector2} vector
      *  @return {Vector2} */
-    subtract(v) { ASSERT(v.x!=undefined); return new Vector2(this.x - v.x, this.y - v.y); }
+    subtract(v) {  return new Vector2(this.x - v.x, this.y - v.y); }
 
     /** Returns a copy of this vector times the vector passed in
      *  @param {Vector2} vector
      *  @return {Vector2} */
-    multiply(v) { ASSERT(v.x!=undefined); return new Vector2(this.x * v.x, this.y * v.y); }
+    multiply(v) {  return new Vector2(this.x * v.x, this.y * v.y); }
 
     /** Returns a copy of this vector divided by the vector passed in
      *  @param {Vector2} vector
      *  @return {Vector2} */
-    divide(v) { ASSERT(v.x!=undefined); return new Vector2(this.x / v.x, this.y / v.y); }
+    divide(v) {  return new Vector2(this.x / v.x, this.y / v.y); }
 
     /** Returns a copy of this vector scaled by the vector passed in
      *  @param {Number} scale
      *  @return {Vector2} */
-    scale(s) { ASSERT(s.x==undefined); return new Vector2(this.x * s, this.y * s); }
+    scale(s) {  return new Vector2(this.x * s, this.y * s); }
 
     /** Returns the length of this vector
      * @return {Number} */
@@ -299,12 +299,12 @@ class Vector2
     /** Returns the dot product of this and the vector passed in
      * @param {Vector2} vector
      * @return {Number} */
-    dot(v) { ASSERT(v.x!=undefined); return this.x*v.x + this.y*v.y; }
+    dot(v) {  return this.x*v.x + this.y*v.y; }
 
     /** Returns the cross product of this and the vector passed in
      * @param {Vector2} vector
      * @return {Number} */
-    cross(v) { ASSERT(v.x!=undefined); return this.x*v.y - this.y*v.x; }
+    cross(v) {  return this.x*v.y - this.y*v.x; }
 
     /** Returns the angle of this vector, up is angle 0
      * @return {Number} */
@@ -340,7 +340,7 @@ class Vector2
      * @param {Vector2} vector
      * @param {Number}  percent
      * @return {Vector2} */
-    lerp(v, p) { ASSERT(v.x!=undefined); return this.add(v.subtract(this).scale(clamp(p))); }
+    lerp(v, p) {  return this.add(v.subtract(this).scale(clamp(p))); }
 
     /** Returns true if this vector is within the bounds of an array size passed in
      * @param {Vector2} arraySize
@@ -350,8 +350,8 @@ class Vector2
     /** Returns this vector expressed as a string
      * @param {float} digits - precision to display
      * @return {String} */
-    toString(digits=3) 
-    { return `(${(this.x<0?'':' ') + this.x.toFixed(digits)},${(this.y<0?'':' ') + this.y.toFixed(digits)} )`; }
+    // toString(digits=3) 
+    // { return `(${(this.x<0?'':' ') + this.x.toFixed(digits)},${(this.y<0?'':' ') + this.y.toFixed(digits)} )`; }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -490,7 +490,6 @@ class Color
      * @return {String} */
     toString()      
     { 
-        ASSERT(this.r>=0 && this.r<=1 && this.g>=0 && this.g<=1 && this.b>=0 && this.b<=1 && this.a>=0 && this.a<=1);
         return `rgb(${this.r*255|0},${this.g*255|0},${this.b*255|0},${this.a})`; 
     }
     
@@ -498,7 +497,6 @@ class Color
      * @return {Number} */
     rgbaInt()  
     {
-        ASSERT(this.r>=0 && this.r<=1 && this.g>=0 && this.g<=1 && this.b>=0 && this.b<=1 && this.a>=0 && this.a<=1);
         return (this.r*255|0) + (this.g*255<<8) + (this.b*255<<16) + (this.a*255<<24); 
     }
 
@@ -512,7 +510,6 @@ class Color
         this.g = fromHex(3),
         this.b = fromHex(5);
         this.a = 1;
-        ASSERT(this.r>=0 && this.r<=1 && this.g>=0 && this.g<=1 && this.b>=0 && this.b<=1);
         return this;
     }
 
@@ -911,29 +908,29 @@ function engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRender
         timeReal += frameTimeDeltaMS / 1e3;
         frameTimeBufferMS = min(frameTimeBufferMS + !paused * frameTimeDeltaMS, 50); // clamp incase of slow framerate
 
-        if (canvasFixedSize.x)
-        {
-            // clear set fixed size
-            overlayCanvas.width  = mainCanvas.width  = canvasFixedSize.x;
-            overlayCanvas.height = mainCanvas.height = canvasFixedSize.y;
+        // if (canvasFixedSize.x)
+        // {
+        //     // clear set fixed size
+        //     overlayCanvas.width  = mainCanvas.width  = canvasFixedSize.x;
+        //     overlayCanvas.height = mainCanvas.height = canvasFixedSize.y;
             
-            // fit to window by adding space on top or bottom if necessary
-            const aspect = innerWidth / innerHeight;
-            const fixedAspect = mainCanvas.width / mainCanvas.height;
-            mainCanvas.style.width  = overlayCanvas.style.width  = aspect < fixedAspect ? '100%' : '';
-            mainCanvas.style.height = overlayCanvas.style.height = aspect < fixedAspect ? '' : '100%';
-            // if (glCanvas)
-            // {
-            //     glCanvas.style.width  = mainCanvas.style.width;
-            //     glCanvas.style.height = mainCanvas.style.height;
-            // }
-        }
-        else
-        {
-            // clear and set size to same as window
+        //     // fit to window by adding space on top or bottom if necessary
+        //     const aspect = innerWidth / innerHeight;
+        //     const fixedAspect = mainCanvas.width / mainCanvas.height;
+        //     mainCanvas.style.width  = overlayCanvas.style.width  = aspect < fixedAspect ? '100%' : '';
+        //     mainCanvas.style.height = overlayCanvas.style.height = aspect < fixedAspect ? '' : '100%';
+        //     // if (glCanvas)
+        //     // {
+        //     //     glCanvas.style.width  = mainCanvas.style.width;
+        //     //     glCanvas.style.height = mainCanvas.style.height;
+        //     // }
+        // }
+        // else
+        // {
+        //     // clear and set size to same as window
              overlayCanvas.width  = mainCanvas.width  = min(innerWidth,  canvasMaxSize.x);
              overlayCanvas.height = mainCanvas.height = min(innerHeight, canvasMaxSize.y);
-        }
+        // }
         
         // save canvas size
         mainCanvasSize = vec2(mainCanvas.width, mainCanvas.height);
@@ -1128,7 +1125,7 @@ class EngineObject
     constructor(pos=vec2(), size=objectDefaultSize, tileIndex=-1, tileSize=tileSizeDefault, angle=0, color, renderOrder=0)
     {
         // set passed in params
-        ASSERT(pos && pos.x != undefined && size.x != undefined); // ensure pos and size are vec2s
+        // ASSERT(pos && pos.x != undefined && size.x != undefined); // ensure pos and size are vec2s
 
         /** @property {Vector2} - World space position of the object */
         this.pos = pos.copy();
@@ -1199,8 +1196,8 @@ class EngineObject
         this.angle += this.angleVelocity *= this.angleDamping;
 
         // physics sanity checks
-        ASSERT(this.angleDamping >= 0 && this.angleDamping <= 1);
-        ASSERT(this.damping >= 0 && this.damping <= 1);
+        //ASSERT(this.angleDamping >= 0 && this.angleDamping <= 1);
+        //ASSERT(this.damping >= 0 && this.damping <= 1);
 
         if (!enablePhysicsSolver || !this.mass) // do not update collision for fixed objects
             return;
@@ -1409,7 +1406,7 @@ class EngineObject
      *  @param {Number}       [localAngle=0] */
     addChild(child, localPos=vec2(), localAngle=0)
     {
-        ASSERT(!child.parent && !this.children.includes(child));
+        //ASSERT(!child.parent && !this.children.includes(child));
         this.children.push(child);
         child.parent = this;
         child.localPos = localPos.copy();
@@ -1420,7 +1417,7 @@ class EngineObject
      *  @param {EngineObject} child */
     removeChild(child)
     {
-        ASSERT(child.parent == this && this.children.includes(child));
+        //ASSERT(child.parent == this && this.children.includes(child));
         this.children.splice(this.children.indexOf(child), 1);
         child.parent = 0;
     }
@@ -1431,31 +1428,31 @@ class EngineObject
      *  @param {boolean} [collideTiles=1]        - Does it collide with the tile collision */
     setCollision(collideSolidObjects=0, isSolid=0, collideTiles=1)
     {
-        ASSERT(collideSolidObjects || !isSolid); // solid objects must be set to collide
+        //ASSERT(collideSolidObjects || !isSolid); // solid objects must be set to collide
 
         this.collideSolidObjects = collideSolidObjects;
         this.isSolid = isSolid;
         this.collideTiles = collideTiles;
     }
 
-    toString()
-    {
-        if (debug)
-        {
-            let text = 'type = ' + this.constructor.name;
-            if (this.pos.x || this.pos.y)
-                text += '\npos = ' + this.pos;
-            if (this.velocity.x || this.velocity.y)
-                text += '\nvelocity = ' + this.velocity;
-            if (this.size.x || this.size.y)
-                text += '\nsize = ' + this.size;
-            if (this.angle)
-                text += '\nangle = ' + this.angle.toFixed(3);
-            if (this.color)
-                text += '\ncolor = ' + this.color;
-            return text;
-        }
-    }
+    // toString()
+    // {
+    //     if (debug)
+    //     {
+    //         let text = 'type = ' + this.constructor.name;
+    //         if (this.pos.x || this.pos.y)
+    //             text += '\npos = ' + this.pos;
+    //         if (this.velocity.x || this.velocity.y)
+    //             text += '\nvelocity = ' + this.velocity;
+    //         if (this.size.x || this.size.y)
+    //             text += '\nsize = ' + this.size;
+    //         if (this.angle)
+    //             text += '\nangle = ' + this.angle.toFixed(3);
+    //         if (this.color)
+    //             text += '\ncolor = ' + this.color;
+    //         return text;
+    //     }
+    // }
 }
 /** 
  * LittleJS Drawing System
@@ -1518,7 +1515,7 @@ let mainCanvasSize = vec2();
  *  @memberof Draw */
 const screenToWorld = (screenPos)=>
 {
-    ASSERT(mainCanvasSize.x && mainCanvasSize.y, 'mainCanvasSize is invalid');
+    // ASSERT(mainCanvasSize.x && mainCanvasSize.y, 'mainCanvasSize is invalid');
     return screenPos.add(vec2(.5)).subtract(mainCanvasSize.scale(.5)).multiply(vec2(1/cameraScale,-1/cameraScale)).add(cameraPos);
 }
 
@@ -1529,7 +1526,7 @@ const screenToWorld = (screenPos)=>
  *  @memberof Draw */
 const worldToScreen = (worldPos)=>
 {
-    ASSERT(mainCanvasSize.x && mainCanvasSize.y, 'mainCanvasSize is invalid');
+    // ASSERT(mainCanvasSize.x && mainCanvasSize.y, 'mainCanvasSize is invalid');
     return worldPos.subtract(cameraPos).multiply(vec2(cameraScale,-cameraScale)).add(mainCanvasSize.scale(.5)).subtract(vec2(.5));
 }
 
@@ -2951,7 +2948,7 @@ class TileLayer extends EngineObject
     // Render the tile layer, called automatically by the engine
     renderNow()
     {
-        ASSERT(mainContext != this.context); // must call redrawEnd() after drawing tiles
+        // ASSERT(mainContext != this.context); // must call redrawEnd() after drawing tiles
 
         // flush and copy gl canvas because tile canvas does not use webgl
 //        glEnable && !glOverlay && !this.isOverlay && glCopyToContext(mainContext);
@@ -3000,7 +2997,7 @@ class TileLayer extends EngineObject
     /** Call to end the redraw process */
     redrawEnd()
     {
-        ASSERT(mainContext == this.context); // must call redrawStart() before drawing tiles
+        // ASSERT(mainContext == this.context); // must call redrawStart() before drawing tiles
         //glCopyToContext(mainContext, 1);
         //debugSaveCanvas(this.canvas);
 
@@ -3020,7 +3017,7 @@ class TileLayer extends EngineObject
         const d = this.getData(layerPos);
         if (d.tile != undefined)
         {
-            ASSERT(mainContext == this.context); // must call redrawStart() before drawing tiles
+            // ASSERT(mainContext == this.context); // must call redrawStart() before drawing tiles
             drawTile(pos, vec2(1), d.tile, this.tileSize, d.color, d.direction*PI/2, d.mirror);
         }
     }
