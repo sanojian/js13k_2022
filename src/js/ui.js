@@ -25,10 +25,6 @@ function uiFadeOutAndCall(fadeFunc) {
 	}
 }
 
-function uiIsFading() {
-	return ui_fade > 0.01;
-}
-
 function uiFading() {
 	// fade
 	const FADE_TIME = 0.5;
@@ -167,7 +163,7 @@ function gameRenderPost() {
 	overlayContext.fillStyle = color;
 	overlayContext.fill();
 
-	overlayContext.globalAlpha = 0.5;
+	//overlayContext.globalAlpha = 0.5;
 
 	drawPushers();
 }
