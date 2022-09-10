@@ -10,7 +10,7 @@ class Zombie extends Enemy {
 		this.miniFace = miniTileNumbers_miniFaceZombie;
 
 		this.mass = 2;
-		this._myColor = new Color(55 / 255, 148 / 255, 110 / 255);
+		this._armColor = new Color(55 / 255, 148 / 255, 110 / 255);
 
 		this.riseFrames = RISE_FRAMES;
 		this.pos.y -= 0.5; // for the rising to look good-ish

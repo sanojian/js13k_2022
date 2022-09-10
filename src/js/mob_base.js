@@ -23,7 +23,7 @@ class Mob extends EngineObject {
 
 		// for arms
 		this.pointingAngle = rand(2 * PI);
-		this._myColor = undefined;
+		this._armColor = undefined;
 
 		this.enemyToTarget = undefined;
 		this.soundGroan = undefined;

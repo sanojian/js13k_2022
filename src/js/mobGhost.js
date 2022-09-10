@@ -8,8 +8,7 @@ class Ghost extends Enemy {
 		this.mass = 2;
 
 		this.color = new Color(1, 1, 1, 0.3);
-		this._myColor = new Color(155 / 255, 173 / 255, 183 / 255, 0.3);
-
+		this._armColor = new Color(155 / 255, 173 / 255, 183 / 255, 0.3);
 		this.transformCount = rand(30, 120);
 		this.solid = false;
 
@@ -23,7 +22,8 @@ class Ghost extends Enemy {
 		if (this.transformCount < 0) {
 			this.transformCount = rand(30, 120);
 			this.solid = !this.solid;
-			this.color = new Color(1, 1, 1, this.solid ? 1 : 0.3);
+			this.color.a = this.solid ? 1 : 0.3;
+			this._armColor.a = this.color.a;
 		}
 
 		this.setCollision(this.solid, this.solid, this.solid);
