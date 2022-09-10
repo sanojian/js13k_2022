@@ -142,9 +142,12 @@ class Enemy extends Mob {
 		let pointing = vec2(1).setAngle(this.pointingAngle, armLenght);
 
 		// draw arms
-		let pos = this.pos.add(vec2(3 / 12, 2.3 / 12 + this.bumpWalk));
+		const chestWidth = 3 / 12;
+		const chestHeight = 1.5 / 12;
+
+		let pos = this.pos.add(vec2(chestWidth, chestHeight + this.bumpWalk));
 		drawLine(pos, pos.add(pointing), 1.2 / 12, this._myColor, !!glEnable);
-		pos = this.pos.add(vec2(-3 / 12, 2.3 / 12 + this.bumpWalk));
+		pos = this.pos.add(vec2(-chestWidth, chestHeight + this.bumpWalk));
 		drawLine(pos, pos.add(pointing), 1.2 / 12, this._myColor, !!glEnable);
 	}
 }

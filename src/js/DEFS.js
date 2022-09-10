@@ -99,7 +99,7 @@ const mobDefs = {
 	Ghost: {
 		hp: 1,
 		hpGainPerlevel: 0.5,
-		maxSpeed: 0.08,
+		maxSpeed: 0.05,
 	},
 };
 

@@ -125,7 +125,7 @@ class MobPlayer extends Mob {
 			if (toCursor.y <= 0) {
 				drawTile(
 					this.pos.add(vec2((toCursor.x > 0 ? 1 : 0) / 12, 3 / 12 + this.bumpWalk)),
-					vec2(1 / 3),
+					vec2(1 / 4),
 					this.miniFace,
 					MINI_TILE_SIZE
 				);
