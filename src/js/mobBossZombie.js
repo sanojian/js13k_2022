@@ -55,7 +55,7 @@ class BossZombie extends Enemy {
 	postRender() {
 		// draw face
 		drawTile(
-			this.pos.add(vec2((g_player.pos.subtract(this.pos).x > -1 ? 1 : 0) / 12, 7 / 12)),
+			this.pos.add(vec2((g_player.pos.subtract(this.pos).x > -1 ? 1 : 0) / 12, 7 / 12 + this.bumpWalk)),
 			vec2(1 / 2),
 			this.miniFace,
 			vec2(6)
