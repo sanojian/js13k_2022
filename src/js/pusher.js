@@ -50,10 +50,10 @@ class Pusher {
 		}
 	}
 
-	draw() {
-		debugCircle(this.pos, this.minDist, "#f00", 1 / 60, false);
-		debugCircle(this.pos, this.maxDist, "#0f0", 1 / 60, false);
-	}
+	// draw() {
+	// 	debugCircle(this.pos, this.minDist, "#f00", 1 / 60, false);
+	// 	debugCircle(this.pos, this.maxDist, "#0f0", 1 / 60, false);
+	// }
 }
 
 var pushers = [];
@@ -69,12 +69,12 @@ function updatePushers() {
 	}
 }
 
-function drawPushers() {
-	if (!enableDrawPushers) return;
-	for (const p of pushers) {
-		p.draw();
-	}
-}
+// function drawPushers() {
+// 	if (!enableDrawPushers) return;
+// 	for (const p of pushers) {
+// 		p.draw();
+// 	}
+// }
 
 function clearPushers() {
 	pushers = [];
