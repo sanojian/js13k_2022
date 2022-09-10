@@ -166,7 +166,7 @@ function updateStateClickToStart() {
 
 	textBottom = "Click to start";
 
-	if (mouseWasReleased(0) || gamepadWasPressed(0) || gamepadWasPressed(1)) {
+	if (mouseWasReleased(0) || gamepadWasPressed(0)) {
 		uiSound();
 		if (isTouchDevice && !isFullscreen()) toggleFullscreen();
 		uiFadeOutAndCall(() => {
@@ -191,7 +191,7 @@ function updateStateCleared() {
 	if (getMsSinceStateChange() > 2000) {
 		textBottom = "Click to continue";
 
-		if (mouseWasPressed(0)) {
+		if (mouseWasPressed(0) || gamepadWasPressed(0)) {
 			uiSound(3);
 			uiFadeOutAndCall(() => {
 				g_level++;
