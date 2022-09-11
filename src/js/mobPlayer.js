@@ -93,7 +93,7 @@ class MobPlayer extends Mob {
 				//vibrate(200);
 
 				makeParticles(this.pos, 0.05);
-				if (Math.random() < 0.3) {
+				if (rand() < 0.3) {
 					fx_splatter(this.pos.copy());
 				}
 

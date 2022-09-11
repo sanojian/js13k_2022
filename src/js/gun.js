@@ -172,7 +172,7 @@ class Gun extends EngineObject {
 			angularVelocity: 0.3,
 			angle: 0,
 			color: color,
-			life: Math.floor(rand(20, 40)),
+			life: randInt(20, 40),
 		});
 
 		return true;

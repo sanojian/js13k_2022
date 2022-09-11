@@ -31,7 +31,7 @@ function scaleCameraToScreenSize() {
 	let tiles = TILES_PER_SCREEN;
 	// smaller on mobile
 	if (isTouchDevice) tiles = tiles - 3;
-	cameraScale = Math.min(window.innerWidth, window.innerHeight) / tiles;
+	cameraScale = min(window.innerWidth, window.innerHeight) / tiles;
 
 	touchGamepadSize = (80 * cameraScale) / 32;
 }
@@ -157,13 +157,13 @@ function updateStateClickToStart() {
 		vec2(4),
 		tileNumbers_faceZombie,
 		TILE_SIZE,
-		new Color(1, 1, 1, Math.max(0, 0.2 * Math.sin((frame * PI) / 1000)))
+		new Color(1, 1, 1, max(0, 0.2 * Math.sin((frame * PI) / 1000)))
 	);
 
 	textTitle = "DEAD AGAIN";
 
 	if (g_score) {
-		textMiddle = "Score: " + g_score + "  Top: " + localStorage.daScore;
+		textMiddle = "Score: " + g_score + "  Top: " + localStorage.s;
 	}
 
 	textBottom = "Click to start";
@@ -247,7 +247,9 @@ function updateStatePlaying() {
 	}
 
 	// game gets more difficult as you play
-	g_difficulty = Math.floor(g_level / levelDefs.length);
+	g_difficulty = (g_level / levelDefs.length) | 0;
+
+	console.log(g_difficulty);
 
 	if (
 		g_enemies.length < g_levelDef.enemiesMaxAlive + g_difficulty &&
@@ -260,7 +262,7 @@ function updateStatePlaying() {
 
 	if (g_player.hp <= 0) {
 		changeState(STATE_DEAD);
-		localStorage.daScore = localStorage.daScore ? Math.max(g_score, localStorage.daScore) : g_score;
+		localStorage.s = max(g_score, localStorage.s | 0);
 		return;
 	}
 
