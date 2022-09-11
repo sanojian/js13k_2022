@@ -79,7 +79,7 @@ function gameRenderPost() {
 
 		pos = vec2(
 			cameraPos.x - overlayCanvas.width / (cameraScale * 2) + 6 * scaleUI,
-			cameraPos.y - overlayCanvas.height / (cameraScale * 2) + 1 * scaleUI
+			cameraPos.y + overlayCanvas.height / (cameraScale * 2) - scaleUI
 		);
 
 		// UI background
@@ -117,7 +117,6 @@ function gameRenderPost() {
 		drawText(g_player.ammoShells, vec2(pos.x - txtDx, y - 0.6 * scaleUI), txtSize, txtCol, -1, undefined, "right");
 
 		// ammo
-		const colorGone = colorWhite.scale(0.2); // new Color(1, 1, 1, 0.2);
 		if (g_player.gun) {
 			for (let i = 0; i < g_player.gun._maxAmmo; i++) {
 				drawTile(
@@ -125,7 +124,7 @@ function gameRenderPost() {
 					vec2(scaleUI),
 					g_player.gun._ammoIconTile,
 					TILE_SIZE,
-					i + 1 > g_player.gun.ammo ? colorGone : colorWhite
+					i + 1 > g_player.gun.ammo ? colorWhite.scale(0.2) : colorWhite
 				);
 			}
 		}
@@ -133,7 +132,7 @@ function gameRenderPost() {
 		// score
 		drawTextWithOutline(
 			g_score.toString(),
-			vec2(overlayCanvas.width - 2 * cameraScale * scaleUI, overlayCanvas.height - 1 * cameraScale * scaleUI),
+			vec2(overlayCanvas.width - 2 * cameraScale * scaleUI, cameraScale * scaleUI),
 			cameraScale * 2,
 			colorBlood
 		);
