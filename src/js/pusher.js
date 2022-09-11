@@ -6,8 +6,6 @@ class Pusher {
 	/**
 	 * At minDist the strenght of the push is pushStrength at maxDist it is zero.
 	 *
-	 * Tics is nof tics to live.
-	 *
 	 * @param {Vector2} pos
 	 * @param {number} pushStrength
 	 * @param {number} minDist
