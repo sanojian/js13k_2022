@@ -98,13 +98,13 @@ class MobPlayer extends Mob {
 				}
 
 				if (this.hp == 0) {
+					// WE DIE !
 					for (let i = 0; i < 10; i++) {
 						fx.splatter(this.pos);
 						makeParticles(this.pos, rand());
 					}
 
 					this.angle = PI / 2;
-					this.color = new Color(0.7, 0.5, 0.5);
 					this.soundScream.play(this.pos);
 				}
 			}

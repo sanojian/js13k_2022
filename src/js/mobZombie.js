@@ -10,7 +10,7 @@ class Zombie extends Enemy {
 		this.miniFace = miniTileNumbers_miniFaceZombie;
 
 		this.mass = 2;
-		this._armColor = new Color(55 / 255, 148 / 255, 110 / 255);
+		this._armColor = colorZombie;
 
 		this.riseFrames = RISE_FRAMES;
 		this.pos.y -= 0.5; // for the rising to look good-ish
@@ -27,8 +27,7 @@ class Zombie extends Enemy {
 	update() {
 		if (this.riseFrames > 0) {
 			// dirt particles when rising
-			if (this.riseFrames % 20 == 0)
-				makeParticles(this.pos.subtract(vec2(0, this.size.y / 2)), 0.4, new Color(143 / 255, 86 / 255, 59 / 255));
+			if (this.riseFrames % 20 == 0) makeParticles(this.pos.subtract(vec2(0, this.size.y / 2)), 0.4, colorEarth);
 
 			this.riseFrames--;
 			let frac = 1 - this.riseFrames / RISE_FRAMES;

@@ -14,9 +14,7 @@ const ui_clearColors = [
 	[0, 0.5, 0.5, 0.25],
 ];
 
-//const ui_clearCol = new Color(0, 0.5, 0.5, 0.5);
-
-const ui_fadeCol = new Color(0.2, 0, 0, 1);
+const ui_fadeCol = new Color(0.2, 0, 0); // when screen is all faded out !
 
 function uiFadeOutAndCall(fadeFunc) {
 	if (!ui_onFaded) {
@@ -63,7 +61,7 @@ function gameRenderPost() {
 		// scary transforms
 		for (let i = 0; i < g_transforms.length; i++) {
 			let trans = g_transforms[i];
-			drawTile(trans.pos, vec2((60 - trans.life) / 6), trans.tileIndex, TILE_SIZE, new Color(0.8, 0.8, 0.8, 0.15));
+			drawTile(trans.pos, vec2((60 - trans.life) / 6), trans.tileIndex, TILE_SIZE, colorWhite.scale(0.15));
 			trans.life--;
 			if (trans.life <= 0) {
 				g_transforms.splice(i, 1);
@@ -85,7 +83,7 @@ function gameRenderPost() {
 		);
 
 		// UI background
-		drawRect(pos, vec2(8, 2).scale(scaleUI), new Color(0.3, 0.3, 0.3, 0.4));
+		drawRect(pos, vec2(8, 2).scale(scaleUI), colorWhite.scale(0.4));
 
 		// portrait
 		let scaleX = frame % 240 > 200 ? -2 : 2;
@@ -94,11 +92,11 @@ function gameRenderPost() {
 			vec2(scaleX, 2).scale(scaleUI),
 			tileNumbers_facePlayer,
 			TILE_SIZE,
-			new Color(1, 1, 1, 0.7)
+			colorWhite.scale(0.7)
 		);
 
 		// total ammo
-		const rectCol = new Color(0.2, 0.2, 0.2);
+		const rectCol = colorWhite.scale(0.2, 1); //  new Color(0.2, 0.2, 0.2);
 		const boxSize = vec2(1.5, 0.5).scale(scaleUI);
 		drawRect(pos.subtract(vec2(3 * scaleUI, -0.6 * scaleUI)), boxSize, rectCol);
 		drawRect(pos.subtract(vec2(3 * scaleUI, 0)), boxSize, rectCol);
@@ -110,7 +108,7 @@ function gameRenderPost() {
 		drawTile(pos.subtract(vec2(3.5 * scaleUI, 0.6 * scaleUI)), iconSize, tileNumbers_shellIcon, TILE_SIZE);
 
 		const txtSize = 0.4 * scaleUI;
-		const txtCol = new Color(0.9, 0.9, 0.9);
+		const txtCol = colorWhite.scale(0.9); // new Color(0.9, 0.9, 0.9);
 		const txtDx = 2.5 * scaleUI;
 		let y = pos.y - 0.025;
 
@@ -119,7 +117,7 @@ function gameRenderPost() {
 		drawText(g_player.ammoShells, vec2(pos.x - txtDx, y - 0.6 * scaleUI), txtSize, txtCol, -1, undefined, "right");
 
 		// ammo
-		const colorGone = new Color(1, 1, 1, 0.2);
+		const colorGone = colorWhite.scale(0.2); // new Color(1, 1, 1, 0.2);
 		if (g_player.gun) {
 			for (let i = 0; i < g_player.gun._maxAmmo; i++) {
 				drawTile(

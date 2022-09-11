@@ -7,8 +7,7 @@ class Ghost extends Enemy {
 		this.miniFace = miniTileNumbers_miniFaceGhost;
 		this.mass = 2;
 
-		// this.color = new Color(1, 1, 1, 0.3);
-		this._armColor = new Color(155 / 255, 173 / 255, 183 / 255, 0.3);
+		this._armColor = colorGrey.copy();
 		this.color = this._armColor;
 		this.transformCount = rand(30, 120);
 		this.solid = false;

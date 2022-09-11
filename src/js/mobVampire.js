@@ -33,7 +33,7 @@ class Vampire extends Enemy {
 					this.angle = 0;
 					this.miniFace = miniTileNumbers_miniFaceVampire;
 					this._walkCycleFrames = 15;
-					makeParticles(this.pos, rand(), new Color(155 / 255, 173 / 255, 183 / 255));
+					makeParticles(this.pos, rand(), colorRifleRound);
 					this.tileIndex = tileNumbers_vampire;
 					this.hp += mobDefs.Vampire.addTransformHp + g_difficulty;
 					this.mass = 2;

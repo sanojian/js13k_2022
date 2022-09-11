@@ -73,6 +73,10 @@ var colorRifleRound = new Color(99 / 255, 155 / 255, 255 / 255);
 
 var colorSpark = new Color(251 / 255, 242 / 255, 54 / 255);
 
+var colorEarth = new Color(143 / 255, 86 / 255, 59 / 255);
+
+var colorZombie = new Color(55 / 255, 148 / 255, 110 / 255);
+
 var g_state = STATE_CLICK_TO_START;
 
 const miniTileNumbers_miniFacePlayer = 15 * 15 + 0;
