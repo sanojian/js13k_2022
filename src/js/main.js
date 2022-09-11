@@ -225,7 +225,7 @@ function updateStatePlaying() {
 	}
 
 	// player leaves foot prints that attracts monsters
-	if (rand() < 0.1) pushers.push(new Pusher(g_player.pos, -0.001, 0, 5, rand(2)));
+	if (rand() < 0.1) pushers.push(new Pusher(g_player.pos, -0.001, 0, 5, rand(5)));
 
 	updatePushers();
 
