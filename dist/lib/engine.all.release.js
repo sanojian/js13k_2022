@@ -304,7 +304,7 @@ class Vector2
     /** Returns the cross product of this and the vector passed in
      * @param {Vector2} vector
      * @return {Number} */
-    cross(v) {  return this.x*v.y - this.y*v.x; }
+    //cross(v) {  return this.x*v.y - this.y*v.x; }
 
     /** Returns the angle of this vector, up is angle 0
      * @return {Number} */
