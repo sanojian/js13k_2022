@@ -54,16 +54,14 @@ class Gun extends EngineObject {
 			this.angle = -angle;
 			this.size.y = abs(this.angle) > PI / 2 ? -this._mysize : this._mysize;
 
-			if (isTouchDevice) {
-				// enter key for debugging
-				if (gamepadWasReleased(1) || keyWasPressed(13)) {
-					musicResume();
+			if (g_state == STATE_PLAYING) {
+				if (isTouchDevice) {
+					if (gamepadWasReleased(1) || keyWasPressed(13)) {
+						this.fire();
+					}
+				} else if (mouseWasPressed(0)) {
 					this.fire();
 				}
-			} else if (mouseWasPressed(0) && g_state == STATE_PLAYING) {
-				musicResume();
-				this.fire();
-				//vibrate(100);
 			}
 
 			if (this.reloading) {
@@ -146,6 +144,7 @@ class Gun extends EngineObject {
 	}
 
 	fire(color) {
+		musicResume();
 		if (this.reloading || this.ammo <= 0) {
 			this.soundEmpty.play(this.pos);
 			return false;
