@@ -10,8 +10,7 @@
 		"allowJs": true,
 		"checkJs": true,
 		"alwaysStrict": true,
-		"lib": ["ES6","DOM"],
+		"lib": ["ES6", "DOM"],
 		"target": "ES6"
-	},
+	}
 }
-

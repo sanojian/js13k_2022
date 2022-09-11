@@ -148,9 +148,9 @@ class Enemy extends Mob {
 		const chestWidth = 3 / 12;
 		const chestHeight = 1.5 / 12;
 
-		let pos = this.pos.add(vec2(chestWidth, chestHeight + this.bumpWalk));
+		let pos = this.pos.add(vec2(chestWidth, chestHeight));
 		drawLine(pos, pos.add(pointing), 1.2 / 12, this._armColor, !!glEnable);
-		pos = this.pos.add(vec2(-chestWidth, chestHeight + this.bumpWalk));
+		pos = this.pos.add(vec2(-chestWidth, chestHeight));
 		drawLine(pos, pos.add(pointing), 1.2 / 12, this._armColor, !!glEnable);
 	}
 }
