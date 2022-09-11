@@ -25,7 +25,7 @@ class Corpse extends EngineObject {
 
 		this.bloodEmitter.pos = this.pos;
 		if (this.splatterTime) {
-			if (rand() < 0.1) fx.splatter(this.pos);
+			if (rand() < 0.1) fx_splatter(this.pos);
 			this.splatterTime--;
 		}
 		super.update(); // update object physics and position

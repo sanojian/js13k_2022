@@ -10,7 +10,7 @@ class Boulder extends EngineObject {
 	}
 
 	collideWithTile() {
-		fx.shakeScreen(0.5);
+		fx_shakeScreen(0.5);
 		//vibrate(200);
 
 		soundBoulderDestroy.play();

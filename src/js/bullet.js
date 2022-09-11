@@ -36,7 +36,7 @@ class Bullet extends EngineObject {
 			});
 		}
 
-		fx.addSpark(pos.copy());
+		fx_addSpark(pos.copy());
 	}
 
 	collideWithTile(tileData, pos) {
