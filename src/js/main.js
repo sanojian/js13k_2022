@@ -109,7 +109,7 @@ var enemiesSpawned = 0;
 function spawnEnemy() {
 	var p = findFreePos(5);
 	let enemyClass = getNextEnemySpawnClass();
-	//let enemy = g_level == 1 ? new Vampire(p) : new Zombie(p);
+
 	let enemy;
 	if (enemyClass == "v") {
 		enemy = new Vampire(p);
@@ -140,9 +140,6 @@ function gameUpdate() {
 }
 
 function uiSound(f = 5) {
-	// soundPlayExtra(soundRifle, vec2(10, 0), 1, 1, 0.5, 100, 1);
-	// soundPlayExtra(soundEnemyGroan, vec2(-10, 0), 1, 1, 1, 200, 5);
-
 	for (let i = 0; i < f; i++) {
 		soundRifle.play(cameraPos.add(vec2(10, 0)), 1, 0.5 + i / 10);
 		setTimeout(() => soundEnemyGroan.play(cameraPos.add(vec2(-10, 0)), 0.5, 2 + i / 5, 0.5), 300 + i * 50);
@@ -231,7 +228,12 @@ function updateStatePlaying() {
 
 	ticsToSpawn--;
 
-	if (enemiesSpawned == g_levelDef.enemiesToSpawn + g_difficulty && g_enemies.length == 0) {
+	let enemiesLeft = g_levelDef.enemiesToSpawn + g_difficulty - enemiesSpawned + g_enemies.length;
+	//console.log("enemiesLeft", enemiesLeft);
+
+	if (enemiesLeft <= 3) textBottom = enemiesLeft + " left";
+
+	if (enemiesLeft == 0) {
 		changeState(STATE_CLEARED);
 		g_player.gun.reload();
 		//g_level++;
@@ -360,6 +362,9 @@ function textsDraw() {
 
 	if (textBottom) {
 		let amt = 0.5 + Math.sin(frame / 10) / 2;
+
+		if (g_state == STATE_PLAYING) amt = 1;
+
 		let col = new Color((amt * 172) / 255, (amt * 50) / 255, (amt * 50) / 255);
 
 		drawTextWithOutline(
