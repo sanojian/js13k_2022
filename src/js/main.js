@@ -331,8 +331,8 @@ function textsDraw() {
 	debug && testForMiscount();
 
 	if (g_CHEATMODE) {
-		drawTextScreen("CHEAT MODE ON ", vec2(100, 25), 20, new Color(1, 1, 1), 0, undefined, "left");
-		drawTextScreen("enemies: " + g_enemies.length, vec2(100, 50), 20, new Color(1, 1, 1), 0, undefined, "left");
+		drawTextScreen("CHEAT MODE ON ", vec2(100, 25), 20, colorWhite, 0, undefined, "left");
+		drawTextScreen("enemies: " + g_enemies.length, vec2(100, 50), 20, colorWhite, 0, undefined, "left");
 	}
 
 	if (textTitle) {
@@ -365,7 +365,9 @@ function textsDraw() {
 
 		if (g_state == STATE_PLAYING) amt = 1;
 
-		let col = new Color((amt * 172) / 255, (amt * 50) / 255, (amt * 50) / 255);
+		//let col = new Color((amt * 172) / 255, (amt * 50) / 255, (amt * 50) / 255);
+
+		let col = colorBlood.scale(amt);
 
 		drawTextWithOutline(
 			textBottom,
@@ -410,7 +412,7 @@ function gameRender() {
 			if (g_splatter[i].pattern[j]) {
 				let x = g_splatter[i].pos.x - (2 + (j % 4)) / 12;
 				let y = g_splatter[i].pos.y - (2 + Math.floor(j / 4)) / 12;
-				drawRect(vec2(x, y), vec2(1 / 12), g_splatter[i].color);
+				drawRect(vec2(x, y), vec2(1.1 / 12), g_splatter[i].color);
 			}
 		}
 	}
