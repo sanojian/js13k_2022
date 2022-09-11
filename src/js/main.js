@@ -222,6 +222,9 @@ function updateStatePlaying() {
 		pushers.push(new Pusher(e.pos, 0.002, 1, 3, 2 / 60));
 	}
 
+	// player leaves foot prints that attracts monsters
+	//	if (rand() < 0.1) pushers.push(new Pusher(g_player.pos, -0.1, 0, 10, rand(2)));
+
 	updatePushers();
 
 	textMiddle = getMsSinceStateChange() > 3000 ? "" : "Level " + (g_level + 1);

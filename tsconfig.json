@@ -1,6 +1,6 @@
 {
 	"include": [
-		"dist/lib/engine.all.js",
+		"dist/lib/engine.all.release.js",
 		"src/js/**/*.js",
 		"src/js/**/*.ts"
 	],

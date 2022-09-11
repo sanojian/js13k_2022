@@ -12,7 +12,7 @@ class Pusher {
 	 * @param {number} pushStrength
 	 * @param {number} minDist
 	 * @param {number} maxDist
-	 * @param {number} secs Game ticks to live. If 0 or negative, live "for ever".
+	 * @param {number} secs Seconds to live. If 0 or negative, live for ever.
 	 */
 	constructor(pos, pushStrength, minDist, maxDist, secs = 0) {
 		this.pos = pos;
