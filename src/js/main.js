@@ -3,6 +3,11 @@
 var mapMan;
 
 function init() {
+	if (!document.body) {
+		// html document is not ready yet (safari mobile)
+		return setTimeout(init, 100);
+	}
+
 	// generate new maps
 	generateMapFromLevel(0);
 	generateMapFromLevel(1);
