@@ -249,8 +249,6 @@ function updateStatePlaying() {
 	// game gets more difficult as you play
 	g_difficulty = (g_level / levelDefs.length) | 0;
 
-	console.log(g_difficulty);
-
 	if (
 		g_enemies.length < g_levelDef.enemiesMaxAlive + g_difficulty &&
 		enemiesSpawned < g_levelDef.enemiesToSpawn + g_difficulty &&
