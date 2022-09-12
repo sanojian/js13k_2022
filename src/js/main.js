@@ -163,7 +163,7 @@ function updateStateClickToStart() {
 	textTitle = "DEAD AGAIN";
 
 	if (g_score) {
-		textMiddle = "Score: " + g_score + "  Top: " + localStorage.s;
+		textMiddle = "Score: " + g_score + "  Top: " + localStorage.da_t;
 	}
 
 	textBottom = "Click to start";
@@ -260,7 +260,7 @@ function updateStatePlaying() {
 
 	if (g_player.hp <= 0) {
 		changeState(STATE_DEAD);
-		localStorage.s = max(g_score, localStorage.s | 0);
+		localStorage.da_t = max(g_score, localStorage.da_t || 0);
 		return;
 	}
 
