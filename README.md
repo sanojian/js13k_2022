@@ -1,8 +1,10 @@
 DEAD AGAIN
 =====
+
 by sanojian and repsej
 
-Death was not enough to keep these evil spirits from rising again.  
+
+Death was not enough to keep these evil spirits down.  
 
 Defend yourself against the onslaught of zombies, vampires, ghosts ... and more.   
 
@@ -28,26 +30,24 @@ Mobile controls:
 Game tips:
 
  - Boarded up doors can be shot to pieces.
- - Preserve your ammo.  
- - There are more ammo hidden around the map.
- - The shotgun can kill multiple enemies with one shot.
  - Be careful around corners.
+ - Preserve your ammo.  
+ - Extra ammo is hidden around the maps.
+ - A shotgun can kill multiple enemies with one shot.
 
 ----------------------------------
 
 Tools:
 
-	LittleJS
-	ZzFX
-	ZzFXM
+ - LittleJS
+ - ZzFX
+ - ZzFXM
 
-	grunt
-	UglifiyJS
-	google-closure-compiler
-	steamroller
-	advzip
-
-	XXX
+ - grunt
+ - UglifiyJS
+ - google-closure-compiler
+ - steamroller
+ - advzip
 
 ----------------------------------
 
@@ -72,5 +72,4 @@ Thanks:
 
 Special thanks to "Andrei Moskvitin Josephsen" for composing the music.
 
-XXX
 
