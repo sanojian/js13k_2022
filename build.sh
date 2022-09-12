@@ -2,6 +2,7 @@
 
 grunt prod --force
 npx roadroller  --optimize 2 dist/i.min.js -o dist/i.min.js
+#npx roadroller  --optimize O dist/i.min.js -o dist/i.min.js
 grunt rollup
 
 cd dist

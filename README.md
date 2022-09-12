@@ -1,4 +1,5 @@
 DEAD AGAIN
+=====
 by sanojian and repsej
 
 Death was not enough to keep these evil spirits from rising again.  
@@ -35,6 +36,7 @@ Game tips:
 ----------------------------------
 
 Tools:
+
 	LittleJS
 	ZzFX
 	ZzFXM
@@ -52,10 +54,14 @@ Tools:
 Contact and links:
 
 sanojian:
-	XXX
+
+	Jonas Olmstead
+	https://sanojian.itch.io/
+
 
 
 repsej:
+
 	Jesper Rasmussen
 	https://www.linkedin.com/in/repsej/
 	https://onelifeleft.itch.io/
