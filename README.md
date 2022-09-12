@@ -10,7 +10,7 @@ Defend yourself against the onslaught of zombies, vampires, ghosts ... and more.
 
 The longer you play, the stronger they get.  
 
-Survive for as long as you can, but it is only a matter of time before you are …… DEAD AGAIN
+Survive for as long as you can, but it is only a matter of time before you are ... DEAD AGAIN
 
 
 ----------------------------------
@@ -59,17 +59,18 @@ sanojian:
 	https://sanojian.itch.io/
 
 
-
 repsej:
 
 	Jesper Rasmussen
-	https://www.linkedin.com/in/repsej/
 	https://onelifeleft.itch.io/
+	https://www.linkedin.com/in/repsej/
+
 
 ----------------------------------
 
 Thanks:
 
-Special thanks to "Andrei Moskvitin Josephsen" for composing the music.
+ - Thanks to "Andrei Moskvitin Josephsen" for composing the awesome music.
 
+ - Thanks to our friends and colleagues at FRVR for beta testing and providing feedback.
 
