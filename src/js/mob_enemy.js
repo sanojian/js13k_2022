@@ -124,7 +124,7 @@ class Enemy extends Mob {
 
 		// splatter on mob
 		for (let d = dam; d--; ) {
-			let wound = { pos: vec2((pos.x - this.pos.x) / 3, (pos.y - this.pos.y) / 3), pattern: [] };
+			let wound = { pos: pos.subtract(this.pos).scale(0.33), pattern: [] };
 			wound.pos = wound.pos.add(randInCircle(0.2));
 
 			for (let i = 4; i--; ) wound.pattern.push(rand(2) | 0);
