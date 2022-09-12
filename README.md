@@ -1,4 +1,5 @@
 DEAD AGAIN
+=====
 by sanojian and repsej
 
 Death was not enough to keep these evil spirits from rising again.  
@@ -52,7 +53,9 @@ Tools:
 Contact and links:
 
 sanojian:
-	XXX
+	Jonas Olmstead
+	https://sanojian.itch.io/
+
 
 
 repsej:
