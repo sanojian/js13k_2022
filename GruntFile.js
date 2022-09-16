@@ -81,7 +81,7 @@ module.exports = function (grunt) {
 					unused: true					
 				},
 				mangle: {
-					toplevel: true,
+					//toplevel: true,
 					properties: true,
 					//reserved: ['TileMaps', 'world', 'layers']
 				},
