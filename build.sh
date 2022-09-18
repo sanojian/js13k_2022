@@ -3,7 +3,7 @@
 ###########################
 # clean
 
-rm dist/*.html dist/*.zip dist/*.js dist/*.png dist/js/
+rm -rf dist/*.html dist/*.zip dist/*.js dist/*.png dist/js/
 
 exit
 

@@ -118,7 +118,7 @@ module.exports = function (grunt) {
 						'src/html/index_prod.html'
 					],
 					'dist/js/index_prod.js': [
-						'dist/lib/engine.all.release.js',
+						'lib/engine.all.release.js',
 						'dist/js/index.js'
 					]
 				}
