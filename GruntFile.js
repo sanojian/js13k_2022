@@ -131,7 +131,7 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('rollup', 'combine html and js', function () {
 
-		let src = grunt.file.read('dist/i.min.js');
+		let src = grunt.file.read('dist/i.roadrolled.js');
 
 		grunt.file.write('dist/index.html', '<script>' + src + '</script>');
 
@@ -168,7 +168,7 @@ module.exports = function (grunt) {
 	]);
 	grunt.registerTask('build', ['clean', 'processMap', 'concat:dev', 'concat:shared', 'image:dev']);
 	grunt.registerTask('default', ['build', 'http-server', 'dev']);
-	grunt.registerTask('prod', ['clean', 'processMap', 'image:prod', 'concat:shared', 'concat:prod', 'closureCompiler', 'uglify']);
+	grunt.registerTask('prod', ['clean', 'processMap', 'image:prod', 'concat:shared', 'concat:prod', 'closureCompiler']);
 	grunt.registerTask('web', ['http-server', 'dev']);
 
 };
