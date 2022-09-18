@@ -1,46 +1,12 @@
 #!/bin/bash
 
-###########################
-# clean
-
-rm -rf dist/*.html dist/*.zip dist/*.js dist/*.png dist/js/
-
-exit
-
-
-###########################
-# procesMap
-
-
-###########################
-# imageProd
-
-
-###########################
-# concatShared
-
-
-###########################
-# concatProd
-
-
-###########################
-# closureComp
-
-
-###########################
-# uglify
-
-
-
-#grunt prod --force
+grunt prod --force
 
 ###########################
 # roadroller
 
-npx roadroller  --optimize 2 dist/i.min.js -o dist/i.min.js
+npx roadroller -D --optimize 2 dist/i.min.js -o dist/i.min.js
 #npx roadroller  --optimize O dist/i.min.js -o dist/i.min.js
-
 
 ###########################
 # rollup
@@ -48,7 +14,7 @@ npx roadroller  --optimize 2 dist/i.min.js -o dist/i.min.js
 grunt rollup
 
 ###########################
-# zip
+# Pack
 
 cd dist
 zip -X9 a.zip index.html t.png 

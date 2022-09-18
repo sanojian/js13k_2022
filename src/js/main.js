@@ -30,7 +30,7 @@ function scaleCameraToScreenSize() {
 	// try to fit same tiles on a screen
 	let tiles = TILES_PER_SCREEN;
 	// smaller on mobile
-	if (isTouchDevice) tiles = tiles - 3;
+	tiles = tiles - 3;
 	cameraScale = min(window.innerWidth, window.innerHeight) / tiles;
 
 	touchGamepadSize = (80 * cameraScale) / 32;

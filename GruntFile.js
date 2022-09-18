@@ -1,6 +1,4 @@
-
 module.exports = function (grunt) {
-
 
 	// Load Grunt tasks declared in the package.json file
 	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
@@ -81,8 +79,7 @@ module.exports = function (grunt) {
 					unused: true					
 				},
 				mangle: {
-					//toplevel: true,
-					properties: true,
+					//properties: true,
 					reserved: ['TileMaps', 'world', 'layers']
 				},
 			},
@@ -92,7 +89,7 @@ module.exports = function (grunt) {
 				}
 			}
 		},
-		clean: ['dist/*.html', 'dist/*.zip', 'dist/*.js', 'dist/*.png', 'dist/js/'],
+		clean: ['dist/*'],
 		concat: {
 			dev: {
 				files: {
@@ -104,11 +101,7 @@ module.exports = function (grunt) {
 			shared: {
 				files: {
 					'dist/js/index.js': [
-						'src/js/lib/*.js',
-						'src/js/main.js',
-						'src/js/DEFS.js',
 						'src/js/**/*.js',
-						'src/js/start_GEN.js',
 					]
 				}
 			},
@@ -118,7 +111,7 @@ module.exports = function (grunt) {
 						'src/html/index_prod.html'
 					],
 					'dist/js/index_prod.js': [
-						'lib/engine.all.release.js',
+						'dist/lib/engine.all.release.js',
 						'dist/js/index.js'
 					]
 				}
@@ -155,13 +148,7 @@ module.exports = function (grunt) {
 		grunt.file.write('src/js/start_GEN.js', str);
 	});
 
-	// TODO: add roadroller and zip to script
-	// Follow these steps after production build
-	// npx roadroller --optimize 2 dist/i.min.js -o dist/i.min.js
-	// grunt rollup
-	// cd dist
-	// zip -X9 a.zip index.html t.png 
-	// npx advzip-bin --recompress --shrink-insane a.zip
+	// roadroller, zip and advzip done by build.sh script 
 
 	grunt.registerTask('dev', [
 		'watch'
