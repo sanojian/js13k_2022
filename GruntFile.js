@@ -73,17 +73,17 @@ module.exports = function (grunt) {
 		uglify: {
 			options: {
 				compress: {
-					// global_defs: {
-					// 	'debug': false,
-					// 	'g_CHEATMODE': false,
-					// },
+					global_defs: {
+						'debug': false,
+						'g_CHEATMODE': false,
+					},
 					dead_code: true,
 					unused: true					
 				},
 				mangle: {
-					//toplevel: true,
-					properties: true,
-					//reserved: ['TileMaps', 'world', 'layers']
+					//properties: true,
+					toplevel: true,
+					reserved: ['TileMaps', 'world', 'layers']
 				},
 			},
 			my_target: {
