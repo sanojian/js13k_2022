@@ -3,6 +3,33 @@
 var tileLayer;
 var playerSpawn;
 
+function runLengthDecode(input) {
+	let data = undefined;
+	let run = undefined;
+
+	let o = [];
+
+	for (const e of input) {
+		if (data == undefined) {
+			data = e;
+			continue;
+		}
+
+		run = e;
+		for (let i = 0; i < run; i++) {
+			o.push(data);
+		}
+		data = undefined;
+	}
+
+	return o;
+}
+
+function decodeMap(index) {
+	let theMap = mapData[index];
+	theMap.data = runLengthDecode(theMap.rl_data);
+}
+
 class MapManager {
 	constructor() {
 		this.createMap();

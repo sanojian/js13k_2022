@@ -8,6 +8,11 @@ function init() {
 		return setTimeout(init, 100);
 	}
 
+	// unpack maps
+	decodeMap(0);
+	decodeMap(1);
+	decodeMap(2);
+
 	// generate new maps
 	generateMapFromLevel(0);
 	generateMapFromLevel(1);
