@@ -9,7 +9,6 @@
 		"grunt-contrib-clean": "*",
 		"grunt-contrib-concat": "*",
 		"grunt-contrib-copy": "*",
-		"grunt-contrib-uglify": "*",
 		"grunt-contrib-watch": "*",
 		"grunt-develop": "*",
 		"grunt-http-server": "*",

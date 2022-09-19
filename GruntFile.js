@@ -1,3 +1,4 @@
+// NOTE: To uglify, roadroll and pack everything run the ./build.sh script
 
 module.exports = function (grunt) {
 
@@ -25,6 +26,7 @@ module.exports = function (grunt) {
 				tasks: ['copy:html']
 			}
 		},
+
 		'http-server': {
 			dev: {
 				root: 'dist',
@@ -32,6 +34,7 @@ module.exports = function (grunt) {
 				runInBackground: true
 			}
 		},
+
 		image: {
 			dev: {
 				options: {
@@ -55,6 +58,7 @@ module.exports = function (grunt) {
 				}
 			},
 		},
+
 		closureCompiler: {
 			options: {
 				compilerFile: 'node_modules/google-closure-compiler-java/compiler.jar',
@@ -70,29 +74,9 @@ module.exports = function (grunt) {
 				dest: 'dist/js/i.js'
 			}
 		},
-		uglify: {
-			options: {
-				compress: {
-					global_defs: {
-						'debug': false,
-						'g_CHEATMODE': false,
-					},
-					dead_code: true,
-					unused: true					
-				},
-				mangle: {
-					//properties: true,
-					toplevel: true,
-					reserved: ['TileMaps', 'world', 'layers']
-				},
-			},
-			my_target: {
-				files: {
-					'dist/i.min.js': ['dist/js/i.js']
-				}
-			}
-		},
+
 		clean: ['dist/*.html', 'dist/*.zip', 'dist/*.js', 'dist/*.png', 'dist/js/'],
+
 		concat: {
 			dev: {
 				files: {
@@ -136,6 +120,7 @@ module.exports = function (grunt) {
 		grunt.file.write('dist/index.html', '<script>' + src + '</script>');
 
 	});
+
 	grunt.registerTask('processMap', 'get map data from Tiled', function () {
 		
 		// ADD MAPS HERE!
@@ -155,20 +140,15 @@ module.exports = function (grunt) {
 		grunt.file.write('src/js/start_GEN.js', str);
 	});
 
-	// TODO: add roadroller and zip to script
-	// Follow these steps after production build
-	// npx roadroller --optimize 2 dist/i.min.js -o dist/i.min.js
-	// grunt rollup
-	// cd dist
-	// zip -X9 a.zip index.html t.png 
-	// npx advzip-bin --recompress --shrink-insane a.zip
-
 	grunt.registerTask('dev', [
 		'watch'
 	]);
-	grunt.registerTask('build', ['clean', 'processMap', 'concat:dev', 'concat:shared', 'image:dev']);
-	grunt.registerTask('default', ['build', 'http-server', 'dev']);
-	grunt.registerTask('prod', ['clean', 'processMap', 'image:prod', 'concat:shared', 'concat:prod', 'closureCompiler']);
-	grunt.registerTask('web', ['http-server', 'dev']);
 
+	grunt.registerTask('build', ['clean', 'processMap', 'concat:dev', 'concat:shared', 'image:dev']);
+
+	grunt.registerTask('default', ['build', 'http-server', 'dev']);
+
+	grunt.registerTask('prod', ['clean', 'processMap', 'image:prod', 'concat:shared', 'concat:prod', 'closureCompiler']);
+
+	grunt.registerTask('web', ['http-server', 'dev']);
 };
