@@ -83,7 +83,9 @@ function startNextLevel() {
 	g_player = new MobPlayer(playerSpawn);
 	cameraPos = playerSpawn.copy();
 
-	new MachinePistol(g_player.pos.add(vec2(1, 1)));
+	if (USE_MACHINEPISTOL) {
+		new MachinePistol(g_player.pos.add(vec2(1, 1)));
+	}
 
 	// give player saved equipment
 	g_player.ammoBullets = ammoPistol;

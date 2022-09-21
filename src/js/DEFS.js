@@ -17,6 +17,8 @@ fontDefault = "Courier New";
 // "Courier New";
 // "Luminari"
 
+const USE_MACHINEPISTOL = 1;
+
 const g_CHEATMODE = 0;
 let g_score = 0;
 let g_level = 0;
