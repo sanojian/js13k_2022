@@ -30,8 +30,8 @@ class BossZombie extends Enemy {
 			this.tearing = false;
 			this.throwing = true;
 			this.throwingTimer = new Timer(1);
-			this.boulder.velocity = g_player.pos.subtract(this.pos).clampLength(0.3);
-			this.boulder.angleVelocity = rand(-0.1, 0.1);
+			this.boulder.velocity = g_player.pos.subtract(this.pos).normalize(0.2);
+			this.boulder.angleVelocity = rand(0.1, 0.2);
 			this.boulder.isThrown = true;
 			this.soundThrow.play(this.pos);
 		}
@@ -70,7 +70,7 @@ class BossZombie extends Enemy {
 	collideWithTile(tileData, pos) {
 		if (this.tearing) return;
 
-		if (pos.x > 0 && pos.y > 0 && pos.x < tileLayer.size.x && pos.y < tileLayer.size.y) {
+		if (pos.x > 0 && pos.y > 0 && pos.x < tileLayer.size.x - 1 && pos.y < tileLayer.size.y - 1) {
 			tileLayer.setData(pos, 0, true);
 			setTileCollisionData(pos, 0);
 		}

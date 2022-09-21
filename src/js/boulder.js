@@ -1,12 +1,22 @@
 /** @format */
 
 class Boulder extends EngineObject {
+	static getCount() {
+		var c = 0;
+		for (const o of engineObjects) {
+			if (o instanceof Boulder) c++;
+		}
+
+		return c;
+	}
+
 	constructor(pos, tileIndex) {
 		super(pos, vec2(1), tileIndex, TILE_SIZE, rand(-PI / 8, PI / 8), colorWhite);
 
 		//vibrate(100);
 		this.setCollision(true, true);
 		this.isThrown = false;
+		this.damping = 1;
 	}
 
 	collideWithTile() {

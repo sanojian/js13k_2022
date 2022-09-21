@@ -111,9 +111,7 @@ class Enemy extends Mob {
 					g_enemies[0].hit(velocity, g_enemies[0].pos, 1);
 				}
 				g_score += 10;
-				changeState(STATE_CLEARED);
-				g_player.gun.reload();
-				soundPlayExtra(soundLevelCleared, cameraPos, 2, 0.8, 0, 1000);
+				levelCleared = true;
 			}
 
 			this.destroy();

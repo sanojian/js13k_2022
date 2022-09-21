@@ -97,6 +97,8 @@ function startNextLevel() {
 	}
 	theGun.ammo = gunAmmo;
 
+	levelCleared = false;
+
 	musicStart();
 }
 
@@ -220,6 +222,8 @@ function getMsSinceStateChange() {
 var ticsToSpawn = 0;
 var ammoSpawned;
 
+var levelCleared = false;
+
 function updateStatePlaying() {
 	// enemies are a tiny bit repulsed by each other ... and thus try to spread out
 	for (const e of g_enemies) {
@@ -240,7 +244,11 @@ function updateStatePlaying() {
 
 	if (enemiesLeft <= 3) textBottom = enemiesLeft + " left";
 
-	if (enemiesLeft == 0) {
+	console.log("Boulder count:", Boulder.getCount());
+
+	if (enemiesLeft <= 0) levelCleared = true;
+
+	if (levelCleared && Boulder.getCount() == 0) {
 		changeState(STATE_CLEARED);
 		g_player.gun.reload();
 		//g_level++;
@@ -252,6 +260,7 @@ function updateStatePlaying() {
 	g_difficulty = (g_level / levelDefs.length) | 0;
 
 	if (
+		!levelCleared &&
 		g_enemies.length < g_levelDef.enemiesMaxAlive + g_difficulty &&
 		enemiesSpawned < g_levelDef.enemiesToSpawn + g_difficulty &&
 		ticsToSpawn <= 0
