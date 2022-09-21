@@ -22,6 +22,8 @@ class Gun extends EngineObject {
 
 		this.soundReload = soundGunReload;
 		this.soundEmpty = soundGunEmpty;
+
+		this.autoFire = false;
 	}
 
 	update() {
@@ -55,12 +57,14 @@ class Gun extends EngineObject {
 			this.size.y = abs(this.angle) > PI / 2 ? -this._mysize : this._mysize;
 
 			if (g_state == STATE_PLAYING) {
-				if (isTouchDevice) {
-					if (gamepadWasReleased(1) || keyWasPressed(13)) {
-						this.fire();
-					}
-				} else if (mouseWasPressed(0)) {
-					this.fire();
+				var triggerPulled = isTouchDevice ? gamepadWasReleased(1) || keyWasPressed(13) : mouseWasPressed(0);
+
+				var triggerIsHeld = isTouchDevice ? gamepadIsDown(1) || keyIsDown(13) : mouseIsDown(0);
+
+				if (this.autoFire) {
+					if (triggerIsHeld) this.fire();
+				} else {
+					if (triggerPulled) this.fire();
 				}
 			}
 

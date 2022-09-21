@@ -83,6 +83,8 @@ function startNextLevel() {
 	g_player = new MobPlayer(playerSpawn);
 	cameraPos = playerSpawn.copy();
 
+	new MachinePistol(g_player.pos.add(vec2(1, 1)));
+
 	// give player saved equipment
 	g_player.ammoBullets = ammoPistol;
 	g_player.ammoShells = ammoShotgun;
@@ -243,8 +245,6 @@ function updateStatePlaying() {
 	//console.log("enemiesLeft", enemiesLeft);
 
 	if (enemiesLeft <= 3) textBottom = enemiesLeft + " left";
-
-	console.log("Boulder count:", Boulder.getCount());
 
 	if (enemiesLeft <= 0) levelCleared = true;
 
