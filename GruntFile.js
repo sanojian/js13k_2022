@@ -15,6 +15,7 @@ module.exports = function (grunt) {
 					'src/js/**/*.js',
 					'src/maps/**/*.json',
 					'src/gfx/**/*',
+					'dist/lib/*.js',
 					'!src/js/start_GEN.js'
 				],
 				tasks: ['build']
