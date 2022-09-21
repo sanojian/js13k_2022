@@ -123,8 +123,10 @@ class MapManager {
 				if (
 					abs(cx - cameraPos.x) - 1 > overlayCanvas.width / (cameraScale * 2) ||
 					abs(cy - cameraPos.y) - 1 > overlayCanvas.height / (cameraScale * 2)
-				)
+				) {
 					continue;
+				}
+
 				let dVec = vec2(g_player.pos.x - cx, g_player.pos.y - cy);
 				dVec = dVec.clampLength(min(1.5, dVec.length()));
 				pos.x = cx + dVec.x;
@@ -135,7 +137,7 @@ class MapManager {
 					let shadow = g_shadows[x + "_" + y] || {
 						x: cx,
 						y: cy,
-						alpha: 0,
+						alpha: 1,
 					};
 					shadow.alpha = min(1, shadow.alpha + 0.1);
 
