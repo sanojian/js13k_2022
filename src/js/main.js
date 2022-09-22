@@ -250,7 +250,7 @@ function updateStatePlaying() {
 
 	if (enemiesLeft <= 0) levelCleared = true;
 
-	if (levelCleared && Boulder.getCount() == 0) {
+	if (levelCleared) {
 		changeState(STATE_CLEARED);
 		g_player.gun.reload();
 		//g_level++;
