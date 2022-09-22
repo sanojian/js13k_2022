@@ -42,6 +42,7 @@ const tileNumbers_shellIcon = 17;
 const tileNumbers_bulletIcon = 18;
 const tileNumbers_rifleAmmoIcon = 19;
 const tileNumbers_rifle = 20;
+const tileNumbers_smg = 25;
 const tileNumbers_boxBullets = 21;
 const tileNumbers_boxShells = 22;
 const tileNumbers_boxRifleAmmo = 23;
@@ -81,13 +82,13 @@ var colorZombie = new Color(55 / 255, 148 / 255, 110 / 255);
 
 var g_state = STATE_CLICK_TO_START;
 
-const miniTileNumbers_miniFacePlayer = 15 * 15 + 0;
-const miniTileNumbers_miniFaceZombie = 15 * 15 + 1;
-const miniTileNumbers_miniFaceVampire = 15 * 15 + 2;
-const miniTileNumbers_miniFaceGhost = 15 * 15 + 3;
+const miniTileNumbers_miniFacePlayer = 18 * 15 + 0;
+const miniTileNumbers_miniFaceZombie = 18 * 15 + 1;
+const miniTileNumbers_miniFaceVampire = 18 * 15 + 2;
+const miniTileNumbers_miniFaceGhost = 18 * 15 + 3;
 const miniTileNumbers_miniFaceBoss = 9;
 const miniTileNumbers_miniFaceBossAngry = 19;
-const miniTileNumbers_moss = 15 * 15 + 4;
+const miniTileNumbers_moss = 18 * 15 + 4;
 
 const mobDefs = {
 	Zombie: {

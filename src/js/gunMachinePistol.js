@@ -2,7 +2,7 @@
 
 class MachinePistol extends Gun {
 	constructor(pos) {
-		super(pos, tileNumbers_pistol);
+		super(pos, tileNumbers_smg);
 		// your object init code here
 		this._distance = 0.7;
 		this._speed = 0.4;
