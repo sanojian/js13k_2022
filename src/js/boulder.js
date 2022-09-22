@@ -1,13 +1,11 @@
 /** @format */
 
 class Boulder extends EngineObject {
-	static getCount() {
+	static destroyAllBoulders() {
 		var c = 0;
 		for (const o of engineObjects) {
-			if (o instanceof Boulder) c++;
+			if (o instanceof Boulder) o.collideWithTile();
 		}
-
-		return c;
 	}
 
 	constructor(pos, tileIndex) {

@@ -105,11 +105,15 @@ class Enemy extends Mob {
 			g_enemies.splice(i, 1);
 
 			if (this instanceof BossZombie) {
-				// kill all enemies and level complete
+				// kill all enemies and complete level
+
 				while (g_enemies.length > 0) {
 					g_enemies[0].hp = 1;
 					g_enemies[0].hit(velocity, g_enemies[0].pos, 1);
 				}
+
+				Boulder.destroyAllBoulders();
+
 				g_score += 10;
 				levelCleared = true;
 			}
