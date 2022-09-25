@@ -94,3 +94,6 @@ Funny / interesting tricks used in the game:
  - There are only really three unique maps.  Map 5 (w the boss) is unique.  But, map 1 and 3 are "the same".  Map 2 and 4 are "the same".  They are just rotated 90 degrees and mirrored on the x-axis.
 
  - To make the gun sounds louder each sound is played multiple times on top of each other. 
+
+ - We ended up out commenting about half of the engine.  Eg. we gained about 1kb by removing all GL support.  Made the game a little slower and uglier (no color tinting) but much better and with mobile controls.
+
