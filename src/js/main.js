@@ -92,7 +92,9 @@ function startNextLevel() {
 	g_player.ammoShells = ammoShotgun;
 	g_player.ammoRifle = ammoRifle;
 	let theGun;
-	if (currentGun == tileNumbers_rifle) {
+	if (currentGun == tileNumbers_smg) {
+		theGun = new MachinePistol(g_player.pos);
+	} else if (currentGun == tileNumbers_rifle) {
 		theGun = new Rifle(g_player.pos);
 	} else if (currentGun == tileNumbers_shotgun) {
 		theGun = new Shotgun(g_player.pos);
