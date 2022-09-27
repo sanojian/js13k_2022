@@ -33,7 +33,9 @@ Game tips:
  - Be careful around corners.
  - Preserve your ammo.  
  - Extra ammo is hidden around the maps.
- - A shotgun can kill multiple enemies with one shot.
+ - A shotgun can kill multiple weak enemies with one shot.
+ - Each weapon needs a specific type of ammo.
+ - You can only carry one weapon at a time.
 
 ----------------------------------
 
