@@ -162,5 +162,5 @@ function gameRenderPost() {
 
 	//overlayContext.globalAlpha = 0.5;
 
-	// drawPushers();
+	drawPushers();
 }

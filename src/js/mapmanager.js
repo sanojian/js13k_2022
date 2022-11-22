@@ -69,7 +69,7 @@ class MapManager {
 						g_doors[x + "_" + (h - 1 - y)] = { hp: 3 };
 					} else {
 						// pushers on all collision stuff except doors
-						pushers.push(new Pusher(offsetVec, 0.02, 0.7, 1.05, 0));
+						pushers.push(new Pusher(offsetVec, 0.02, 0.7, 1.05, 0, PushTo.ALL));
 
 						// moss (not on doors)
 						g_moss.push({
