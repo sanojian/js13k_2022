@@ -42,7 +42,8 @@ class Pusher {
 		if (dist > this.minDist) {
 			let p = 1 - percent(dist, this.minDist, this.maxDist);
 			//strenght *= p; // lineary falloff
-			strenght *= (1 + Math.cos(p * PI)) / 2; // sigmoidal falloff
+			//strenght *= 1 + Math.cos(p * PI); // sigmoidal falloff
+			strenght *= 2 * p * p; // squared falloff
 		}
 
 		// console.log("strenght", strenght);
