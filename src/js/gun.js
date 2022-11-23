@@ -24,10 +24,12 @@ class Gun extends EngineObject {
 		this.soundEmpty = soundGunEmpty;
 
 		this.autoFire = false;
+
+		this.spread = 0;
 	}
 
 	update() {
-		// your object update code here
+		if (this.spread > 0) this.spread /= 1.1;
 
 		if (this.owner && this.owner.hp > 0) {
 			// key r or space
@@ -60,6 +62,8 @@ class Gun extends EngineObject {
 				var triggerPulled = isTouchDevice ? gamepadWasReleased(1) || keyWasPressed(13) : mouseWasPressed(0);
 
 				var triggerIsHeld = isTouchDevice ? gamepadIsDown(1) || keyIsDown(13) : mouseIsDown(0);
+
+				this.angle += (Math.random() - 0.5) * this.spread;
 
 				if (this.autoFire) {
 					if (triggerIsHeld) this.fire();
@@ -153,6 +157,8 @@ class Gun extends EngineObject {
 			this.soundEmpty.play(this.pos);
 			return false;
 		}
+
+		this.spread += 0.5;
 
 		!isTouchDevice && uiflashScreen("#fff", 1);
 
