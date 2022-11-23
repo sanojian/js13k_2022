@@ -76,12 +76,14 @@ class Bullet extends EngineObject {
 			var damage = min(o.hp, this.penetration);
 
 			o.hit(this.velocity.copy(), this.pos.copy(), damage);
+			this.hitSound.play(this.pos, 2);
+
 			this.penetration -= damage;
+
 			if (this.penetration <= 0) {
 				this.destroy();
 				return;
 			}
-			this.hitSound.play(this.pos, 2);
 		}
 
 		return false; // no auto resolve of collision

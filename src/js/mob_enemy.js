@@ -87,6 +87,7 @@ class Enemy extends Mob {
 		if (this.hp <= 0) return;
 
 		this.hp -= dam;
+		this.groan(1, 2, rand(1, 1.5));
 
 		this.applyForce(velocity.scale(1 + dam));
 
@@ -95,7 +96,7 @@ class Enemy extends Mob {
 		for (let i = dam; i--; ) fx_splatter(pos);
 
 		if (this.hp <= 0) {
-			this.groan(1, 3, rand(2, 2.5), rand(5));
+			this.groan(1, 3, rand(2, 2.5), 2 + rand(3));
 
 			let corpse = new Corpse(this.pos.copy(), this.size.copy(), this.tileIndex, this.tileSize);
 			corpse.pushCorpse(velocity /* 1 + g_difficulty */);

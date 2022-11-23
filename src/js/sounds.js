@@ -1,7 +1,7 @@
 
-function soundPlayExtra(sound, pos, vol, pitch, rand = 0, delay = 0, repeat = 1) {
+function soundPlayExtra(sound, pos, vol, pitch, rand = 0, delay = 0, repeat = 1, initDelay=0) {
 	for (let i = 0; i < repeat; i++) { 
-		setTimeout( () => sound.play(pos, vol, pitch, rand), delay * (i+1) )
+		setTimeout( () => sound.play(pos, vol, pitch, rand), initDelay + delay * (i+1) )
 	}
  }
 
@@ -29,8 +29,8 @@ var soundRifle = new Sound([3,,164.8138,,,,4,,,,,,,,,-.3]);
 var soundPistol = new Sound([1,,164.8138,,,,4,,,,,,,,,-.3]);
 var soundShotgun = new Sound([3,,352,.07,.01,.2,4,3,,.4,,,.15,1.5,,.7,.12,.2]);
 
-var soundBulletHit =new Sound([1,.3,440,.01,0,0,0,1,19.9,6.7,600,.09,.3,3.6,11,.2,0,.9,0,.1]);
-
+var soundBulletHit =new Sound([1,.1,137,.02,.02,.04,4,2.98,-0.9,-3.5,,,,1.6,-2.3,.1,,.87,.06]);
+	
 var soundGunReload = new Sound([,.3,,.01,,.01,4,,20,6,600,.07,.3,3.6,12,,,,,.12]);
 var soundGunEmpty = new Sound([1,,65,,,.02,4,,,,,,,2,,,,1,,0]);
 

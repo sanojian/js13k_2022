@@ -54,7 +54,7 @@ class Mob extends EngineObject {
 			vol = d < 1 ? MAX_VOL : MAX_VOL / (d * d);
 		}
 
-		soundPlayExtra(this.soundGroan, this.pos, strength * vol, pitch, 1, 50, repeat);
+		soundPlayExtra(this.soundGroan, this.pos, strength * vol, pitch, 1, 50, repeat, 100);
 
 		//		this.soundGroan.play(this.pos, strength * vol, strength * rand(1, 2), 0.5);
 	}
