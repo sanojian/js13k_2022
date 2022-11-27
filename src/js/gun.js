@@ -158,7 +158,7 @@ class Gun extends EngineObject {
 			return false;
 		}
 
-		this.spread += 0.5;
+		this.spread += 0.35;
 
 		!isTouchDevice && uiflashScreen("#fff", 1);
 
