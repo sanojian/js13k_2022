@@ -29,7 +29,7 @@ var soundRifle = new Sound([3,,164.8138,,,,4,,,,,,,,,-.3]);
 var soundPistol = new Sound([1,,164.8138,,,,4,,,,,,,,,-.3]);
 var soundShotgun = new Sound([3,,352,.07,.01,.2,4,3,,.4,,,.15,1.5,,.7,.12,.2]);
 
-var soundBulletHit =new Sound([1,.1,137,.02,.02,.04,4,2.98,-0.9,-3.5,,,,1.6,-2.3,.1,,.87,.06]);
+var soundBulletHit =new Sound([1,.1,137,.02,.02,.04,4,2.98,-0.9,-3.5,0,0,0,1.6,-2.3,.1,0,.87,0,0]);
 	
 var soundGunReload = new Sound([,.3,,.01,,.01,4,,20,6,600,.07,.3,3.6,12,,,,,.12]);
 var soundGunEmpty = new Sound([1,,65,,,.02,4,,,,,,,2,,,,1,,0]);
