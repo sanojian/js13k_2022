@@ -17,8 +17,6 @@ fontDefault = "Courier New";
 // "Courier New";
 // "Luminari"
 
-const USE_MACHINEPISTOL = 1;
-
 const g_CHEATMODE = 0;
 let g_score = 0;
 let g_level = 0;
@@ -92,8 +90,8 @@ const miniTileNumbers_moss = 18 * 15 + 4;
 
 const mobDefs = {
 	Zombie: {
-		hp: 1,
-		hpGainPerlevel: 1,
+		hp: 2,
+		hpGainPerlevel: 0,
 		maxSpeed: 0.06,
 	},
 	BossZombie: {
@@ -103,13 +101,13 @@ const mobDefs = {
 	},
 	Vampire: {
 		hp: 1,
-		hpGainPerlevel: 0.5,
+		hpGainPerlevel: 0,
 		maxSpeed: 0.2,
 		addTransformHp: 5,
 	},
 	Ghost: {
 		hp: 1,
-		hpGainPerlevel: 0.5,
+		hpGainPerlevel: 0,
 		maxSpeed: 0.05,
 	},
 };

@@ -83,7 +83,7 @@ function startNextLevel() {
 	g_player = new MobPlayer(playerSpawn);
 	cameraPos = playerSpawn.copy();
 
-	if (USE_MACHINEPISTOL) {
+	if (g_level >= 5 && g_level % 5 == 0) {
 		new MachinePistol(g_player.pos.add(vec2(1, 1)));
 	}
 
@@ -113,6 +113,9 @@ function findFreePos(minDistToPlayer) {
 
 	do {
 		pos = vec2(rand(mapData[g_levelDef.map].w), rand(mapData[g_levelDef.map].h));
+		pos.x = Math.floor(pos.x) + 0.5;
+		pos.y = Math.floor(pos.y) + 0.5;
+
 		dist2player = pos.distance(g_player.pos);
 		inTileCol = tileCollisionTest(pos, vec2(1));
 	} while (dist2player < minDistToPlayer || inTileCol);
@@ -231,6 +234,9 @@ var ammoSpawned;
 var levelCleared = false;
 
 function updateStatePlaying() {
+	// game gets more difficult as you play
+	g_difficulty = 1 + ((g_level / levelDefs.length) | 0);
+
 	// enemies are a tiny bit repulsed by each other ... and thus try to spread out
 	for (const e of g_enemies) {
 		pushers.push(new Pusher(e.pos, 0.002, 1, 3, 2 / 60, PushTo.ENEMIES));
@@ -245,7 +251,10 @@ function updateStatePlaying() {
 
 	ticsToSpawn--;
 
-	let enemiesLeft = g_levelDef.enemiesToSpawn + g_difficulty - enemiesSpawned + g_enemies.length;
+	let enemiesToSpawn = (g_levelDef.enemiesToSpawn * (1 + g_difficulty)) / 2;
+	let enemiesMaxAlive = g_levelDef.enemiesMaxAlive * g_difficulty;
+
+	let enemiesLeft = enemiesToSpawn - enemiesSpawned + g_enemies.length;
 	//console.log("enemiesLeft", enemiesLeft);
 
 	if (enemiesLeft <= 3) textBottom = enemiesLeft + " left";
@@ -260,15 +269,7 @@ function updateStatePlaying() {
 		return;
 	}
 
-	// game gets more difficult as you play
-	g_difficulty = (g_level / levelDefs.length) | 0;
-
-	if (
-		!levelCleared &&
-		g_enemies.length < g_levelDef.enemiesMaxAlive + g_difficulty &&
-		enemiesSpawned < g_levelDef.enemiesToSpawn + g_difficulty &&
-		ticsToSpawn <= 0
-	) {
+	if (!levelCleared && g_enemies.length < enemiesMaxAlive && enemiesSpawned < enemiesToSpawn && ticsToSpawn <= 0) {
 		spawnEnemy();
 		ticsToSpawn = rand(120);
 	}
